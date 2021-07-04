@@ -26,6 +26,11 @@
         echo 'full name must be under 255 characters';
     }
 
+    // Verify email does not exist already
+    if (Validation::email_exists($_POST['email'])) {
+        echo 'email already exists';
+    }
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);

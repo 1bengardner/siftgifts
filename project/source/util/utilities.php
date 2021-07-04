@@ -8,7 +8,9 @@
             $prepared_stmt = $mysqli->prepare($stmt);
             $prepared_stmt->bind_param(str_repeat("s", count($args)), ...$args);
             $prepared_stmt->execute();
-            return $prepared_stmt;
+            $res = $prepared_stmt->get_result();
+            $prepared_stmt->close();
+            return $res;
         }
     }
 
@@ -31,6 +33,7 @@
             return $missing_keys;
         }
 
+        // Returns the email error if there is one, otherwise false
         public static function email_error($email)
         {
             // Validate email
@@ -42,6 +45,24 @@
                 return ValidationErrorMessage::EmailTooLong;
             }
             return false;
+        }
+
+        public static function email_exists($email)
+        {
+            $stmt = "SELECT email FROM user WHERE email = ?";
+            $duplicate_email = Database::run_statement($stmt, [$email]);
+            return $duplicate_email->num_rows > 0;
+        }
+
+        public static function verify_user($email, $password)
+        {
+            $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
+            $user_password = Database::run_statement($stmt, [$email]);
+            if (!$user_password) {
+                return false;
+            }
+            $encrypted_password = $user_password->fetch_assoc()['encrypted_password'];
+            return password_verify($password, $encrypted_password);
         }
     }
 ?>

@@ -32,4 +32,11 @@
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    
+    // Add user to db
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $mysqli = new mysqli("miniproject", "root", "", "restaurant_review_data");
+    $stmt_add_user = $mysqli->prepare("INSERT INTO user(name, email, encrypted_password) VALUES (?, ?, ?)");
+    $stmt_add_user->bind_param("sss", $name, $email, $password);
+    $stmt_add_user->execute();
 ?>

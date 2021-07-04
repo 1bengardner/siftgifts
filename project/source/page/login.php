@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Login</title>        
+        <title>Login</title>
     </head>
     <body>
         <form action="../action/login-action.php" method="post">
@@ -13,7 +13,7 @@
                 <input type="password" name="password" placeholder="Password" maxlength="255" required />
             </div>
             <div>
-                <input class="submit-button" type="submit" value="Log in" /></p>
+                <input class="submit-button" type="submit" value="Log in" />
             </div>
         </form>
     </body>

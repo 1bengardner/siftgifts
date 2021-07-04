@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Registration</title>        
+        <title>Registration</title>
     </head>
     <body>
         <form action="../action/registration-action.php" method="post">
@@ -19,7 +19,7 @@
                 <input type="password" name="confirm-password" placeholder="Confirm password" maxlength="255" required />
             </div>
             <div>
-                <input class="submit-button" type="submit" value="Sign up" /></p>
+                <input class="submit-button" type="submit" value="Sign up" />
             </div>
         </form>
     </body>

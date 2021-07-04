@@ -1,4 +1,4 @@
-<?php require '../action/login-check.php' ?>
+<?php require_once '../action/login-check.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +11,6 @@
             <input type="search" name="q" placeholder="Search for a restaurant..." />
             <button>Search</button>
         </form>
-        <?php include '../action/restaurants-action'; ?>
+        <?php include '../action/show-restaurants.php'; ?>
     </body>
 </html>

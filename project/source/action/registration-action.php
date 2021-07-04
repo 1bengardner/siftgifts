@@ -1,5 +1,5 @@
 <?php
-    require '../util/utilities.php';
+    require_once '../util/utilities.php';
 
     // Validate required field presence
     $required_fields = ['name', 'email', 'password', 'confirm-password'];

@@ -1,6 +1,6 @@
 <?php
-    require '../action/login-check.php';
-    require '../util/utilities.php';
+    require_once '../action/login-check.php';
+    require_once '../util/utilities.php';
 
     // TODO: Validate fields
 

@@ -5,7 +5,7 @@
         <title>Login</title>        
     </head>
     <body>
-        <form action="login-action.php" method="post">
+        <form action="../action/login-action.php" method="post">
             <div>
                 <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
             </div>

@@ -139,3 +139,7 @@ hr {
     width: 80vw;
     border: 1px solid #fcf0e4;
 }
+
+.center {
+    text-align: center;
+}

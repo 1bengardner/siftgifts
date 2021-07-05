@@ -35,7 +35,7 @@
     }
     if (count($restaurants) === 0) {
 ?>
-<div class="widget restaurant-widget focused">
+<div class="widget focused center">
     <h2>No restaurants yet. Click <a href="add-a-restaurant"><span class="lighter">Add a restaurant</span></a> to get started.</h2>
 </div>
 <?php

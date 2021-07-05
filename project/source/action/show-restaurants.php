@@ -22,7 +22,7 @@
             if ($restaurant->rating === null) {
                 echo "<button>No reviews!</button>";
             } else {
-                echo "<span class='lighter'>" . round($restaurant->rating, 1) . "🌟</span> - " . $restaurant->reviews . " reviews";
+                echo "<span class='lighter'>" . round($restaurant->rating, 1) . "🌟</span> - " . $restaurant->reviews . ($restaurant->reviews > 1 ? " reviews" : " review");
             }
             ?>
         </h3>

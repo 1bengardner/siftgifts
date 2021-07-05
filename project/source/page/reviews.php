@@ -12,6 +12,7 @@
         <title>Reviews</title>
     </head>
     <body>
+        <?php include 'navigation.php' ?>
         <?php
             require_once '../util/utilities.php';
             require_once '../data/restaurant.php';
@@ -25,12 +26,12 @@
         <form method="post" action="add-a-review.php">
             <div class="restaurant-display">
                 <h1><?php echo $restaurant->name; ?></h1>
-                <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1) . " stars"); ?></h2>
-                <h3 class="subheading"><?php echo $restaurant->cuisine; ?> in <?php echo $restaurant->location; ?></h3>
+                <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No ratings" : round($restaurant->rating, 1) . " stars"); ?></h2>
+                <h3 class="subheading"><?php echo ($restaurant->rating != null ? $restaurant->cuisine . " in " . $restaurant->location : "Be the first reviewer:"); ?></h3>
                 <p></p>
             </div>
             <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
-            <a><button>Leave a review</button></a>
+            <button><a>Leave a review</a></button>
         </form>
         <?php include '../action/show-reviews.php' ?>
     </body>

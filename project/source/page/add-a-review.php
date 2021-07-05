@@ -1,3 +1,4 @@
+<?php require_once '../action/login-check.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,23 +24,34 @@
         ?>
         <form action="../action/submit-review.php" method="post">
             <h1><?php echo $restaurant->name; ?></h1>
+            <h3 class="subheading">Restaurant in <?php echo $restaurant->location; ?></h3>
             <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
+            <hr />
+            <h4>Rating</h4>
             <div>
-                <input type="radio" name="rating" value="1" required />
-                <input type="radio" name="rating" value="2" />
-                <input type="radio" name="rating" value="3" />
-                <input type="radio" name="rating" value="4" />
-                <input type="radio" name="rating" value="5" />
+                <label>
+                    <input type="radio" name="rating" value="1" required />
+                    <span class="subheading">1</span>
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="2" />
+                    <span class="subheading">2</span>
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="3" />
+                    <span class="subheading">3</span>
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="4" />
+                    <span class="subheading">4</span>
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="5" />
+                    <span class="subheading">5</span>
+                </label>
             </div>
             <div>
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-            </div>
-            <div>
-                <input type="text" name="name" placeholder="Your name" maxlength="50" required />
+                <input type="text" name="name" placeholder="Reviewer's name" maxlength="50" required />
             </div>
             <div>
                 <textarea name="review-text" placeholder="Write your review..." maxlength="2000" required></textarea>

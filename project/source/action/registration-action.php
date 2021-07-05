@@ -38,4 +38,9 @@
     // Add user to db
     $stmt = "INSERT INTO user(name, email, encrypted_password) VALUES (?, ?, ?)";
     Database::run_statement($stmt, [$name, $email, $password]);
+
+    session_start();
+    $_SESSION["id"] = $id;
+
+    header('Location: ../page/restaurants.php');
 ?>

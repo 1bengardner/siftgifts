@@ -15,6 +15,7 @@ class Restaurant
         $this->name = $assoc['name'];
         $this->cuisine = $assoc['cuisine'];
         $this->location = $assoc['location'];
+        $this->url = $assoc['url'];
         $this->rating = $this->get_average_rating();
     }
 

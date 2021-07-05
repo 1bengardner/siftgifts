@@ -24,6 +24,7 @@
     $stmt = "SELECT id FROM user WHERE email = ?";
     $user_id = Database::run_statement($stmt, [$_POST['email']]);
     $id = $user_id->fetch_assoc()['id'];
+
     session_start();
     $_SESSION["id"] = $id;
 

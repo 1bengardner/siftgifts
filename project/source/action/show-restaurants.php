@@ -17,13 +17,19 @@
     <form method="get" action="reviews.php">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <h2><?php echo $restaurant->name; ?></h2></input>
-        <h3 class="subheading"><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1)); ?></h3>
+        <h3 class="subheading"><?php echo ($restaurant->rating === null ? "<button>No reviews!</button>" : round($restaurant->rating, 1) . "/5"); ?></h3>
         <p class="subheading"><?php echo $restaurant->cuisine; ?></p>
         <p class="subheading"><?php echo $restaurant->location; ?></p>
-        <input type="submit" value="Explore" />
+        <input type="submit" value="See reviews" />
     </form>
 </div>
-
+<?php
+    }
+    if (count($restaurants) === 0) {
+?>
+<div class="widget restaurant-widget focused">
+    <h2>No restaurants yet. Click <a href="add-a-restaurant"><span class="lighter">Add a restaurant</span></a> to get started.</h2>
+</div>
 <?php
     }
 ?>

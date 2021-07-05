@@ -1,20 +1,25 @@
 body, button {
-    color: #fcf0e8;
-    background-color: #f98b14;
-    font-family: roboto, sans-serif;
-    font-size: x-large;
+    color: #fcf0e4;
+    background-color: #ef830f;
+    font-family: 'roboto', sans-serif;
+    font-size: large;
 }
 
 h1, h2 {
-    color: #fff4a6;
+    color: #fff6b9;
 }
 
 a {
-    color: #fcf0e8;
-    border: 0.15rem solid;
-    border-radius: 1em;
-    padding: 0.3em;
+    color: #fcf0e4;
+    border: 0.1rem solid;
+    border-radius: 2em;
+    padding: 0.5em;
     text-decoration: none;
+}
+
+.header a {
+    border: 0;
+    text-decoration: underline;
 }
 
 a:active, button:active {
@@ -23,6 +28,7 @@ a:active, button:active {
 
 button {
     border: unset;
+    cursor: pointer;
 }
 
 .right {
@@ -34,15 +40,18 @@ button {
     border-bottom: 0.1em solid;
 }
 
-
 .header li {
     list-style-type: none;
     display: inline-block;
+    margin-left: 0.5em;
 }
 
 .logo-text {
-    font-family: noto sans jp;
-    font-size: 2em;
+    font-family: 'noto sans jp', sans-serif;
+}
+
+.header .logo-text {
+    font-size: 3em;
 }
 
 .lighter {
@@ -55,7 +64,7 @@ button {
 }
 
 .highlight {
-    background-color: #e26705;    
+    background-color: #e26705;
 }
 
 form {
@@ -65,7 +74,7 @@ form {
 form input, form textarea {
     padding: 0.5em;
     margin: 1em;
-    font-family: roboto, sans-serif;
+    font-family: 'roboto', sans-serif;
     font-size: large;
 }
 
@@ -77,7 +86,15 @@ form input[type=submit] {
     width: 12.6em;
 }
 
-.restaurant-widget form, .review-widget form {
+form input[type=radio] {
+    margin: 0;
+}
+
+form label {
+    margin: 1em;
+}
+
+.widget form {
     text-align: left;
 }
 
@@ -93,14 +110,19 @@ textarea {
 .widget {
     background-color: #da7304;
     border-radius: 2em;
+    margin: 2em;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 }
 
 .restaurant-widget {
-    padding: 2em 6em;
+    padding: 4vh 10vw;
 }
 
 .review-widget {
-    padding: 0.5em 3em;
-    margin: 1em;
+    padding: 1vh 5vw;
 }
+
+hr {
+    width: 80vw;
+    border: 1px solid #fcf0e4;
 }

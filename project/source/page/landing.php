@@ -14,7 +14,7 @@
         <div class="focused">
             <?php include 'header.php' ?>
             <p>
-                Welcome to the Dineline Portal. Sign in to start managing your restaurants and reviews.
+                Welcome to the Dineline Portal! <a href="login"><span class="lighter">Log in</span></a> to start managing your restaurants and reviews.
             </p>
         </div>
     </body>

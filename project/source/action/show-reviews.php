@@ -2,7 +2,7 @@
     require_once '../util/utilities.php';
     require_once '../data/review.php';
     // Get reviews from db
-    $stmt = "SELECT * FROM review WHERE restaurant = ?";
+    $stmt = "SELECT * FROM review WHERE restaurant = ? ORDER BY timestamp DESC";
     $res = Database::run_statement($stmt, [$_GET['restaurant']]);
     $reviews = $res->fetch_all(MYSQLI_ASSOC);
 

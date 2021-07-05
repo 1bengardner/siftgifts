@@ -1,3 +1,4 @@
+<?php require_once '../action/login-check.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +12,7 @@
         <title>Add a new restaurant</title>
     </head>
     <body>
+        <?php include 'navigation.php' ?>
         <form action="../action/submit-restaurant.php" method="post">
             <div>
                 <input type="name" name="name" placeholder="Restaurant name" maxlength="255" required />

@@ -12,8 +12,9 @@
         <title>Restaurants</title>
     </head>
     <body>
+        <?php include 'navigation.php' ?>
         <form>
-            <a href="add-a-restaurant"><button>Add a restaurant</button></a>
+            <button><a href="add-a-restaurant">Add a restaurant</a></button>
             <input type="search" name="q" placeholder="Search for a restaurant..." />
             <button>🔍</button>
         </form>

@@ -61,7 +61,7 @@
             if (!$user_password) {
                 return false;
             }
-            $encrypted_password = $user_password->fetch_assoc()['encrypted_password'];
+            $encrypted_password = $user_password->fetch_row()[0];
             return password_verify($password, $encrypted_password);
         }
     }

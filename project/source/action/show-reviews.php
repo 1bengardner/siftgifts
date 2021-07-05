@@ -1,26 +1,23 @@
 <?php
     require_once '../util/utilities.php';
-    require_once '../data/restaurant.php';
+    require_once '../data/review.php';
     // Get reviews from db
     $stmt = "SELECT * FROM review WHERE restaurant = ?";
     $res = Database::run_statement($stmt, [$_GET['restaurant']]);
     $reviews = $res->fetch_all(MYSQLI_ASSOC);
 
-    foreach ($restaurants as $restaurant_data) {
-        $restaurant = new Restaurant($restaurant_data);
+    foreach ($reviews as $review_data) {
+        $review = new Review($review_data);
 
-        // Display each restaurant - this is HTML
+        // Display each review
 ?>
 
-<div class="restaurant-widget">
-    <form method="get" action="reviews.php">
-        <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
-        <h2><?php echo $restaurant->name; ?></h2></input>
-        <h3><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1)); ?></h3>
-        <p><?php echo $restaurant->cuisine; ?></p>
-        <p></p>
-        <input type="submit" value="Explore" />
-    </form>
+<div class="review-widget">
+    <h3><?php echo $review->reviewer; ?></h3></input>
+    <h2><?php echo $review->rating; ?></h2>
+    <h3><?php echo $review->timestamp; ?></h3>
+    <p><?php echo $review->content; ?></p>
+    <p></p>
 </div>
 
 <?php

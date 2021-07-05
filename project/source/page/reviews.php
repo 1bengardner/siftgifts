@@ -25,8 +25,8 @@
         <form method="post" action="add-a-review.php">
             <div class="restaurant-display">
                 <h1><?php echo $restaurant->name; ?></h1>
-                <h2><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1) . " stars"); ?></h2>
-                <h3><?php echo $restaurant->cuisine; ?></h3>
+                <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1) . " stars"); ?></h2>
+                <h3 class="subheading"><?php echo $restaurant->cuisine; ?> in <?php echo $restaurant->location; ?></h3>
                 <p></p>
             </div>
             <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />

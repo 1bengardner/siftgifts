@@ -13,13 +13,13 @@
         // Display each restaurant - this is HTML
 ?>
 
-<div class="restaurant-widget focused">
+<div class="widget restaurant-widget focused">
     <form method="get" action="reviews.php">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <h2><?php echo $restaurant->name; ?></h2></input>
-        <h3><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1)); ?></h3>
-        <p><?php echo $restaurant->cuisine; ?></p>
-        <p></p>
+        <h3 class="subheading"><?php echo ($restaurant->rating === null ? "No rating" : round($restaurant->rating, 1)); ?></h3>
+        <p class="subheading"><?php echo $restaurant->cuisine; ?></p>
+        <p class="subheading"><?php echo $restaurant->location; ?></p>
         <input type="submit" value="Explore" />
     </form>
 </div>

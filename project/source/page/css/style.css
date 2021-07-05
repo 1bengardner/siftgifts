@@ -85,3 +85,22 @@ textarea {
     height: 50vh;
     width: 50vw;
 }
+
+.subheading {
+    margin-top: -1em;
+}
+
+.widget {
+    background-color: #da7304;
+    border-radius: 2em;
+}
+
+.restaurant-widget {
+    padding: 2em 6em;
+}
+
+.review-widget {
+    padding: 0.5em 3em;
+    margin: 1em;
+}
+}

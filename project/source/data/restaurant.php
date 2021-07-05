@@ -7,12 +7,14 @@ class Restaurant
     public $name;
     public $rating;
     public $cuisine;
+    public $location;
 
     public function __construct($assoc)
     {
         $this->id = $assoc['id'];
         $this->name = $assoc['name'];
         $this->cuisine = $assoc['cuisine'];
+        $this->location = $assoc['location'];
         $this->rating = $this->get_average_rating();
     }
 

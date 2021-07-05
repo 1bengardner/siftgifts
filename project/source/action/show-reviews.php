@@ -12,10 +12,16 @@
         // Display each review
 ?>
 
-<div class="review-widget focused">
+<div class="widget review-widget focused">
     <h3><?php echo $review->reviewer; ?></h3></input>
-    <h2><?php echo $review->rating; ?></h2>
-    <h3><?php echo $review->timestamp; ?></h3>
+    <p class="subheading">
+    <?php
+    for ($i = 0; $i < $review->rating; $i++) {
+        echo "⭐";
+    }
+    ?>
+    </p>
+    <p><?php echo explode(' ', $review->timestamp)[0]; ?></p>
     <p><?php echo $review->content; ?></p>
     <p></p>
 </div>

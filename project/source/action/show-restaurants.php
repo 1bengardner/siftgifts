@@ -3,7 +3,7 @@
     require_once '../data/restaurant.php';
 
     // Get available restaurants from db
-    $stmt = "SELECT * FROM restaurant WHERE user = ?";
+    $stmt = "SELECT * FROM restaurant WHERE user = ? ORDER BY id DESC";
     $res = Database::run_statement($stmt, [$_SESSION["id"]]);
     $restaurants = $res->fetch_all(MYSQLI_ASSOC);
 
@@ -17,7 +17,15 @@
     <form method="get" action="reviews.php">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <h2><?php echo $restaurant->name; ?></h2></input>
-        <h3 class="subheading"><?php echo ($restaurant->rating === null ? "<button>No reviews!</button>" : round($restaurant->rating, 1) . "/5"); ?></h3>
+        <h3 class="subheading">
+            <?php
+            if ($restaurant->rating === null) {
+                echo "<button>No reviews!</button>";
+            } else {
+                echo "<span class='lighter'>" . round($restaurant->rating, 1) . "🌟</span> - " . $restaurant->reviews . " reviews";
+            }
+            ?>
+        </h3>
         <p class="subheading"><?php echo $restaurant->cuisine; ?></p>
         <p class="subheading"><?php echo $restaurant->location; ?></p>
         <input type="submit" value="See reviews" />

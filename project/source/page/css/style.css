@@ -17,7 +17,7 @@ a {
     text-decoration: none;
 }
 
-.header a {
+.header a, .link {
     border: 0;
     text-decoration: underline;
 }
@@ -56,6 +56,7 @@ button {
 
 .lighter {
     color: #ffffff;
+    text-shadow: #FC0 0 0 0.2rem;
 }
 
 .focused {
@@ -79,7 +80,7 @@ form input, form textarea {
 }
 
 form input:focus, form textarea:focus {
-    box-shadow: 0 0 1em #ffffff;
+    box-shadow: 0 0 0.5em #ffffff;
 }
 
 form input[type=submit] {

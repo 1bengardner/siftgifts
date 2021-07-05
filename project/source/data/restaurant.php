@@ -8,6 +8,7 @@ class Restaurant
     public $rating;
     public $cuisine;
     public $location;
+    public $reviews;
 
     public function __construct($assoc)
     {
@@ -17,12 +18,21 @@ class Restaurant
         $this->location = $assoc['location'];
         $this->url = $assoc['url'];
         $this->rating = $this->get_average_rating();
+        $this->reviews = $this->get_review_count();
     }
 
     private function get_average_rating()
     {
         // Get corresponding reviews
         $stmt = "SELECT AVG(rating) FROM review WHERE restaurant = ?";
+        $res = Database::run_statement($stmt, [$this->id]);
+        return $res->fetch_row()[0];
+    }
+
+    private function get_review_count()
+    {
+        // Get corresponding reviews
+        $stmt = "SELECT COUNT(*) FROM review WHERE restaurant = ?";
         $res = Database::run_statement($stmt, [$this->id]);
         return $res->fetch_row()[0];
     }

@@ -4,7 +4,7 @@
         public static function run_statement($stmt, $args)
         {
             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-            $mysqli = new mysqli("miniproject", "root", "", "restaurant_review_data");
+            $mysqli = new mysqli("localhost", "root", "", "restaurant_review_data");
             $prepared_stmt = $mysqli->prepare($stmt);
             $prepared_stmt->bind_param(str_repeat("s", count($args)), ...$args);
             $prepared_stmt->execute();

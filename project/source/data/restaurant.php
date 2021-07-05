@@ -3,10 +3,10 @@ require_once '../util/utilities.php';
 
 class Restaurant
 {
+    public $id;
     public $name;
     public $rating;
     public $cuisine;
-    private $id;
 
     public function __construct($assoc)
     {
@@ -21,7 +21,7 @@ class Restaurant
         // Get corresponding reviews
         $stmt = "SELECT AVG(rating) FROM review WHERE restaurant = ?";
         $res = Database::run_statement($stmt, [$this->id]);
-        $this->rating = $res->fetch_row()[0];
+        return $res->fetch_row()[0];
     }
 }
 ?>

@@ -19,7 +19,7 @@
                 <input type="url" name="url" placeholder="URL" maxlength="50" />
             </div>
             <div>
-                <input class="submit-button" type="submit" value="Submit and add a review" />
+                <input class="submit-button" type="submit" value="Add restaurant" />
             </div>
         </form>
     </body>

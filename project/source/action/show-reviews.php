@@ -1,11 +1,10 @@
 <?php
     require_once '../util/utilities.php';
     require_once '../data/restaurant.php';
-
-    // Get available restaurants from db
-    $stmt = "SELECT * FROM restaurant WHERE user = ?";
-    $res = Database::run_statement($stmt, [$_SESSION["id"]]);
-    $restaurants = $res->fetch_all(MYSQLI_ASSOC);
+    // Get reviews from db
+    $stmt = "SELECT * FROM review WHERE restaurant = ?";
+    $res = Database::run_statement($stmt, [$_GET['restaurant']]);
+    $reviews = $res->fetch_all(MYSQLI_ASSOC);
 
     foreach ($restaurants as $restaurant_data) {
         $restaurant = new Restaurant($restaurant_data);

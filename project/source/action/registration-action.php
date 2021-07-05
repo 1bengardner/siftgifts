@@ -6,29 +6,35 @@
 
     foreach (Validation::get_missing_keys($required_fields) as $field) {
         echo $field . ' cannot be empty';
+        return;
     }
 
     if ($res = Validation::email_error($_POST['email'])) {
         echo $res;
+        return;
     }
 
     // Verify password and confirm are the same
     if ($_POST['password'] != $_POST['confirm-password']) {
         echo 'password and confirm not the same';
+        return;
     }
     // Validate password length
     if (strlen($_POST['password']) > 255) {
         echo 'password must be under 255 characters';
+        return;
     }
 
     // Validate name length
     if (strlen($_POST['name']) > 255) {
         echo 'full name must be under 255 characters';
+        return;
     }
 
     // Verify email does not exist already
     if (Validation::email_exists($_POST['email'])) {
         echo 'email already exists';
+        return;
     }
 
     $name = $_POST['name'];
@@ -39,8 +45,5 @@
     $stmt = "INSERT INTO user(name, email, encrypted_password) VALUES (?, ?, ?)";
     Database::run_statement($stmt, [$name, $email, $password]);
 
-    session_start();
-    $_SESSION["id"] = $id;
-
-    header('Location: ../page/restaurants.php');
+    header('Location: ../page/login.php');
 ?>

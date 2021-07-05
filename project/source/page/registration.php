@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         <title>Registration</title>
     </head>
     <body>
         <form action="../action/registration-action.php" method="post">
+            <h1 class="logo-text">Dine<span class="lighter">line</span></h1>
             <div>
                 <input type="text" name="name" placeholder="Full name" maxlength="50" required />
             </div>
@@ -21,6 +28,9 @@
             <div>
                 <input class="submit-button" type="submit" value="Sign up" />
             </div>
+            <p>
+                or <a href="login">Log In</a>
+            </p>
         </form>
     </body>
 </html>

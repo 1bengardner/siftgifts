@@ -1,0 +1,87 @@
+body, button {
+    color: #fcf0e8;
+    background-color: #f98b14;
+    font-family: roboto, sans-serif;
+    font-size: x-large;
+}
+
+h1, h2 {
+    color: #fff4a6;
+}
+
+a {
+    color: #fcf0e8;
+    border: 0.15rem solid;
+    border-radius: 1em;
+    padding: 0.3em;
+    text-decoration: none;
+}
+
+a:active, button:active {
+    color: white;
+}
+
+button {
+    border: unset;
+}
+
+.right {
+    text-align: right;
+}
+
+.header {
+    margin-bottom: 1em;
+    border-bottom: 0.1em solid;
+}
+
+
+.header li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.logo-text {
+    font-family: noto sans jp;
+    font-size: 2em;
+}
+
+.lighter {
+    color: #ffffff;
+}
+
+.focused {
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
+
+.highlight {
+    background-color: #e26705;    
+}
+
+form {
+    text-align: center;
+}
+
+form input, form textarea {
+    padding: 0.5em;
+    margin: 1em;
+    font-family: roboto, sans-serif;
+    font-size: large;
+}
+
+form input:focus, form textarea:focus {
+    box-shadow: 0 0 1em #ffffff;
+}
+
+form input[type=submit] {
+    width: 12.6em;
+}
+
+.restaurant-widget form, .review-widget form {
+    text-align: left;
+}
+
+textarea {
+    height: 50vh;
+    width: 50vw;
+}

@@ -13,7 +13,7 @@
         // Display each restaurant - this is HTML
 ?>
 
-<div class="restaurant-widget">
+<div class="restaurant-widget focused">
     <form method="get" action="reviews.php">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <h2><?php echo $restaurant->name; ?></h2></input>

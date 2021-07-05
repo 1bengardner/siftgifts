@@ -15,9 +15,10 @@
         <?php include 'navigation.php' ?>
         <form>
             <button><a href="add-a-restaurant">Add a restaurant</a></button>
-            <input type="search" name="q" placeholder="Search for a restaurant..." />
+            <input id="search" type="search" name="q" placeholder="Search for a restaurant..." />
             <button>🔍</button>
         </form>
         <?php include '../action/show-restaurants.php'; ?>
     </body>
+    <script src="js/autocomplete.js" type="text/javascript"></script>
 </html>

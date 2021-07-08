@@ -3,9 +3,12 @@ function inputHandler(e) {
     Array.from(document.getElementsByClassName('restaurant-widget')).forEach(function(restaurant) {
         let name = restaurant.getElementsByClassName('restaurant-name')[0].getInnerHTML();
         if (name.toLowerCase().includes(query.toLowerCase())) {
-            restaurant.hidden = false;
-        } else {
-            restaurant.hidden = true;
+            if (restaurant.lastDisplay != undefined) {
+                restaurant.style.display = restaurant.lastDisplay;
+            }
+        } else if (restaurant.style.display != "none") {
+            restaurant.lastDisplay = restaurant.style.display;
+            restaurant.style.display = "none";
         }
     });
 }

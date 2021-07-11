@@ -8,12 +8,16 @@
 
     foreach ($reviews as $review_data) {
         $review = new Review($review_data);
+        // Get review user from db
+        $stmt = "SELECT name FROM user WHERE id = ?";
+        $res = Database::run_statement($stmt, [$review->user]);
+        $user = $res->fetch_row()[0];
 
         // Display each review
 ?>
 
 <div class="widget review-widget focused">
-    <h3><?php echo $review->reviewer; ?></h3></input>
+    <h3><?php echo $user; ?></h3></input>
     <p class="subheading">
     <?php
     for ($i = 0; $i < $review->rating; $i++) {

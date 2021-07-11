@@ -7,6 +7,7 @@ class Review
     public $rating;
     public $timestamp;
     public $content;
+    public $user;
 
     public function __construct($assoc)
     {
@@ -14,6 +15,7 @@ class Review
         $this->rating = $assoc['rating'];
         $this->timestamp = $assoc['timestamp'];
         $this->content = $assoc['content'];
+        $this->user = $assoc['user'];
     }
 }
 ?>

@@ -4,8 +4,8 @@
 
     // TODO: Validate fields
 
-    $stmt = "INSERT INTO review(restaurant, reviewer, rating, content) VALUES (?, ?, ?, ?)";
-    $user_id = Database::run_statement($stmt, [$_POST["restaurant"], $_POST['name'], $_POST['rating'], $_POST['review-text']]);
+    $stmt = "INSERT INTO review(restaurant, reviewer, rating, content, user) VALUES (?, ?, ?, ?, ?)";
+    $user_id = Database::run_statement($stmt, [$_POST["restaurant"], $_POST['name'], $_POST['rating'], $_POST['review-text'], $_SESSION['id']]);
 
     header('Location: ../page/restaurants.php')
 ?>

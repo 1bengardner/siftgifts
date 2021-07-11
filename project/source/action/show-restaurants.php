@@ -3,8 +3,8 @@
     require_once '../data/restaurant.php';
 
     // Get available restaurants from db
-    $stmt = "SELECT * FROM restaurant WHERE user = ? ORDER BY id DESC";
-    $res = Database::run_statement($stmt, [$_SESSION["id"]]);
+    $stmt = "SELECT * FROM restaurant ORDER BY id DESC";
+    $res = Database::run_statement_no_params($stmt);
     $restaurants = $res->fetch_all(MYSQLI_ASSOC);
 
     foreach ($restaurants as $restaurant_data) {

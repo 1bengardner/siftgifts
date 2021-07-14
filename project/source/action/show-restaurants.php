@@ -9,26 +9,44 @@
 
     foreach ($restaurants as $restaurant_data) {
         $restaurant = new Restaurant($restaurant_data);
+        // Get restaurant image
+        $stmt = "SELECT data FROM restaurant_image WHERE restaurant = ?";
+        $res = Database::run_statement($stmt, [$restaurant->id]);
+        $image = $res->fetch_row()[0];
 
         // Display each restaurant - this is HTML
 ?>
-
 <div class="widget restaurant-widget focused">
     <form method="get" action="reviews.php">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
-        <h2 class="restaurant-name"><?php echo $restaurant->name; ?></h2></input>
-        <h3 class="subheading">
-            <?php
-            if ($restaurant->rating === null) {
-                echo "<button>No reviews!</button>";
-            } else {
-                echo "<span class='lighter'>" . round($restaurant->rating, 1) . "🌟</span> - " . $restaurant->reviews . ($restaurant->reviews > 1 ? " reviews" : " review");
-            }
-            ?>
-        </h3>
-        <p class="subheading"><?php echo $restaurant->cuisine; ?></p>
-        <p class="subheading"><?php echo $restaurant->location; ?></p>
-        <input type="submit" value="See reviews" />
+        <div class="grid">
+            <div style="grid-item-center">
+                <?php
+                    if ($image != NULL) {
+                ?>
+                <img class="restaurant-image" src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" />
+                <?php
+                    }
+                ?>
+            </div>
+            <div>
+                <h2 class="restaurant-name"><?php echo $restaurant->name; ?></h2>
+                <h3 class="subheading">
+                    <?php
+                    if ($restaurant->rating === null) {
+                        echo "<button>No reviews!</button>";
+                    } else {
+                        echo "<span class='lighter'>" . round($restaurant->rating, 1) . "🌟</span> - " . $restaurant->reviews . ($restaurant->reviews > 1 ? " reviews" : " review");
+                    }
+                    ?>
+                </h3>
+                <p class="subheading"><?php echo $restaurant->cuisine; ?></p>
+                <p class="subheading"><?php echo $restaurant->location; ?></p>
+                <div class="right">
+                    <input type="submit" value="See reviews" />
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 <?php

@@ -4,8 +4,8 @@
 
     // TODO: Validate fields
 
-    $stmt = "INSERT INTO restaurant(user, name, cuisine, location, url) VALUES (?, ?, ?, ?, ?)";
-    $user_id = Database::run_statement($stmt, [$_SESSION["id"], $_POST['name'], $_POST['cuisine'], $_POST['location'], $_POST['url']]);
+    $stmt = "CALL add_restaurant(?, ?, ?, ?, ?, ?)";
+    Database::run_statement($stmt, [$_POST['name'], $_POST['cuisine'], $_POST['location'], $_POST['url'], file_get_contents($_FILES['image']['tmp_name']), $_SESSION['id']]);
 
     header('Location: ../page/restaurants.php')
 ?>

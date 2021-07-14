@@ -84,7 +84,7 @@ form input:focus, form textarea:focus {
     box-shadow: 0 0 0.5em #ffffff;
 }
 
-form input[type=submit] {
+.submit-button {
     width: 12.6em;
 }
 
@@ -124,6 +124,7 @@ textarea {
     padding-right: 2em;
 }
 }
+
 .widget {
     background-color: #da7304;
     border-radius: 2em;
@@ -142,4 +143,31 @@ hr {
 
 .center {
     text-align: center;
+}
+
+.upload-box {
+    display: inline-block;
+    width: 400px;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.restaurant-image {
+    max-width: 200px;
+    max-height: 100px;
+    margin-right: 2em;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+.restaurant-name {
+    overflow-wrap: anywhere;
+}
+
+.grid-item-center {
+    align-self: center;
 }

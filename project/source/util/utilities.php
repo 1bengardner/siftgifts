@@ -30,10 +30,12 @@
         const EmailInvalid = "Please enter a valid e-mail address.";
         const EmailTooLong = "Your e-mail must be under 320 characters.";
         const PasswordTooLong = "Your password must be under 255 characters.";
+        const NameTooLong = "Your name is too long.";
         const NotLoggedIn = "Please log in to access this page.";
         const InvalidUser = "Incorrect e-mail or password.";
-        const FieldsCannotBeEmpty = "Mandatory fields must be filled out.";
+        const FieldsCannotBeEmpty = "Please fill out all fields.";
         const EmailExists = "This e-mail address is already registered with Dineline.";
+        const PasswordsDiffer = "The two entered passwords must match.";
     }
     class Validation
     {
@@ -79,6 +81,14 @@
             return false;
         }
 
+        public static function name_error($name)
+        {
+            if (strlen($name) > 255) {
+                return Message::NameTooLong;
+            }
+            return false;
+        }
+
         public static function email_exists($email)
         {
             $stmt = "SELECT email FROM user WHERE email = ?";
@@ -91,6 +101,9 @@
             if (Validation::email_exists($email)) {
                 return Message::EmailExists;
             }
+            if ($res = Validation::email_login_error($email)) {
+                return $res;
+            }
             return false;
         }
 
@@ -102,8 +115,15 @@
                 return false;
             }
             $encrypted_password = $user_password->fetch_row()[0];
-            $res = password_verify($password, $encrypted_password);
-            return $res ? $res : Message::InvalidUser;
+            return password_verify($password, $encrypted_password) ? false : $Message::InvalidUser;
+        }
+
+        public static function passwords_differ($p1, $p2)
+        {
+            if ($p1 != $p2) {
+                return Message::PasswordsDiffer;
+            }
+            return false;
         }
     }
 ?>

@@ -171,3 +171,16 @@ hr {
 .grid-item-center {
     align-self: center;
 }
+
+.error-box {
+    display: inline-block;
+    padding: 0.25em 1em;
+    background-color: rgba(255, 0, 0, 0.25);
+    border: 2px solid rgba(128, 0, 0, 0.5);
+    border-radius: 4px;
+    text-align: left;
+}
+
+.error-box p:before {
+    content: "❌";
+}

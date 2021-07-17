@@ -1,40 +1,38 @@
 <?php
     require_once '../util/utilities.php';
+    session_start();
 
     // Validate required field presence
     $required_fields = ['name', 'email', 'password', 'confirm-password'];
+    $validation_errors = [];
 
-    foreach (Validation::get_missing_keys($required_fields) as $field) {
-        echo $field . ' cannot be empty';
-        return;
+    if ($msg = Validation::keys_missing($required_fields)) {
+        array_push($validation_errors, $msg);
     }
 
-    if ($res = Validation::email_error($_POST['email'])) {
-        echo $res;
-        return;
+    if ($msg = Validation::email_registration_error($_POST['email'])) {
+        array_push($validation_errors, $msg);
     }
 
     // Verify password and confirm are the same
-    if ($_POST['password'] != $_POST['confirm-password']) {
-        echo 'password and confirm not the same';
-        return;
+    if ($msg = Validation::passwords_differ($_POST['password'], $_POST['confirm-password'])) {
+        array_push($validation_errors, $msg);
     }
     // Validate password length
-    if (strlen($_POST['password']) > 255) {
-        echo 'password must be under 255 characters';
-        return;
+    if ($msg = Validation::password_error($_POST['password'])) {
+        array_push($validation_errors, $msg);
     }
 
     // Validate name length
-    if (strlen($_POST['name']) > 255) {
-        echo 'full name must be under 255 characters';
-        return;
+    if ($msg = Validation::name_error($_POST['name'])) {
+        array_push($validation_errors, $msg);
     }
 
-    // Verify email does not exist already
-    if (Validation::email_exists($_POST['email'])) {
-        echo 'email already exists';
-        return;
+
+    if (count($validation_errors) > 0) {
+        $_SESSION["messages"] = $validation_errors;
+        header('Location: ../page/registration.php');
+        exit;
     }
 
     $name = $_POST['name'];

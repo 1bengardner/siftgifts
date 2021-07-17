@@ -1,35 +1,39 @@
 <?php
     require_once '../util/utilities.php';
+    session_start();
 
     // Validate required field presence
     $required_fields = ['email', 'password'];
+    $validation_errors = [];
 
-    foreach (Validation::get_missing_keys($required_fields) as $field) {
-        echo $field . ' cannot be empty';
-        return;
+    if ($msg = Validation::keys_missing($required_fields)) {
+        array_push($validation_errors, $msg);
     }
 
-    if ($res = Validation::email_error($_POST['email'])) {
-        echo $res;
-        return;
+    if ($msg = Validation::email_login_error($_POST['email'])) {
+        array_push($validation_errors, $msg);
     }
 
     // Validate password length
-    if (strlen($_POST['password']) > 255) {
-        echo 'password must be under 255 characters';
-        return;
+    if ($msg = Validation::password_error($_POST['password'])) {
+        array_push($validation_errors, $msg);
     }
 
-    if (!Validation::verify_user($_POST['email'], $_POST['password'])) {
-        echo 'incorrect email or password';
-        return;
+    if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'], $_POST['password'])) {
+        array_push($validation_errors, $msg);
+    }
+
+
+    if (count($validation_errors) > 0) {
+        $_SESSION["messages"] = $validation_errors;
+        header('Location: ../page/login.php');
+        exit;
     }
 
     $stmt = "SELECT id FROM user WHERE email = ?";
     $user_id = Database::run_statement($stmt, [$_POST['email']]);
     $id = $user_id->fetch_assoc()['id'];
 
-    session_start();
     $_SESSION["id"] = $id;
 
     header('Location: ../page/restaurants.php');

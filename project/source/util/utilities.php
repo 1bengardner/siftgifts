@@ -27,9 +27,13 @@
 
     abstract class Message
     {
-        const EmailInvalid = "invalid email";
-        const EmailTooLong = "email must be under 320 characters";
-        const NotLoggedIn = "you are not logged in";
+        const EmailInvalid = "Please enter a valid e-mail address.";
+        const EmailTooLong = "Your e-mail must be under 320 characters.";
+        const PasswordTooLong = "Your password must be under 255 characters.";
+        const NotLoggedIn = "Please log in to access this page.";
+        const InvalidUser = "Incorrect e-mail or password.";
+        const FieldsCannotBeEmpty = "Mandatory fields must be filled out.";
+        const EmailExists = "This e-mail address is already registered with Dineline.";
     }
     class Validation
     {
@@ -45,16 +49,32 @@
             return $missing_keys;
         }
 
+        public static function keys_missing($keys)
+        {
+            if (Validation::get_missing_keys($keys)) {
+                return Message::FieldsCannotBeEmpty;
+            }
+            return false;
+        }
+
         // Returns the email error if there is one, otherwise false
-        public static function email_error($email)
+        public static function email_login_error($email)
         {
             // Validate email
-            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return Message::EmailInvalid;
             }
-            // Validate email length
-            if (strlen($_POST['email']) > 320) {
+            // Validate email length - this is included within the FILTER_VALIDATE_EMAIL filter, but also here as secondary defense for the database
+            if (strlen($email) > 320) {
                 return Message::EmailTooLong;
+            }
+            return false;
+        }
+
+        public static function password_error($password)
+        {
+            if (strlen($password) > 255) {
+                return Message::PasswordTooLong;
             }
             return false;
         }
@@ -66,7 +86,15 @@
             return $duplicate_email->num_rows > 0;
         }
 
-        public static function verify_user($email, $password)
+        public static function email_registration_error($email)
+        {
+            if (Validation::email_exists($email)) {
+                return Message::EmailExists;
+            }
+            return false;
+        }
+
+        public static function login_error($email, $password)
         {
             $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
             $user_password = Database::run_statement($stmt, [$email]);
@@ -74,7 +102,8 @@
                 return false;
             }
             $encrypted_password = $user_password->fetch_row()[0];
-            return password_verify($password, $encrypted_password);
+            $res = password_verify($password, $encrypted_password);
+            return $res ? $res : Message::InvalidUser;
         }
     }
 ?>

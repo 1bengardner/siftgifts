@@ -16,13 +16,21 @@
             <?php
                 require_once '../util/utilities.php';
                 session_start();
-                if (isset($_SESSION["messages"]) && array_pop($_SESSION["messages"]) == Message::NotLoggedIn) {
+                if (isset($_SESSION["messages"])) {
             ?>
-            <p>
-                Please log in to access this page.
-            </p>
+            <div class="error-box">
             <?php
+                    foreach ($_SESSION["messages"] as $message) {
+            ?>
+                <p>
+                        <?php echo $message; ?>
+                </p>
+            <?php
+                    }
                     unset($_SESSION["messages"]);
+            ?>
+            </div>
+            <?php
                 }
             ?>
             <div>

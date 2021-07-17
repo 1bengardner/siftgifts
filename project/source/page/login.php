@@ -13,6 +13,18 @@
     <body>
         <form action="../action/login-action.php" method="post">
             <h1 class="logo-text">Dine<span class="lighter">line</span></h1>
+            <?php
+                require_once '../util/utilities.php';
+                session_start();
+                if (isset($_SESSION["messages"]) && array_pop($_SESSION["messages"]) == Message::NotLoggedIn) {
+            ?>
+            <p>
+                Please log in to access this page.
+            </p>
+            <?php
+                    unset($_SESSION["messages"]);
+                }
+            ?>
             <div>
                 <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
             </div>

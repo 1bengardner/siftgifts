@@ -25,10 +25,11 @@
         }
     }
 
-    abstract class ValidationErrorMessage
+    abstract class Message
     {
         const EmailInvalid = "invalid email";
         const EmailTooLong = "email must be under 320 characters";
+        const NotLoggedIn = "you are not logged in";
     }
     class Validation
     {
@@ -49,11 +50,11 @@
         {
             // Validate email
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                return ValidationErrorMessage::EmailInvalid;
+                return Message::EmailInvalid;
             }
             // Validate email length
             if (strlen($_POST['email']) > 320) {
-                return ValidationErrorMessage::EmailTooLong;
+                return Message::EmailTooLong;
             }
             return false;
         }

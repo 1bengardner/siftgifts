@@ -25,7 +25,7 @@ class Restaurant
     {
         // Get corresponding reviews
         $stmt = "SELECT AVG(rating) FROM review WHERE restaurant = ?";
-        $res = Database::run_statement($stmt, [$this->id]);
+        $res = Database::run_statement(Database::get_connection(), $stmt, [$this->id]);
         return $res->fetch_row()[0];
     }
 
@@ -33,7 +33,7 @@ class Restaurant
     {
         // Get corresponding reviews
         $stmt = "SELECT COUNT(*) FROM review WHERE restaurant = ?";
-        $res = Database::run_statement($stmt, [$this->id]);
+        $res = Database::run_statement(Database::get_connection(), $stmt, [$this->id]);
         return $res->fetch_row()[0];
     }
 }

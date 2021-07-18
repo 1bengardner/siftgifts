@@ -1,20 +1,20 @@
 <?php
-    require_once '../util/utilities.php';
-    require_once '../data/restaurant.php';
+require_once '../util/utilities.php';
+require_once '../data/restaurant.php';
 
-    // Get available restaurants from db
-    $stmt = "SELECT * FROM restaurant ORDER BY id DESC";
-    $res = Database::run_statement_no_params($stmt);
-    $restaurants = $res->fetch_all(MYSQLI_ASSOC);
+// Get available restaurants from db
+$stmt = "SELECT * FROM restaurant ORDER BY id DESC";
+$res = Database::run_statement_no_params(Database::get_connection(), $stmt);
+$restaurants = $res->fetch_all(MYSQLI_ASSOC);
 
-    foreach ($restaurants as $restaurant_data) {
-        $restaurant = new Restaurant($restaurant_data);
-        // Get restaurant image
-        $stmt = "SELECT data FROM restaurant_image WHERE restaurant = ?";
-        $res = Database::run_statement($stmt, [$restaurant->id]);
-        $image = $res->fetch_row()[0];
+foreach ($restaurants as $restaurant_data) {
+    $restaurant = new Restaurant($restaurant_data);
+    // Get restaurant image
+    $stmt = "SELECT data FROM restaurant_image WHERE restaurant = ?";
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$restaurant->id]);
+    $image = $res->fetch_row()[0];
 
-        // Display each restaurant - this is HTML
+    // Display each restaurant - this is HTML
 ?>
 <div class="widget restaurant-widget focused">
     <form method="get" action="reviews.php">
@@ -22,11 +22,11 @@
         <div class="grid">
             <div style="grid-item-center">
                 <?php
-                    if ($image != NULL) {
+                if ($image != NULL) {
                 ?>
                 <img class="restaurant-image" src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" />
                 <?php
-                    }
+                }
                 ?>
             </div>
             <div>
@@ -50,12 +50,12 @@
     </form>
 </div>
 <?php
-    }
-    if (count($restaurants) === 0) {
+}
+if (count($restaurants) === 0) {
 ?>
 <div class="widget focused center">
     <h2>No restaurants yet. Click <a href="add-a-restaurant"><span class="lighter">Add a restaurant</span></a> to get started.</h2>
 </div>
 <?php
-    }
+}
 ?>

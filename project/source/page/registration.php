@@ -14,24 +14,24 @@
         <form action="../action/registration-action.php" method="post">
             <h1 class="logo-text">Dine<span class="lighter">line</span></h1>
             <?php
-                require_once '../util/utilities.php';
-                session_start();
-                if (isset($_SESSION["messages"])) {
+            require_once '../util/utilities.php';
+            session_start();
+            if (isset($_SESSION["messages"])) {
             ?>
             <div class="error-box">
             <?php
-                    foreach ($_SESSION["messages"] as $message) {
+                foreach ($_SESSION["messages"] as $message) {
             ?>
                 <p>
-                        <?php echo $message; ?>
+                    <?php echo $message; ?>
                 </p>
             <?php
-                    }
-                    unset($_SESSION["messages"]);
+                }
+                unset($_SESSION["messages"]);
             ?>
             </div>
             <?php
-                }
+            }
             ?>
             <div>
                 <input type="text" name="name" placeholder="Full name" maxlength="50" required />

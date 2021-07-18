@@ -14,26 +14,29 @@
     <body>
         <?php include 'navigation.php' ?>
         <?php
-            require_once '../util/utilities.php';
-            require_once '../data/restaurant.php';
+        require_once '../util/utilities.php';
+        require_once '../data/restaurant.php';
 
-            // Get restaurant from db
-            $stmt = "SELECT * FROM restaurant WHERE id = ?";
-            $res = Database::run_statement($stmt, [$_GET['restaurant']]);
-            $restaurant_data = $res->fetch_assoc();
-            $restaurant = new Restaurant($restaurant_data);
+        // Get restaurant from db
+        $stmt = "SELECT * FROM restaurant WHERE id = ?";
+        $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['restaurant']]);
+        $restaurant_data = $res->fetch_assoc();
+        $restaurant = new Restaurant($restaurant_data);
         ?>
         <form method="post" action="add-a-review.php">
             <div class="restaurant-display">
                 <h1><?php echo $restaurant->name; ?></h1>
                 <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No ratings" : round($restaurant->rating, 1) . "🌟"); ?></h2>
-                <h3 class="subheading"><?php
-                if ($restaurant->rating != null) {
-                    echo $restaurant->cuisine;
-                    if ($restaurant->location != null) {
-                        echo " in " . $restaurant->location;
+                <h3 class="subheading">
+                    <?php
+                    if ($restaurant->rating != null) {
+                        echo $restaurant->cuisine;
+                        if ($restaurant->location != null) {
+                            echo " in " . $restaurant->location;
+                        }
                     }
-                } ?></h3>
+                    ?>
+                </h3>
                 <h3 class="link"><?php echo ($restaurant->rating != null ? "<a href=" . $restaurant->url . ">" . $restaurant->url .  "</a>" : "Be the first reviewer:"); ?></h3>
                 <p></p>
             </div>

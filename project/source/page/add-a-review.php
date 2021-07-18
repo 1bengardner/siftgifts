@@ -13,18 +13,26 @@
     </head>
     <body>
         <?php
-            require_once '../util/utilities.php';
-            require_once '../data/restaurant.php';
+        require_once '../util/utilities.php';
+        require_once '../data/restaurant.php';
 
-            // Get restaurant from db
-            $stmt = "SELECT * FROM restaurant WHERE id = ?";
-            $res = Database::run_statement($stmt, [$_POST['restaurant']]);
-            $restaurant_data = $res->fetch_assoc();
-            $restaurant = new Restaurant($restaurant_data);
+        // Get restaurant from db
+        $stmt = "SELECT * FROM restaurant WHERE id = ?";
+        $res = Database::run_statement(Database::get_connection(), $stmt, [$_POST['restaurant']]);
+        $restaurant_data = $res->fetch_assoc();
+        $restaurant = new Restaurant($restaurant_data);
         ?>
         <form action="../action/submit-review.php" method="post">
             <h1><?php echo $restaurant->name; ?></h1>
-            <h3 class="subheading">Restaurant in <?php echo $restaurant->location; ?></h3>
+            <h3 class="subheading">
+            <?php
+            if ($restaurant->location != null) {
+                echo "Restaurant in " . $restaurant->location;
+            } else {
+                echo "Adding your review";
+            }
+            ?>
+            </h3>
             <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
             <hr />
             <h4>Rating</h4>

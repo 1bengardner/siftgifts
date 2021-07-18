@@ -24,7 +24,7 @@ foreach ($restaurants as $restaurant_data) {
                 <?php
                 if ($image != NULL) {
                 ?>
-                <img class="restaurant-image" src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" />
+                <input type="image" class="restaurant-image" src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" />
                 <?php
                 }
                 ?>

@@ -162,6 +162,7 @@ hr {
     margin-right: 2em;
     border: 2px solid rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    padding: 0;
 }
 
 .restaurant-name {

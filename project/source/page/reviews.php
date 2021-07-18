@@ -27,18 +27,33 @@
             <div class="restaurant-display">
                 <h1><?php echo $restaurant->name; ?></h1>
                 <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No ratings" : round($restaurant->rating, 1) . "🌟"); ?></h2>
+                <?php
+                if ($restaurant->rating != null) {
+                    if ($restaurant->cuisine != null) {
+                ?>
                 <h3 class="subheading">
-                    <?php
-                    if ($restaurant->rating != null) {
+                <?php
                         echo $restaurant->cuisine;
                         if ($restaurant->location != null) {
                             echo " in " . $restaurant->location;
                         }
                     }
-                    ?>
+                ?>
                 </h3>
-                <h3 class="link"><?php echo ($restaurant->rating != null ? "<a href=" . $restaurant->url . ">" . $restaurant->url .  "</a>" : "Be the first reviewer:"); ?></h3>
-                <p></p>
+                <?php
+                    if ($restaurant->url != null) {
+                ?>
+                <h3 class="link">
+                    <a href="<?php echo $restaurant->url; ?>"><?php echo $restaurant->url; ?></a>
+                </h3>
+                <?php
+                    }
+                } else {
+                ?>
+                <h3>Be the first reviewer:</h3>
+                <?php
+                }
+                ?>
             </div>
             <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
             <button><a>Leave a review</a></button>

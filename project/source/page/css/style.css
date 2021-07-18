@@ -184,3 +184,7 @@ hr {
 .error-box p:before {
     content: "❌";
 }
+
+h3.link {
+    margin-bottom: 2em;
+}

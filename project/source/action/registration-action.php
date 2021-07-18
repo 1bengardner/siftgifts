@@ -5,29 +5,19 @@ session_start();
 // Validate required field presence
 $required_fields = ['name', 'email', 'password', 'confirm-password'];
 $validation_errors = [];
+$validations = [
+    function() use ($required_fields) { return Validation::keys_missing($required_fields); },
+    function() { return Validation::email_registration_error($_POST['email']); },
+    function() { return Validation::passwords_differ($_POST['password'], $_POST['confirm-password']); },
+    function() { return Validation::password_error($_POST['password']); },
+    function() { return Validation::name_error($_POST['name']); },
+];
 
-if ($msg = Validation::keys_missing($required_fields)) {
-    array_push($validation_errors, $msg);
+foreach ($validations as $validation) {
+    if ($msg = $validation()) {
+        array_push($validation_errors, $msg);
+    }
 }
-
-if ($msg = Validation::email_registration_error($_POST['email'])) {
-    array_push($validation_errors, $msg);
-}
-
-// Verify password and confirm are the same
-if ($msg = Validation::passwords_differ($_POST['password'], $_POST['confirm-password'])) {
-    array_push($validation_errors, $msg);
-}
-// Validate password length
-if ($msg = Validation::password_error($_POST['password'])) {
-    array_push($validation_errors, $msg);
-}
-
-// Validate name length
-if ($msg = Validation::name_error($_POST['name'])) {
-    array_push($validation_errors, $msg);
-}
-
 
 if (count($validation_errors) > 0) {
     $_SESSION["messages"] = $validation_errors;

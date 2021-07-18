@@ -5,24 +5,20 @@ session_start();
 // Validate required field presence
 $required_fields = ['email', 'password'];
 $validation_errors = [];
+$validations = [
+    function() use ($required_fields) { return Validation::keys_missing($required_fields); },
+    function() { return Validation::email_login_error($_POST['email']); },
+    function() { return Validation::password_error($_POST['password']); },
+];
 
-if ($msg = Validation::keys_missing($required_fields)) {
-    array_push($validation_errors, $msg);
+foreach ($validations as $validation) {
+    if ($msg = $validation()) {
+        array_push($validation_errors, $msg);
+    }
 }
-
-if ($msg = Validation::email_login_error($_POST['email'])) {
-    array_push($validation_errors, $msg);
-}
-
-// Validate password length
-if ($msg = Validation::password_error($_POST['password'])) {
-    array_push($validation_errors, $msg);
-}
-
 if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'], $_POST['password'])) {
     array_push($validation_errors, $msg);
 }
-
 
 if (count($validation_errors) > 0) {
     $_SESSION["messages"] = $validation_errors;

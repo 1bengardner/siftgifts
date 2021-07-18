@@ -60,7 +60,7 @@ class Validation
 
     public static function keys_missing($keys)
     {
-        if (Validation::get_missing_keys($keys)) {
+        if (count(Validation::get_missing_keys($keys)) > 0) {
             return Message::FieldsCannotBeEmpty;
         }
         return false;
@@ -122,7 +122,7 @@ class Validation
             return false;
         }
         $encrypted_password = $user_password->fetch_row()[0];
-        return password_verify($password, $encrypted_password) ? false : $Message::InvalidUser;
+        return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
     }
 
     public static function passwords_differ($p1, $p2)

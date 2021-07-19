@@ -17,7 +17,7 @@ foreach ($restaurants as $restaurant_data) {
     // Display each restaurant - this is HTML
 ?>
 <div class="widget restaurant-widget focused">
-    <form method="get" action="reviews.php">
+    <form method="get" action="reviews">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <div class="grid">
             <div style="grid-item-center">

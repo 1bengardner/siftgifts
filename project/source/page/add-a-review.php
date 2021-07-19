@@ -22,7 +22,7 @@
         $restaurant_data = $res->fetch_assoc();
         $restaurant = new Restaurant($restaurant_data);
         ?>
-        <form action="../action/submit-review.php" method="post">
+        <form action="../action/submit-review" method="post">
             <h1><?php echo $restaurant->name; ?></h1>
             <h3 class="subheading">
             <?php

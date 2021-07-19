@@ -4,6 +4,6 @@ session_start();
 
 if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
     $_SESSION["messages"] = [Message::NotLoggedIn];
-    header("Location: login.php");
+    header("Location: login");
 }
 ?>

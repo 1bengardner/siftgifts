@@ -22,7 +22,7 @@ if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['em
 
 if (count($validation_errors) > 0) {
     $_SESSION["messages"] = $validation_errors;
-    header('Location: ../page/login.php');
+    header('Location: ../page/login');
     exit;
 }
 
@@ -32,5 +32,5 @@ $id = $user_id->fetch_assoc()['id'];
 
 $_SESSION["id"] = $id;
 
-header('Location: ../page/restaurants.php');
+header('Location: ../page/restaurants');
 ?>

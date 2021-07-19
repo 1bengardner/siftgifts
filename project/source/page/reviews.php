@@ -23,7 +23,7 @@
         $restaurant_data = $res->fetch_assoc();
         $restaurant = new Restaurant($restaurant_data);
         ?>
-        <form method="post" action="add-a-review.php">
+        <form method="post" action="add-a-review">
             <div class="restaurant-display">
                 <h1><?php echo $restaurant->name; ?></h1>
                 <h2 class="subheading"><?php echo ($restaurant->rating === null ? "No ratings" : round($restaurant->rating, 1) . "🌟"); ?></h2>

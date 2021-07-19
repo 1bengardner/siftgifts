@@ -13,7 +13,7 @@
     </head>
     <body>
         <?php include 'navigation.php' ?>
-        <form action="../action/submit-restaurant.php" method="post" enctype="multipart/form-data">
+        <form action="../action/submit-restaurant" method="post" enctype="multipart/form-data">
             <h2>Add a new restaurant</h2>
             <div class="upload-box">
                 <p>

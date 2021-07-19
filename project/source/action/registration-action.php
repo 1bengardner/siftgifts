@@ -21,7 +21,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
     $_SESSION["messages"] = $validation_errors;
-    header('Location: ../page/registration.php');
+    header('Location: ../page/registration');
     exit;
 }
 
@@ -36,5 +36,5 @@ Database::run_statement($db, $stmt, [$name, $email, $password]);
 
 $_SESSION["id"] = $db->insert_id;
 
-header('Location: ../page/restaurants.php');
+header('Location: ../page/restaurants');
 ?>

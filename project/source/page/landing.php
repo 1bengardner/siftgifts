@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Dineline</title>
+    <title>Siftgifts</title>
   </head>
   <body>
-    <?php include 'header.php' ?>
-      <p>
-        Under construction
-      </p>
+    <?php include 'header-with-login.php' ?>
+    <p class="focused">
+      If you have registered, you may <a href="login"><span class="lighter">log in</span></a>.
+    </p>
   </body>
 </html>

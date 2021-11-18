@@ -74,6 +74,7 @@ button {
 }
 
 .focused {
+  text-align: center;
   padding-left: 20vw;
   padding-right: 20vw;
 }

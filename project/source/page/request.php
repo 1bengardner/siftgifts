@@ -12,9 +12,10 @@
     <title>Add a new gift</title>
   </head>
   <body>
-    <?php include 'header.php' ?>
+    <?php include 'header.php'; ?>
     <?php
       require_once '../util/utilities.php';
+      require_once '../action/authenticate.php';
 
       if(isset($_POST['submit'])) {
         // TODO: Validate fields

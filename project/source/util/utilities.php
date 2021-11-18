@@ -36,6 +36,7 @@ abstract class Message
 {
   const EmailInvalid = "Please enter a valid e-mail address.";
   const EmailTooLong = "Your e-mail must be under 320 characters.";
+  const EmailDoesNotExist = "Please enter a registered e-mail address.";
   const PasswordTooLong = "Your password must be under 255 characters.";
   const NameTooLong = "Your name is too long.";
   const NotLoggedIn = "Please log in to access this page.";
@@ -114,15 +115,21 @@ class Validation
     return false;
   }
 
-  public static function login_error($email, $password)
+  public static function login_error($email)
   {
-    $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
-    $user_password = Database::run_statement(Database::get_connection(), $stmt, [$email]);
-    if (!$user_password) {
-      return false;
+    $stmt = "SELECT 1 FROM user WHERE email = ?";
+    $email = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    if (empty($email->fetch_row()[0])) {
+      return Message::EmailDoesNotExist;
     }
-    $encrypted_password = $user_password->fetch_row()[0];
-    return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
+    return false;
+    // $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
+    // $user_password = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    // if (!$user_password) {
+      // return false;
+    // }
+    // $encrypted_password = $user_password->fetch_row()[0];
+    // return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
   }
 
   public static function passwords_differ($p1, $p2)

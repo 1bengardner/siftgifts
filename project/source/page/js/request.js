@@ -3,7 +3,13 @@ function request() {
   var rq = new XMLHttpRequest();
   rq.open("POST", "../../action/submit-gift", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  var params = "name=" + document.getElementById("name").value + "&url=" + document.getElementById("url").value + "&comments=" + document.getElementById("comments").value;
+  const keys = [
+    "name",
+    "url",
+    "comments"
+  ];
+  var params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
+  console.log(params);
   rq.send(params);
   document.getElementById("request-form").reset();
   document.getElementById("message").hidden = false;

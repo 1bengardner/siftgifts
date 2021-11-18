@@ -9,12 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Dineline</title>
+    <title>Yevgeniya's Wishlist</title>
   </head>
   <body>
     <?php include 'header.php' ?>
-      <p>
-        Under construction
-      </p>
+    <form>
+      <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
+      🔍
+    </form>
+    <div class="center">
+      <?php include '../action/show-gifts.php'; ?>
+    </div>
   </body>
+  <script src="js/autocomplete.js" type="text/javascript"></script>
+  <script src="js/reserve.js" type="text/javascript"></script>
 </html>

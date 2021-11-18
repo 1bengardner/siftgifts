@@ -1,192 +1,207 @@
 body, button {
-    color: #fcf0e4;
-    background-color: #ef830f;
-    font-family: 'roboto', sans-serif;
-    font-size: large;
+  color: #050503;
+  background-color: #f7f7f7;
+  font-family: 'M PLUS 1', sans-serif;
+  font-size: large;
+  margin: 0;
 }
 
-h1, h2 {
-    color: #fff6b9;
+h1 {
+  color: #596133;
+  margin: 0 auto;
 }
 
-a {
-    color: #fcf0e4;
-    border: 0.1rem solid;
-    border-radius: 2em;
-    padding: 0.5em;
-    text-decoration: none;
-    white-space: nowrap;
+h2, h3 {
+  color: #433940;
 }
 
-.header a, .link a {
-    border: 0;
-    text-decoration: underline;
-}
-
-a:active, button:active {
-    color: white;
-}
-
-button {
-    border: unset;
-    cursor: pointer;
-}
-
-.right {
-    text-align: right;
+a:not(.link) {
+  color: #0d130f;
+  background-color: #fff;
+  border: 0.1rem solid;
+  border-radius: 2em;
+  padding: 0.5em;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .header {
-    margin-bottom: 1em;
-    border-bottom: 0.1em solid;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-bottom: 0.1em solid #050503;
+  background-color: #fdfcf7;
+}
+
+.header ul {
+  margin: 0 auto;
 }
 
 .header li {
-    list-style-type: none;
-    display: inline-block;
-    margin-left: 0.5em;
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
+a:active, button:active {
+  color: #534a53;
+}
+
+button {
+  border: unset;
+  cursor: pointer;
+}
+
+.right {
+  text-align: right;
 }
 
 .logo-text {
-    font-family: 'noto sans jp', sans-serif;
+  font-family: 'Mountains of Christmas', cursive;
 }
 
 .header .logo-text {
-    font-size: 3em;
+  font-size: 3em;
 }
 
 .lighter {
-    color: #ffffff;
-    text-shadow: #FC0 0 0 0.2rem;
+  color: rgb(169, 48, 57);
+  text-shadow: rgba(169, 48, 57, 0.2) 0 0 0.2rem;
+}
+
+.logo-text .lighter {
+  font-family: 'Festive', cursive;
 }
 
 .focused {
-    padding-left: 20vw;
-    padding-right: 20vw;
+  padding-left: 20vw;
+  padding-right: 20vw;
 }
 
 .highlight {
-    background-color: #e26705;
+  background-color: #e26705;
 }
 
 form {
-    text-align: center;
+  text-align: center;
 }
 
 form input, form textarea {
-    padding: 0.5em;
-    margin: 1em;
-    font-family: 'roboto', sans-serif;
-    font-size: large;
+  padding: 0.5em;
+  margin: 1em;
+  font-family: 'M PLUS 1', sans-serif;
+  font-size: large;
 }
 
 form input:focus, form textarea:focus {
-    box-shadow: 0 0 0.5em #ffffff;
+  box-shadow: 0 0 0.5em #596133;
+}
+
+input:invalid {
+  box-shadow: 0 0 1.5em rgba(255, 255, 128, 0.5);
 }
 
 .submit-button {
-    width: 12.6em;
+  width: 15em;
 }
 
 form input[type=radio] {
-    margin: 0;
+  margin: 0;
 }
 
 form label {
-    margin: 1em;
+  margin: 1em;
 }
 
 .widget form {
-    text-align: left;
+  text-align: left;
 }
 
 textarea {
-    height: 40vh;
-    width: 80vw;
+  width: 40em;
 }
 
 .subheading {
-    margin-top: -1em;
+  margin-top: -1em;
 }
 
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
-    padding: 4vh 10vw;
+  padding: 4vh 10vw;
 }
 }
 @media screen and (min-width: 1201px) {
 .restaurant-widget {
-    display: inline-block;
-    width: 400px;
+  display: inline-block;
+  width: 400px;
 }
 .focused.restaurant-widget {
-    padding-left: 2em;
-    padding-right: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 }
 
 .widget {
-    background-color: #da7304;
-    border-radius: 2em;
-    margin: 2em;
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
-    vertical-align: top;
+  background-color: #f7f7f3;
+  border-radius: 2em;
+  margin: 2em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+  vertical-align: top;
 }
 
 .review-widget {
-    padding: 1vh 5vw;
+  padding: 1vh 5vw;
 }
 
 hr {
-    width: 80vw;
-    border: 1px solid #fcf0e4;
+  width: 80vw;
+  border: 1px solid #050503;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .upload-box {
-    display: inline-block;
-    width: 400px;
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  width: 400px;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .restaurant-image {
-    max-width: 200px;
-    max-height: 100px;
-    margin-right: 2em;
-    border: 2px solid rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    padding: 0;
+  max-width: 200px;
+  max-height: 100px;
+  margin-right: 2em;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  padding: 0;
 }
 
 .restaurant-name {
-    overflow-wrap: anywhere;
+  overflow-wrap: anywhere;
 }
 
 .grid-item-center {
-    align-self: center;
+  align-self: center;
 }
 
 .error-box {
-    display: inline-block;
-    padding: 0.25em 1em;
-    background-color: rgba(255, 0, 0, 0.25);
-    border: 2px solid rgba(128, 0, 0, 0.5);
-    border-radius: 4px;
-    text-align: left;
+  display: inline-block;
+  padding: 0.25em 1em;
+  background-color: rgba(255, 0, 0, 0.25);
+  border: 2px solid rgba(128, 0, 0, 0.5);
+  border-radius: 4px;
+  text-align: left;
 }
 
 .error-box p:before {
-    content: "❌";
+  content: "❌";
 }
 
 h3.link {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }

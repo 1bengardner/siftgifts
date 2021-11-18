@@ -191,6 +191,19 @@ hr {
   align-self: center;
 }
 
+.success-box {
+  display: inline-block;
+  padding: 0.25em 1em;
+  background-color: rgba(0, 255, 0, 0.25);
+  border: 2px solid rgba(0, 128, 0, 0.5);
+  border-radius: 4px;
+  text-align: left;
+}
+
+.success-box p:before {
+  content: "✔";
+}
+
 .error-box {
   display: inline-block;
   padding: 0.25em 1em;

@@ -25,7 +25,11 @@
     ?>
     <form id="request-form" enctype="multipart/form-data">
       <h2>Add to your wishlist</h2>
-      <p id="message" hidden>Added!</p>
+      <div hidden id="message">
+        <div class="success-box">
+          <p>Added!</p>
+        </div>
+      </div>
       <div>
         <input id="name" type="name" placeholder="Gift name" maxlength="255" required />
       </div>

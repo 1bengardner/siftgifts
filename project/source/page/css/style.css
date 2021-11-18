@@ -29,6 +29,7 @@ a:not(.link) {
   padding: 0.5em;
   margin-bottom: 1em;
   border-bottom: 0.1em solid #050503;
+  box-shadow: 0 0.05em 0.5em #596133;
   background-color: #fdfcf7;
 }
 
@@ -117,7 +118,7 @@ form label {
 }
 
 textarea {
-  width: 40em;
+  width: 20em;
 }
 
 .subheading {

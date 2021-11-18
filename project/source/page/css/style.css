@@ -117,8 +117,9 @@ form label {
   text-align: left;
 }
 
-textarea {
-  width: 20em;
+.comments {
+  max-width: 40em;
+  width: 80vw;
 }
 
 .subheading {

@@ -122,6 +122,7 @@ textarea {
 
 .subheading {
   margin-top: -1em;
+  word-break: break-word;
 }
 
 @media screen and (max-width: 1200px) {

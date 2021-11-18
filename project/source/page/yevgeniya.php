@@ -18,7 +18,10 @@
       🔍
     </form>
     <div class="center">
-      <?php include '../action/show-gifts.php'; ?>
+      <?php
+        $_GET['user']=1;
+        include '../action/show-gifts.php';
+      ?>
     </div>
   </body>
   <script src="js/autocomplete.js" type="text/javascript"></script>

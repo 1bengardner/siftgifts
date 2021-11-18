@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2021 at 03:55 PM
+-- Generation Time: Nov 18, 2021 at 07:35 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -20,20 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gift_data`
 --
-CREATE DATABASE IF NOT EXISTS `gift_data` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `gift_data`;
-
-DELIMITER $$
---
--- Procedures
---
-CREATE PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT)  NO SQL
-BEGIN
-INSERT INTO gift (name, url, notes)
-VALUES (name, url, comments);
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -41,40 +27,29 @@ DELIMITER ;
 -- Table structure for table `gift`
 --
 
-CREATE TABLE `gift` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `gift` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `notes` text DEFAULT NULL,
-  `reserved` tinyint(1) NOT NULL DEFAULT 0
+  `reserved` tinyint(1) NOT NULL DEFAULT 0,
+  `user` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-gift-user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `gift`
---
-
-INSERT INTO `gift` (`id`, `name`, `url`, `notes`, `reserved`) VALUES
-(0, 'Christmas Sock', 'https://www.amazon.ca/Unique-Ivory-White-Christmas-Stockings/dp/B0747BXLCD', '', 1);
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `user`
 --
 
---
--- Indexes for table `gift`
---
-ALTER TABLE `gift`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `gift`
---
-ALTER TABLE `gift`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique-user-email` (`email`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

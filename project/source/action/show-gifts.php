@@ -3,8 +3,8 @@ require_once '../util/utilities.php';
 require_once '../data/gift.php';
 
 // Get user gifts from db
-$stmt = "SELECT * FROM gift ORDER BY id DESC";
-$res = Database::run_statement_no_params(Database::get_connection(), $stmt);
+$stmt = "SELECT * FROM gift WHERE user=? ORDER BY id DESC";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['user']]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 
 foreach ($gifts as $gift_data) {

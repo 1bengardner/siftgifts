@@ -3,7 +3,7 @@ class Database
 {
     public static function get_connection()
     {
-        $url = "miniproject";
+        $url = "127.0.0.1";
         $user = "root";
         $db = "restaurant_review_data";
         $mysqli = new mysqli($url, $user, "", $db);

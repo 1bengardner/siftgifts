@@ -20,7 +20,7 @@ foreach ($restaurants as $restaurant_data) {
     <form method="get" action="reviews">
         <input type="hidden" name="restaurant" value="<?php echo $restaurant->id; ?>" />
         <div class="grid">
-            <div style="grid-item-center">
+            <div class="grid-item-center">
                 <?php
                 if ($image != NULL) {
                 ?>

@@ -18,7 +18,9 @@
             <input id="search" type="search" name="q" placeholder="Search for a restaurant..." />
             🔍
         </form>
-        <?php include '../action/show-restaurants.php'; ?>
+        <div class="center">
+          <?php include '../action/show-restaurants.php'; ?>
+        </div>
     </body>
     <script src="js/autocomplete.js" type="text/javascript"></script>
 </html>

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Ben's Wishlist</title>
+    <title>Ben's wishlist</title>
   </head>
   <body>
     <?php include 'header.php' ?>
@@ -19,8 +19,13 @@
     </form>
     <div class="center">
       <?php
-        $_GET['user']=2;
-        include '../action/show-gifts.php';
+        session_start();
+        if (isset($_SESSION["id"]) && $_SESSION['id'] === 2) {
+          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="dashboard">dashboard</a> instead.</p>';
+        } else {
+          $_GET['user']=2;
+          include '../action/show-gifts.php';
+        }
       ?>
     </div>
   </body>

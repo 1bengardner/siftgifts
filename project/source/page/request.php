@@ -24,7 +24,8 @@
         Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments']]);
       }
     ?>
-    <form id="request-form" enctype="multipart/form-data">
+    <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
+      <?php include 'user-buttons.php'; ?>
       <h2>Add to your wishlist</h2>
       <div hidden id="message">
         <div class="success-box">
@@ -41,7 +42,7 @@
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Add gift" onclick="request()"/>
+        <input class="submit-button" type="submit" value="Add gift"/>
       </div>
     </form>
   </body>

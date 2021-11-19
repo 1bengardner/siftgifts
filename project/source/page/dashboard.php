@@ -9,24 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Yevgeniya's wishlist</title>
+    <?php
+    require_once '../action/authenticate.php';
+    require_once '../data/user.php';
+    $user = User::get_from_id($_SESSION['id']);
+    ?>
+    <title><?php echo $user->email ?>'s dashboard</title>
   </head>
   <body>
-    <?php include 'header.php' ?>
-    <form>
-      <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
-      🔍
-    </form>
-    <div class="center">
-      <?php
-        session_start();
-        if (isset($_SESSION["id"]) && $_SESSION['id'] === 1) {
-          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="dashboard">dashboard</a> instead.</p>';
-        } else {
-          $_GET['user']=1;
-          include '../action/show-gifts.php';
-        }
-      ?>
+    <?php include 'header.php'; ?>
+    <div class="focused">
+    <?php include 'user-buttons.php'; ?>
+    <p>
+      If you are not <?php echo $user->email ?>, you may <a href="login"><span class="lighter">log in</span></a> with your email.
+    </p>
     </div>
   </body>
   <script src="js/autocomplete.js" type="text/javascript"></script>

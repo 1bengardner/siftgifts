@@ -31,5 +31,5 @@ $id = $user_id->fetch_assoc()['id'];
 
 $_SESSION["id"] = $id;
 
-header('Location: ../page/request');
+header('Location: ../page/dashboard');
 ?>

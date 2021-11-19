@@ -1,5 +1,5 @@
 body, button {
-  color: #050503;
+  color: #433940;
   background-color: #f7f7f7;
   font-family: 'M PLUS 1', sans-serif;
   font-size: large;
@@ -16,7 +16,7 @@ h2, h3 {
 }
 
 a:not(.link) {
-  color: #0d130f;
+  color: #433940;
   background-color: #fff;
   border: 0.1rem solid;
   border-radius: 2em;
@@ -28,23 +28,24 @@ a:not(.link) {
 .header {
   padding: 0.5em;
   margin-bottom: 1em;
-  border-bottom: 0.1em solid #050503;
+  border-bottom: 0.1em solid #433940;
   box-shadow: 0 0.05em 0.5em #596133;
   background-color: #fdfcf7;
 }
 
-.header ul {
+ul.nav {
   margin: 0 auto;
+  padding: 0;
 }
 
-.header li {
+.nav li {
   list-style-type: none;
   display: inline-block;
   margin-left: 0.5em;
 }
 
 a:active, button:active {
-  color: #534a53;
+  color: #7c6f7c;
 }
 
 button {
@@ -162,7 +163,7 @@ form label {
 
 hr {
   width: 80vw;
-  border: 1px solid #050503;
+  border: 1px solid #433940;
 }
 
 .center {
@@ -225,4 +226,12 @@ hr {
 
 h3.link {
   margin-bottom: 2em;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.delete-button {
+  color: #ff0000;
 }

@@ -30,8 +30,8 @@ foreach ($gifts as $gift_data) {
     </div>
     <div class="right">
       <?php $var = $gift->id; ?>
-      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
-      <label for="<?php echo $var; ?>">Reserve</label>
+      <button id="<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.id, '<?php echo $gift->name; ?>');"></button>
+      <label class="delete-button" for="<?php echo $var; ?>">❌</label>
     </div>
   </div>
 </div>

@@ -9,26 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Yevgeniya's wishlist</title>
+    <?php
+    require_once '../action/authenticate.php';
+    require_once '../data/user.php';
+    $user = User::get_from_id($_SESSION['id']);
+    ?>
+    <title><?php echo $user->email ?>'s wishlist</title>
   </head>
   <body>
-    <?php include 'header.php' ?>
+    <?php include 'header.php'; ?>
     <form>
+      <?php include 'user-buttons.php'; ?>
       <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
       🔍
     </form>
     <div class="center">
       <?php
-        session_start();
-        if (isset($_SESSION["id"]) && $_SESSION['id'] === 1) {
-          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="dashboard">dashboard</a> instead.</p>';
-        } else {
-          $_GET['user']=1;
-          include '../action/show-gifts.php';
-        }
+        $_GET['user']=$user->id;
+        include '../action/show-gifts-admin.php';
       ?>
     </div>
   </body>
   <script src="js/autocomplete.js" type="text/javascript"></script>
-  <script src="js/reserve.js" type="text/javascript"></script>
+  <script src="js/remove.js" type="text/javascript"></script>
 </html>

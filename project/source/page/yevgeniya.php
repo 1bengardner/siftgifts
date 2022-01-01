@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
     <title>Yevgeniya's wishlist</title>
   </head>
-  <body>
+  <body style="background-color: rgba(255, 0, 0, 0.05);">
     <?php include 'header.php' ?>
+    <h1 class="center">Yevgeniya's Wishlist</h1>
     <form>
       <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
       🔍

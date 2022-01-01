@@ -31,7 +31,7 @@ foreach ($gifts as $gift_data) {
     <div class="right">
       <?php $var = $gift->id; ?>
       <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
-      <label for="<?php echo $var; ?>">Reserve</label>
+      <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
     </div>
   </div>
 </div>

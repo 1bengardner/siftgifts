@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2021 at 08:58 PM
--- Server version: 10.3.31-MariaDB-log-cll-lve
--- PHP Version: 7.3.28
+-- Generation Time: Jan 02, 2022 at 11:09 PM
+-- Server version: 10.3.32-MariaDB-log-cll-lve
+-- PHP Version: 7.3.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `siftgafb_gift_data`
 --
-CREATE DATABASE IF NOT EXISTS `siftgafb_gift_data` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `siftgafb_gift_data`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +28,6 @@ USE `siftgafb_gift_data`;
 -- Table structure for table `gift`
 --
 
-DROP TABLE IF EXISTS `gift`;
 CREATE TABLE IF NOT EXISTS `gift` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) NOT NULL DEFAULT 1,
@@ -39,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `notes` text DEFAULT NULL,
   `reserved` tinyint(1) NOT NULL DEFAULT 0,
   `user` int(11) NOT NULL,
+  `creation_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `fk-gift-user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -49,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `gift` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,

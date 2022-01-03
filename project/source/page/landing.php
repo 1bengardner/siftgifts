@@ -14,7 +14,7 @@
   <body>
     <?php include 'header-with-login.php' ?>
     <p class="focused">
-      If you have registered, you may <a href="login"><span class="lighter">log in</span></a>.
+      If you have registered, you may <a href="login"><span class="accent">log in</span></a>.
     </p>
   </body>
 </html>

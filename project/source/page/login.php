@@ -13,7 +13,7 @@
   </head>
   <body>
     <form action="../action/submit-login.php" method="post">
-      <h1 class="logo-text">Sift<span class="lighter"> . gifts</span></h1>
+      <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
       <?php
       require_once '../util/utilities.php';
       session_start();

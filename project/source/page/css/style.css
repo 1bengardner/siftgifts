@@ -11,10 +11,6 @@ h1 {
   margin: 0 auto;
 }
 
-h2, h3 {
-  color: #433940;
-}
-
 a:not(.link) {
   color: #433940;
   background-color: #fff;
@@ -65,12 +61,12 @@ button {
   font-size: 3em;
 }
 
-.lighter {
+.accent {
   color: rgb(169, 48, 57);
   text-shadow: rgba(169, 48, 57, 0.2) 0 0 0.2rem;
 }
 
-.logo-text .lighter {
+.logo-text .accent {
   font-family: 'Festive', cursive;
 }
 
@@ -238,4 +234,8 @@ h3.link {
 
 div.reserved {
   text-decoration: line-through;
+}
+
+.lighter {
+  color: #837970
 }

@@ -3,7 +3,7 @@ require_once '../util/utilities.php';
 require_once '../data/gift.php';
 
 // Get user gifts from db
-$stmt = "SELECT * FROM gift WHERE user=? AND active=1 ORDER BY id DESC";
+$stmt = "SELECT * FROM gift WHERE user=? AND active=1 ORDER BY reserved ASC, id DESC";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['user']]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 
@@ -27,7 +27,7 @@ foreach ($gifts as $gift_data) {
         <?php } ?>
       </h2>
       <p class="subheading"><?php echo $gift->notes; ?></p>
-      <p class="lighter"><em><?php echo 'Added '.date('M Y', strtotime($gift->creation_time)); ?></em></p>
+      <p class="lighter"><em><?php echo 'Added '.date('M \'y', strtotime($gift->creation_time)); ?></em></p>
     </div>
     <div class="right">
       <?php $var = $gift->id; ?>

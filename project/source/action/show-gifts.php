@@ -12,9 +12,9 @@ foreach ($gifts as $gift_data) {
 
   // Display each gift - this is HTML
 ?>
-<div class="widget restaurant-widget focused">
+<div class="widget restaurant-widget focused<?php if ($gift->reserved) echo ' reserved' ?>">
   <div class="grid">
-    <div <?php if ($gift->reserved) echo 'class="reserved"' ?>>
+    <div>
       <h2 class="restaurant-name">
         <?php
         if (empty($gift->url)) {

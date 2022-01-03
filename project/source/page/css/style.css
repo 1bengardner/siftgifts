@@ -234,6 +234,7 @@ h3.link {
 
 div.reserved {
   text-decoration: line-through;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .lighter {

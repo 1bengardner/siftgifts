@@ -14,7 +14,7 @@ foreach ($gifts as $gift_data) {
 ?>
 <div class="widget restaurant-widget focused">
   <div class="grid">
-    <div>
+    <div <?php if ($gift->reserved) echo 'class="reserved"' ?>>
       <h2 class="restaurant-name">
         <?php
         if (empty($gift->url)) {

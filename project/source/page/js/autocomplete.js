@@ -13,4 +13,5 @@ function inputHandler(e) {
     });
 }
 const source = document.getElementById('search');
-source.addEventListener('input', inputHandler);
+if (source !== null)
+  source.addEventListener('input', inputHandler);

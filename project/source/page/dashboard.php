@@ -18,8 +18,8 @@
   </head>
   <body>
     <?php include 'header.php'; ?>
-    <div class="focused">
     <?php include 'user-buttons.php'; ?>
+    <div class="focused">
     <p>
       If you are not <?php echo $user->email ?>, you may <a href="login"><span class="accent">log in</span></a> with your email.
     </p>

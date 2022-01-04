@@ -18,9 +18,9 @@
   </head>
   <body>
     <?php include 'header.php'; ?>
+    <?php include 'user-buttons.php'; ?>
     <form>
-      <?php include 'user-buttons.php'; ?>
-      <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
+      <input id="search" type="search" name="q" placeholder="Search for a gift..." />
       🔍
     </form>
     <div class="center">

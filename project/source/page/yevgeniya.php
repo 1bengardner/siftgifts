@@ -15,7 +15,7 @@
     <?php include 'header.php' ?>
     <h1 class="center">Yevgeniya's Wishlist</h1>
     <form>
-      <input id="search" type="search" name="q" placeholder="Search for a gift by name..." />
+      <input id="search" type="search" name="q" placeholder="Search for a gift..." />
       🔍
     </form>
     <div class="center">

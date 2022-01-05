@@ -115,21 +115,20 @@ class Validation
     return false;
   }
 
-  public static function login_error($email)
+  public static function login_error($email, $password)
   {
     $stmt = "SELECT 1 FROM user WHERE email = ?";
-    $email = Database::run_statement(Database::get_connection(), $stmt, [$email]);
-    if (empty($email->fetch_row()[0])) {
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    if (empty($res->fetch_row()[0])) {
       return Message::EmailDoesNotExist;
     }
-    return false;
-    // $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
-    // $user_password = Database::run_statement(Database::get_connection(), $stmt, [$email]);
-    // if (!$user_password) {
-      // return false;
-    // }
-    // $encrypted_password = $user_password->fetch_row()[0];
-    // return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
+    $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
+    $user_password = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    if (!$user_password) {
+      return false;
+    }
+    $encrypted_password = $user_password->fetch_row()[0];
+    return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
   }
 
   public static function passwords_differ($p1, $p2)

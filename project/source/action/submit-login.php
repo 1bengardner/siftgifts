@@ -3,7 +3,7 @@ require_once '../util/utilities.php';
 session_start();
 
 // Validate required field presence
-$required_fields = ['email'];
+$required_fields = ['email', 'password'];
 $validation_errors = [];
 $validations = [
     function() use ($required_fields) { return Validation::keys_missing($required_fields); },
@@ -15,7 +15,7 @@ foreach ($validations as $validation) {
         array_push($validation_errors, $msg);
     }
 }
-if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'])) {
+if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'], $_POST['password'])) {
     array_push($validation_errors, $msg);
 }
 

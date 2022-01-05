@@ -37,6 +37,7 @@
       ?>
       <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
+        <input type="password" name="password" placeholder="Password" maxlength="255" required />
       </div>
       <div>
         <input class="submit-button" type="submit" value="Log in" />

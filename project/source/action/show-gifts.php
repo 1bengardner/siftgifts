@@ -29,7 +29,7 @@ foreach ($gifts as $gift_data) {
       <p class="subheading"><?php echo $gift->notes; ?></p>
       <p class="lighter"><em><?php echo 'Added '.date('M \'y', strtotime($gift->creation_time)); ?></em></p>
     </div>
-    <div class="right">
+    <div class="right no-wrap">
       <?php $var = $gift->id; ?>
       <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
       <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>

@@ -107,10 +107,6 @@ form input[type=radio] {
   margin: 0;
 }
 
-form label {
-  margin: 1em;
-}
-
 .widget form {
   text-align: left;
 }
@@ -194,13 +190,21 @@ hr {
   align-self: center;
 }
 
-.success-box {
+.success-box, .error-box, .info-box, .warning-box {
   display: inline-block;
-  padding: 0.25em 1em;
-  background-color: rgba(0, 255, 0, 0.25);
-  border: 2px solid rgba(0, 128, 0, 0.5);
+  padding: 0.25em 0.5em;
+  margin: auto 1em;
   border-radius: 4px;
   text-align: left;
+}
+
+.success-box p, .error-box p, .info-box p, .warning-box p {
+  padding: 0em 1em;
+}
+
+.success-box {
+  background-color: rgba(0, 255, 0, 0.25);
+  border: 2px solid rgba(0, 128, 0, 0.5);
 }
 
 .success-box p:before {
@@ -208,16 +212,31 @@ hr {
 }
 
 .error-box {
-  display: inline-block;
-  padding: 0.25em 1em;
   background-color: rgba(255, 0, 0, 0.25);
   border: 2px solid rgba(128, 0, 0, 0.5);
-  border-radius: 4px;
-  text-align: left;
 }
 
 .error-box p:before {
   content: "❌";
+}
+
+.info-box {
+  background-color: rgba(0, 128, 255, 0.25);
+  border: 2px solid rgba(0, 64, 128, 0.5);
+}
+
+.info-box p:before {
+  content: "ℹ️";
+}
+
+.warning-box {
+  color: rgb(160, 80, 0);
+  background-color: rgba(255, 255, 0, 0.25);
+  border: 2px solid rgba(128, 80, 0, 0.5);
+}
+
+.warning-box p:before {
+  content: "⚠️";
 }
 
 h3.link {
@@ -239,4 +258,12 @@ div.reserved {
 
 .lighter {
   color: #837970
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.admin-reserve {
+  display: none;
 }

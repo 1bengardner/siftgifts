@@ -16,7 +16,8 @@
       <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
       <?php
       require_once '../util/utilities.php';
-      session_start();
+      if (session_status() === PHP_SESSION_NONE)
+        session_start();
       if (isset($_SESSION["messages"])) {
       ?>
       <div class="error-box">

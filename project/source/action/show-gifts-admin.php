@@ -28,10 +28,14 @@ foreach ($gifts as $gift_data) {
       </h2>
       <p class="subheading"><?php echo $gift->notes; ?></p>
     </div>
-    <div class="right">
+    <div class="right no-wrap">
       <?php $var = $gift->id; ?>
-      <button id="<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.id, '<?php echo $gift->name; ?>');"></button>
-      <label class="delete-button" for="<?php echo $var; ?>">❌</label>
+      <span class="admin-reserve" display-when-toggled="inline-block">
+        <input gift="<?php echo $var; ?>" id="reserve-<?php echo $var; ?>" type="checkbox" onclick="toggle(this);" <?php if ($gift->reserved) echo 'checked' ?> />
+        <label for="reserve-<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
+      </span>
+      <button gift="<?php echo $var; ?>" id="remove-<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo $gift->name; ?>');"></button>
+      <label class="delete-button" for="remove-<?php echo $var; ?>">❌</label>
     </div>
   </div>
 </div>

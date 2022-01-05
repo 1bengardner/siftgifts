@@ -20,8 +20,16 @@
     <?php include 'header.php'; ?>
     <?php include 'user-buttons.php'; ?>
     <form>
-      <input id="search" type="search" name="q" placeholder="Search for a gift..." />
-      🔍
+      <div>
+        <input id="show-reserve" type="checkbox" onclick="enableToggles();" />
+        <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
+      </div>
+      <hr />
+      <h1 class="center">Your Wishlist</h1>
+      <div>
+        <input id="search" type="search" name="q" placeholder="Search for a gift..." />
+        🔍
+      </div>
     </form>
     <div class="center">
       <?php
@@ -32,4 +40,5 @@
   </body>
   <script src="js/autocomplete.js" type="text/javascript"></script>
   <script src="js/remove.js" type="text/javascript"></script>
+  <script src="js/reserve.js" type="text/javascript"></script>
 </html>

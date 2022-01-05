@@ -1,6 +1,6 @@
 <nav class="header">
   <div>
-    <h1 class="logo-text inline-block">Sift<span class="accent"> . gifts</span></h1>
+    <a href="/"><h1 class="logo-text inline-block">Sift<span class="accent"> . gifts</span></h1></a>
     <?php
     require_once '../data/user.php';
     if (session_status() === PHP_SESSION_NONE)

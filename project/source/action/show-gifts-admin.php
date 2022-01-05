@@ -26,7 +26,9 @@ foreach ($gifts as $gift_data) {
         </a>
         <?php } ?>
       </h2>
-      <p class="subheading"><?php echo $gift->notes; ?></p>
+      <?php if (!empty($gift->notes)) { ?>
+        <p class="subheading"><?php echo $gift->notes; ?></p>
+      <?php } ?>
     </div>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>

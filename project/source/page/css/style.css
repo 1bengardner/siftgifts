@@ -1,32 +1,35 @@
 body, button {
   color: #433940;
-  background-color: #f7f7f7;
-  font-family: 'M PLUS 1', sans-serif;
+  background-color: #fdfdfd;
+  font-family: 'Poppins', sans-serif;
   font-size: large;
   margin: 0;
 }
 
 h1 {
-  color: #596133;
   margin: 0 auto;
+  color: #912899;
+  background: -webkit-linear-gradient(#faf, #539, #31a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 a:not(.link) {
   color: #433940;
   background-color: #fff;
-  border: 0.1rem solid;
   border-radius: 2em;
-  padding: 0.2em;
+  padding: 0.2em 0.5em;
   text-decoration: none;
   white-space: nowrap;
+  box-shadow: 0 0.06em 0.2em #433940;
 }
 
 .header {
   padding: 0.5em;
   margin-bottom: 1em;
   border-bottom: 0.1em solid #433940;
-  box-shadow: 0 0.05em 0.5em #596133;
-  background-color: #fdfcf7;
+  box-shadow: 0 0.05em 0.5em #363361;
+  background-color: #f7f8ff;
 }
 
 ul.nav {
@@ -54,20 +57,12 @@ button {
 }
 
 .logo-text {
-  font-family: 'Mountains of Christmas', cursive;
+  font-family: 'Festive', cursive;
+  text-shadow: rgba(169, 48, 57, 0.2) 0 0.1rem 0.2rem;
 }
 
 .header .logo-text {
   font-size: 3em;
-}
-
-.accent {
-  color: rgb(169, 48, 57);
-  text-shadow: rgba(169, 48, 57, 0.2) 0 0 0.2rem;
-}
-
-.logo-text .accent {
-  font-family: 'Festive', cursive;
 }
 
 .focused {
@@ -142,7 +137,7 @@ form input[type=radio] {
 }
 
 .widget {
-  background-color: #f7f7f3;
+  background-color: #fcfcff;
   border-radius: 2em;
   margin: 2em;
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);

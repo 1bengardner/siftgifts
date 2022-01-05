@@ -26,7 +26,9 @@ foreach ($gifts as $gift_data) {
         </a>
         <?php } ?>
       </h2>
-      <p class="subheading"><?php echo $gift->notes; ?></p>
+      <?php if (!empty($gift->notes)) { ?>
+        <p class="subheading"><?php echo $gift->notes; ?></p>
+      <?php } ?>
       <p class="lighter"><em><?php echo 'Added '.date('M \'y', strtotime($gift->creation_time)); ?></em></p>
     </div>
     <div class="right no-wrap">

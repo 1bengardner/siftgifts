@@ -9,13 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Siftgifts</title>
+    <title>Logout</title>
   </head>
   <body>
-    <?php include 'header-with-login.php' ?>
-    <?php include '../action/redirect-to-dashboard.php' ?>
-    <p class="focused">
-      If you have registered, you may <a href="login"><span class="accent">log in</span></a>.
-    </p>
+    <?php
+    require_once '../action/submit-logout.php';
+    ?>
   </body>
 </html>

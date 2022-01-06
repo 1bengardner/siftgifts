@@ -21,7 +21,7 @@
     <?php include 'user-buttons.php'; ?>
     <form>
       <div>
-        <input id="show-reserve" type="checkbox" onclick="enableToggles();" />
+        <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
         <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
       </div>
       <hr class="large" />

@@ -14,6 +14,10 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+li h2 {
+  margin: 0.5em 0;
+}
+
 a:not(.link) {
   color: #433940;
   background-color: #fff;
@@ -24,6 +28,10 @@ a:not(.link) {
   box-shadow: 0 0.06em 0.2em #433940;
 }
 
+h1 .link {
+  text-decoration: none;
+}
+
 .header {
   padding: 0.5em 1.5em;
   margin-bottom: 1em;
@@ -32,12 +40,12 @@ a:not(.link) {
   background-color: #f7f8ff;
 }
 
-ul.nav {
-  margin: 0 auto;
+nav ul {
+  margin: auto;
   padding: 0;
 }
 
-.nav li {
+nav li {
   list-style-type: none;
   display: inline-block;
   margin-left: 0.5em;
@@ -155,6 +163,11 @@ hr.large {
 .grid {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .restaurant-image {

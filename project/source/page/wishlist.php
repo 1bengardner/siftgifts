@@ -14,7 +14,7 @@
     require_once '../data/user.php';
     $user = User::get_from_id($_SESSION['id']);
     ?>
-    <title><?php echo ucfirst($user->username) ?>'s wishlist</title>
+    <title><?php echo ucfirst(strtolower($user->username)) ?>'s wishlist</title>
   </head>
   <body>
     <?php include 'header.php'; ?>
@@ -24,11 +24,10 @@
         <input id="show-reserve" type="checkbox" onclick="enableToggles();" />
         <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
       </div>
-      <hr />
+      <hr class="large" />
       <h1 class="center">Your Wishlist</h1>
       <div>
-        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />
-        🔍</span>
+        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
       </div>
     </form>
     <div class="center">

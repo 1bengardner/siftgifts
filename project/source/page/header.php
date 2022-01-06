@@ -8,8 +8,8 @@
         session_start();
 
       if (isset($_SESSION["id"])) {
-        echo '<span class="special-box">'.ucfirst(User::get_from_id($_SESSION['id'])->username).'</span>';
-        echo '<a href="logout">Log out</a>';
+        echo '<span class="special-box">'.ucfirst(strtolower(User::get_from_id($_SESSION['id'])->username)).'</span>';
+        echo '<a href="../page/logout">Log out</a>';
       }
       ?>
     </span>

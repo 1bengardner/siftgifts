@@ -45,6 +45,7 @@ abstract class Message
   const EmailExists = "This e-mail address is already registered with Siftgifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
   const UsernameExists = "There is already someone registered with that username.";
+  const UsernameIsBad = "Please use just letters and numbers in your username.";
 }
 class Validation
 {
@@ -101,6 +102,9 @@ class Validation
   {
     if (Validation::name_exists($name)) {
       return Message::UsernameExists;
+    }
+    if (!ctype_alnum($name)) {
+      return Message::UsernameIsBad;
     }
     if (strlen($name) > 30) {
       return Message::NameTooLong;

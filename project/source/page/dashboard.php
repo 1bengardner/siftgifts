@@ -14,24 +14,24 @@
     require_once '../data/user.php';
     $user = User::get_from_id($_SESSION['id']);
     ?>
-    <title><?php echo ucfirst($user->username) ?>'s dashboard</title>
+    <title><?php echo ucfirst(strtolower($user->username)) ?>'s dashboard</title>
   </head>
   <body>
     <?php include 'header.php'; ?>
     <?php include 'user-buttons.php'; ?>
     <div class="center">
       <div>
-        Share your wishlist:<input class="wishlist-link" disabled id="foo" type="url" value="https://sift.gifts/page/<?php echo strtolower($user->username); ?>"><button class="juicy-button" onclick="navigator.clipboard.writeText();">📋</button>
+        Share your wishlist:<input class="wishlist-link" disabled id="foo" type="url" value="https://sift.gifts/wishlist/<?php echo strtolower($user->username); ?>"><button class="clipboard" onclick="navigator.clipboard.writeText();">📋</button>
       </div>
       <div class="monkey">
         <h1>
           <?php
           if (!isset($_SESSION['greeted'])) {
             $_SESSION['greeted'] = true;
-            echo 'Welcome, '.ucfirst($user->username);
+            echo 'Welcome, '.ucfirst(strtolower($user->username));
           } else {
             $greetings = array('Hello', 'Hi there', 'Howdy', 'Greetings', 'Ahoy there', 'So good to see you', 'Fancy seeing you here', "Well, if it isn't you again");
-            echo $greetings[array_rand($greetings)].', '.ucfirst($user->username);
+            echo $greetings[array_rand($greetings)].', '.ucfirst(strtolower($user->username));
           }
           ?>!
         </h1>

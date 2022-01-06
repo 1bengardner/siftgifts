@@ -14,7 +14,8 @@
   <body>
     <form action="../action/submit-register.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
-      <h2>Sign up for Sift.gifts!</span></h2>
+      <h2>Sign up for Sift.gifts!</h2>
+      <h3 class="subheading">(It's free!)</h3>
       <?php
       require_once '../util/utilities.php';
       if (session_status() === PHP_SESSION_NONE)
@@ -50,6 +51,10 @@
       </div>
       <div>
         <input class="submit-button" type="submit" value="Sign up" />
+      </div>
+      <hr />
+      <div>
+        or <a href="login">log in</a>
       </div>
     </form>
   </body>

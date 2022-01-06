@@ -42,7 +42,9 @@
       <div>
         <input class="submit-button" type="submit" value="Log in" />
       </div>
+      <hr />
       <div>
+        <a href="register">Sign up</a>
         <a href="mailto:1bengardner@gmail.com?subject=I%20forgot%20my%20password%20on%20sift%20gifts%20what%20do%20i%20do%20lol&body=Please%20help">I forgot my password!</a>
       </div>
     </form>

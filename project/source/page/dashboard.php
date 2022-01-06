@@ -21,7 +21,8 @@
     <?php include 'user-buttons.php'; ?>
     <div class="center">
       <div>
-        Share your wishlist:<input class="wishlist-link" disabled id="foo" type="url" value="https://sift.gifts/wishlist/<?php echo strtolower($user->username); ?>"><button class="clipboard" onclick="navigator.clipboard.writeText();">📋</button>
+        <?php $wishlist = 'https://sift.gifts/wishlist/'.strtolower($user->username); ?>
+        Share your wishlist:<input class="wishlist-link" disabled id="foo" type="url" value='<?php echo $wishlist; ?>'><button class="clipboard" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')">📋</button>
       </div>
       <div class="monkey">
         <h1>

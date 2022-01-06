@@ -29,7 +29,7 @@ if (!isset($user) || !isset($id)) {
         if (session_status() === PHP_SESSION_NONE)
           session_start();
         if (isset($_SESSION["id"]) && $_SESSION['id'] === $id) {
-          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="dashboard">dashboard</a> instead.</p>';
+          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="../page/dashboard">dashboard</a> instead.</p>';
         } else {
           $_GET['user']=$id;
           include '../action/show-gifts.php';

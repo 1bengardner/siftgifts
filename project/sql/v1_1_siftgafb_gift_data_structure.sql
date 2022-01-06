@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 02, 2022 at 11:09 PM
--- Server version: 10.3.32-MariaDB-log-cll-lve
--- PHP Version: 7.3.32
+-- Host: 127.0.0.1
+-- Generation Time: Jan 06, 2022 at 06:23 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siftgafb_gift_data`
+-- Database: `gift_data`
 --
 
 -- --------------------------------------------------------
@@ -49,10 +49,12 @@ CREATE TABLE IF NOT EXISTS `gift` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `email` varchar(320) NOT NULL,
   `encrypted_password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unique-user-email` (`email`) USING BTREE
+  UNIQUE KEY `unique-user-email` (`email`) USING BTREE,
+  UNIQUE KEY `unique-user-username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

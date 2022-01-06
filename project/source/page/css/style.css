@@ -25,7 +25,7 @@ a:not(.link) {
 }
 
 .header {
-  padding: 0.5em;
+  padding: 0.5em 1.5em;
   margin-bottom: 1em;
   border-bottom: 0.1em solid #433940;
   box-shadow: 0 0.05em 0.5em #363361;
@@ -49,7 +49,6 @@ a:active, button:active {
 
 button {
   border: unset;
-  cursor: pointer;
 }
 
 .right {
@@ -79,14 +78,14 @@ form {
   text-align: center;
 }
 
-form input, form textarea {
+input, textarea {
   padding: 0.5em;
   margin: 1em;
   font-family: 'Poppins', sans-serif;
   font-size: large;
 }
 
-form input:focus, form textarea:focus {
+input:focus, textarea:focus {
   box-shadow: 0 0 0.5em #596133;
 }
 
@@ -98,7 +97,7 @@ input:invalid {
   width: 15em;
 }
 
-form input[type=radio] {
+input[type=radio] {
   margin: 0;
 }
 
@@ -118,22 +117,6 @@ form input[type=radio] {
 
 .restaurant-widget {
   text-align: left;
-}
-
-@media screen and (max-width: 1200px) {
-.restaurant-widget {
-  padding: 1vh 10vw;
-}
-}
-@media screen and (min-width: 1201px) {
-.restaurant-widget {
-  display: inline-block;
-  width: 400px;
-}
-.focused.restaurant-widget {
-  padding-left: 2em;
-  padding-right: 2em;
-}
 }
 
 .widget {
@@ -185,7 +168,7 @@ hr {
   align-self: center;
 }
 
-.success-box, .error-box, .info-box, .warning-box {
+.success-box, .error-box, .info-box, .warning-box, .special-box {
   display: inline-block;
   padding: 0.25em 0.5em;
   margin: auto 1em;
@@ -234,6 +217,12 @@ hr {
   content: "⚠️";
 }
 
+.special-box {
+  color: rgb(80, 0, 128);
+  background-color: rgba(160, 0, 255, 0.25);
+  border: 2px solid rgba(80, 0, 128, 0.5);
+}
+
 h3.link {
   margin-bottom: 2em;
 }
@@ -244,6 +233,7 @@ h3.link {
 
 .delete-button {
   color: #ff0000;
+  cursor: pointer;
 }
 
 div.reserved {
@@ -261,4 +251,64 @@ div.reserved {
 
 .admin-reserve {
   display: none;
+}
+
+.splash-image {
+  display: inline-block;
+}
+
+.splash-greeting {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.monkey {
+  padding: 3em 0;
+}
+
+.monkey svg {
+  display: block;
+  margin: auto;
+}
+
+.unbreakable {
+  white-space: nowrap;
+}
+
+.juicy-button {
+  border: 2px dashed rgb(170, 50, 220);
+}
+
+input.wishlist-link {
+  width: 20em;
+}
+
+@media screen and (max-width: 1200px) {
+.restaurant-widget {
+  padding: 1vh 10vw;
+}
+.splash-image {
+  display: none;
+}
+.monkey {
+  display: none;
+}
+}
+@media screen and (min-width: 1201px) {
+.restaurant-widget {
+  display: inline-block;
+  width: 400px;
+}
+.focused.restaurant-widget {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+}
+@media screen and (max-height: 767px) {
+.splash-image {
+  display: none;
+}
+.monkey {
+  display: none;
+}
 }

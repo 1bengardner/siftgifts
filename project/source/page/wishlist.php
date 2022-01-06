@@ -14,7 +14,7 @@
     require_once '../data/user.php';
     $user = User::get_from_id($_SESSION['id']);
     ?>
-    <title><?php echo $user->email ?>'s wishlist</title>
+    <title><?php echo ucfirst($user->username) ?>'s wishlist</title>
   </head>
   <body>
     <?php include 'header.php'; ?>
@@ -27,8 +27,8 @@
       <hr />
       <h1 class="center">Your Wishlist</h1>
       <div>
-        <input id="search" type="search" name="q" placeholder="Search for a gift..." />
-        🔍
+        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />
+        🔍</span>
       </div>
     </form>
     <div class="center">

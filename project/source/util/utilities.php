@@ -38,12 +38,13 @@ abstract class Message
   const EmailTooLong = "Your e-mail must be under 320 characters.";
   const EmailDoesNotExist = "Please enter a registered e-mail address.";
   const PasswordTooLong = "Your password must be under 255 characters.";
-  const NameTooLong = "Your name is too long.";
+  const NameTooLong = "Your username is too long.";
   const NotLoggedIn = "Please log in to access this page.";
   const InvalidUser = "Incorrect e-mail or password.";
   const FieldsCannotBeEmpty = "Please fill out all fields.";
-  const EmailExists = "This e-mail address is already registered with Dineline.";
+  const EmailExists = "This e-mail address is already registered with Siftgifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
+  const UsernameExists = "There is already someone registered with that username.";
 }
 class Validation
 {
@@ -89,9 +90,19 @@ class Validation
     return false;
   }
 
+  private static function name_exists($name)
+  {
+    $stmt = "SELECT username FROM user WHERE username = ?";
+    $duplicate_username = Database::run_statement(Database::get_connection(), $stmt, [$name]);
+    return $duplicate_username->num_rows > 0;
+  }
+
   public static function name_error($name)
   {
-    if (strlen($name) > 255) {
+    if (Validation::name_exists($name)) {
+      return Message::UsernameExists;
+    }
+    if (strlen($name) > 30) {
       return Message::NameTooLong;
     }
     return false;

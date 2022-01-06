@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Login</title>
+    <title>Registration</title>
   </head>
   <body>
-    <form action="../action/submit-login.php" method="post">
+    <form action="../action/submit-register.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
+      <h2>Sign up for Sift.gifts!</span></h2>
       <?php
       require_once '../util/utilities.php';
       if (session_status() === PHP_SESSION_NONE)
@@ -36,14 +37,19 @@
       }
       ?>
       <div>
+        <input type="text" name="name" placeholder="Username" maxlength="30" required />
+      </div>
+      <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
+      </div>
+      <div>
         <input type="password" name="password" placeholder="Password" maxlength="255" required />
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Log in" />
+        <input type="password" name="confirm-password" placeholder="Confirm password" maxlength="255" required />
       </div>
       <div>
-        <a href="mailto:1bengardner@gmail.com?subject=I%20forgot%20my%20password%20on%20sift%20gifts%20what%20do%20i%20do%20lol&body=Please%20help">I forgot my password!</a>
+        <input class="submit-button" type="submit" value="Sign up" />
       </div>
     </form>
   </body>

@@ -44,7 +44,7 @@
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
       </div>
       <div>
-        <input type="password" name="password" placeholder="Password" maxlength="255" required />
+        <input type="password" name="password" placeholder="Password" minlength="6" maxlength="255" required />
       </div>
       <div>
         <input type="password" name="confirm-password" placeholder="Confirm password" maxlength="255" required />

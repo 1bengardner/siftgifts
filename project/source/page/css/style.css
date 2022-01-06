@@ -134,7 +134,8 @@ input[type=radio] {
 hr {
   width: 17rem;
   max-width: 95vw;
-  border: 1px dashed #433940;
+  border: 1px solid #433940;
+  margin-bottom: 1em;
 }
 
 hr.large {

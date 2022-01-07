@@ -4,7 +4,6 @@ if (!isset($user) || !isset($id)) {
   exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>

@@ -46,6 +46,7 @@ abstract class Message
   const PasswordsDiffer = "The two entered passwords must match.";
   const UsernameExists = "There is already someone registered with that username.";
   const UsernameIsBad = "Please use just letters and numbers in your username.";
+  const ChangePasswordSuccess = "You have successfully updated your password.";
 }
 class Validation
 {

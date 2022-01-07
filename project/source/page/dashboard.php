@@ -18,6 +18,28 @@
   </head>
   <body>
     <?php include 'header.php'; ?>
+    <?php
+    if (session_status() === PHP_SESSION_NONE)
+      session_start();
+    if (isset($_SESSION["messages"])) {
+    ?>
+    <div class="center">
+      <div class="success-box">
+        <?php
+        foreach ($_SESSION["messages"] as $message) {
+        ?>
+        <p>
+          <?php echo $message; ?>
+        </p>
+        <?php
+        }
+        unset($_SESSION["messages"]);
+        ?>
+      </div>
+    </div>
+    <?php
+    }
+    ?>
     <?php include 'user-buttons.php'; ?>
     <div class="center">
       <div>

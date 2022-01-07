@@ -9,6 +9,7 @@
 
       if (isset($_SESSION["id"])) {
         echo '<li><span class="special-box"><a class="link" href="../page/dashboard">'.ucfirst(strtolower(User::get_from_id($_SESSION['id'])->username)).'</a></span></li>';
+        echo '<li><a href="../page/change-password">🔑</a></li>';
         echo '<li><a href="../page/logout">Log out</a></li>';
       }
       ?>

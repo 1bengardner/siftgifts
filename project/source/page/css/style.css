@@ -28,6 +28,10 @@ a:not(.link) {
   box-shadow: 0 0.06em 0.2em #433940;
 }
 
+a:not(.link):hover, button:hover {
+  background-color: rgba(32, 16, 0, 0.03);
+}
+
 h1 .link {
   text-decoration: none;
 }
@@ -103,6 +107,7 @@ input:invalid {
 
 .submit-button {
   width: 15em;
+  cursor: pointer;
 }
 
 input[type=radio] {
@@ -281,11 +286,11 @@ div.reserved {
   vertical-align: top;
 }
 
-.monkey {
+.home-greeting {
   padding: 3em 0;
 }
 
-.monkey svg {
+.home-greeting svg {
   display: block;
   margin: auto;
 }
@@ -294,8 +299,9 @@ div.reserved {
   white-space: nowrap;
 }
 
-.clipboard {
+.clipboard-button {
   border: 2px dashed #433940;
+  cursor: pointer;
 }
 
 input.wishlist-link {
@@ -309,7 +315,7 @@ input.wishlist-link {
 .splash-image {
   display: none;
 }
-.monkey {
+.home-greeting {
   display: none;
 }
 }
@@ -327,7 +333,7 @@ input.wishlist-link {
 .splash-image {
   display: none;
 }
-.monkey {
+.home-greeting {
   display: none;
 }
 }

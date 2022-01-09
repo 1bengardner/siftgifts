@@ -26,7 +26,7 @@
     ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
       <?php include 'user-buttons.php'; ?>
-      <hr />
+      <hr class="large" />
       <h2>Add to your wishlist</h2>
       <div hidden id="message">
         <div class="success-box">

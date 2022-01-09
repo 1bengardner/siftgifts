@@ -23,7 +23,7 @@
         if (session_status() === PHP_SESSION_NONE)
           session_start();
         if (isset($_SESSION["id"]) && $_SESSION['id'] === 2) {
-          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="dashboard">dashboard</a> instead.</p>';
+          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="home">home</a> instead.</p>';
         } else {
           $_GET['user']=2;
           include '../action/show-gifts.php';

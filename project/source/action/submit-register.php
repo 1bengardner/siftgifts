@@ -44,5 +44,5 @@ file_put_contents($to, $new_file);
 
 $_SESSION["id"] = $db->insert_id;
 
-header('Location: ../page/dashboard');
+header('Location: ../page/home');
 ?>

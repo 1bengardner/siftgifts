@@ -14,7 +14,7 @@
     require_once '../data/user.php';
     $user = User::get_from_id($_SESSION['id']);
     ?>
-    <title><?php echo ucfirst(strtolower($user->username)) ?>'s dashboard</title>
+    <title>Sift.gifts - <?php echo ucfirst(strtolower($user->username)) ?></title>
   </head>
   <body>
     <?php include 'header.php'; ?>

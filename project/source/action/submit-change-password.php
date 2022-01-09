@@ -29,5 +29,5 @@ Database::run_statement($db, $stmt, [password_hash($_POST['password'], PASSWORD_
 
 $_SESSION["messages"] = [Message::ChangePasswordSuccess];
 
-header('Location: ../page/dashboard');
+header('Location: ../page/home');
 ?>

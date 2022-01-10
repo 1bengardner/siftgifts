@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-session_start();
+require_once '../action/start-session.php';
 
 // Validate required field presence
 $required_fields = ['email', 'password'];
@@ -12,15 +12,15 @@ $validations = [
 
 foreach ($validations as $validation) {
     if ($msg = $validation()) {
-        array_push($validation_errors, $msg);
+        array_push($validation_errors, new Notification($msg, MessageLevel::Error));
     }
 }
 if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'], $_POST['password'])) {
-    array_push($validation_errors, $msg);
+    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
 }
 
 if (count($validation_errors) > 0) {
-    $_SESSION["messages"] = $validation_errors;
+    $_SESSION["notifications"] = $validation_errors;
     header('Location: ../page/login');
     exit;
 }

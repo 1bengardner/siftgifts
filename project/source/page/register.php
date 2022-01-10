@@ -16,26 +16,7 @@
       <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
       <h2>Sign up for Sift.gifts!</h2>
       <h3 class="subheading">(It's free!)</h3>
-      <?php
-      if (session_status() === PHP_SESSION_NONE)
-        session_start();
-      if (isset($_SESSION["messages"])) {
-      ?>
-      <div class="error-box">
-        <?php
-        foreach ($_SESSION["messages"] as $message) {
-        ?>
-        <p>
-            <?php echo $message; ?>
-        </p>
-        <?php
-        }
-        unset($_SESSION["messages"]);
-        ?>
-      </div>
-      <?php
-      }
-      ?>
+      <?php include 'message-box.php'; ?>
       <div>
         <input type="text" name="name" placeholder="Username" maxlength="30" required />
       </div>

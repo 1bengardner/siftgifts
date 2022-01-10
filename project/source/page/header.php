@@ -4,8 +4,7 @@
     <ul class="unbreakable right">
       <?php
       require_once '../data/user.php';
-      if (session_status() === PHP_SESSION_NONE)
-        session_start();
+      require_once '../action/start-session.php';
 
       if (isset($_SESSION["id"])) {
         echo '<li><span class="special-box"><a class="link" href="../page/home">'.ucfirst(strtolower(User::get_from_id($_SESSION['id'])->username)).'</a></span></li>';

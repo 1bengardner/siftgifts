@@ -1,26 +1,26 @@
 <?php
 require_once '../util/utilities.php';
-session_start();
+require_once '../action/start-session.php';
 
 // Validate required field presence
 $required_fields = ['name', 'email', 'password', 'confirm-password'];
 $validation_errors = [];
 $validations = [
   function() use ($required_fields) { return Validation::keys_missing($required_fields); },
+  function() { return Validation::name_error($_POST['name']); },
   function() { return Validation::email_registration_error($_POST['email']); },
   function() { return Validation::passwords_differ($_POST['password'], $_POST['confirm-password']); },
   function() { return Validation::password_error($_POST['password']); },
-  function() { return Validation::name_error($_POST['name']); },
 ];
 
 foreach ($validations as $validation) {
   if ($msg = $validation()) {
-    array_push($validation_errors, $msg);
+    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
   }
 }
 
 if (count($validation_errors) > 0) {
-  $_SESSION["messages"] = $validation_errors;
+  $_SESSION["notifications"] = $validation_errors;
   header('Location: ../page/register');
   exit;
 }

@@ -32,6 +32,11 @@ class Database
   }
 }
 
+abstract class MessageLevel
+{
+  const Success = 1;
+  const Error = 2;
+}
 abstract class Message
 {
   const EmailInvalid = "Please enter a valid e-mail address.";
@@ -48,6 +53,22 @@ abstract class Message
   const UsernameIsBad = "Please use just letters and numbers in your username.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
   const LogOutSuccess = "You have successfully logged out.";
+}
+class Notification
+{
+  protected $message_text;
+  protected $message_level;
+
+  public function __construct($message_text, $message_level) {
+      $this->message_text = $message_text;
+      $this->message_level = $message_level;
+  }
+
+  public function __get($property) {
+    if (property_exists($this, $property)) {
+      return $this->$property;
+    }
+  }
 }
 class Validation
 {

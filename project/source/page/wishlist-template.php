@@ -25,8 +25,7 @@ if (!isset($user) || !isset($id)) {
     </form>
     <div class="center">
       <?php
-        if (session_status() === PHP_SESSION_NONE)
-          session_start();
+        require_once '../action/start-session.php';
         if (isset($_SESSION["id"]) && $_SESSION['id'] === $id) {
           echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="../page/home">home</a> instead.</p>';
         } else {

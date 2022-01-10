@@ -1,11 +1,10 @@
 <?php
-require_once '../util/utilities.php';
-session_start();
+require_once '../action/start-session.php';
 
 unset($_SESSION["greeted"]);
 unset($_SESSION["id"]);
 
-$_SESSION["messages"] = [Message::LogOutSuccess];
+$_SESSION["notifications"] = [new Notification(Message::LogOutSuccess, MessageLevel::Success)];
 
 header('Location: ../page/landing');
 ?>

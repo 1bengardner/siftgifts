@@ -20,26 +20,7 @@
     <form action="../action/submit-change-password.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
       <h2>Change password for <?php echo $user->username; ?></h2>
-      <?php
-      if (session_status() === PHP_SESSION_NONE)
-        session_start();
-      if (isset($_SESSION["messages"])) {
-      ?>
-      <div class="error-box">
-        <?php
-        foreach ($_SESSION["messages"] as $message) {
-        ?>
-        <p>
-            <?php echo $message; ?>
-        </p>
-        <?php
-        }
-        unset($_SESSION["messages"]);
-        ?>
-      </div>
-      <?php
-      }
-      ?>
+      <?php include 'message-box.php'; ?>
       <div>
         <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" required />
         <input type="password" name="confirm-password" placeholder="New password, again" maxlength="255" required />

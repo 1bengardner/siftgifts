@@ -3,10 +3,8 @@ class Database
 {
   public static function get_connection()
   {
-    $url = "127.0.0.1";
-    $user = "root";
-    $db = "gift_data";
-    $mysqli = new mysqli($url, $user, "", $db);
+    include 'db_config.php';
+    $mysqli = new mysqli($url, $user, $password, $db);
     return $mysqli;
   }
 

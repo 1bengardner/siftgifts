@@ -29,7 +29,7 @@ a:not(.link) {
 }
 
 a:not(.link):hover, button:hover {
-  background-color: rgba(32, 16, 0, 0.03);
+  background-color: #faf8f8;
 }
 
 h1 .link {

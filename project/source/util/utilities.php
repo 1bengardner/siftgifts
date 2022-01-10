@@ -47,6 +47,7 @@ abstract class Message
   const UsernameExists = "There is already someone registered with that username.";
   const UsernameIsBad = "Please use just letters and numbers in your username.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
+  const LogOutSuccess = "You have successfully logged out.";
 }
 class Validation
 {

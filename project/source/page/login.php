@@ -8,6 +8,8 @@
       <?php include 'message-box.php'; ?>
       <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
+      </div>
+      <div>
         <input type="password" name="password" placeholder="Password" maxlength="255" required />
       </div>
       <div>

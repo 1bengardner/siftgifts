@@ -6,17 +6,8 @@ if (!isset($user) || !isset($id)) {
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="../page/css/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title><?php echo ucfirst(strtolower($user)) ?>'s wishlist</title>
-  </head>
+  <?php define('TITLE', ucfirst(strtolower($user)))."'s wishlist"); ?>
+  <?php include '../page/head.php'; ?>
   <body>
     <?php include '../page/header.php' ?>
     <h1 class="center"><?php echo ucfirst(strtolower($user)) ?>'s Wishlist</h1>

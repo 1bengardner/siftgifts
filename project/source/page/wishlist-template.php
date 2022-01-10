@@ -6,7 +6,7 @@ if (!isset($user) || !isset($id)) {
 ?>
 <!DOCTYPE html>
 <html>
-  <?php define('TITLE', ucfirst(strtolower($user)))."'s wishlist"); ?>
+  <?php define('TITLE', ucfirst(strtolower($user))."'s wishlist"); ?>
   <?php include '../page/head.php'; ?>
   <body>
     <?php include '../page/header.php' ?>

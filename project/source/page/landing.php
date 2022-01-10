@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
     <title>Sift.gifts</title>
+    <meta name="description" content="Create and share your online wishlist. Friends and family can reserve gifts easily: no signup needed.">
   </head>
   <body>
     <?php include 'header-with-login.php' ?>

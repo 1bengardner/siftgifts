@@ -306,7 +306,8 @@ div.reserved {
 
 input.wishlist-link {
   width: 20em;
-  max-width: 50vw;
+  max-width: 65vw;
+}
 
 input[type=checkbox] {
   width: 1em;

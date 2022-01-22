@@ -307,6 +307,16 @@ div.reserved {
 input.wishlist-link {
   width: 20em;
   max-width: 50vw;
+
+input[type=checkbox] {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin: 0.25em;
+}
+
+label {
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 1200px) {

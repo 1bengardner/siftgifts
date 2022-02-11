@@ -1,3 +1,38 @@
+@font-face {
+  font-family: 'Festive';
+  src: url('font/Festive-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('font/Poppins-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('font/Poppins-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('font/Poppins-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('font/Poppins-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 800;
+}
+
 body, button {
   color: #433940;
   background-color: #fdfdfd;
@@ -7,6 +42,7 @@ body, button {
 }
 
 h1 {
+  font-weight: 800;
   margin: 0 auto;
   color: #912899;
   background: -webkit-linear-gradient(#faf, #539, #31a);
@@ -16,6 +52,22 @@ h1 {
 
 li h2 {
   margin: 0.5em 0;
+}
+
+.link {
+  color: #354eff;
+}
+
+.link:hover {
+  color: #5e5eec;
+}
+
+.link:visited {
+  color: #7742e0;
+}
+
+.link:active {
+  color: #985dbf;
 }
 
 a:not(.link) {
@@ -186,6 +238,7 @@ hr.large {
 
 .restaurant-name {
   overflow-wrap: break-word;
+  line-height: 1.3em;
 }
 
 .grid-item-center {

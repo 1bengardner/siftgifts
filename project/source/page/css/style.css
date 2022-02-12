@@ -1,38 +1,3 @@
-@font-face {
-  font-family: 'Festive';
-  src: url('font/Festive-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('font/Poppins-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('font/Poppins-Italic.ttf') format('truetype');
-  font-style: italic;
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('font/Poppins-Bold.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('font/Poppins-Black.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 800;
-}
-
 body, button {
   color: #433940;
   background-color: #fdfdfd;
@@ -71,6 +36,7 @@ li h2 {
 }
 
 a:not(.link) {
+  font-weight: 500;
   color: #433940;
   background-color: #fff;
   border-radius: 2em;
@@ -84,8 +50,12 @@ a:not(.link):hover, button:hover {
   background-color: #faf8f8;
 }
 
-h1 .link {
+h1 .link, .special-box .link {
   text-decoration: none;
+}
+
+.special-box .link {
+  font-weight: bold;
 }
 
 .header {

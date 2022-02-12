@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
-    <title>Sift.gifts</title>
-    <meta name="description" content="Create and share your online wishlist. Friends and family can reserve gifts easily: no signup needed.">
-  </head>
+  <?php define('TITLE', 'Sift.gifts'); ?>
+  <?php include 'head.php'; ?>
   <body>
     <?php include '../action/redirect-to-home.php'; ?>
     <?php include 'header-with-login.php'; ?>

@@ -113,23 +113,39 @@ form {
 }
 
 input, textarea {
+  font-weight: 500;
   padding: 0.5em;
   margin: 1em;
   font-family: 'Poppins', sans-serif;
   font-size: large;
-}
-
-input:focus, textarea:focus {
-  box-shadow: 0 0 0.5em #596133;
+  border: 1px solid #433940;
+  border-radius: 0.2em;
 }
 
 input:invalid {
   box-shadow: 0 0 1.5em rgba(255, 255, 128, 0.5);
 }
 
+input:not(.submit-button):focus, textarea:focus {
+  box-shadow: 0 0 0.5em #596133;
+}
+
 .submit-button {
   width: 15em;
   cursor: pointer;
+  border: none;
+  border-radius: 0.3em;
+  /* box-shadow: 0 0.06em 0.2em #433940; */
+  color: #fff;
+  background-color: #539;
+}
+
+.submit-button:hover {
+  background-color: rgba(85, 51, 153, 0.9);
+}
+
+.submit-button:active {
+  color: #f7f8ff;
 }
 
 input[type=radio] {

@@ -39,18 +39,18 @@ abstract class Message
 {
   const EmailInvalid = "Please enter a valid e-mail address.";
   const EmailTooLong = "Your e-mail must be under 320 characters.";
-  const EmailDoesNotExist = "Please enter a registered e-mail address.";
-  const PasswordTooLong = "Your password must be under 255 characters.";
-  const NameIsTooLong = "Your display name is too long.";
+  const EmailDoesNotExist = "Incorrect e-mail or password.";
+  const PasswordTooLong = "Your password is too long (255 characters max).";
+  const NameIsTooLong = "Your display name is too long (30 characters max).";
   const NotLoggedIn = "Please log in to access this page.";
   const InvalidUser = "Incorrect e-mail or password.";
   const FieldsCannotBeEmpty = "Please fill out all fields.";
-  const EmailExists = "This e-mail address is already registered with Siftgifts.";
+  const EmailExists = "This e-mail address is already registered with Sift.gifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
   const NameExists = "There is already someone registered with that display name.";
   const NameIsBad = "Please do not use symbols in your display name.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
-  const LogOutSuccess = "You have successfully logged out.";
+  const LogOutSuccess = "You are logged out. Thanks for coming by!";
 }
 class Notification
 {

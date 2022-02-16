@@ -223,8 +223,13 @@ hr.large {
 }
 
 .restaurant-name {
+  font-weight: 500;
   overflow-wrap: break-word;
   line-height: 1.3em;
+}
+
+.restaurant-name a {
+  text-decoration: none;  
 }
 
 .grid-item-center {

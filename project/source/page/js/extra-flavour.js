@@ -10,8 +10,17 @@ function clickHandler(e) {
     }
   }
   if (validSubmission) {
+    // poor browser support for requestSubmit
+    if (document.querySelector('form').requestSubmit !== undefined) {
+      document.querySelector('form').requestSubmit();
+    } else {
+      if (document.querySelector('form').onsubmit !== null) {
+        document.querySelector('form').onsubmit();
+      }
+      document.querySelector('form').submit();
+    }
     source.setAttribute("disabled", "");
-    document.querySelector('form').submit();
+    // usually the submit event occurs after the click event is done, but submit is now disabled, so submit must be called manually before disabling
   }
 }
 const source = document.querySelector('.submit-button');

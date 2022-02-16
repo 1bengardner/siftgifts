@@ -12,6 +12,7 @@ function request() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       document.getElementById("request-form").reset();
       document.getElementById("message").hidden = false;
+      document.querySelector(".submit-button").disabled = false;
     }
   }
   var params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');

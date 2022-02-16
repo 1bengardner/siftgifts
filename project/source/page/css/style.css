@@ -144,8 +144,9 @@ input:not(.submit-button):focus, textarea:focus {
   background-color: rgba(85, 51, 153, 0.9);
 }
 
-.submit-button:active {
-  color: #f7f8ff;
+.submit-button:disabled {
+  background-color: rgba(85, 51, 153, 0.5);
+  cursor: wait;
 }
 
 input[type=radio] {
@@ -362,6 +363,10 @@ input[type=checkbox] {
 
 label {
   vertical-align: middle;
+}
+
+.invalid-input {
+  border-color: red;
 }
 
 @media screen and (max-width: 1200px) {

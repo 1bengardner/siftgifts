@@ -39,4 +39,5 @@
     </form>
   </body>
   <script src="js/request.js" type="text/javascript"></script>
+  <script src="../page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

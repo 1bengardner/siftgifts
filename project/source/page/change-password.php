@@ -9,7 +9,7 @@
       $user = User::get_from_id($_SESSION['id']);
     ?>
     <form action="../action/submit-change-password.php" method="post">
-      <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
+      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Change password for <?php echo $user->username; ?></h2>
       <?php include 'message-box.php'; ?>
       <div>

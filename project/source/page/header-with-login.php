@@ -1,6 +1,6 @@
 <nav class="header">
   <div class="grid-2">
-    <h1 class="logo-text unbreakable">Sift<span class="accent"> . gifts</span></h1>
+    <h1 class="logo-text unbreakable">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
     <ul class="right">
       <li>
         <h2><a href="login">Log in</a></h2>

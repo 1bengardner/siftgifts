@@ -1,6 +1,6 @@
 <nav class="header">
   <div class="grid-2 center">
-    <h1 class="logo-text unbreakable"><a class="link" href="/" title="Home">Sift<span class="accent"> . gifts</span></a></h1>
+    <h1 class="logo-text unbreakable"><a class="link" href="/" title="Home">Sift<span class="accent"><span class="spaced">.</span>gifts</span></a></h1>
     <ul class="unbreakable right">
       <?php
       require_once '../data/user.php';

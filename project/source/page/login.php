@@ -4,7 +4,7 @@
   <?php include 'head.php'; ?>
   <body>
     <form action="../action/submit-login.php" method="post">
-      <h1 class="logo-text">Sift<span class="accent"> . gifts</span></h1>
+      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Log in</h2>
       <?php include 'message-box.php'; ?>
       <div>

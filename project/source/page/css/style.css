@@ -370,6 +370,10 @@ label {
   border-color: red;
 }
 
+.spaced {
+  margin: 0 0.1em;
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;

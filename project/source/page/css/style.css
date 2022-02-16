@@ -23,12 +23,12 @@ li h2 {
   color: #354eff;
 }
 
-.link:hover {
-  color: #5e5eec;
-}
-
 .link:visited {
   color: #7742e0;
+}
+
+.link:hover {
+  color: #5e5eec;
 }
 
 .link:active {
@@ -227,6 +227,7 @@ hr.large {
   font-weight: 500;
   overflow-wrap: break-word;
   line-height: 1.3em;
+  text-decoration: none;
 }
 
 .restaurant-name a {

@@ -9,7 +9,7 @@
       <h3 class="subheading">(It's free!)</h3>
       <?php include 'message-box.php'; ?>
       <div>
-        <input type="text" name="name" placeholder="Username" maxlength="30" required />
+        <input type="text" name="name" placeholder="Display name" maxlength="30" required />
       </div>
       <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />

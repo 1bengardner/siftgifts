@@ -41,14 +41,14 @@ abstract class Message
   const EmailTooLong = "Your e-mail must be under 320 characters.";
   const EmailDoesNotExist = "Please enter a registered e-mail address.";
   const PasswordTooLong = "Your password must be under 255 characters.";
-  const NameTooLong = "Your username is too long.";
+  const NameIsTooLong = "Your display name is too long.";
   const NotLoggedIn = "Please log in to access this page.";
   const InvalidUser = "Incorrect e-mail or password.";
   const FieldsCannotBeEmpty = "Please fill out all fields.";
   const EmailExists = "This e-mail address is already registered with Siftgifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
-  const UsernameExists = "There is already someone registered with that username.";
-  const UsernameIsBad = "Please use just letters and numbers in your username.";
+  const NameExists = "There is already someone registered with that display name.";
+  const NameIsBad = "Please do not use symbols in your display name.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
   const LogOutSuccess = "You have successfully logged out.";
 }
@@ -122,13 +122,13 @@ class Validation
   public static function name_error($name)
   {
     if (Validation::name_exists($name)) {
-      return Message::UsernameExists;
+      return Message::NameExists;
     }
-    if (!ctype_alnum($name)) {
-      return Message::UsernameIsBad;
+    if (!ctype_alnum(str_replace(array("-", "_", " "), "", $name))) {
+      return Message::NameIsBad;
     }
     if (strlen($name) > 30) {
-      return Message::NameTooLong;
+      return Message::NameIsTooLong;
     }
     return false;
   }

@@ -1,0 +1,46 @@
+<?php
+if (!isset($_GET['name']) || !isset($_GET['code'])) {
+  echo "Invalid request";
+  exit;
+}
+?>
+<!DOCTYPE html>
+<html>
+  <?php define('TITLE', 'Reset password'); ?>
+  <?php include 'head.php'; ?>
+  <body>
+    <form action="../action/submit-reset-password.php" method="post">
+      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
+      <h2>Reset password for <?php echo $_GET['name']; ?></h2>
+      <?php
+      require_once '../util/utilities.php';
+
+      $stmt = "SELECT 1 FROM reset_codes WHERE user=? AND code=?";
+      $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['name'], $_GET['code']]);
+      if (empty($res->fetch_row()[0])) {
+      ?>
+      <div>
+        <p>This reset link is invalid or expired.</p>
+        <p>Please <a href="forgot-password">request</a> a new one.</p>
+      </div>
+      <?php
+      } else {
+      ?>
+      <div>
+        <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" required />
+        <input type="password" name="confirm-password" placeholder="New password, again" maxlength="255" required />
+      </div>
+      <div>
+        <input class="submit-button" type="submit" value="Reset password" />
+      </div>
+      <?php
+      }
+      ?>
+      <hr />
+      <div>
+        <a href="/">Cancel</a>
+      </div>
+    </form>
+  </body>
+  <script src="../page/js/extra-flavour.js" type="text/javascript"></script>
+</html>

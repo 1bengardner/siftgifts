@@ -40,8 +40,9 @@ abstract class Message
   const EmailInvalid = "Please enter a valid e-mail address.";
   const EmailTooLong = "Your e-mail must be under 320 characters.";
   const EmailDoesNotExist = "Incorrect e-mail or password.";
-  const PasswordTooLong = "Your password is too long (255 characters max).";
-  const NameIsTooLong = "Your display name is too long (30 characters max).";
+  const PasswordTooLong = "Your password is too long (over 255 characters).";
+  const PasswordTooShort = "Your password is too short (under 6 characters).";
+  const NameIsTooLong = "Your display name is too long (over 30 characters).";
   const NotLoggedIn = "Please log in to access this page.";
   const InvalidUser = "Incorrect e-mail or password.";
   const FieldsCannotBeEmpty = "Please fill out all fields.";
@@ -108,6 +109,9 @@ class Validation
   {
     if (strlen($password) > 255) {
       return Message::PasswordTooLong;
+    }
+    if (strlen($password) < 6) {
+      return Message::PasswordTooShort;
     }
     return false;
   }

@@ -3,12 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2022 at 06:23 AM
+-- Generation Time: Feb 18, 2022 at 07:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -26,11 +26,19 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
+CREATE PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
 BEGIN
 INSERT INTO gift (name, url, notes, user)
 VALUES (name, url, comments, user);
 END$$
+
+CREATE PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
+BEGIN
+INSERT INTO reset_code(email, code)
+VALUES (email, code);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -49,6 +57,18 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `creation_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `fk-gift-user` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_code`
+--
+
+CREATE TABLE IF NOT EXISTS `reset_code` (
+  `email` varchar(320) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -76,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 ALTER TABLE `gift`
   ADD CONSTRAINT `fk-gift-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -51,7 +51,9 @@ abstract class Message
   const NameExists = "There is already someone registered with that display name.";
   const NameIsBad = "Please do not use symbols in your display name.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
+  const PasswordResetSent = "A password reset link has been sent to your e-mail.";
   const LogOutSuccess = "You are logged out. Thanks for coming by!";
+  const InvalidResetCode = "This password reset link has expired.";
 }
 class Notification
 {
@@ -175,6 +177,26 @@ class Validation
   {
     if ($p1 != $p2) {
       return Message::PasswordsDiffer;
+    }
+    return false;
+  }
+
+  public static function forgot_password_error($email)
+  {
+    $stmt = "SELECT 1 FROM user WHERE email = ?";
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    if (empty($res->fetch_row()[0])) {
+      return Message::EmailDoesNotExist;
+    }
+    return false;
+  }
+  
+  public static function invalid_reset_code($email, $code)
+  {
+    $stmt = "SELECT 1 FROM reset_code WHERE email = ? AND code = ?";
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code]);
+    if (empty($res->fetch_row()[0])) {
+      return Message::InvalidResetCode;
     }
     return false;
   }

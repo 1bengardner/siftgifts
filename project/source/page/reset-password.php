@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['name']) || !isset($_GET['code'])) {
+if (!isset($_GET['email']) || !isset($_GET['code'])) {
   echo "Invalid request";
   exit;
 }
@@ -11,12 +11,13 @@ if (!isset($_GET['name']) || !isset($_GET['code'])) {
   <body>
     <form action="../action/submit-reset-password.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
-      <h2>Reset password for <?php echo $_GET['name']; ?></h2>
+      <h2>Reset password for <?php echo $_GET['email']; ?></h2>
+      <?php include 'message-box.php'; ?>
       <?php
       require_once '../util/utilities.php';
 
-      $stmt = "SELECT 1 FROM reset_codes WHERE user=? AND code=?";
-      $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['name'], $_GET['code']]);
+      $stmt = "SELECT 1 FROM reset_code WHERE email=? AND code=?";
+      $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['email'], $_GET['code']]);
       if (empty($res->fetch_row()[0])) {
       ?>
       <div>
@@ -29,6 +30,8 @@ if (!isset($_GET['name']) || !isset($_GET['code'])) {
       <div>
         <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" required />
         <input type="password" name="confirm-password" placeholder="New password, again" maxlength="255" required />
+        <input type="hidden" name="email" value="<?php echo $_GET['email'] ?>" />
+        <input type="hidden" name="code" value="<?php echo $_GET['code'] ?>" />
       </div>
       <div>
         <input class="submit-button" type="submit" value="Reset password" />

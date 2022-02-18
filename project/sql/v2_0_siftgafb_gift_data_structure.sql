@@ -22,6 +22,16 @@ SET time_zone = "+00:00";
 -- Database: `gift_data`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
+BEGIN
+INSERT INTO gift (name, url, notes, user)
+VALUES (name, url, comments, user);
+END$$
+
 -- --------------------------------------------------------
 
 --

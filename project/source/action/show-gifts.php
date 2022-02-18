@@ -28,8 +28,17 @@ foreach ($gifts as $gift_data) {
       </h2>
       <?php if (!empty($gift->notes)) { ?>
         <p class="subheading"><?php echo $gift->notes; ?></p>
-      <?php } ?>
+      <?php }
+      if ($gift->reserved_time != NULL) {
+      ?>
+      <p class="lighter"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)).'.'; ?></em></p>
+      <?php
+      } else if ($gift->creation_time != NULL) {
+      ?>
       <p class="lighter"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)).'.'; ?></em></p>
+      <?php
+      }
+      ?>
     </div>
     <p class="right no-wrap">
       <?php $var = $gift->id; ?>

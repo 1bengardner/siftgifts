@@ -7,6 +7,7 @@ class Gift
   public $notes;
   public $reserved;
   public $creation_time;
+  public $reserved_time;
   private $user;
 
   public function __construct($assoc)
@@ -17,6 +18,7 @@ class Gift
     $this->notes = $assoc['notes'];
     $this->reserved = $assoc['reserved'];
     $this->creation_time = $assoc['creation_time'];
+    $this->reserved_time = $assoc['reserved_time'];
     $this->user = $assoc['user'];
   }
   

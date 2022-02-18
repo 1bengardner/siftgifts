@@ -54,7 +54,8 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `notes` text DEFAULT NULL,
   `reserved` tinyint(1) NOT NULL DEFAULT 0,
   `user` int(11) NOT NULL,
-  `creation_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `creation_time` timestamp NULL DEFAULT current_timestamp(),
+  `reserved_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk-gift-user` (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

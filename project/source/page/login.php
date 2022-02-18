@@ -3,6 +3,7 @@
   <?php define('TITLE', 'Sift.gifts login'); ?>
   <?php include 'head.php'; ?>
   <body>
+    <?php include '../action/redirect-to-home.php'; ?>
     <form action="../action/submit-login.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Log in</h2>

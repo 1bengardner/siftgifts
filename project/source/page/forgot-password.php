@@ -3,6 +3,7 @@
   <?php define('TITLE', 'Forgot password'); ?>
   <?php include 'head.php'; ?>
   <body>
+    <?php include '../action/redirect-to-home.php'; ?>
     <form action="../action/submit-forgot-password.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Forgot your password?</h2>

@@ -39,7 +39,7 @@ abstract class Message
 {
   const EmailInvalid = "Please enter a valid e-mail address.";
   const EmailTooLong = "Your e-mail must be under 320 characters.";
-  const EmailDoesNotExist = "Incorrect e-mail or password.";
+  const EmailDoesNotExist = "This e-mail address is not registered with Sift.gifts.";
   const PasswordTooLong = "Your password is too long (over 255 characters).";
   const PasswordTooShort = "Your password is too short (under 6 characters).";
   const NameIsTooLong = "Your display name is too long (over 30 characters).";

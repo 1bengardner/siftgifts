@@ -18,7 +18,7 @@ if (!isset($user) || !isset($id)) {
       <?php
         require_once '../action/start-session.php';
         if (isset($_SESSION["id"]) && $_SESSION['id'] === $id) {
-          echo '<p><strong>HEY!</strong> No peeking! Visit your <a href="../page/home">home</a> instead.</p>';
+          echo '<p><strong>HEY!</strong> No peeking! <a href="../page/wishlist">Manage your wishlist</a> instead.</p>';
         } else {
           $_GET['user']=$id;
           include '../action/show-gifts.php';

@@ -13,7 +13,12 @@ foreach ($gifts as $gift_data) {
   // Display each gift - this is HTML
 ?>
 <div class="widget restaurant-widget focused<?php if ($gift->reserved) echo ' reserved' ?>">
-  <div class="grid">
+  <div>
+    <div class="right no-wrap">
+      <?php $var = $gift->id; ?>
+      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
+      <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
+    </div>
     <div>
       <h2 class="restaurant-name">
         <?php
@@ -40,11 +45,6 @@ foreach ($gifts as $gift_data) {
       }
       ?>
     </div>
-    <p class="right no-wrap">
-      <?php $var = $gift->id; ?>
-      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
-      <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
-    </p>
   </div>
 </div>
 <?php

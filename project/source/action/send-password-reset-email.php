@@ -8,7 +8,7 @@ $stmt = "SELECT code FROM reset_code WHERE email=?";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
 $reset_code = $res->fetch_row()[0];
 if (!empty($reset_code)) {
-  $stmt = "DELETE FROM reset_code WHERE email=?";
+  $stmt = "CALL remove_reset_code(?)";
   $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);  
 }
 

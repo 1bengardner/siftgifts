@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2022 at 07:50 AM
+-- Generation Time: Feb 19, 2022 at 07:35 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -36,6 +36,11 @@ CREATE PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(25
 BEGIN
 INSERT INTO reset_code(email, code)
 VALUES (email, code);
+END$$
+
+CREATE PROCEDURE `remove_reset_code` (IN `email` VARCHAR(320))  NO SQL
+BEGIN
+DELETE FROM reset_code WHERE reset_code.email=email;
 END$$
 
 DELIMITER ;

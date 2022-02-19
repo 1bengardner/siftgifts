@@ -21,7 +21,7 @@
             <input class="submit-button" type="submit" value="Log in" />
           </div>
         </form>
-        <p>Or <a href="register"><span class="accent">create an account</span></a> to start sharing your wishlist.</p>
+        <p><a href="register"><span class="accent">Sign up</span></a> to start sharing your wishlist.</p>
       </div>
     </div>
   </body>

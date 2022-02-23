@@ -25,7 +25,7 @@
       </div>
       <hr />
       <div>
-        or <a href="login">log in</a>
+        <a href="login">Log in</a>
       </div>
     </form>
   </body>

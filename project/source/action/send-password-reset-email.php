@@ -1,7 +1,12 @@
 <?php
 require_once '../data/user.php';
+require_once '../util/utilities.php';
 
 $email = $_POST['email'];
+
+if ($msg = Validation::forgot_password_error($email)) {
+  return $msg;
+}
 
 // Delete code if one exists
 $stmt = "SELECT code FROM reset_code WHERE email=?";

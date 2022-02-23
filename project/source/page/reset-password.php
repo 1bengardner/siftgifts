@@ -16,9 +16,7 @@ if (!isset($_GET['email']) || !isset($_GET['code'])) {
       <?php
       require_once '../util/utilities.php';
 
-      $stmt = "SELECT 1 FROM reset_code WHERE email=? AND code=?";
-      $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['email'], $_GET['code']]);
-      if (empty($res->fetch_row()[0])) {
+      if (Validation::invalid_reset_code($_GET['email'], $_GET['code'])) {
       ?>
       <div>
         <p>This reset link is invalid or expired.</p>

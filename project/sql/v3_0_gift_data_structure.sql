@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2022 at 07:35 PM
+-- Generation Time: Feb 23, 2022 at 01:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -43,6 +43,12 @@ BEGIN
 DELETE FROM reset_code WHERE reset_code.email=email;
 END$$
 
+--
+-- Functions
+--
+CREATE FUNCTION `is_valid_reset_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
+return (SELECT TIMESTAMPDIFF(MINUTE, issue_time, CURRENT_TIMESTAMP) < 15 FROM reset_code WHERE reset_code.email = email AND reset_code.code = code)$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -74,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `gift` (
 CREATE TABLE IF NOT EXISTS `reset_code` (
   `email` varchar(320) NOT NULL,
   `code` varchar(255) NOT NULL,
+  `issue_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

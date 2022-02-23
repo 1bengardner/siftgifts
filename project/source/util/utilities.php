@@ -53,7 +53,8 @@ abstract class Message
   const ChangePasswordSuccess = "You have successfully updated your password.";
   const PasswordResetSent = "A password reset link has been sent to your e-mail.";
   const LogOutSuccess = "You are logged out. Thanks for coming by!";
-  const InvalidResetCode = "This password reset link has expired.";
+  const InvalidResetCode = "This password reset link is invalid.";
+  const ExpiredResetCode = "This password reset link has expired (they last 15 minutes).";
 }
 class Notification
 {
@@ -193,10 +194,12 @@ class Validation
   
   public static function invalid_reset_code($email, $code)
   {
-    $stmt = "SELECT 1 FROM reset_code WHERE email = ? AND code = ?";
+    $stmt = "SELECT is_valid_reset_code(?, ?)";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code]);
-    if (empty($res->fetch_row()[0])) {
+    if ($res->fetch_row()[0] === NULL) {
       return Message::InvalidResetCode;
+    } else if (!$res->fetch_row()[0]) {
+      return Message::ExpiredResetCode;
     }
     return false;
   }

@@ -55,6 +55,7 @@ abstract class Message
   const LogOutSuccess = "You are logged out. Thanks for coming by!";
   const InvalidResetCode = "This password reset link is invalid.";
   const ExpiredResetCode = "This password reset link has expired (they last 15 minutes).";
+  const NoPermission = "You do not have permission to do that.";
 }
 class Notification
 {

@@ -1,7 +1,13 @@
 <?php
 require_once '../util/utilities.php';
 require_once '../data/gift.php';
+require_once '../action/authenticate.php';
 
+if ($_GET['user'] != $_SESSION['id']) {
+  $_SESSION["notifications"] = [new Notification(Message::NoPermission, MessageLevel::Error)];
+  header("Location: ../page/home");
+  exit;
+}
 // Get user gifts from db
 $stmt = "SELECT * FROM gift WHERE user=? AND active=1 ORDER BY id DESC";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['user']]);

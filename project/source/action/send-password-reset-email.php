@@ -8,23 +8,13 @@ if ($msg = Validation::forgot_password_error($email)) {
   return $msg;
 }
 
-// Delete code if one exists
-$stmt = "SELECT code FROM reset_code WHERE email=?";
-$res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
-$reset_code = $res->fetch_row()[0];
-if (!empty($reset_code)) {
-  $stmt = "CALL remove_reset_code(?)";
-  $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);  
-}
-
-// Save new code
+// Save reset code
 $reset_code = bin2hex(random_bytes(8));
 $stmt = "CALL add_reset_code(?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$email, $reset_code]);
 $reset_link = 'https://sift.gifts/page/reset-password?email='.$email.'&code='.$reset_code;
 
 $name = User::get_from_id($email)->name;
-$to = $name;
 
 // Mail
 $subject = 'Sift.gifts - Reset password';
@@ -41,14 +31,6 @@ $message = '
 </html>
 ';
 
-// To send HTML mail, the Content-type header must be set
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-
-// Additional headers
-$headers[] = 'To: '.$name.' <'.$email.'>';
-$headers[] = 'From: Sift.gifts <password-reset@sift.gifts>';
-
 // Mail it
-mail($to, $subject, $message, implode("\r\n", $headers));
+Email::send_email($name, $email, EmailAlias::PasswordReset, $subject, $message);
 ?>

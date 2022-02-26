@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2022 at 01:46 AM
+-- Generation Time: Feb 26, 2022 at 03:58 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -34,13 +34,14 @@ END$$
 
 CREATE PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
 BEGIN
-INSERT INTO reset_code(email, code)
+REPLACE INTO reset_code(email, code)
 VALUES (email, code);
 END$$
 
-CREATE PROCEDURE `remove_reset_code` (IN `email` VARCHAR(320))  NO SQL
+CREATE PROCEDURE `add_verification_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
 BEGIN
-DELETE FROM reset_code WHERE reset_code.email=email;
+REPLACE INTO verification_code(email, code)
+VALUES (email, code);
 END$$
 
 --
@@ -95,9 +96,23 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(30) NOT NULL,
   `email` varchar(320) NOT NULL,
   `encrypted_password` varchar(255) NOT NULL,
+  `verified` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique-user-email` (`email`) USING BTREE,
   UNIQUE KEY `unique-user-username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verification_code`
+--
+
+CREATE TABLE IF NOT EXISTS `verification_code` (
+  `email` varchar(320) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `issue_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

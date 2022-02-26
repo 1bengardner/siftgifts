@@ -1,4 +1,5 @@
 <?php
+// TODO: Extract the separate responsibilities of this class
 class Database
 {
   public static function get_connection()
@@ -27,6 +28,28 @@ class Database
     $res = $prepared_stmt->get_result();
     $prepared_stmt->close();
     return $res;
+  }
+}
+
+require 'email_config.php';
+define("PASSWORD_RESET", $password_reset);
+define("ACCOUNT_VERIFICATION", $account_verification);
+
+abstract class EmailAlias
+{
+  const PasswordReset = PASSWORD_RESET;
+  const AccountVerification = ACCOUNT_VERIFICATION;
+}
+class Email
+{
+  public static function send_email($name, $email, $from, $subject, $body)
+  {
+    $headers[] = 'MIME-Version: 1.0';
+    $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+    $headers[] = 'To: '.$name.' <'.$email.'>';
+    $headers[] = 'From: '.$from;
+
+    mail($name.' <'.$email.'>', $subject, $body, implode("\r\n", $headers));
   }
 }
 

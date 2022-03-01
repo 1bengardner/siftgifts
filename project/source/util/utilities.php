@@ -68,20 +68,21 @@ abstract class Message
   const NameIsTooLong = "Your display name is too long (over 30 characters).";
   const NotLoggedIn = "Please log in to access this page.";
   const InvalidUser = "Incorrect e-mail or password.";
-  const FieldsCannotBeEmpty = "Please fill out all fields.";
+  const FieldsCannotBeEmpty = "Please fill out all the required fields.";
   const EmailExists = "This e-mail address is already registered with Sift.gifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
   const NameExists = "There is already someone registered with that display name.";
   const NameIsBad = "Please do not use symbols in your display name.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
   const PasswordResetSent = "A password reset link has been sent to your e-mail.";
-  const LogOutSuccess = "You are logged out. Thanks for coming by!";
+  const LogOutSuccess = "Logged out. Thanks for coming by!";
   const InvalidResetCode = "This password reset link is invalid.";
   const ExpiredResetCode = "This password reset link has expired (they last 15 minutes).";
   const NoPermission = "You do not have permission to do that.";
   const InvalidVerificationCode = "This verification link is invalid.";
   const VerifyAccountSuccess = "Your account is now verified.";
-  const RegistrationSuccess = "You are now signed up with Sift.gifts!";
+  const RegistrationSuccess = "You are now signed up with Sift.gifts. Welcome!";
+  const ChangeProfileSuccess = "You have successfully updated your profile.";
 }
 class Notification
 {

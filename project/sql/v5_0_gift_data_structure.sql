@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2022 at 05:00 AM
+-- Generation Time: Mar 01, 2022 at 07:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -43,6 +43,9 @@ BEGIN
 REPLACE INTO verification_code(email, code)
 VALUES (email, code);
 END$$
+
+CREATE PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255))  NO SQL
+UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password) WHERE user.id=id$$
 
 --
 -- Functions

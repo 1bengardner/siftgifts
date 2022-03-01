@@ -38,10 +38,13 @@ $from = '../page/wishlist-template.php';
 $to = '../wishlist/'.strtolower($name).'.php';
 
 $new_file = '<?php $user = "'.$name.'"; $id = '.$db->insert_id.'; include "'.$from.'"; ?>';
-$new_file .= file_get_contents($to);
 file_put_contents($to, $new_file);
 
 $_SESSION["id"] = $db->insert_id;
+
+require 'send-account-verification-email.php';
+
+$_SESSION["notifications"] = [new Notification(Message::RegistrationSuccess, MessageLevel::Success)];
 
 header('Location: ../page/home');
 ?>

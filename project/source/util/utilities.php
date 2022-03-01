@@ -79,6 +79,9 @@ abstract class Message
   const InvalidResetCode = "This password reset link is invalid.";
   const ExpiredResetCode = "This password reset link has expired (they last 15 minutes).";
   const NoPermission = "You do not have permission to do that.";
+  const InvalidVerificationCode = "This verification link is invalid.";
+  const VerifyAccountSuccess = "Your account is now verified.";
+  const RegistrationSuccess = "You are now signed up with Sift.gifts!";
 }
 class Notification
 {
@@ -224,6 +227,16 @@ class Validation
       return Message::InvalidResetCode;
     } else if (!$res) {
       return Message::ExpiredResetCode;
+    }
+    return false;
+  }
+  
+  public static function invalid_verification_code($email, $code)
+  {
+    $stmt = "SELECT is_valid_verification_code(?, ?)";
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code])->fetch_row()[0];
+    if (!$res) {
+      return Message::InvalidVerificationCode;
     }
     return false;
   }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 03:58 AM
+-- Generation Time: Mar 01, 2022 at 05:00 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -49,6 +49,9 @@ END$$
 --
 CREATE FUNCTION `is_valid_reset_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
 return (SELECT TIMESTAMPDIFF(MINUTE, issue_time, CURRENT_TIMESTAMP) < 15 FROM reset_code WHERE reset_code.email = email AND reset_code.code = code)$$
+
+CREATE FUNCTION `is_valid_verification_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
+return (SELECT 1 FROM verification_code WHERE verification_code.email = email AND verification_code.code = code)$$
 
 DELIMITER ;
 

@@ -60,7 +60,7 @@ h1 .link, .special-box .link {
 
 .header {
   padding: 0.5em 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   border-bottom: 0.1em solid #433940;
   box-shadow: 0 0.05em 0.5em #363361;
   background-color: #f5efff;
@@ -257,7 +257,7 @@ hr.large {
 }
 
 .success-box p:before {
-  content: "✔";
+  content: "✔ ";
 }
 
 .error-box {
@@ -266,7 +266,7 @@ hr.large {
 }
 
 .error-box p:before {
-  content: "❌";
+  content: "❌ ";
 }
 
 .info-box {
@@ -275,7 +275,7 @@ hr.large {
 }
 
 .info-box p:before {
-  content: "ℹ️";
+  content: "ℹ️ ";
 }
 
 .warning-box {
@@ -285,7 +285,7 @@ hr.large {
 }
 
 .warning-box p:before {
-  content: "⚠️";
+  content: "⚠️ ";
 }
 
 .special-box {
@@ -386,6 +386,7 @@ label {
   display: none;
 }
 }
+
 @media screen and (min-width: 1201px) {
 .restaurant-widget {
   display: inline-block;
@@ -396,6 +397,7 @@ label {
   padding-right: 2em;
 }
 }
+
 @media screen and (max-height: 767px) {
 .splash-image {
   display: none;

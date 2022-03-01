@@ -11,6 +11,7 @@ $stmt = "SELECT verified FROM user WHERE email = ?";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
 if ($res->fetch_row()[0] === NULL) {
   return Message::EmailDoesNotExist;
+}
 
 // Save verification code
 $verification_code = bin2hex(random_bytes(16));

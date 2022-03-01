@@ -1,5 +1,5 @@
 <?php
-if (!isset($user) || !isset($id)) {
+if (!isset($id)) {
   echo "how did u find me";
   exit;
 }
@@ -10,6 +10,11 @@ if (!isset($user) || !isset($id)) {
   <?php include '../page/head.php'; ?>
   <body>
     <?php include '../page/header.php' ?>
+    <?php
+    require_once '../data/user.php';
+
+    $user = User::get_from_id($id)->username;
+    ?>
     <h1 class="center"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>

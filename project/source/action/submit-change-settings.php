@@ -3,8 +3,8 @@ require_once '../util/utilities.php';
 require_once '../action/authenticate.php';
 require_once '../data/user.php';
 
-$user = User::get_from_id($_SESSION['id']);
-$is_changing_name = strtolower($user->username) != strtolower($_POST['name']);
+$old_name = User::get_from_id($_SESSION['id'])->username;
+$is_changing_name = strtolower($old_name) != strtolower($_POST['name']);
 
 $is_changing_password = !empty($_POST['password']) || !empty($_POST['confirm-password']);
 
@@ -45,6 +45,10 @@ if (count($validation_errors) > 0) {
 $stmt = "CALL update_profile(?, ?, ?)";
 $db = Database::get_connection();
 Database::run_statement($db, $stmt, [$_SESSION['id'], $_POST['name'], $is_changing_password ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL]);
+
+if ($is_changing_name) {
+  rename('../wishlist/'.strtolower($old_name).'.php', '../wishlist/'.strtolower($_POST['name']).'.php');
+}
 
 $_SESSION["notifications"] = [new Notification(Message::ChangeProfileSuccess, MessageLevel::Success)];
 

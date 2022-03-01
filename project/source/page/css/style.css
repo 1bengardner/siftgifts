@@ -124,11 +124,11 @@ input, textarea {
 }
 
 input:invalid {
-  box-shadow: 0 0 1.5em rgba(255, 255, 128, 0.5);
+  box-shadow: 0 0 1em rgba(137, 206, 255, 0.5);
 }
 
 input:not(.submit-button):focus, textarea:focus {
-  box-shadow: 0 0 0.5em #596133;
+  box-shadow: 0 0 0.5em #334e61;
 }
 
 .submit-button {

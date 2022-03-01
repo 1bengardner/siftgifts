@@ -23,6 +23,13 @@
         </form>
         <p><a href="register"><span class="accent">Sign up</span></a> to start sharing your wishlist.</p>
       </div>
+      <div class="footer">
+        <p>
+          <a class="link" href="about">About this site</a>
+          <img src="./img/present.svg" />
+          <a class="link" href="news">What's new</a>
+        </div>
+      </p>
     </div>
   </body>
   <script src="../page/js/extra-flavour.js" type="text/javascript"></script>

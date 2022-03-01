@@ -219,10 +219,10 @@ class Validation
   public static function invalid_reset_code($email, $code)
   {
     $stmt = "SELECT is_valid_reset_code(?, ?)";
-    $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code]);
-    if ($res->fetch_row()[0] === NULL) {
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code])->fetch_row()[0];
+    if ($res === NULL) {
       return Message::InvalidResetCode;
-    } else if (!$res->fetch_row()[0]) {
+    } else if (!$res) {
       return Message::ExpiredResetCode;
     }
     return false;

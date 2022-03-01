@@ -5,7 +5,7 @@
   require_once '../data/user.php';
   $user = User::get_from_id($_SESSION['id']);
   ?>
-  <?php define('TITLE', ucfirst(strtolower($user->username))."'s wishlist"); ?>
+  <?php define('TITLE', ucwords(strtolower($user->username))."'s wishlist"); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>

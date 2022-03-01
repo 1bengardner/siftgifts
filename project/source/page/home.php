@@ -5,7 +5,7 @@
   require_once '../data/user.php';
   $user = User::get_from_id($_SESSION['id']);
   ?>
-  <?php define('TITLE', 'Sift.gifts - '.ucfirst(strtolower($user->username))); ?>
+  <?php define('TITLE', 'Sift.gifts - '.ucwords(strtolower($user->username))); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
@@ -21,10 +21,10 @@
           <?php
           if (!isset($_SESSION['greeted'])) {
             $_SESSION['greeted'] = true;
-            echo 'Welcome, '.ucfirst(strtolower($user->username));
+            echo 'Welcome, '.ucwords(strtolower($user->username));
           } else {
             $greetings = array('Hello', 'Hi there', 'Howdy', 'Greetings', 'Ahoy there', 'So good to see you', 'Fancy seeing you here', "Well, if it isn't you again");
-            echo $greetings[array_rand($greetings)].', '.ucfirst(strtolower($user->username));
+            echo $greetings[array_rand($greetings)].', '.ucwords(strtolower($user->username));
           }
           ?>!
         </h1>

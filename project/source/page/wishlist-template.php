@@ -6,11 +6,11 @@ if (!isset($user) || !isset($id)) {
 ?>
 <!DOCTYPE html>
 <html>
-  <?php define('TITLE', ucfirst(strtolower($user))."'s wishlist"); ?>
+  <?php define('TITLE', ucwords(strtolower($user))."'s wishlist"); ?>
   <?php include '../page/head.php'; ?>
   <body>
     <?php include '../page/header.php' ?>
-    <h1 class="center"><?php echo ucfirst(strtolower($user)) ?>'s Wishlist</h1>
+    <h1 class="center"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
     </form>

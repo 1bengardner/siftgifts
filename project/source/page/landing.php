@@ -25,6 +25,9 @@
       </div>
       <div class="footer">
         <p>
+          Drawings courtesy of <a class="link" href="https://undraw.co/">unDraw</a>
+        </p>
+        <p>
           <a class="link" href="about">About this site</a>
           <img src="./img/present.svg" />
           <a class="link" href="news">What's new</a>

@@ -190,7 +190,8 @@ input[type=radio] {
 hr {
   width: 17rem;
   max-width: 95vw;
-  border: 1px solid #433940;
+  border-color: #433940;
+  border-width: 1px 0 0 0;
   margin-bottom: 1em;
 }
 
@@ -200,6 +201,7 @@ hr.large {
 
 hr.expand {
   width: auto;
+  border-color: #897f86;
 }
 
 .center {
@@ -396,6 +398,10 @@ label {
   color: #897f86;
 }
 
+.about-image {
+  display: grid;
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;
@@ -406,7 +412,7 @@ label {
 .home-greeting {
   display: none;
 }
-.news-image {
+.news-image, .about-image {
   display: none;
 }
 }

@@ -19,7 +19,7 @@
       </div>
       <hr />
       <div>
-        <a href="#" onclick="history.back();">Go back</a>
+        <a class="link" href="/page/login">Go back</a>
       </div>
     </form>
   </body>

@@ -10,7 +10,7 @@
     ?>
     <form action="../action/submit-change-settings.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
-      <h2>Profile</h2>
+      <h2>Edit profile</h2>
       <?php include 'message-box.php'; ?>
       <div>
         <h3>Display name</h3>

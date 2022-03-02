@@ -28,8 +28,8 @@
           <a class="link" href="about">About this site</a>
           <img src="./img/present.svg" />
           <a class="link" href="news">What's new</a>
-        </div>
-      </p>
+        </p>
+      </div>
     </div>
   </body>
   <script src="../page/js/extra-flavour.js" type="text/javascript"></script>

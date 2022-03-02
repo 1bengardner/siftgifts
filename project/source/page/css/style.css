@@ -205,12 +205,12 @@ hr.large {
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.25);
 }
 
-.grid {
+.news-grid {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto;
 }
 
-.grid-2 {
+.even-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -233,10 +233,6 @@ hr.large {
 
 .restaurant-name a {
   text-decoration: none;  
-}
-
-.grid-item-center {
-  align-self: center;
 }
 
 .success-box, .error-box, .info-box, .warning-box, .special-box {
@@ -375,6 +371,21 @@ label {
   margin: 0 0.1em;
 }
 
+.reading-pane {
+  width: 50em;
+  text-align: left;
+  margin: auto;
+}
+
+.changelog-heading {
+  display: inline-block;
+  margin: 0.5em 0 0 0;
+}
+
+.muted {
+  color: #777;
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;
@@ -383,6 +394,9 @@ label {
   display: none;
 }
 .home-greeting {
+  display: none;
+}
+.news-image {
   display: none;
 }
 }
@@ -404,6 +418,12 @@ label {
 }
 .home-greeting {
   display: none;
+}
+}
+
+@media screen and (min-height: 1000px) {
+.splash-image {
+  display: block;
 }
 }
 

@@ -1,5 +1,5 @@
 <nav class="header">
-  <div class="grid-2 center">
+  <div class="even-grid center">
     <h1 class="logo-text unbreakable"><a class="link" href="/" title="Home">Sift<span class="accent"><span class="spaced">.</span>gifts</span></a></h1>
     <ul class="unbreakable right">
       <?php

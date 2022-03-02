@@ -19,9 +19,9 @@
       </div>
       <hr />
       <div>
-        <a href="register">Sign up</a>
+        <a class="link" href="register">Sign up</a>
         <img src="./img/present.svg" />
-        <a href="forgot-password">I forgot my password!</a>
+        <a class="link" href="forgot-password">I forgot my password!</a>
       </div>
     </form>
   </body>

@@ -195,6 +195,10 @@ hr.large {
   width: 50rem;
 }
 
+hr.expand {
+  width: auto;
+}
+
 .center {
   text-align: center;
 }
@@ -206,6 +210,8 @@ hr.large {
 }
 
 .news-grid {
+  margin: auto;
+  max-width: 64em;
   display: grid;
   grid-template-columns: 1fr auto;
 }
@@ -372,8 +378,9 @@ label {
 }
 
 .reading-pane {
-  width: 50em;
+  max-width: 44em;
   text-align: left;
+  padding: 0 1em;
   margin: auto;
 }
 
@@ -383,7 +390,7 @@ label {
 }
 
 .muted {
-  color: #777;
+  color: #897f86;
 }
 
 @media screen and (max-width: 1200px) {
@@ -433,5 +440,11 @@ label {
   bottom: 0;
   width: 100%;
   padding: 1em 0;
+}
+}
+
+@media screen and (max-width: 401px) {
+.header h2 {
+  display: none;
 }
 }

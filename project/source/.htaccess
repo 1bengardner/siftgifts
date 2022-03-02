@@ -6,6 +6,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule (.*) $1.php [L]
 
+ErrorDocument 403 /page/403.php
 ErrorDocument 404 /page/404.php
 
 <IfModule mod_headers.c>

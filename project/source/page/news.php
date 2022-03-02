@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <?php define('TITLE', 'Sift.gifts Updates'); ?>
+  <?php define('TITLE', 'Sift.gifts updates'); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header-with-login.php'; ?>

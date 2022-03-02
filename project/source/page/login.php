@@ -18,7 +18,7 @@
         <input class="submit-button" type="submit" value="Log in" />
       </div>
       <hr />
-      <div>
+      <div class="links-section">
         <a class="link" href="register">Sign up</a>
         <img src="./img/present.svg" />
         <a class="link" href="forgot-password">I forgot my password!</a>

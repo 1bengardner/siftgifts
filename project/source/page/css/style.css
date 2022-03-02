@@ -50,7 +50,14 @@ a:not(.link):hover, button:hover {
   background-color: #faf8f8;
 }
 
-h1 .link, .purple-box .link {
+.link {
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+h1 .link:hover {
   text-decoration: none;
 }
 
@@ -402,6 +409,17 @@ label {
   display: grid;
 }
 
+.links-section {
+  display: inline-block;
+  background-color: #f2f2f2;
+  padding: 0.75em 1em;
+  border-radius: 1em;
+}
+
+.footer {
+  font-size: medium;
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;
@@ -449,6 +467,7 @@ label {
   bottom: 0;
   width: 100%;
   padding: 1em 0;
+  background-color: #f2f2f2;
 }
 }
 

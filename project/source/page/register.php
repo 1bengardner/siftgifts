@@ -24,7 +24,7 @@
         <input class="submit-button" type="submit" value="Sign up" />
       </div>
       <hr />
-      <div>
+      <div class="links-section">
         <a class="link" href="login">Log in</a>
       </div>
     </form>

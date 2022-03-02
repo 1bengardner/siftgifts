@@ -1,5 +1,5 @@
 <nav class="header">
-  <div class="even-grid">
+  <div class="nav-grid">
     <h1 class="logo-text unbreakable">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
     <ul class="right">
       <li>

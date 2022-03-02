@@ -50,11 +50,11 @@ a:not(.link):hover, button:hover {
   background-color: #faf8f8;
 }
 
-h1 .link, .special-box .link {
+h1 .link, .purple-box .link {
   text-decoration: none;
 }
 
-.special-box .link {
+.purple-box .link {
   font-weight: bold;
 }
 
@@ -74,6 +74,9 @@ nav ul {
 nav li {
   list-style-type: none;
   display: inline-block;
+}
+
+nav li:not(:first-child) {
   margin-left: 0.5em;
 }
 
@@ -216,7 +219,7 @@ hr.expand {
   grid-template-columns: 1fr auto;
 }
 
-.even-grid {
+.nav-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -241,7 +244,7 @@ hr.expand {
   text-decoration: none;  
 }
 
-.success-box, .error-box, .info-box, .warning-box, .special-box {
+.success-box, .error-box, .info-box, .warning-box, .purple-box {
   display: inline-block;
   padding: 0.25em 0.5em;
   margin: auto 1em;
@@ -290,7 +293,7 @@ hr.expand {
   content: "⚠️ ";
 }
 
-.special-box {
+.purple-box {
   color: rgb(80, 0, 128);
   background-color: rgba(160, 0, 255, 0.25);
   border: 2px solid rgba(80, 0, 128, 0.5);
@@ -443,8 +446,15 @@ label {
 }
 }
 
-@media screen and (max-width: 401px) {
+@media screen and (max-width: 599px) {
 .header h2 {
   display: none;
+}
+.header .purple-box {
+  display: none;
+}
+.nav-grid {
+  display: block;
+  text-align: center;
 }
 }

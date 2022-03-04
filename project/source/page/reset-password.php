@@ -39,7 +39,7 @@ if (!isset($_GET['email']) || !isset($_GET['code'])) {
       ?>
       <hr />
       <div>
-        <a href="/">Cancel</a>
+        <p><a href="/">Cancel</a></p>
       </div>
     </form>
   </body>

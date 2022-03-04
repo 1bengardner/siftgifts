@@ -11,6 +11,8 @@
     <form action="../action/submit-change-settings.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Edit profile</h2>
+      <p class="subheading">Change your display name, password, or both.</p>
+      <hr class="large" />
       <?php include 'message-box.php'; ?>
       <div>
         <h3>Display name</h3>
@@ -30,7 +32,7 @@
       </div>
       <hr />
       <div>
-        <a href="home">Return</a>
+        <p><a href="home">Return</a></p>
       </div>
     </form>
   </body>

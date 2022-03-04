@@ -195,20 +195,20 @@ input[type=radio] {
 }
 
 hr {
-  width: 17rem;
-  max-width: 95vw;
+  max-width: 17rem;
+  border-style: solid;
   border-color: #433940;
   border-width: 1px 0 0 0;
   margin-bottom: 1em;
 }
 
 hr.large {
-  width: 50rem;
+  max-width: 50rem;
 }
 
 hr.expand {
-  width: auto;
-  border-color: #897f86;
+  max-width: 100vw;
+  border-color: #539;
 }
 
 .center {

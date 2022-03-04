@@ -24,7 +24,7 @@
         <p><a href="register"><span class="accent">Sign up</span></a> to start sharing your wishlist.</p>
       </div>
       <div class="footer">
-        <p>
+        <p class="undraw-credit">
           Drawings courtesy of <a class="link" href="https://undraw.co/">unDraw</a>
         </p>
         <p>

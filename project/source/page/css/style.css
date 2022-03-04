@@ -445,6 +445,9 @@ li::marker {
 .news-image, .about-image {
   display: none;
 }
+.undraw-credit {
+  display: none;
+}
 }
 
 @media screen and (min-width: 1201px) {

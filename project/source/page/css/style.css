@@ -432,6 +432,10 @@ li::marker {
   margin-top: 0;
 }
 
+.wishlist-admin-options {
+  padding: 1em 0;
+}
+
 @media screen and (max-width: 1200px) {
 .gift-widget {
   padding: 1vh 10vw;

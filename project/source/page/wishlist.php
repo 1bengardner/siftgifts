@@ -11,7 +11,7 @@
     <?php include 'header.php'; ?>
     <?php include 'user-buttons.php'; ?>
     <form>
-      <div>
+      <div class="wishlist-admin-options">
         <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
         <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
       </div>

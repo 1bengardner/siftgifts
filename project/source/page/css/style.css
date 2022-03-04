@@ -428,6 +428,10 @@ li::marker {
   content: '🎁 ';
 }
 
+.reading-pane > ul {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;

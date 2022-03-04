@@ -420,6 +420,14 @@ label {
   font-size: medium;
 }
 
+li::marker {
+  color: #539;
+}
+
+.reading-pane > ul > li::marker {
+  content: '🎁 ';
+}
+
 @media screen and (max-width: 1200px) {
 .restaurant-widget {
   padding: 1vh 10vw;

@@ -18,7 +18,7 @@ foreach ($gifts as $gift_data) {
 
   // Display each gift - this is HTML
 ?>
-<div class="widget restaurant-widget focused">
+<div class="widget gift-widget focused">
   <div>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
@@ -30,7 +30,7 @@ foreach ($gifts as $gift_data) {
       <label class="delete-button" for="remove-<?php echo $var; ?>">❌</label>
     </div>
     <div>
-      <h2 class="restaurant-name">
+      <h2 class="gift-name">
         <?php
         if (empty($gift->url)) {
           echo $gift->name;

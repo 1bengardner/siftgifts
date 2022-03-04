@@ -178,7 +178,7 @@ input[type=radio] {
   overflow-wrap: anywhere;
 }
 
-.restaurant-widget {
+.gift-widget {
   text-align: left;
 }
 
@@ -233,7 +233,7 @@ hr.expand {
   grid-template-columns: 1fr 1fr;
 }
 
-.restaurant-image {
+.gift-image {
   max-width: 200px;
   max-height: 100px;
   margin-right: 2em;
@@ -242,14 +242,14 @@ hr.expand {
   padding: 0;
 }
 
-.restaurant-name {
+.gift-name {
   font-weight: 500;
   overflow-wrap: break-word;
   line-height: 1.3em;
   text-decoration: none;
 }
 
-.restaurant-name a {
+.gift-name a {
   text-decoration: none;  
 }
 
@@ -433,7 +433,7 @@ li::marker {
 }
 
 @media screen and (max-width: 1200px) {
-.restaurant-widget {
+.gift-widget {
   padding: 1vh 10vw;
 }
 .splash-image {
@@ -451,11 +451,11 @@ li::marker {
 }
 
 @media screen and (min-width: 1201px) {
-.restaurant-widget {
+.gift-widget {
   display: inline-block;
   width: 400px;
 }
-.focused.restaurant-widget {
+.focused.gift-widget {
   padding-left: 2em;
   padding-right: 2em;
 }

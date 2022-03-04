@@ -12,7 +12,7 @@ foreach ($gifts as $gift_data) {
 
   // Display each gift - this is HTML
 ?>
-<div class="widget restaurant-widget focused<?php if ($gift->reserved) echo ' reserved' ?>">
+<div class="widget gift-widget focused<?php if ($gift->reserved) echo ' reserved' ?>">
   <div>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
@@ -20,7 +20,7 @@ foreach ($gifts as $gift_data) {
       <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
     </div>
     <div>
-      <h2 class="restaurant-name">
+      <h2 class="gift-name">
         <?php
         if (empty($gift->url)) {
           echo $gift->name;

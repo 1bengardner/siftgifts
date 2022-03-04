@@ -8,7 +8,7 @@
       <div class="reading-pane">
         <h1>The story of Sift.gifts</h1>
         <p>
-          It was a quiet wintry evening when Aunt Muriel texted me for the fifth time,
+          It was a quiet, wintry evening when Aunt Muriel texted me for the fifth time,
         </p>
         <p>
           <em>"What do you want for Christmas?!"</em>

@@ -17,7 +17,6 @@
       <div>
         <input class="submit-button" type="submit" value="Request password reset" />
       </div>
-      <hr />
       <div class="links-section">
         <a class="link" href="/page/login">Go back to login</a>
       </div>

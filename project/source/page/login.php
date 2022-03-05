@@ -17,7 +17,6 @@
       <div>
         <input class="submit-button" type="submit" value="Log in" />
       </div>
-      <hr />
       <div class="links-section">
         <a class="link" href="register">Sign up</a>
         <img src="./img/present.svg" />

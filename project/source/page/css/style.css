@@ -68,7 +68,6 @@ h1 .link:hover {
 .header {
   padding: 0.5em 1.5em;
   margin-bottom: 1.5em;
-  border-bottom: 0.1em solid #433940;
   box-shadow: 0 0.05em 0.5em #363361;
   background-color: #f5efff;
 }
@@ -412,8 +411,9 @@ label {
 .links-section {
   display: inline-block;
   background-color: #f2f2f2;
-  padding: 0.75em 1em;
+  padding: 0.75em 1.25em;
   border-radius: 1em;
+  margin: 0.5em;
 }
 
 .footer {

@@ -15,7 +15,6 @@
         <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
         <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
       </div>
-      <hr class="large" />
       <h1 class="center">Your Wishlist</h1>
       <div>
         <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>

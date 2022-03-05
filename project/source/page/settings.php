@@ -30,9 +30,8 @@
       <div>
         <input class="submit-button" type="submit" value="Update profile" />
       </div>
-      <hr />
-      <div>
-        <p><a href="home">Return</a></p>
+      <div class="links-section">
+        <a class="link" href="home">Return</a>
       </div>
     </form>
   </body>

@@ -44,12 +44,12 @@ class Email
 {
   public static function send_email($name, $email, $from, $subject, $body)
   {
+    $to = $name ? 'To: '.$name.' <'.$email.'>' : 'To: '.$email;
     $headers[] = 'MIME-Version: 1.0';
     $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-    $headers[] = 'To: '.$name.' <'.$email.'>';
     $headers[] = 'From: '.$from;
 
-    mail($name.' <'.$email.'>', $subject, $body, implode("\r\n", $headers));
+    mail($to, $subject, $body, implode("\r\n", $headers));
   }
 }
 

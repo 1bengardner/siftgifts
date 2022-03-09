@@ -14,7 +14,7 @@ $stmt = "CALL add_reset_code(?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$email, $reset_code]);
 $reset_link = 'https://sift.gifts/page/reset-password?email='.$email.'&code='.$reset_code;
 
-$name = User::get_from_id($email)->username;
+$name = User::get_from_email($email)->username;
 
 // Mail
 $subject = 'Sift.gifts - Reset password';

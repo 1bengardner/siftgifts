@@ -4,7 +4,7 @@ require_once '../util/utilities.php';
 
 $email = $_POST['email'];
 
-$name = User::get_from_id($email)->username;
+$name = User::get_from_email($email)->username;
 
 $subject = 'Sift.gifts - Someone has just registered!';
 
@@ -13,7 +13,7 @@ $message = '
 <body style="font-family: sans-serif;">
   <h1>Sift.gifts New User Alert</h1>
   <div>
-    <p>User "'.$name.'" <'.$email.'> has just registered.</p>
+    <p>User <strong>'.$name.' &lt;'.$email.'&gt;</strong> has just registered.</p>
   </div>
 </body>
 </html>

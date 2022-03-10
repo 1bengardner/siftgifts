@@ -19,7 +19,7 @@ $stmt = "CALL add_verification_code(?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$email, $verification_code]);
 $verification_link = 'https://sift.gifts/page/verify?email='.$email.'&code='.$verification_code;
 
-$name = User::get_from_email($email)->username;
+$name = ucwords(strtolower(User::get_from_email($email)->username));
 
 // Mail
 $subject = 'Sift.gifts - Signup';
@@ -27,7 +27,7 @@ $subject = 'Sift.gifts - Signup';
 $message = '
 <html>
 <body style="font-family: sans-serif;">
-  <h1>Sift.gifts</h1>
+  <h1>Sift.gifts Registration</h1>
   <div>
     <p>Hello! I heard you signed up for Sift.gifts. That\'s great!</p>
     <p>Head over to this link to verify your account: '.$verification_link.'</p>

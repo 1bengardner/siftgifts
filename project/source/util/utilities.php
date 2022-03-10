@@ -34,17 +34,21 @@ class Database
 require 'email_config.php';
 define("PASSWORD_RESET", $password_reset);
 define("ACCOUNT_VERIFICATION", $account_verification);
+define("ALERTS", $alerts);
+define("ALERTS_RECIPIENT", $alerts_recipient);
 
 abstract class EmailAlias
 {
   const PasswordReset = PASSWORD_RESET;
   const AccountVerification = ACCOUNT_VERIFICATION;
+  const Alerts = ALERTS;
+  const AlertsRecipient = ALERTS_RECIPIENT;
 }
 class Email
 {
   public static function send_email($name, $email, $from, $subject, $body)
   {
-    $to = $name ? 'To: '.$name.' <'.$email.'>' : 'To: '.$email;
+    $to = $name ? $name.' <'.$email.'>' : $email;
     $headers[] = 'MIME-Version: 1.0';
     $headers[] = 'Content-type: text/html; charset=iso-8859-1';
     $headers[] = 'From: '.$from;
@@ -81,7 +85,7 @@ abstract class Message
   const NoPermission = "You do not have permission to do that.";
   const InvalidVerificationCode = "This verification link is invalid.";
   const VerifyAccountSuccess = "Your account is now verified.";
-  const RegistrationSuccess = "You are now signed up with Sift.gifts. Welcome!";
+  const RegistrationSuccess = "You are now signed up with Sift.gifts.";
   const ChangeProfileSuccess = "You have successfully updated your profile.";
 }
 class Notification

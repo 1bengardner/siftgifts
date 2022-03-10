@@ -43,6 +43,7 @@ file_put_contents($to, $new_file);
 $_SESSION["id"] = $db->insert_id;
 
 require 'send-account-verification-email.php';
+require 'send-alert-email.php';
 
 $_SESSION["notifications"] = [new Notification(Message::RegistrationSuccess, MessageLevel::Success)];
 

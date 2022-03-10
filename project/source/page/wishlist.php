@@ -27,7 +27,7 @@
       ?>
     </div>
   </body>
-  <script src="js/autocomplete.js" type="text/javascript"></script>
+  <script src="js/search.js" type="text/javascript"></script>
   <script src="js/remove.js" type="text/javascript"></script>
   <script src="js/reserve.js" type="text/javascript"></script>
 </html>

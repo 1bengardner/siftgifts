@@ -31,6 +31,6 @@ if (!isset($id)) {
       ?>
     </div>
   </body>
-  <script src="../page/js/autocomplete.js" type="text/javascript"></script>
+  <script src="../page/js/search.js" type="text/javascript"></script>
   <script src="../page/js/reserve.js" type="text/javascript"></script>
 </html>

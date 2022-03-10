@@ -10,8 +10,10 @@
   <body>
     <?php include 'header.php'; ?>
     <?php include 'message-box.php'; ?>
-    <?php include 'user-buttons.php'; ?>
     <div class="center">
+      <div>
+        <h2><a href="wishlist">Manage your wishlist 📜</a></h2>
+      </div>
       <div>
         <?php $wishlist = 'https://sift.gifts/wishlist/'.strtolower($user->username); ?>
         <p>Share your wishlist:<span class="unbreakable"><input class="wishlist-link" disabled id="foo" type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')">📋</button></span></p>

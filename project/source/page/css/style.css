@@ -255,9 +255,12 @@ hr.expand {
 .success-box, .error-box, .info-box, .warning-box, .purple-box {
   display: inline-block;
   padding: 0.25em 0.5em;
-  margin: auto 1em;
   border-radius: 4px;
   text-align: left;
+}
+
+.success-box, .error-box, .info-box, .warning-box {
+  margin: 0 1em 1em 1em;
 }
 
 .success-box p, .error-box p, .info-box p, .warning-box p {
@@ -432,8 +435,11 @@ li::marker {
   margin-top: 0;
 }
 
-.wishlist-admin-options {
-  padding: 1em 0;
+.wishlist-background {
+  background-color: #f2f2f2;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 0.5em 1em;
 }
 
 @media screen and (max-width: 1200px) {
@@ -492,9 +498,6 @@ li::marker {
 
 @media screen and (max-width: 599px) {
 .header h2 {
-  display: none;
-}
-.header .purple-box {
   display: none;
 }
 .nav-grid {

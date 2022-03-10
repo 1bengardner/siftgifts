@@ -9,22 +9,24 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <?php include 'user-buttons.php'; ?>
-    <form>
-      <div class="wishlist-admin-options">
-        <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
-        <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
-      </div>
-      <h1 class="center">Your Wishlist</h1>
-      <div>
-        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
-      </div>
-    </form>
     <div class="center">
-      <?php
-        $_GET['user']=$user->id;
-        include '../action/show-gifts-admin.php';
-      ?>
+      <h2><a href="request">Add a gift ➕</a></h2>
+      <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
+      <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
+    </div>
+    <div class="center wishlist-background">
+      <h1 class="center">Your Wishlist</h1>
+      <form>
+        <div>
+          <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
+        </div>
+      </form>
+      <div class="center">
+        <?php
+          $_GET['user']=$user->id;
+          include '../action/show-gifts-admin.php';
+        ?>
+      </div>
     </div>
   </body>
   <script src="js/search.js" type="text/javascript"></script>

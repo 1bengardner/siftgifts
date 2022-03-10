@@ -15,7 +15,6 @@
         Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments']]);
       }
     ?>
-    <?php include 'user-buttons.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
       <h2>Add to your wishlist</h2>
       <div hidden id="message">

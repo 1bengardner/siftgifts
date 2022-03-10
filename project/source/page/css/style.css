@@ -120,16 +120,18 @@ button {
 
 form {
   text-align: center;
+  margin: 0.5em 0;
 }
 
 input, textarea {
   font-weight: 500;
   padding: 0.5em;
-  margin: 1em;
+  margin: 0.5em;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
+  font-size: inherit;
   border: 1px solid #433940;
   border-radius: 0.2em;
+  max-width: 95vw;
 }
 
 input:invalid {

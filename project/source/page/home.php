@@ -34,6 +34,4 @@
       </div>
     </div>
   </body>
-  <script src="js/autocomplete.js" type="text/javascript"></script>
-  <script src="js/reserve.js" type="text/javascript"></script>
 </html>

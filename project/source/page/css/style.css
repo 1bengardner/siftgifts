@@ -369,7 +369,7 @@ div.reserved {
   cursor: pointer;
 }
 
-input.wishlist-link {
+input.wishlist-link, input#search {
   width: 20em;
   max-width: 65vw;
 }

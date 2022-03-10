@@ -13,7 +13,7 @@ $message = '
 <body style="font-family: sans-serif;">
   <h1>Sift.gifts New User Alert</h1>
   <div>
-    <p>User <strong>'.$name.' &lt;'.$email.'&gt;</strong> has just registered.</p>
+    <p>User <strong>'.htmlentities($name).' &lt;'.$email.'&gt;</strong> has just registered.</p>
   </div>
 </body>
 </html>

@@ -243,6 +243,11 @@ class Validation
     if (!$res) {
       return Message::InvalidVerificationCode;
     }
+    $stmt = "SELECT 1 FROM user WHERE email = ?";
+    $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
+    if (empty($res->fetch_row()[0])) {
+      return Message::EmailDoesNotExist;
+    }
     return false;
   }
 }

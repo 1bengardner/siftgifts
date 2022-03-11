@@ -34,6 +34,9 @@
       <div>
         <input class="submit-button" type="submit" value="Add gift"/>
       </div>
+      <div class="links-section">
+        <a class="link" href="wishlist">Return to wishlist</a>
+      </div>
     </form>
   </body>
   <script src="js/request.js" type="text/javascript"></script>

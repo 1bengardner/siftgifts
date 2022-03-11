@@ -31,7 +31,7 @@
         <input class="submit-button" type="submit" value="Update profile" />
       </div>
       <div class="links-section">
-        <a class="link" href="home">Return</a>
+        <a class="link" href="home">Return to home</a>
       </div>
     </form>
   </body>

@@ -233,6 +233,7 @@ hr.expand {
 .nav-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
 .gift-image {
@@ -538,13 +539,17 @@ li::marker {
 .header .logo-text {
   display: inline-block;
   font-size: 2em;
-  margin: 0 1em;
+  margin: 0 2rem;
 }
 .user-buttons {
   display: inline-block;
   vertical-align: middle;
+  margin: 0 2rem;
 }
 .username-box {
+  display: none;
+}
+.wishlist-header-label {
   display: none;
 }
 }

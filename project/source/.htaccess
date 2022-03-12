@@ -1,14 +1,19 @@
 Options -Indexes
 
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
+# Only rewrite requests for files that do not exist
 RewriteCond %{REQUEST_FILENAME} !-f
+# Special rule for wishlist.php
+RewriteRule ^wishlist/?$ /page/wishlist
+# Re-route all top level requests to the /page subdirectory
+RewriteRule (^[A-Za-z0-9_-]+/?$) /page/$1
+# Append .php for requests for files that exist but are missing .php
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule (.*) $1.php [L]
+RewriteRule (.*) $1.php
 
 ErrorDocument 403 /page/403.php
 ErrorDocument 404 /page/404.php
 
 <IfModule mod_headers.c>
-    Header set Cache-Control "max-age=86400
+    Header set Cache-Control "max-age=86400"
 </IfModule>

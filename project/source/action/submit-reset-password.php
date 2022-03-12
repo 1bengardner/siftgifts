@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/start-session.php';
+require_once 'start-session.php';
 
 // Validate required field presence
 $required_fields = ['password', 'confirm-password', 'email', 'code'];
@@ -20,7 +20,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  header('Location: ../page/reset-password?email='.$_POST['email'].'&code='.$_POST['code']);
+  header('Location: /reset-password?email='.$_POST['email'].'&code='.$_POST['code']);
   exit;
 }
 
@@ -30,5 +30,5 @@ Database::run_statement($db, $stmt, [password_hash($_POST['password'], PASSWORD_
 
 $_SESSION["notifications"] = [new Notification(Message::ChangePasswordSuccess, MessageLevel::Success)];
 
-header('Location: /page/login');
+header('Location: /login');
 ?>

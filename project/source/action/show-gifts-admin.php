@@ -1,11 +1,11 @@
 <?php
 require_once '../util/utilities.php';
 require_once '../data/gift.php';
-require_once '../action/authenticate.php';
+require_once 'authenticate.php';
 
 if ($_GET['user'] != $_SESSION['id']) {
   $_SESSION["notifications"] = [new Notification(Message::NoPermission, MessageLevel::Error)];
-  header("Location: ../page/home");
+  header("Location: /home");
   exit;
 }
 // Get user gifts from db

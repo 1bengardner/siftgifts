@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/authenticate.php';
+require_once 'authenticate.php';
 require_once '../data/user.php';
 
 $old_name = User::get_from_id($_SESSION['id'])->username;
@@ -38,7 +38,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  header('Location: ../page/settings');
+  header('Location: /settings');
   exit;
 }
 
@@ -52,5 +52,5 @@ if ($is_changing_name) {
 
 $_SESSION["notifications"] = [new Notification(Message::ChangeProfileSuccess, MessageLevel::Success)];
 
-header('Location: ../page/settings');
+header('Location: /settings');
 ?>

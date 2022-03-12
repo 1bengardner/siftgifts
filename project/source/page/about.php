@@ -14,7 +14,7 @@
           <em>"What do you want for Christmas?!"</em>
         </p>
         <p>
-          ...
+          &hellip;
         </p>
         <p>
           I still didn't know. It was only November.
@@ -26,7 +26,7 @@
           What I wanted was a gift registry, but I was not so deluded of grandeur to think that my relatives would sign up for one. So I set out to find an anonymous one.
         </p>
         <p>
-          Search as I might, I could not find a website that allowed unregistered users to simply check off items from a list...so why not make one?
+          Search as I might, I could not find a website that allowed unregistered users to simply check off items from a list&hellip;so why not make one?
         </p>
         <p>
           <strong>Hence: Sift.gifts was born!</strong> Well, a makeshift version of it with some cobbled chickenscratch code, with which my brother added <em>poop</em> to my own wishlist. Thankfully I had already shared my wishlist with Aunt Muriel.

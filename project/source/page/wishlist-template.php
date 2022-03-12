@@ -7,9 +7,9 @@ if (!isset($id)) {
 <!DOCTYPE html>
 <html>
   <?php define('TITLE', ucwords(strtolower($user))."'s wishlist"); ?>
-  <?php include '../page/head.php'; ?>
+  <?php include 'head.php'; ?>
   <body>
-    <?php include '../page/header.php' ?>
+    <?php include 'header.php' ?>
     <?php
     require_once '../data/user.php';
 
@@ -17,13 +17,13 @@ if (!isset($id)) {
     ?>
     <h1 class="center"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
     <form>
-      <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
+      <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
     </form>
     <div class="center">
       <?php
         require_once '../action/start-session.php';
         if (isset($_SESSION["id"]) && $_SESSION['id'] === $id) {
-          echo '<p><strong>HEY!</strong> No peeking! <a href="../page/wishlist">Manage your wishlist</a> instead.</p>';
+          echo '<p><strong>HEY!</strong> No peeking! <a href="/wishlist">Manage your wishlist</a> instead.</p>';
         } else {
           $_GET['user']=$id;
           include '../action/show-gifts.php';
@@ -31,6 +31,6 @@ if (!isset($id)) {
       ?>
     </div>
   </body>
-  <script src="../page/js/search.js" type="text/javascript"></script>
-  <script src="../page/js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/search.js" type="text/javascript"></script>
+  <script src="/page/js/reserve.js" type="text/javascript"></script>
 </html>

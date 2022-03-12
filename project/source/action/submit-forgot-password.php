@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/start-session.php';
+require_once 'start-session.php';
 
 // Validate required field presence
 $required_fields = ['email'];
@@ -18,7 +18,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  header('Location: ../page/forgot-password');
+  header('Location: /forgot-password');
   exit;
 }
 

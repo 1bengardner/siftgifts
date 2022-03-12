@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/authenticate.php';
+require_once 'authenticate.php';
 
 // TODO: Validate fields
 

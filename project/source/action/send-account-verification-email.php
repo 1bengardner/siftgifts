@@ -17,7 +17,7 @@ if ($res->fetch_row()[0] === NULL) {
 $verification_code = bin2hex(random_bytes(16));
 $stmt = "CALL add_verification_code(?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$email, $verification_code]);
-$verification_link = 'https://sift.gifts/page/verify?email='.$email.'&code='.$verification_code;
+$verification_link = 'https://sift.gifts/verify?email='.$email.'&code='.$verification_code;
 
 $name = ucwords(strtolower(User::get_from_email($email)->username));
 

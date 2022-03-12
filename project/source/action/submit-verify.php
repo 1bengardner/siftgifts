@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/start-session.php';
+require_once 'start-session.php';
 
 // Validate required field presence
 $required_fields = ['email', 'code'];
@@ -18,7 +18,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  header('Location: ../page/landing?email='.$_POST['email'].'&code='.$_POST['code']);
+  header('Location: /landing?email='.$_POST['email'].'&code='.$_POST['code']);
   exit;
 }
 
@@ -28,5 +28,5 @@ Database::run_statement($db, $stmt, [$_POST['email']]);
 
 $_SESSION["notifications"] = [new Notification(Message::VerifyAccountSuccess, MessageLevel::Success)];
 
-header('Location: /page/login');
+header('Location: /login');
 ?>

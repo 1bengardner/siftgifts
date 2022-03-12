@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/start-session.php';
+require_once 'start-session.php';
 
 // Validate required field presence
 $required_fields = ['email', 'password'];
@@ -21,7 +21,7 @@ if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['em
 
 if (count($validation_errors) > 0) {
     $_SESSION["notifications"] = $validation_errors;
-    header('Location: ../page/login');
+    header('Location: /login');
     exit;
 }
 
@@ -31,5 +31,5 @@ $id = $user_id->fetch_assoc()['id'];
 
 $_SESSION["id"] = $id;
 
-header('Location: ../page/home');
+header('Location: /home');
 ?>

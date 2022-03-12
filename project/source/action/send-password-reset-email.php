@@ -12,7 +12,7 @@ if ($msg = Validation::forgot_password_error($email)) {
 $reset_code = bin2hex(random_bytes(8));
 $stmt = "CALL add_reset_code(?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$email, $reset_code]);
-$reset_link = 'https://sift.gifts/page/reset-password?email='.$email.'&code='.$reset_code;
+$reset_link = 'https://sift.gifts/reset-password?email='.$email.'&code='.$reset_code;
 
 $name = ucwords(strtolower(User::get_from_email($email)->username));
 

@@ -9,6 +9,6 @@
       <p>You have reached a legacy page. Please update your bookmark to <a href="https://sift.gifts/wishlist/yevgeniya">https://sift.gifts/<strong>wishlist</strong>/yevgeniya</a> instead.</p>
     </div>
   </body>
-  <script src="js/autocomplete.js" type="text/javascript"></script>
-  <script src="js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/autocomplete.js" type="text/javascript"></script>
+  <script src="/page/js/reserve.js" type="text/javascript"></script>
 </html>

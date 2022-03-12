@@ -1,6 +1,6 @@
 <?php
 require_once '../util/utilities.php';
-require_once '../action/start-session.php';
+require_once 'start-session.php';
 
 // Validate required field presence
 $required_fields = ['name', 'email', 'password', 'confirm-password'];
@@ -21,7 +21,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  header('Location: ../page/register');
+  header('Location: /register');
   exit;
 }
 
@@ -34,8 +34,8 @@ $stmt = "INSERT INTO user(username, email, encrypted_password) VALUES (?, ?, ?)"
 $db = Database::get_connection();
 Database::run_statement($db, $stmt, [$name, $email, $password]);
 
-$from = '../page/wishlist-template.php';
-$to = '../wishlist/'.strtolower($name).'.php';
+$from = '/wishlist-template.php';
+$to = '/wishlist/'.strtolower($name).'.php';
 
 $new_file = '<?php $user = "'.$name.'"; $id = '.$db->insert_id.'; include "'.$from.'"; ?>';
 file_put_contents($to, $new_file);
@@ -47,5 +47,5 @@ require 'send-alert-email.php';
 
 $_SESSION["notifications"] = [new Notification(Message::RegistrationSuccess, MessageLevel::Success)];
 
-header('Location: ../page/home');
+header('Location: /home');
 ?>

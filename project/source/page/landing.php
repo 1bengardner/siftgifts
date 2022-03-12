@@ -12,7 +12,7 @@
       </div>
       <div class="splash-greeting">
         <h1>Welcome to Sift.gifts!</h1>
-        <form action="../action/submit-login.php" method="post">
+        <form action="/action/submit-login.php" method="post">
           <div>
             <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
             <input type="password" name="password" placeholder="Password" maxlength="255" required />
@@ -29,11 +29,11 @@
         </p>
         <p>
           <a class="link" href="about">About this site</a>
-          <img src="./img/present.svg" />
+          <img src="/page/img/present.svg" />
           <a class="link" href="news">What's new</a>
         </p>
       </div>
     </div>
   </body>
-  <script src="../page/js/extra-flavour.js" type="text/javascript"></script>
+  <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

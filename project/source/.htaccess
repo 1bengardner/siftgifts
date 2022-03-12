@@ -1,8 +1,11 @@
 Options -Indexes
 
+DirectorySlash Off
+
 RewriteEngine On
 # Only rewrite requests for files that do not exist
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 # Special rule for wishlist.php
 RewriteRule ^wishlist/?$ /page/wishlist
 # Re-route all top level requests to the /page subdirectory

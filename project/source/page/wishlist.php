@@ -17,7 +17,7 @@
     <div class="center wishlist-background">
       <h1 class="center">Your Wishlist</h1>
       <form>
-        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift..." />🔍</span>
+        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift." />🔍</span>
       </form>
       <div class="center">
         <?php
@@ -27,7 +27,7 @@
       </div>
     </div>
   </body>
-  <script src="js/search.js" type="text/javascript"></script>
-  <script src="js/remove.js" type="text/javascript"></script>
-  <script src="js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/search.js" type="text/javascript"></script>
+  <script src="/page/js/remove.js" type="text/javascript"></script>
+  <script src="/page/js/reserve.js" type="text/javascript"></script>
 </html>

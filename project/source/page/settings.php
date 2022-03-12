@@ -8,7 +8,7 @@
       require_once '../data/user.php';
       $user = User::get_from_id($_SESSION['id']);
     ?>
-    <form action="../action/submit-change-settings.php" method="post">
+    <form action="/action/submit-change-settings.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Edit profile</h2>
       <p class="subheading">Change your display name, password, or both.</p>
@@ -35,5 +35,5 @@
       </div>
     </form>
   </body>
-  <script src="../page/js/extra-flavour.js" type="text/javascript"></script>
+  <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

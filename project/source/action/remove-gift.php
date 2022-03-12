@@ -1,7 +1,7 @@
 <?php
 require_once '../util/utilities.php';
 require_once '../data/gift.php';
-require_once '../action/authenticate.php';
+require_once 'authenticate.php';
 
 $gift = Gift::get_from_id($_POST["id"]);
 if ($gift->belongs_to_user($_SESSION["id"])) {

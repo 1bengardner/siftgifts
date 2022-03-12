@@ -4,7 +4,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include '../action/redirect-to-home.php'; ?>
-    <form action="../action/submit-login.php" method="post">
+    <form action="/action/submit-login.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Log in</h2>
       <?php include 'message-box.php'; ?>
@@ -19,10 +19,10 @@
       </div>
       <div class="links-section">
         <a class="link" href="register">Sign up</a>
-        <img src="./img/present.svg" />
+        <img src="/page/img/present.svg" />
         <a class="link" href="forgot-password">I forgot my password!</a>
       </div>
     </form>
   </body>
-  <script src="../page/js/extra-flavour.js" type="text/javascript"></script>
+  <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

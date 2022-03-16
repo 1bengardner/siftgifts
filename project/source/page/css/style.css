@@ -299,7 +299,7 @@ hr.expand {
 }
 
 .warning-box {
-  color: rgb(160, 80, 0);
+  color: rgb(130, 80, 0);
   background-color: rgba(255, 255, 0, 0.25);
   border: 2px solid rgba(128, 80, 0, 0.5);
 }
@@ -454,7 +454,7 @@ li::marker {
   border-radius: 1em;
 }
 
-.user-header-buttons {
+.user-header-buttons-small {
   margin-bottom: 0.5em;
 }
 
@@ -498,7 +498,7 @@ li::marker {
 .user-header-buttons-large {
   display: inline-block;
 }
-.user-header-buttons {
+.user-header-buttons-small {
   display: none;
 }
 }

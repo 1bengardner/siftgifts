@@ -3,7 +3,7 @@ require_once '../data/user.php';
 require_once '../action/start-session.php';
 ?>
 <div class="user-buttons center">
-  <ul class="user-header-buttons">
+  <ul class="user-header-buttons-small">
     <li class="purple-box username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
     <li><a href="/settings" title="Change settings">👤</a></li>
     <li><a href="/logout" title="Log out">🚪</a></li>

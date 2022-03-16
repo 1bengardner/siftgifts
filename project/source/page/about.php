@@ -6,6 +6,11 @@
     <?php include 'header-with-login.php'; ?>
     <div class="news-grid">
       <div class="reading-pane">
+        <h1>What is Sift.gifts?</h1>
+        <p>
+          Sift.gifts is a free platform to create and share wishlists with friends and family.
+        </p>
+        <hr class="large" />
         <h1>The story of Sift.gifts</h1>
         <p>
           It was a quiet, wintry evening when Aunt Muriel texted me for the fifth time,

@@ -32,7 +32,7 @@ foreach ($gifts as $gift_data) {
         <?php } ?>
       </h2>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading"><?php echo $gift->notes; ?></p>
+        <p class="subheading"><?php echo nl2br($gift->notes); ?></p>
       <?php }
       if ($gift->reserved_time != NULL) {
       ?>

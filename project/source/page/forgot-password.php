@@ -9,7 +9,7 @@
       <h2>Forgot your password?</h2>
       <?php include 'message-box.php'; ?>
       <div>
-        <p>That's okay.as long as you remember your e&#8209;mail!</p>
+        <p>That's okay&hellip;as long as you remember your e&#8209;mail!</p>
       </div>
       <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />

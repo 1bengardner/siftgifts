@@ -236,6 +236,12 @@ hr.expand {
   align-items: center;
 }
 
+.message-grid {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  margin: 0 10vw;
+}
+
 .gift-image {
   max-width: 200px;
   max-height: 100px;
@@ -456,6 +462,33 @@ li::marker {
 
 .user-header-buttons-small {
   margin-bottom: 0.5em;
+}
+
+.message-content {
+  background-color: #f5efff;
+  padding: 0 1.5em;
+}
+
+.message-chooser-message {
+  background-color: #fbf8ff;
+  border-top: 2px solid #f5efff;
+  border-bottom: 2px solid #f5efff;
+  padding: 1em 1.5em;
+}
+
+.message-chooser-message:nth-of-type(1) {
+  border-top: 4px solid #f5efff;
+}
+
+.message-chooser-message:nth-last-of-type(1) {
+  border-bottom: 4px solid #f5efff;
+}
+
+.message-chooser-message .preview {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 1200px) {

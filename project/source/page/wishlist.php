@@ -21,7 +21,6 @@
       </form>
       <div class="center">
         <?php
-          $_GET['user']=$user->id;
           include '../action/show-gifts-admin.php';
         ?>
       </div>

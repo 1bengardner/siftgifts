@@ -7,7 +7,7 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
-        <h2 class="changelog-heading">v4.1</h2> <h3 class="changelog-heading muted">(2022-03-01)</h3>
+        <h2 class="changelog-heading version-number">v4.1</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now change your display name</li>
           <ul>
@@ -16,7 +16,7 @@
             <li>These new <strong>edit profile</strong> settings replace <strong>change password</strong> (🔑)</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading">v4.0</h2> <h3 class="changelog-heading muted">(2022-02-28)</h3>
+        <h2 class="changelog-heading version-number">v4.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now verify your account</li>
           <ul>
@@ -24,7 +24,7 @@
             <li>You currently do not need to verify your account to create a wishlist, but this may change later</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading">v3.0</h2> <h3 class="changelog-heading muted">(2022-02-22)</h3>
+        <h2 class="changelog-heading version-number">v3.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now personally reset your password if you forget it</li>
           <ul>
@@ -32,14 +32,14 @@
             <li>You can initiate a reset from the <a class="link" href="login">login</a> menu by clicking <a class="link" href="forgot-password">"I forgot my password!"</a></li>
           </ul>
         </ul>
-        <h2 class="changelog-heading">v2.1</h2> <h3 class="changelog-heading muted">(2022-01-08)</h3>
+        <h2 class="changelog-heading version-number">v2.1</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now change your password</li>
           <ul>
             <li>You can do this from the 🔑 button in the top menu while logged in</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading">v2.0</h2> <h3 class="changelog-heading muted">(2022-01-06)</h3>
+        <h2 class="changelog-heading version-number">v2.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now <a class="link" href="register">sign up</a> on Sift.gifts!</li>
           <ul>
@@ -56,4 +56,5 @@
       </div>
     </div>
   </body>
+  <script src="/page/js/github-integration.js" type="module"></script>
 </html>

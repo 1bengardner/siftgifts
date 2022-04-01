@@ -17,7 +17,7 @@
     <div class="center wishlist-background">
       <h1 class="center">Your Wishlist</h1>
       <form>
-        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift." />🔍</span>
+        <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
       </form>
       <div class="center">
         <?php

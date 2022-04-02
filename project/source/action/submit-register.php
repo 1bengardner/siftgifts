@@ -15,7 +15,7 @@ $validations = [
 
 foreach ($validations as $validation) {
   if ($msg = $validation()) {
-    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+    array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
   }
 }
 
@@ -45,7 +45,7 @@ $_SESSION["id"] = $db->insert_id;
 require 'send-account-verification-email.php';
 require 'send-alert-email.php';
 
-$_SESSION["notifications"] = [new Notification(Message::RegistrationSuccess, MessageLevel::Success)];
+$_SESSION["notifications"] = [new Notification(NotificationText::RegistrationSuccess, NotificationLevel::Success)];
 
 header('Location: /home');
 ?>

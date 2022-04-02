@@ -14,7 +14,7 @@ $validations = [
 
 foreach ($validations as $validation) {
   if ($msg = $validation()) {
-    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+    array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
   }
 }
 
@@ -28,7 +28,7 @@ $stmt = "UPDATE user SET encrypted_password = ? WHERE email = ?";
 $db = Database::get_connection();
 Database::run_statement($db, $stmt, [password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['email']]);
 
-$_SESSION["notifications"] = [new Notification(Message::ChangePasswordSuccess, MessageLevel::Success)];
+$_SESSION["notifications"] = [new Notification(NotificationText::ChangePasswordSuccess, NotificationLevel::Success)];
 
 header('Location: /login');
 ?>

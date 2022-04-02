@@ -4,7 +4,7 @@ require_once '../data/gift.php';
 require_once 'authenticate.php';
 
 if ($_GET['user'] != $_SESSION['id']) {
-  $_SESSION["notifications"] = [new Notification(Message::NoPermission, MessageLevel::Error)];
+  $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
   header("Location: /home");
   exit;
 }

@@ -32,7 +32,7 @@ if ($is_changing_password) {
 
 foreach ($validations as $validation) {
   if ($msg = $validation()) {
-    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+    array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
   }
 }
 
@@ -50,7 +50,7 @@ if ($is_changing_name) {
   rename('../wishlist/'.strtolower($old_name).'.php', '../wishlist/'.strtolower($_POST['name']).'.php');
 }
 
-$_SESSION["notifications"] = [new Notification(Message::ChangeProfileSuccess, MessageLevel::Success)];
+$_SESSION["notifications"] = [new Notification(NotificationText::ChangeProfileSuccess, NotificationLevel::Success)];
 
 header('Location: /settings');
 ?>

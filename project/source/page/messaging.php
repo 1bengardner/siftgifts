@@ -15,4 +15,5 @@
       <?php include '../action/show-messages.php'; ?>
     </div>
   </body>
+  <script src="/page/js/messaging.js" type="text/javascript"></script>
 </html>

@@ -7,7 +7,7 @@ require_once '../action/authenticate.php';
 <div class="message-grid">
   <div class="message-chooser">
     <?php
-    $stmt = "SELECT * FROM message WHERE `to`=? ORDER BY id DESC";
+    $stmt = "SELECT * FROM message WHERE `to`=? ORDER BY sent_time DESC";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]);
     $msgs = $res->fetch_all(MYSQLI_ASSOC);
     if (count($msgs) === 0) {
@@ -20,7 +20,7 @@ require_once '../action/authenticate.php';
       foreach ($msgs as $msg_data) {
         $msg = new UserMessage($msg_data);
     ?>
-        <div class="message-chooser-message">
+        <div class="message-chooser-message" id=<?php echo $msg->id; ?>>
           <div class="right">
             <?php
             $date = strtotime($msg->sent_time);
@@ -36,7 +36,7 @@ require_once '../action/authenticate.php';
           </div>
           <div>
             <p><strong><?php echo ucwords(strtolower(User::get_from_id($msg->from)->username)); ?></strong></p>
-            <p class="preview subheading"><?php echo $msg->body; ?></p>
+            <p class="preview subheading"><?php echo htmlentities($msg->body); ?></p>
           </div>
         </div>
       <?php
@@ -44,18 +44,5 @@ require_once '../action/authenticate.php';
     }
     ?>
   </div>
-  <div class="message-content">
-    <?php
-    $stmt = "SELECT * FROM message WHERE `to`=? ORDER BY id DESC";
-    $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]);
-    $msgs = $res->fetch_all(MYSQLI_ASSOC);
-
-    foreach ($msgs as $msg_data) {
-      $msg = ($msg_data);
-    ?>
-    <p><?php echo nl2br($msg['body']); ?></p>
-    <?php
-    }
-    ?>
-  </div>
+  <div class="message-content"></div>
 </div>

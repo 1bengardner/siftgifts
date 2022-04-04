@@ -16,23 +16,23 @@ foreach ($gifts as $gift_data) {
   <div>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
-      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo $gift->name; ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
+      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo htmlentities($gift->name); ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
       <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
     </div>
     <div>
       <h2 class="gift-name">
         <?php
         if (empty($gift->url)) {
-          echo $gift->name;
+          echo htmlentities($gift->name);
         } else {
         ?>
         <a class="link" href="<?php echo $gift->url ?>">
-          <?php echo $gift->name; ?>
+          <?php echo htmlentities($gift->name); ?>
         </a>
         <?php } ?>
       </h2>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading"><?php echo nl2br($gift->notes); ?></p>
+        <p class="subheading"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
       <?php }
       if ($gift->reserved_time != NULL) {
       ?>

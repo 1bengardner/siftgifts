@@ -21,23 +21,23 @@ foreach ($gifts as $gift_data) {
         <input gift="<?php echo $var; ?>" id="reserve-<?php echo $var; ?>" type="checkbox" onclick="toggle(this);" <?php if ($gift->reserved) echo 'checked' ?> />
         <label for="reserve-<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
       </span>
-      <button gift="<?php echo $var; ?>" id="remove-<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo $gift->name; ?>');"></button>
+      <button gift="<?php echo $var; ?>" id="remove-<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo htmlentities($gift->name); ?>');"></button>
       <label class="delete-button" for="remove-<?php echo $var; ?>">❌</label>
     </div>
     <div>
       <h2 class="gift-name">
         <?php
         if (empty($gift->url)) {
-          echo $gift->name;
+          echo htmlentities($gift->name);
         } else {
         ?>
         <a class="link" href="<?php echo $gift->url ?>">
-          <?php echo $gift->name; ?>
+          <?php echo htmlentities($gift->name); ?>
         </a>
         <?php } ?>
       </h2>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading"><?php echo nl2br($gift->notes); ?></p>
+        <p class="subheading"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
       <?php } ?>
     </div>
   </div>

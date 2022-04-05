@@ -4,10 +4,13 @@ function setContent(id) {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      clearTimeout(loading);
       document.querySelectorAll('.message-content')[0].innerHTML = "<p>" + rq.responseText + "</p>";
     }
   }
-  document.querySelectorAll('.message-content')[0].innerHTML = "<p>" + "⌛" + "</p>";
+  var loading = setTimeout(function() {
+    document.querySelectorAll('.message-content')[0].innerHTML = "<p>" + "Loading…" + "</p>";
+  }, 500);
   rq.send();
 }
 

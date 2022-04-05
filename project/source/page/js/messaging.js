@@ -1,15 +1,22 @@
+var messages = {};
+
 function setContent(content) {
   document.querySelectorAll('.message-content')[0].innerHTML = "<p>" + content + "</p>";  
 }
 
 function setMessage(id) {
+  if (id in messages) {
+    setContent(messages[id]);
+    return;
+  }
   var rq = new XMLHttpRequest();
   rq.open("GET", "/action/get-message?id=" + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
-      setContent(rq.responseText);
+      messages[id] = rq.responseText;
+      setMessage(id);
     }
   }
   var loading = setTimeout(function() {

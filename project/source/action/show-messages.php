@@ -7,7 +7,7 @@ require_once '../action/authenticate.php';
 <div class="message-grid">
   <div class="message-chooser">
     <?php
-    $stmt = "SELECT * FROM message WHERE `to`=? ORDER BY sent_time DESC";
+    $stmt = "SELECT * FROM message m1 JOIN (SELECT `from`, MAX(sent_time) AS most_recent FROM message WHERE `to`=? GROUP BY `from`) m2 ON m1.`from` = m2.`from` and m1.sent_time = m2.most_recent ORDER BY sent_time DESC";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]);
     $msgs = $res->fetch_all(MYSQLI_ASSOC);
     if (count($msgs) === 0) {

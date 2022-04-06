@@ -1,12 +1,16 @@
 var messages = {};
 
-function setContent(content) {
-  document.querySelectorAll('.message-content')[0].innerHTML = "<p>" + content + "</p>";  
+function setContent(...paragraphs) {
+  let content = "";
+  paragraphs.forEach(function(paragraph) {
+    content += "<p class='received-message'>" + paragraph + "</p>"
+  });
+  document.querySelectorAll('.message-content')[0].innerHTML = content;
 }
 
 function setMessage(id) {
   if (id in messages) {
-    setContent(messages[id]);
+    setContent(...messages[id]);
     return;
   }
   var rq = new XMLHttpRequest();
@@ -15,7 +19,7 @@ function setMessage(id) {
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
-      messages[id] = rq.responseText;
+      messages[id] = JSON.parse(rq.responseText);
       setMessage(id);
     }
   }

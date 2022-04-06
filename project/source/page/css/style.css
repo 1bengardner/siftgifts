@@ -494,6 +494,13 @@ li::marker {
   text-overflow: ellipsis;
 }
 
+.received-message {
+  background-color: #fbf8ff;
+  padding: 1em;
+  border-radius: 1em;
+  margin-right: 10em;
+}
+
 @media screen and (max-width: 1200px) {
 .gift-widget {
   padding: 1vh 10vw;

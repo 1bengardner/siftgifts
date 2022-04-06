@@ -479,6 +479,10 @@ li::marker {
   padding: 0 1.5em;
 }
 
+.message-chooser-message.selected {
+  background-color: #f5efff;
+}
+
 .message-chooser-message:nth-of-type(1) {
   border-top: 4px solid #f5efff;
 }
@@ -495,10 +499,19 @@ li::marker {
 }
 
 .received-message {
+  font-size: 0.9em;
   background-color: #fbf8ff;
   padding: 1em;
   border-radius: 1em;
-  margin-right: 10em;
+  margin-right: 10vw;
+}
+
+.sent-message {
+  font-size: 0.9em;
+  background-color: #fdfdfd;
+  padding: 1em;
+  border-radius: 1em;
+  margin-left: 10vw;
 }
 
 @media screen and (max-width: 1200px) {

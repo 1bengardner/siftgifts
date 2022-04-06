@@ -1,9 +1,9 @@
 var messages = {};
 
-function setContent(...paragraphs) {
+function setContent(...messageData) {
   let content = "";
-  paragraphs.forEach(function(paragraph) {
-    content += "<p class='received-message'>" + paragraph + "</p>"
+  messageData.forEach(function(messageDatum) {
+    content += `<p class='${messageDatum['sent'] ? 'sent-message' : 'received-message'}'>${messageDatum['message']}</p>`
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
 }
@@ -24,7 +24,7 @@ function setMessage(id) {
     }
   }
   var loading = setTimeout(function() {
-    setContent(`
+    document.querySelectorAll('.message-content')[0].innerHTML = `
 <?xml version="1.0" encoding="utf-8"?>
 <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 <g transform="rotate(0 50 50)">
@@ -76,13 +76,17 @@ function setMessage(id) {
     <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
   </rect>
 </g>
-    `);
+    `;
   }, 500);
   rq.send();
 }
 
 document.querySelectorAll('.message-chooser-message').forEach(message => {
   message.onclick = function() {
+    document.querySelectorAll('.message-chooser-message').forEach(message => {
+      message.classList.remove('selected');
+    });
+    message.classList.add('selected');
     setMessage(message.id);
   }
 });

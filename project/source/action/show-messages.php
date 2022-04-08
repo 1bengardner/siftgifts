@@ -21,7 +21,7 @@ if (count($msgs) === 0) {
     $msg = new UserMessage($msg_data);
     $msg->conversation_partner = $msg_data['conversation_partner']
 ?>
-    <div class="message-chooser-message" id=<?php echo $msg->id; ?>>
+    <div class="message-chooser-message" id=<?php echo $msg->conversation_partner; ?>>
       <div class="right">
 <?php
     $date = strtotime($msg->sent_time);

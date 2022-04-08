@@ -3,24 +3,24 @@ var messages = {};
 function setContent(...messageData) {
   let content = "";
   messageData.forEach(function(messageDatum) {
-    content += `<p class='${messageDatum['sent'] ? 'sent-message' : 'received-message'}'>${messageDatum['message']}</p>`
+    content += `<p class='${messageDatum['sent'] ? 'sent-message' : 'received-message'}'>${messageDatum['message']}</p>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
 }
 
-function setMessage(id) {
+function setMessages(id) {
   if (id in messages) {
     setContent(...messages[id]);
     return;
   }
   var rq = new XMLHttpRequest();
-  rq.open("GET", "/action/get-message?id=" + id, true);
+  rq.open("GET", "/action/get-messages?from=" + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
       messages[id] = JSON.parse(rq.responseText);
-      setMessage(id);
+      setMessages(id);
     }
   }
   var loading = setTimeout(function() {
@@ -87,6 +87,6 @@ document.querySelectorAll('.message-chooser-message').forEach(message => {
       message.classList.remove('selected');
     });
     message.classList.add('selected');
-    setMessage(message.id);
+    setMessages(parseInt(message.id));
   }
 });

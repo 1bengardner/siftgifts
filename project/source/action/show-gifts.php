@@ -34,13 +34,13 @@ foreach ($gifts as $gift_data) {
       <?php if (!empty($gift->notes)) { ?>
         <p class="subheading"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
       <?php }
-      if ($gift->reserved_time != NULL) {
+      if ($gift->reserved && $gift->reserved_time != NULL) {
       ?>
-      <p class="lighter"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)).'.'; ?></em></p>
+      <p class="lighter"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)); ?></em></p>
       <?php
       } else if ($gift->creation_time != NULL) {
       ?>
-      <p class="lighter"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)).'.'; ?></em></p>
+      <p class="lighter"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
       <?php
       }
       ?>

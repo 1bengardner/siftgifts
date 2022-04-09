@@ -44,6 +44,7 @@ a:not(.link) {
   text-decoration: none;
   white-space: nowrap;
   box-shadow: 0 0.06em 0.2em #433940;
+  line-height: 2em;
 }
 
 a:not(.link):hover, button:hover {

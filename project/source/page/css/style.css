@@ -523,6 +523,10 @@ li::marker {
 .message-time-sent {
   display: block;
   font-size: smaller;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 0.1em 0.5em;
+  margin: 0 0.5em;
+  border-radius: 1em;
 }
 
 @media screen and (max-width: 1200px) {

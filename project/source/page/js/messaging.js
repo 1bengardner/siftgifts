@@ -17,7 +17,7 @@ function setContent(...messageData) {
     else if (sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth()) {
       localeString = localeStrings['day'];
     }
-    content += `<p class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'><span class='message-time-sent'>${new Date(messageDatum['sent_time']).toLocaleString(undefined, localeString)}</span>${messageDatum['message']}</p>`;
+    content += `<p class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'><span class='right message-time-sent'>${new Date(messageDatum['sent_time']).toLocaleString(undefined, localeString)}</span>${messageDatum['message']}</p>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;

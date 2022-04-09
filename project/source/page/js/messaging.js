@@ -3,7 +3,7 @@ var messages = {};
 function setContent(...messageData) {
   let content = "";
   messageData.forEach(function(messageDatum) {
-    content += `<p class='${messageDatum['sent'] ? 'sent-message' : 'received-message'}'>${messageDatum['message']}</p>`;
+    content += `<p class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'>${new Date(messageDatum['sent_time']).toLocaleString()}: ${messageDatum['message']}</p>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;

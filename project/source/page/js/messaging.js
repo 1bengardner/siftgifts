@@ -1,9 +1,23 @@
 var messages = {};
+var localeStrings = {
+  'time': {hour: 'numeric', minute: '2-digit'},
+  'day': {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'},
+  'year': {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'}
+};
 
 function setContent(...messageData) {
   let content = "";
+  let currentDate = new Date();
   messageData.forEach(function(messageDatum) {
-    content += `<p class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'>${new Date(messageDatum['sent_time']).toLocaleString()}: ${messageDatum['message']}</p>`;
+    let sentDate = new Date(messageDatum['sent_time']);
+    let localeString = localeStrings['time'];
+    if (sentDate.getYear() < currentDate.getYear()) {
+      localeString = localeStrings['year'];
+    }
+    else if (sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth()) {
+      localeString = localeStrings['day'];
+    }
+    content += `<p class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'><span class='message-time-sent'>${new Date(messageDatum['sent_time']).toLocaleString(undefined, localeString)}</span>${messageDatum['message']}</p>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
@@ -34,7 +48,7 @@ function sendMessage() {
       let node = document.createElement("em");
       node.textContent = message;
       selectedMessage.replaceChildren(node);
-      document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, {hour: 'numeric', minute: '2-digit'});
+      document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, localeStrings['time']);
       // TODO: Move updated message chooser message to the top of the list
     }
   }

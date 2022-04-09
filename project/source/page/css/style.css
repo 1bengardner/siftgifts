@@ -520,6 +520,11 @@ li::marker {
   box-sizing: border-box;
 }
 
+.message-time-sent {
+  display: block;
+  font-size: smaller;
+}
+
 @media screen and (max-width: 1200px) {
 .gift-widget {
   padding: 1vh 10vw;

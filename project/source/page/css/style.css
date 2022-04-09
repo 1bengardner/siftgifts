@@ -464,10 +464,7 @@ li::marker {
   margin-bottom: 0.5em;
 }
 
-.message-chooser {
-}
-
-.message-content {
+.message-viewer {
   background-color: #f5efff;
   padding: 0 1.5em;
 }
@@ -512,6 +509,15 @@ li::marker {
   padding: 1em;
   border-radius: 1em;
   margin-left: 10vw;
+}
+
+.message-entry {
+  width: 100%;
+  padding: 1em;
+  margin: 0.5em 0 1em 0;
+  border-radius: 2em;
+  border-style: none;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 1200px) {

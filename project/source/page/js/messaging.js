@@ -6,6 +6,39 @@ function setContent(...messageData) {
     content += `<p class='${messageDatum['sent'] ? 'sent-message' : 'received-message'}'>${messageDatum['message']}</p>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
+  let messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
+  document.getElementById('message-form').innerHTML = messageEntry;
+  document.getElementById('message-form').onsubmit = function(e) {
+    sendMessage();
+    e.preventDefault();
+  };
+}
+
+function sendMessage() {
+  let message = document.querySelectorAll('.message-entry')[0].value;
+  let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
+  let selectedMessage = document.querySelectorAll('.message-chooser-message.selected .preview')[0];
+  let rq = new XMLHttpRequest();
+  rq.open("POST", "/action/send-message", true);
+  const params = {
+    "to": conversationPartner,
+    "from": document.getElementById('message-form').getAttribute('user'),
+    "message": message
+  };
+  rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  rq.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      delete messages[parseInt(conversationPartner)];
+      setMessages(parseInt(conversationPartner));
+      
+      let node = document.createElement("em");
+      node.textContent = message;
+      selectedMessage.replaceChildren(node);
+      document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, {hour: 'numeric', minute: '2-digit'});
+      // TODO: Move updated message chooser message to the top of the list
+    }
+  }
+  rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
 }
 
 function setMessages(id) {
@@ -13,7 +46,7 @@ function setMessages(id) {
     setContent(...messages[id]);
     return;
   }
-  var rq = new XMLHttpRequest();
+  let rq = new XMLHttpRequest();
   rq.open("GET", "/action/get-messages?from=" + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
@@ -23,7 +56,7 @@ function setMessages(id) {
       setMessages(id);
     }
   }
-  var loading = setTimeout(function() {
+  let loading = setTimeout(function() {
     document.querySelectorAll('.message-content')[0].innerHTML = `
 <?xml version="1.0" encoding="utf-8"?>
 <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -87,6 +120,6 @@ document.querySelectorAll('.message-chooser-message').forEach(message => {
       message.classList.remove('selected');
     });
     message.classList.add('selected');
-    setMessages(parseInt(message.id));
+    setMessages(parseInt(message.getAttribute('conversation')));
   }
 });

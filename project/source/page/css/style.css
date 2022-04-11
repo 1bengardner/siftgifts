@@ -238,7 +238,7 @@ hr.expand {
 
 .message-grid {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 30% 70%;
   margin: 0 10vw;
 }
 
@@ -467,7 +467,7 @@ li::marker {
 .message-viewer {
   max-height: calc(100vh - 15em);
   background-color: #f5efff;
-  padding: 0 1.5em;
+  padding: 1em 4vw;
   overflow-y: auto;
 }
 
@@ -523,7 +523,7 @@ li::marker {
 .message-entry {
   width: 100%;
   padding: 1em;
-  margin: 0.5em 0 1em 0;
+  margin-top: 1em;
   border-radius: 2em;
   border-style: none;
   box-sizing: border-box;

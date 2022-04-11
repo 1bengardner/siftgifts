@@ -465,8 +465,10 @@ li::marker {
 }
 
 .message-viewer {
+  max-height: calc(100vh - 15em);
   background-color: #f5efff;
   padding: 0 1.5em;
+  overflow-y: auto;
 }
 
 .message-chooser-message {
@@ -495,20 +497,27 @@ li::marker {
   text-overflow: ellipsis;
 }
 
-.received-message {
-  font-size: 0.9em;
-  background-color: #fbf8ff;
-  padding: 1em;
-  border-radius: 1em;
-  margin-right: 10vw;
+.sent-message {
+  text-align: right;
 }
 
-.sent-message {
+.sent-message p, .received-message p {
+  display: inline-block;
+  text-align: left;
   font-size: 0.9em;
-  background-color: #fdfdfd;
   padding: 1em;
   border-radius: 1em;
+  margin: 0.5em;
+}
+
+.sent-message p {
+  background-color: #fdfdfd;
   margin-left: 10vw;
+}
+
+.received-message p {
+  background-color: #fbf8ff;
+  margin-right: 10vw;
 }
 
 .message-entry {

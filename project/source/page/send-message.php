@@ -27,7 +27,7 @@
         <input class="submit-button" type="submit" value="Send message"/>
       </div>
       <div class="links-section">
-        <a class="link" href="/wishlist/<?php echo $_GET['to']; ?>">Return to wishlist</a>
+        <a class="link" href="/wishlist<?php  if (isset($_GET['to'])) echo '/'.$_GET['to']; ?>">Return to <?php  if (isset($_GET['to'])) echo $_GET['to']."'s"; ?> wishlist</a>
       </div>
     </form>
   </body>

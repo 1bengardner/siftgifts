@@ -76,7 +76,7 @@ abstract class Message
   const EmailExists = "This e-mail address is already registered with Sift.gifts.";
   const PasswordsDiffer = "The two entered passwords must match.";
   const NameExists = "There is already someone registered with that display name.";
-  const NameIsBad = "Please do not use symbols in your display name.";
+  const NameIsBad = "Please do not use symbols or spaces in your display name.";
   const ChangePasswordSuccess = "You have successfully updated your password.";
   const PasswordResetSent = "A password reset link has been sent to your e-mail.";
   const LogOutSuccess = "Logged out. Thanks for coming by!";
@@ -163,7 +163,7 @@ class Validation
     if (Validation::name_exists($name)) {
       return Message::NameExists;
     }
-    if (!ctype_alnum(str_replace(array("-", "_", " "), "", $name))) {
+    if (!ctype_alnum(str_replace(array("-", "_"), "", $name))) {
       return Message::NameIsBad;
     }
     if (strlen($name) > 30) {

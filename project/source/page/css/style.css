@@ -135,7 +135,7 @@ input, textarea {
   max-width: 95vw;
 }
 
-input:invalid {
+input:invalid, textarea:invalid {
   box-shadow: 0 0 1em rgba(137, 206, 255, 0.5);
 }
 
@@ -170,9 +170,13 @@ input[type=radio] {
   text-align: left;
 }
 
-.comments {
+.comments, .message {
   max-width: 40em;
   width: 80vw;
+}
+
+.message {
+  height: 20em;
 }
 
 .subheading {
@@ -536,6 +540,13 @@ li::marker {
   padding: 0.1em 0.5em;
   margin: 0 0.5em;
   border-radius: 1em;
+}
+
+.wishlist-header {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 0.5em;
+  padding-left: 1.5em;
 }
 
 @media screen and (max-width: 1200px) {

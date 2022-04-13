@@ -15,7 +15,10 @@ if (!isset($id)) {
 
     $user = User::get_from_id($id)->username;
     ?>
-    <h1 class="center"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
+    <div class="center">
+      <h1 class="wishlist-header"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
+      <a href="/send-message?to=<?php echo ucwords(strtolower($user)); ?>">✉</a>
+    </div>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
     </form>

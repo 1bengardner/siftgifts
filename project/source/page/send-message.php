@@ -5,14 +5,15 @@
   <body>
     <?php include 'header.php'; ?>
     <form id="message-form" enctype="multipart/form-data" onsubmit="send()">
-      <h2>Send a message<?php if (isset($_GET['to'])) echo " to ".$_GET['to']; ?></h2>
-      <div hidden id="message">
+    <?php $recipient = isset($_GET['to']) ? htmlentities($_GET['to']) : null; ?>
+      <h2>Send a message<?php if (isset($recipient)) echo " to ".$recipient; ?></h2>
+      <div hidden id="notifications">
         <div class="success-box">
           <p>Sent!</p>
         </div>
       </div>
       <div>
-        <input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($_GET['to'])) echo "value='".$_GET['to']."'"; ?> required />
+        <input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required />
       </div>
       <div>
         <input id="from" type="name" placeholder="Your name" maxlength="255" />
@@ -27,7 +28,7 @@
         <input class="submit-button" type="submit" value="Send message"/>
       </div>
       <div class="links-section">
-        <a class="link" href="/wishlist<?php  if (isset($_GET['to'])) echo '/'.$_GET['to']; ?>">Return to <?php  if (isset($_GET['to'])) echo $_GET['to']."'s"; ?> wishlist</a>
+        <a class="link" href="/wishlist<?php  if (isset($recipient)) echo '/'.$recipient; ?>">Return to <?php  if (isset($recipient)) echo $recipient."'s"; ?> wishlist</a>
       </div>
     </form>
   </body>

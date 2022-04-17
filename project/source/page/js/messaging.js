@@ -1,11 +1,12 @@
-var messages = {};
+var messagesById = {};
+var messagesByFrom = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'day': {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'},
   'year': {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'}
 };
 
-function setContent(...messageData) {
+function setContent(replyable, ...messageData) {
   let content = "";
   let currentDate = new Date();
   messageData.forEach(function(messageDatum) {
@@ -20,7 +21,10 @@ function setContent(...messageData) {
     content += `<div class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'><p><span class='right message-time-sent'>${new Date(messageDatum['sent_time']).toLocaleString(undefined, localeString)}</span>${messageDatum['message']}</p></div>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
-  let messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
+  let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;
+  if (replyable) {
+    messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
+  }
   document.getElementById('message-form').innerHTML = messageEntry;
   document.getElementById('message-form').onsubmit = function(e) {
     sendMessage();
@@ -33,17 +37,16 @@ function sendMessage() {
   let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
   let selectedMessage = document.querySelectorAll('.message-chooser-message.selected .preview')[0];
   let rq = new XMLHttpRequest();
-  rq.open("POST", "/action/send-message", true);
+  rq.open("POST", "/action/submit-message", true);
   const params = {
     "to": conversationPartner,
-    "from": document.getElementById('message-form').getAttribute('user'),
     "message": message
   };
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      delete messages[parseInt(conversationPartner)];
-      setMessages(parseInt(conversationPartner));
+      delete messagesByFrom[parseInt(conversationPartner)];
+      getMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
       
       let node = document.createElement("em");
       node.textContent = message;
@@ -55,19 +58,19 @@ function sendMessage() {
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
 }
 
-function setMessages(id) {
-  if (id in messages) {
-    setContent(...messages[id]);
+function getMessages(id, messageCache, uri) {
+  if (id in messageCache) {
+    setContent(messageCache == messagesByFrom, ...messageCache[id]);
     return;
   }
   let rq = new XMLHttpRequest();
-  rq.open("GET", "/action/get-messages?from=" + id, true);
+  rq.open("GET", uri + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
-      messages[id] = JSON.parse(rq.responseText);
-      setMessages(id);
+      messageCache[id] = JSON.parse(rq.responseText);
+      getMessages(id, messageCache, uri);
     }
   }
   let loading = setTimeout(function() {
@@ -134,6 +137,13 @@ document.querySelectorAll('.message-chooser-message').forEach(message => {
       message.classList.remove('selected');
     });
     message.classList.add('selected');
-    setMessages(parseInt(message.getAttribute('conversation')));
+    
+    let id = parseInt(message.getAttribute('conversation'));
+    if (isNaN(id)) {
+      id = parseInt(message.getAttribute('last-message'));
+      getMessages(id, messagesById, "/action/get-message?id=");
+    } else {
+      getMessages(id, messagesByFrom, "/action/get-messages?from=");
+    }
   }
 });

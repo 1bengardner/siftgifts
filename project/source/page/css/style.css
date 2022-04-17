@@ -531,6 +531,7 @@ li::marker {
   border-radius: 2em;
   border-style: none;
   box-sizing: border-box;
+  outline: solid #fbf8ff;
 }
 
 .message-time-sent {

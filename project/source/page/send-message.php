@@ -4,12 +4,12 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form id="message-form" enctype="multipart/form-data" onsubmit="send()">
     <?php $recipient = isset($_GET['to']) ? htmlentities($_GET['to']) : null; ?>
+    <form id="message-form" enctype="multipart/form-data" onsubmit="send();">
       <h2>Send a message<?php if (isset($recipient)) echo " to ".$recipient; ?></h2>
       <div hidden id="notifications">
         <div class="success-box">
-          <p>Sent!</p>
+          <p>Message sent!</p>
         </div>
       </div>
       <div>

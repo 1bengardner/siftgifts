@@ -87,6 +87,7 @@ abstract class NotificationText
   const VerifyAccountSuccess = "Your account is now verified.";
   const RegistrationSuccess = "You are now signed up with Sift.gifts.";
   const ChangeProfileSuccess = "You have successfully updated your profile.";
+  const MessageSent = "Message sent.";
 }
 class Notification
 {

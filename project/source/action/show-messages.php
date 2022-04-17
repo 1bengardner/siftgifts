@@ -4,8 +4,8 @@ require_once '../data/user-message.php';
 require_once '../data/user.php';
 require_once '../action/authenticate.php';
 
-$stmt = "SELECT * FROM message JOIN (SELECT conversation_partner_id, MAX(most_recent) most_recent FROM (SELECT `from` conversation_partner_id, MAX(sent_time) most_recent FROM message WHERE `to`=? GROUP BY `from` UNION SELECT `to`, MAX(sent_time) most_recent FROM message WHERE `from`=? GROUP BY `to`) res GROUP BY conversation_partner_id) res ON (`to` = conversation_partner_id OR `from`=conversation_partner_id) AND sent_time=most_recent UNION SELECT *, NULL conversation_partner_id, sent_time most_recent FROM message WHERE `from` is NULL AND `to`=? ORDER BY most_recent DESC";
-$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id'], $_SESSION['id'], $_SESSION['id']]);
+$stmt = "CALL get_conversations(?)";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]);
 $msgs = $res->fetch_all(MYSQLI_ASSOC);
 if (count($msgs) === 0) {
 ?>

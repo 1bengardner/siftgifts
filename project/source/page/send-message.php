@@ -17,7 +17,7 @@
       </div>
       <div>
         <?php require_once '../data/user.php'; ?>
-        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".User::get_from_id($_SESSION["id"])->username."' disabled"; ?> /></span>
+        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> /></span>
       </div>
       <?php if (!isset($_SESSION["id"]) || !$_SESSION["id"]) { ?>
         <div>

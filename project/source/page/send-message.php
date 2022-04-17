@@ -13,10 +13,10 @@
         </div>
       </div>
       <div>
-        <input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required />
+        <span>To:<input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required /></span>
       </div>
       <div>
-        <input id="from" type="name" placeholder="Your name" maxlength="255" />
+        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" /></span>
       </div>
       <div>
         <span class="subheading">(Leave your name blank to send anonymously)</span>

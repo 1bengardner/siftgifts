@@ -1,5 +1,5 @@
 function clickHandler(e) {
-  let inputs = document.getElementsByTagName('input');
+  let inputs = document.querySelectorAll('input, textarea');
   let validSubmission = true;
   for (const input of inputs) {
     if (!input.checkValidity()) {

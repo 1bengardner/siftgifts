@@ -4,17 +4,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <?php
-      require_once '../util/utilities.php';
-      require_once '../action/authenticate.php';
-
-      if(isset($_POST['submit'])) {
-        // TODO: Validate fields
-
-        $stmt = "CALL add_gift(?, ?, ?)";
-        Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments']]);
-      }
-    ?>
+    <?php require_once '../action/authenticate.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
       <h2>Add to your wishlist</h2>
       <div hidden id="message">

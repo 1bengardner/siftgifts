@@ -12,11 +12,11 @@ $validations = [
 
 foreach ($validations as $validation) {
     if ($msg = $validation()) {
-        array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+        array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
     }
 }
 if (count($validation_errors) === 0 && $msg = Validation::login_error($_POST['email'], $_POST['password'])) {
-    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+    array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
 }
 
 if (count($validation_errors) > 0) {

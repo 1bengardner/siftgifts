@@ -27,5 +27,12 @@ class User
     $user = Database::run_statement(Database::get_connection(), $stmt, [$email]);
     return new User($user->fetch_assoc());
   }
+  
+  public static function get_from_name($username)
+  {
+    $stmt = "SELECT * FROM user WHERE username = ?";
+    $user = Database::run_statement(Database::get_connection(), $stmt, [$username]);
+    return new User($user->fetch_assoc());
+  }
 }
 ?>

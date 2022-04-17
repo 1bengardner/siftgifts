@@ -12,7 +12,7 @@ $validations = [
 
 foreach ($validations as $validation) {
   if ($msg = $validation()) {
-    array_push($validation_errors, new Notification($msg, MessageLevel::Error));
+    array_push($validation_errors, new Notification($msg, NotificationLevel::Error));
   }
 }
 
@@ -26,7 +26,7 @@ $stmt = "UPDATE user SET verified = true WHERE email = ?";
 $db = Database::get_connection();
 Database::run_statement($db, $stmt, [$_POST['email']]);
 
-$_SESSION["notifications"] = [new Notification(Message::VerifyAccountSuccess, MessageLevel::Success)];
+$_SESSION["notifications"] = [new Notification(NotificationText::VerifyAccountSuccess, NotificationLevel::Success)];
 
 header('Location: /login');
 ?>

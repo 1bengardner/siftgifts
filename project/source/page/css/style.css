@@ -136,7 +136,7 @@ input, textarea {
   max-width: 95vw;
 }
 
-input:invalid {
+input:invalid, textarea:invalid {
   box-shadow: 0 0 1em rgba(137, 206, 255, 0.5);
 }
 
@@ -171,9 +171,13 @@ input[type=radio] {
   text-align: left;
 }
 
-.comments {
+.comments, .message {
   max-width: 40em;
   width: 80vw;
+}
+
+.message {
+  height: 10em;
 }
 
 .subheading {
@@ -235,6 +239,12 @@ hr.expand {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+}
+
+.message-grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin: 0 10vw;
 }
 
 .gift-image {
@@ -457,6 +467,88 @@ li::marker {
 
 .user-header-buttons-small {
   margin-bottom: 0.5em;
+}
+
+.message-viewer {
+  max-height: calc(100vh - 15em);
+  background-color: #f5efff;
+  padding: 1em 4vw;
+  overflow-y: auto;
+}
+
+.message-chooser-message {
+  background-color: #fbf8ff;
+  border-top: 2px solid #f5efff;
+  border-bottom: 2px solid #f5efff;
+  padding: 0 1.5em;
+}
+
+.message-chooser-message.selected {
+  background-color: #f5efff;
+}
+
+.message-chooser-message:nth-of-type(1) {
+  border-top: 4px solid #f5efff;
+}
+
+.message-chooser-message:nth-last-of-type(1) {
+  border-bottom: 4px solid #f5efff;
+}
+
+.message-chooser-message .preview {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sent-message {
+  text-align: right;
+}
+
+.sent-message p, .received-message p {
+  display: inline-block;
+  text-align: left;
+  font-size: 0.9em;
+  padding: 1em;
+  border-radius: 1em;
+  margin: 0.5em;
+}
+
+.sent-message p {
+  background-color: #fdfdfd;
+  margin-left: 10vw;
+}
+
+.received-message p {
+  background-color: #fbf8ff;
+  margin-right: 10vw;
+}
+
+.message-entry {
+  width: 100%;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 2em;
+  border-style: none;
+  box-sizing: border-box;
+  outline: solid #fbf8ff;
+}
+
+.message-time-sent {
+  display: block;
+  font-size: smaller;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 0.1em 0.5em;
+  margin: 0 0.5em;
+  border-radius: 1em;
+}
+
+.wishlist-header {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 0.5em;
+  padding-left: 1.5em;
 }
 
 @media screen and (max-width: 1200px) {

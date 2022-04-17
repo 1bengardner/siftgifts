@@ -11,9 +11,12 @@
     <?php include 'header.php'; ?>
     <?php include 'message-box.php'; ?>
     <div class="center">
-      <div>
-        <h2><a href="wishlist">Manage your wishlist 📜</a></h2>
-      </div>
+      <nav>
+        <ul>
+          <li><h2><a href="messaging">✉</a></h2></li>
+          <li><h2><a href="wishlist">📜</a></h2></li>
+        </ul>
+      </nav>
       <div>
         <?php $wishlist = 'https://sift.gifts/wishlist/'.strtolower($user->username); ?>
         <p>Share your wishlist:<span class="unbreakable"><input class="wishlist-link" disabled id="foo" type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')">📋</button></span></p>

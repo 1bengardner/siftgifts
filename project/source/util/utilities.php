@@ -57,12 +57,12 @@ class Email
   }
 }
 
-abstract class MessageLevel
+abstract class NotificationLevel
 {
   const Success = 1;
   const Error = 2;
 }
-abstract class Message
+abstract class NotificationText
 {
   const EmailInvalid = "Please enter a valid e-mail address.";
   const EmailTooLong = "Your e-mail must be under 320 characters.";
@@ -87,15 +87,16 @@ abstract class Message
   const VerifyAccountSuccess = "Your account is now verified.";
   const RegistrationSuccess = "You are now signed up with Sift.gifts.";
   const ChangeProfileSuccess = "You have successfully updated your profile.";
+  const MessageSent = "Message sent.";
 }
 class Notification
 {
-  protected $message_text;
-  protected $message_level;
+  protected $text;
+  protected $level;
 
-  public function __construct($message_text, $message_level) {
-      $this->message_text = $message_text;
-      $this->message_level = $message_level;
+  public function __construct($text, $level) {
+      $this->text = $text;
+      $this->level = $level;
   }
 
   public function __get($property) {
@@ -121,7 +122,7 @@ class Validation
   public static function keys_missing($keys)
   {
     if (count(Validation::get_missing_keys($keys)) > 0) {
-      return Message::FieldsCannotBeEmpty;
+      return NotificationText::FieldsCannotBeEmpty;
     }
     return false;
   }
@@ -131,11 +132,11 @@ class Validation
   {
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      return Message::EmailInvalid;
+      return NotificationText::EmailInvalid;
     }
     // Validate email length - this is included within the FILTER_VALIDATE_EMAIL filter, but also here as secondary defense for the database
     if (strlen($email) > 320) {
-      return Message::EmailTooLong;
+      return NotificationText::EmailTooLong;
     }
     return false;
   }
@@ -143,10 +144,10 @@ class Validation
   public static function password_error($password)
   {
     if (strlen($password) > 255) {
-      return Message::PasswordTooLong;
+      return NotificationText::PasswordTooLong;
     }
     if (strlen($password) < 6) {
-      return Message::PasswordTooShort;
+      return NotificationText::PasswordTooShort;
     }
     return false;
   }
@@ -161,13 +162,13 @@ class Validation
   public static function name_error($name)
   {
     if (Validation::name_exists($name)) {
-      return Message::NameExists;
+      return NotificationText::NameExists;
     }
     if (!ctype_alnum(str_replace(array("-", "_"), "", $name))) {
       return Message::NameIsBad;
     }
     if (strlen($name) > 30) {
-      return Message::NameIsTooLong;
+      return NotificationText::NameIsTooLong;
     }
     return false;
   }
@@ -182,7 +183,7 @@ class Validation
   public static function email_registration_error($email)
   {
     if (Validation::email_exists($email)) {
-      return Message::EmailExists;
+      return NotificationText::EmailExists;
     }
     if ($res = Validation::email_login_error($email)) {
       return $res;
@@ -195,7 +196,7 @@ class Validation
     $stmt = "SELECT 1 FROM user WHERE email = ?";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
     if (empty($res->fetch_row()[0])) {
-      return Message::EmailDoesNotExist;
+      return NotificationText::EmailDoesNotExist;
     }
     $stmt = "SELECT encrypted_password FROM user WHERE email = ?";
     $user_password = Database::run_statement(Database::get_connection(), $stmt, [$email]);
@@ -203,13 +204,13 @@ class Validation
       return false;
     }
     $encrypted_password = $user_password->fetch_row()[0];
-    return password_verify($password, $encrypted_password) ? false : Message::InvalidUser;
+    return password_verify($password, $encrypted_password) ? false : NotificationText::InvalidUser;
   }
 
   public static function passwords_differ($p1, $p2)
   {
     if ($p1 != $p2) {
-      return Message::PasswordsDiffer;
+      return NotificationText::PasswordsDiffer;
     }
     return false;
   }
@@ -219,7 +220,7 @@ class Validation
     $stmt = "SELECT 1 FROM user WHERE email = ?";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
     if (empty($res->fetch_row()[0])) {
-      return Message::EmailDoesNotExist;
+      return NotificationText::EmailDoesNotExist;
     }
     return false;
   }
@@ -229,9 +230,9 @@ class Validation
     $stmt = "SELECT is_valid_reset_code(?, ?)";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code])->fetch_row()[0];
     if ($res === NULL) {
-      return Message::InvalidResetCode;
+      return NotificationText::InvalidResetCode;
     } else if (!$res) {
-      return Message::ExpiredResetCode;
+      return NotificationText::ExpiredResetCode;
     }
     return false;
   }
@@ -241,12 +242,12 @@ class Validation
     $stmt = "SELECT is_valid_verification_code(?, ?)";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email, $code])->fetch_row()[0];
     if (!$res) {
-      return Message::InvalidVerificationCode;
+      return NotificationText::InvalidVerificationCode;
     }
     $stmt = "SELECT 1 FROM user WHERE email = ?";
     $res = Database::run_statement(Database::get_connection(), $stmt, [$email]);
     if (empty($res->fetch_row()[0])) {
-      return Message::EmailDoesNotExist;
+      return NotificationText::EmailDoesNotExist;
     }
     return false;
   }

@@ -16,11 +16,14 @@
         <span>To:<input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required /></span>
       </div>
       <div>
-        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" /></span>
+        <?php require_once '../data/user.php'; ?>
+        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".User::get_from_id($_SESSION["id"])->username."' disabled"; ?> /></span>
       </div>
-      <div>
-        <span class="subheading">(Leave your name blank to send anonymously)</span>
-      </div>
+      <?php if (!isset($_SESSION["id"]) || !$_SESSION["id"]) { ?>
+        <div>
+          <span class="subheading">(Leave your name blank to send anonymously)</span>
+        </div>
+      <?php } ?>
       <div>
         <textarea id="message" class="message" placeholder="Message" maxlength="5000" required></textarea>
       </div>

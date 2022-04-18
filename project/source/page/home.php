@@ -13,7 +13,7 @@
     <div class="center">
       <nav>
         <ul>
-          <li><h2><a href="messaging">✉</a></h2></li>
+          <li><h2><a <?php if (include '../action/check-new-messages.php') echo 'class="new-notifications"'; ?> href="messaging">✉</a></h2></li>
           <li><h2><a href="wishlist">📜</a></h2></li>
         </ul>
       </nav>

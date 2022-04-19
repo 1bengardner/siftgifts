@@ -6,8 +6,9 @@ require_once '../action/start-session.php';
   <ul class="user-header-buttons-small">
     <li class="purple-box username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
     <?php
-    if (include '../action/check-new-messages.php') {
-      $message_li = '<li><a class="new-notifications" href="/messaging" title="Check messages">📫</a></li>';
+    $message_count = include '../action/check-new-messages.php';
+    if ($message_count) {
+      $message_li = '<li><a href="/messaging" title="Check messages">📫</a><span class="notification-dot">'.$message_count.'</span></li>';
     } else {
       $message_li = '<li><a href="/messaging" title="Check messages">📪</a></li>';
     }

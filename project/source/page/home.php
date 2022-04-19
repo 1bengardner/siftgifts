@@ -13,11 +13,12 @@
     <div class="center">
       <nav>
         <ul>
-          <?php          
-          if (include '../action/check-new-messages.php') {
-            echo '<li><h2><a class="new-notifications" href="messaging">📫 New messages!</a></h2></li>';
+          <?php
+          $message_count = include '../action/check-new-messages.php';
+          if ($message_count) {
+            echo '<li><h2><a class="new-notifications" href="messaging">📫 '.$message_count.' new message'.($message_count > 1 ? 's' : '').'!</a></h2></li>';
           } else {
-            echo '<li><h2><a href="messaging">📪 Messages</a></h2></li>';
+            //echo '<li><h2><a href="messaging">📪 Messages</a></h2></li>';
           }
           ?>
           <li><h2><a href="wishlist">📝 Wishlist</a></h2></li>

@@ -559,7 +559,6 @@ li::marker {
   border: dotted 0.5em #ffe;
 }
 
-
 /* TODO: Fix this section up; it's nasty */
 .wishlist-header, .messaging-header {
   display: inline-block;
@@ -582,6 +581,18 @@ li::marker {
 }
 a.new-notifications {
   animation: pulse 0.5s ease-in 0.5s infinite alternate;
+}
+
+.notification-dot {
+  font-weight: bold;
+  position: relative;
+  top: -1em;
+  left: -1em;
+  font-size: small;
+  color: #fff;
+  background-color: #fa3e3e;
+  padding: 0 0.4em;
+  border-radius: 3em;
 }
 
 @media screen and (max-width: 1200px) {

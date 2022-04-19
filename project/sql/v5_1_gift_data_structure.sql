@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2022 at 06:13 PM
+-- Generation Time: Apr 19, 2022 at 01:12 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -48,10 +48,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_conversations` (IN `id` INT)  N
 SELECT * FROM message JOIN (SELECT conversation_partner_id, MAX(most_recent) most_recent FROM (SELECT `from` conversation_partner_id, MAX(sent_time) most_recent FROM message WHERE `to`=id GROUP BY `from` UNION SELECT `to`, MAX(sent_time) most_recent FROM message WHERE `from`=id GROUP BY `to`) res GROUP BY conversation_partner_id) res ON (`to` = conversation_partner_id OR `from`=conversation_partner_id) AND sent_time=most_recent UNION SELECT *, NULL conversation_partner_id, sent_time most_recent FROM message WHERE `from` is NULL AND `to`=id ORDER BY most_recent DESC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_message` (IN `id` INT)  NO SQL
-SELECT * FROM message WHERE message.id = id$$
+BEGIN
+SELECT * FROM message WHERE message.id = id;
+UPDATE message SET unread=FALSE WHERE message.id=id;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_messages` (IN `to` INT, IN `from` INT)  NO SQL
-SELECT * FROM message WHERE message.`to`=`to` AND message.`from`=`from` UNION (SELECT * FROM message WHERE message.`to`=`from` AND message.`from`=`to`) ORDER BY sent_time ASC$$
+BEGIN
+SELECT * FROM message WHERE message.`to`=`to` AND message.`from`=`from` UNION (SELECT * FROM message WHERE message.`to`=`from` AND message.`from`=`to`) ORDER BY sent_time ASC;
+UPDATE message SET unread=FALSE WHERE message.`to`=`to` AND message.`from`=`from`;
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255))  NO SQL
 UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password) WHERE user.id=id$$
@@ -100,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `body` text NOT NULL,
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `guest_name` varchar(255) DEFAULT NULL,
+  `unread` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `fk-message-from` (`from`),
   KEY `index-message-to-from-sent_time` (`to`,`from`,`sent_time`)

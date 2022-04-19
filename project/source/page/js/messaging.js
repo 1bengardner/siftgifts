@@ -9,8 +9,8 @@ var localeStrings = {
 function setContent(replyable, ...messageData) {
   let content = "";
   let currentDate = new Date();
-  messageData.forEach(function(messageDatum) {
-    let sentDate = new Date(messageDatum['sent_time']);
+  messageData.forEach(function(msg) {
+    let sentDate = new Date(msg['sent_time']);
     let localeString = localeStrings['time'];
     if (sentDate.getYear() < currentDate.getYear()) {
       localeString = localeStrings['year'];
@@ -18,7 +18,7 @@ function setContent(replyable, ...messageData) {
     else if (sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth()) {
       localeString = localeStrings['day'];
     }
-    content += `<div class='${messageDatum['is_sender'] ? 'sent-message' : 'received-message'}'><p><span class='right message-time-sent'>${new Date(messageDatum['sent_time']).toLocaleString(undefined, localeString)}</span>${messageDatum['message']}</p></div>`;
+    content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p class='${msg['unread'] ? 'unread' : ''}'><span class='right message-time-sent'>${new Date(msg['sent_time']).toLocaleString(undefined, localeString)}</span>${msg['message']}</p></div>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;
@@ -69,6 +69,7 @@ function getMessages(id, messageCache, uri) {
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
+      document.querySelectorAll('.message-chooser-message.selected')[0].classList.remove('unread');
       messageCache[id] = JSON.parse(rq.responseText);
       getMessages(id, messageCache, uri);
     }

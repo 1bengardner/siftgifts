@@ -9,6 +9,7 @@ class UserMessage
   public $body;
   public $sent_time;
   public $guest_name;
+  public $unread;
 
   public function __construct($assoc)
   {
@@ -18,6 +19,7 @@ class UserMessage
     $this->body = $assoc['body'];
     $this->sent_time = $assoc['sent_time'];
     $this->guest_name = $assoc['guest_name'];
+    $this->unread = $assoc['unread'];
   }
   
   public static function get_from_id($id)

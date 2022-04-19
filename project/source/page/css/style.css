@@ -477,14 +477,25 @@ li::marker {
 }
 
 .message-chooser-message {
-  background-color: #fbf8ff;
+  background: #fbf8ff;
   border-top: 2px solid #f5efff;
   border-bottom: 2px solid #f5efff;
+  border-left: 4px solid #f5efff;
   padding: 0 1.5em;
+  cursor: pointer;
+}
+
+.message-chooser-message.unread {
+  background: linear-gradient(to left, #fbf8ff, #e4ffeb);
+}
+
+.message-chooser-message:hover {
+  background: #fdfdfd;
 }
 
 .message-chooser-message.selected {
-  background-color: #f5efff;
+  background: #f5efff;
+  cursor: auto
 }
 
 .message-chooser-message:nth-of-type(1) {
@@ -544,17 +555,29 @@ li::marker {
   border-radius: 1em;
 }
 
-.wishlist-header {
+.received-message p.unread {
+  border: dotted 0.5em #ffe;
+}
+
+
+/* TODO: Fix this section up; it's nasty */
+.wishlist-header, .messaging-header {
   display: inline-block;
   vertical-align: middle;
+}
+.wishlist-header {
   padding-right: 0.5em;
-  padding-left: 1.5em;
+  padding-left: 1.7em;
+}
+.messaging-header {
+  padding-right: 0.5em;
+  padding-left: 5.2em;
 }
 
 @keyframes pulse {
   100% {
-    color: #fa3e3e;
-    background-color: rgba(160, 0, 255, 0.05);
+    color: #3efa3e;
+    background-color: rgba(0, 255, 0, 0.02);
   }
 }
 a.new-notifications {

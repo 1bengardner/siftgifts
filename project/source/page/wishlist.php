@@ -10,7 +10,7 @@
   <body>
     <?php include 'header.php'; ?>
     <div class="center">
-      <h2><a href="request">Add a gift ➕</a></h2>
+      <h2><a href="request">➕ Add a gift</a></h2>
       <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
       <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
     </div>

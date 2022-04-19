@@ -12,7 +12,7 @@
           <li>You can now send messages</li>
           <ul>
             <li><em>Anybody</em> can send a message to a user from the 📨 button on their wishlist</li>
-            <li>Messages can be read and replied to from the ✉ button after logging in</li>
+            <li>Messages can be read and replied to from the 📪/📫 button after logging in</li>
           </ul>
         </ul>
         <h2 class="changelog-heading version-number">v4.1</h2> <h3 class="changelog-heading muted"></h3>

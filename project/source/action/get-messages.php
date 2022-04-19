@@ -8,6 +8,10 @@ $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id
 header("HTTP/1.1 200 OK");
 echo json_encode(array_map(function($message) {
   $msg = new UserMessage($message);
-  return ['is_sender' => $msg->from === $_SESSION['id'], 'message' => nl2br(htmlentities($msg->body)), 'sent_time' => $msg->sent_time];
+  return [
+    'is_sender' => $msg->from === $_SESSION['id'],
+    'message' => nl2br(htmlentities($msg->body)),
+    'sent_time' => $msg->sent_time,
+    'unread' => $msg->unread];
 }, $res));
 ?>

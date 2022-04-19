@@ -17,23 +17,35 @@ if (count($msgs) === 0) {
 ?>
 <div class="message-grid">
   <div class="message-chooser">
-<?php
+  <?php
   foreach ($msgs as $msg_data) {
     $msg = new UserMessage($msg_data);
-    $msg->conversation_partner_id = $msg_data['conversation_partner_id']
-?>
-    <div class="message-chooser-message" conversation="<?php echo $msg->conversation_partner_id; ?>" last-message="<?php echo $msg->id; ?>">
+    $msg->conversation_partner_id = $msg_data['conversation_partner_id'];
+  ?>
+    <div
+      <?php
+      if (isset($msg->conversation_partner_id)) {
+        echo 'title="'.htmlentities($msg->body).'"';
+      } else if (isset($msg->guest_name)) {
+        echo 'title="Guest message"'.ucwords(strtolower($msg->guest_name));
+      } else {
+        echo 'title="Anonymous message"';
+      }
+      ?>
+      class="message-chooser-message <?php if ($msg->unread && ($msg->from != $_SESSION['id'] || $msg->conversation_partner_id == $_SESSION['id'])) echo "unread"; ?>"
+      conversation="<?php echo $msg->conversation_partner_id; ?>"
+      last-message="<?php echo $msg->id; ?>">
       <div class="right">
-<?php
-    $date = strtotime($msg->sent_time);
-    $date_format = 'g:i A';
-    if ($date < strtotime('today')) {
-      $date_format = 'M j';
-    }
-    if ($date < strtotime('first day of january this year')) {
-      $date_format .= ', Y';
-    }
-?>
+      <?php
+      $date = strtotime($msg->sent_time);
+      $date_format = 'g:i A';
+      if ($date < strtotime('today')) {
+        $date_format = 'M j';
+      }
+      if ($date < strtotime('first day of january this year')) {
+        $date_format .= ', Y';
+      }
+      ?>
         <span class="last-message-time"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
       </div>
       <div>
@@ -42,9 +54,9 @@ if (count($msgs) === 0) {
         if (isset($msg->conversation_partner_id)) {
           echo ucwords(strtolower(User::get_from_id($msg->conversation_partner_id)->username));
         } else if (isset($msg->guest_name)) {
-          echo '<em title="Guest message">❓</em> '.ucwords(strtolower($msg->guest_name));
+          echo '<em>❓</em> '.ucwords(strtolower($msg->guest_name));
         } else {
-          echo '<em title="Anonymous message">👻</em>';
+          echo '<em>👻</em>';
         }
         ?>
         </strong></p>
@@ -64,7 +76,7 @@ if (count($msgs) === 0) {
 ?>
   </div>
   <div class="message-viewer">
-    <div class="message-content"></div>
+    <div class="message-content"><div class="center">Select a message to expand the conversation.</div></div>
     <form id="message-form" method="post"></form>
   </div>
 </div>

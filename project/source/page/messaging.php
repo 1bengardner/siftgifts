@@ -10,8 +10,11 @@
   <body>
     <?php include 'header.php'; ?>
     <?php include 'message-box.php'; ?>
+    <div class="center">
+      <h2 class="messaging-header">Messages for <?php echo ucwords(strtolower($user->username)); ?></h2>
+      <a href="/send-message">➕ Compose</a>
+    </div>
     <div>
-      <h2 class="center">Messages for <?php echo ucwords(strtolower($user->username)); ?></h2>
       <?php include '../action/show-messages.php'; ?>
     </div>
   </body>

@@ -21,7 +21,7 @@
             //echo '<li><h2><a href="messaging">📪 Messages</a></h2></li>';
           }
           ?>
-          <li><h2><a href="wishlist">📝 Wishlist</a></h2></li>
+          <li><h2><a href="wishlist">📜 Wishlist</a></h2></li>
         </ul>
       </nav>
       <div>

@@ -39,11 +39,12 @@ if (count($msgs) === 0) {
       <?php
       $date = strtotime($msg->sent_time);
       $date_format = 'g:i A';
-      if ($date < strtotime('today')) {
-        $date_format = 'M j';
-      }
       if ($date < strtotime('first day of january this year')) {
-        $date_format .= ', Y';
+        $date_format = 'Y';
+      } else if ($date < strtotime('last Sunday')) {
+        $date_format = 'M j';
+      } else if ($date < strtotime('today')) {
+        $date_format = 'l';
       }
       ?>
         <span class="last-message-time"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>

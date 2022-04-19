@@ -2,8 +2,7 @@ var messagesById = {};
 var messagesByFrom = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
-  'day': {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'},
-  'year': {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'}
+  'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
 
 function setContent(replyable, ...messageData) {
@@ -11,14 +10,8 @@ function setContent(replyable, ...messageData) {
   let currentDate = new Date();
   messageData.forEach(function(msg) {
     let sentDate = new Date(msg['sent_time']);
-    let localeString = localeStrings['time'];
-    if (sentDate.getYear() < currentDate.getYear()) {
-      localeString = localeStrings['year'];
-    }
-    else if (sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth()) {
-      localeString = localeStrings['day'];
-    }
-    content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p class='${msg['unread'] ? 'unread' : ''}'><span class='right message-time-sent'>${new Date(msg['sent_time']).toLocaleString(undefined, localeString)}</span>${msg['message']}</p></div>`;
+    let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
+  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p class='${msg['unread'] ? 'unread' : ''}'><span class='right message-time-sent'><span class='muted'>${sentToday ? '' : new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])}</span> ${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${msg['message']}</p></div>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;

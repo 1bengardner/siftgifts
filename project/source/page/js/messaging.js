@@ -6,12 +6,20 @@ var localeStrings = {
 };
 
 function setContent(replyable, ...messageData) {
+  // From https://stackoverflow.com/a/8943487
+  function linkify(text) {
+    var urlRegex = /(\b(https):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    return text.replace(urlRegex, function(url) {
+      return '<a target="_blank" class="link" href="' + url + '">' + url + '</a>';
+    });
+  }
+  
   let content = "";
   let currentDate = new Date();
   messageData.forEach(function(msg) {
     let sentDate = new Date(msg['sent_time']);
     let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
-  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted "+(msg['unread'] ? 'unread' : '')+"'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${msg['message']}</p></div>`;
+  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted "+(msg['unread'] ? 'unread' : '')+"'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;

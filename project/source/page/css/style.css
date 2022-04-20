@@ -470,10 +470,24 @@ li::marker {
 }
 
 .message-viewer {
-  max-height: calc(100vh - 15em);
-  background-color: #f5efff;
-  padding: 1em 4vw;
+  height: calc(95vh - 15em);
   overflow-y: auto;
+  background-color: #f5efff;
+}
+
+.message-chooser {
+  height: calc(95vh - 15em);
+  overflow-y: auto;
+}
+
+.message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(160, 0, 255, 0.05);
+}
+
+.message-chooser::-webkit-scrollbar-thumb, .message-viewer::-webkit-scrollbar-thumb {
+  background-color: #a9b;
+  border-radius: 4px;
 }
 
 .message-chooser-message {
@@ -513,6 +527,10 @@ li::marker {
   text-overflow: ellipsis;
 }
 
+.message-content {
+  padding: 1em 4vw;
+}
+
 .sent-message {
   text-align: right;
 }
@@ -537,9 +555,9 @@ li::marker {
 }
 
 .message-entry {
-  width: 100%;
+  width: 90%;
   padding: 1em;
-  margin-top: 1em;
+  margin-bottom: 1em;
   border-radius: 2em;
   border-style: none;
   box-sizing: border-box;
@@ -555,8 +573,14 @@ li::marker {
   border-radius: 1em;
 }
 
-.received-message p.unread {
-  border: dotted 0.5em #ffe;
+@keyframes flash {
+  0% {
+    color: #3efa3e;
+    background-color: #eefff3;
+  }
+}
+.received-message .unread {
+  animation: flash 2.5s ease-out;
 }
 
 /* TODO: Fix this section up; it's nasty */

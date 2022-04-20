@@ -481,13 +481,13 @@ li::marker {
 }
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
-  width: 8px;
+  max-width: 10px;
   background-color: rgba(160, 0, 255, 0.05);
 }
 
 .message-chooser::-webkit-scrollbar-thumb, .message-viewer::-webkit-scrollbar-thumb {
   background-color: #a9b;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .message-chooser-message {
@@ -521,7 +521,7 @@ li::marker {
 }
 
 .message-chooser-message .preview {
-  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -623,6 +623,7 @@ a.new-notifications {
   background-color: #fa3e3e;
   padding: 0 0.4em;
   border-radius: 3em;
+  box-shadow: #fff 0 0 0.1em 0.1em;
 }
 
 @media screen and (max-width: 1200px) {

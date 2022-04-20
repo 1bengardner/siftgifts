@@ -583,6 +583,12 @@ li::marker {
   animation: flash 2.5s ease-out;
 }
 
+.sent-message p:not(.unread) .message-time-sent::after {
+  margin: 0 0.5em;
+  letter-spacing: -0.5em;
+  content: " ✔️✔️";
+}
+
 /* TODO: Fix this section up; it's nasty */
 .wishlist-header, .messaging-header {
   display: inline-block;

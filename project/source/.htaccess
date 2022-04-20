@@ -20,3 +20,8 @@ ErrorDocument 404 /page/404.php
 <IfModule mod_headers.c>
     Header set Cache-Control "max-age=86400"
 </IfModule>
+
+<IfModule mod_speling.c>
+     CheckSpelling On
+     CheckCaseOnly On
+</IfModule>

@@ -31,7 +31,7 @@
         <input class="submit-button" type="submit" value="Send message"/>
       </div>
       <div class="links-section">
-        <a class="link" href="/wishlist<?php  if (isset($recipient)) echo '/'.$recipient; ?>">Return to <?php  if (isset($recipient)) echo $recipient."'s"; ?> wishlist</a>
+        <a class="link" href="/wishlist<?php  if (isset($recipient)) echo '/'.strtolower($recipient); ?>">Return to <?php  if (isset($recipient)) echo $recipient."'s"; ?> wishlist</a>
       </div>
     </form>
   </body>

@@ -11,7 +11,7 @@ function setContent(replyable, ...messageData) {
   messageData.forEach(function(msg) {
     let sentDate = new Date(msg['sent_time']);
     let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
-  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p class='${msg['unread'] ? 'unread' : ''}'><span class='right message-time-sent'><span class='muted ${msg['unread'] ? 'unread' : ''}'>${sentToday ? '' : new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])}</span> ${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${msg['message']}</p></div>`;
+  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span class='right message-time-sent'>${sentToday ? "" : "<span class='muted "+(msg['unread'] ? 'unread' : '')+"'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${msg['message']}</p></div>`;
   });
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;

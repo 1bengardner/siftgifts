@@ -629,7 +629,7 @@ a.new-notifications {
 
 .back-navigation {
   display: none;
-  position: fixed;
+  position: absolute;
   padding: 0.5em;
 }
 

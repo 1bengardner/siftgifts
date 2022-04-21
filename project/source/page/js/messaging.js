@@ -135,6 +135,8 @@ function getMessages(id, messageCache, uri) {
 </g>
     `;
   }, 500);
+  let name = document.querySelectorAll('.message-chooser-message.selected .conversation-partner')[0].textContent;
+  document.querySelectorAll('.message-viewer > .conversation-partner')[0].textContent = name;
   rq.send();
 }
 

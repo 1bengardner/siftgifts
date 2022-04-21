@@ -37,7 +37,7 @@ if (count($msgs) === 0) {
       last-message="<?php echo $msg->id; ?>">
       <div>
         <p class="preview">
-          <strong>
+          <span class="conversation-partner">
           <?php
           if (isset($msg->conversation_partner_id)) {
             echo ucwords(strtolower(User::get_from_id($msg->conversation_partner_id)->username));
@@ -47,7 +47,7 @@ if (count($msgs) === 0) {
             echo '<em>👻</em>';
           }
           ?>
-          </strong>
+          </span>
           <?php
           $date = strtotime($msg->sent_time);
           $date_format = 'g:i A';
@@ -78,6 +78,7 @@ if (count($msgs) === 0) {
   </div>
   <div class="message-viewer">
     <div class="back-navigation"><a title="Return to messages" href onclick="navigateToChooser(event)">⬅️</a></div>
+    <div class="conversation-partner"></div>
     <div class="message-content"><div class="center">Select a message to expand the conversation.</div></div>
     <form id="message-form" method="post"></form>
   </div>

@@ -625,6 +625,20 @@ a.new-notifications {
   padding: 0.5em;
 }
 
+.conversation-partner {
+  font-weight: bold;
+}
+
+.message-viewer > .conversation-partner {
+  display: none;
+  position: absolute;
+  padding: 0.5em;
+  margin: 0.2em;
+  left: 7em;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 1em;
+}
+
 @media screen and (max-width: 1200px) {
 .gift-widget {
   padding: 1vh 10vw;
@@ -750,6 +764,9 @@ a.new-notifications {
   background: #fdfdfd;
 }
 .back-navigation {
+  display: block;
+}
+.message-viewer > .conversation-partner {
   display: block;
 }
 }

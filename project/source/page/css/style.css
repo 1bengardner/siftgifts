@@ -84,8 +84,8 @@ nav li {
   vertical-align: middle;
 }
 
-nav li:not(:first-child) {
-  margin-left: 0.5em;
+nav li {
+  margin: 0 0.25em;
 }
 
 a:active, button:active {

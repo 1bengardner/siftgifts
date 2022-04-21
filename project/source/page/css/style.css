@@ -747,6 +747,9 @@ a.new-notifications {
 .message-chooser.visible-on-mobile, .message-viewer.visible-on-mobile {
   display: block;
 }
+.message-content {
+  margin-top: 2em;
+}
 .message-content.old-content {
   display: none;
 }

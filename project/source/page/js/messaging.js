@@ -27,7 +27,7 @@ function setContent(replyable, ...messageData) {
   
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
-    messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
+    messageEntry = `<input class="message-entry" placeholder="Type a message…" minlength="1" required></input>`;
   }
   document.getElementById('message-form').innerHTML = messageEntry;
   document.getElementById('message-form').onsubmit = function(e) {

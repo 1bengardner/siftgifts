@@ -59,9 +59,9 @@ if (count($msgs) === 0) {
             $date_format = 'l';
           }
           ?>
-          <span class="preview right last-message-time"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
+          <span class="preview right last-message-time smaller muted"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
         </p>
-        <p class="preview subheading">
+        <p class="preview subheading smaller">
           <?php
           if ($msg->from === $_SESSION['id']) {
             echo '<em>'.htmlentities($msg->body).'</em>';

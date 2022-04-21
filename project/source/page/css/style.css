@@ -639,6 +639,10 @@ a.new-notifications {
   border-radius: 1em;
 }
 
+.smaller {
+  font-size: smaller;
+}
+
 @media screen and (max-width: 1200px) {
 .gift-widget {
   padding: 1vh 10vw;

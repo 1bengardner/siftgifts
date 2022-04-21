@@ -21,7 +21,10 @@ function setContent(replyable, ...messageData) {
     let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
   content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted "+(msg['unread'] ? 'unread' : '')+"'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
   });
+  document.querySelectorAll('.message-content')[0].classList.remove('old-content');
   document.querySelectorAll('.message-content')[0].innerHTML = content;
+  document.querySelectorAll('.message-chooser-message.selected')[0].classList.remove('unread');
+  
   let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
     messageEntry = `<input class="message-entry" placeholder="Type a message…"></input>`;
@@ -72,14 +75,13 @@ function getMessages(id, messageCache, uri) {
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
-      document.querySelectorAll('.message-chooser-message.selected')[0].classList.remove('unread');
       messageCache[id] = JSON.parse(rq.responseText);
       getMessages(id, messageCache, uri);
     }
   }
   let loading = setTimeout(function() {
+    document.querySelectorAll('.message-content')[0].classList.remove('old-content');
     document.querySelectorAll('.message-content')[0].innerHTML = `
-<?xml version="1.0" encoding="utf-8"?>
 <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 <g transform="rotate(0 50 50)">
   <rect x="47" y="28" rx="3" ry="6" width="6" height="12" fill="#985dbf">
@@ -135,8 +137,19 @@ function getMessages(id, messageCache, uri) {
   rq.send();
 }
 
+function navigateToChooser(e) {
+    document.querySelectorAll('.message-viewer')[0].classList.remove('visible-on-mobile');
+    document.querySelectorAll('.message-chooser')[0].classList.add('visible-on-mobile');
+    e.preventDefault();
+}
+
 document.querySelectorAll('.message-chooser-message').forEach(message => {
   message.onclick = function() {
+    document.querySelectorAll('.message-chooser')[0].classList.remove('visible-on-mobile');
+    document.querySelectorAll('.message-viewer')[0].classList.add('visible-on-mobile');
+    
+    document.querySelectorAll('.message-content')[0].classList.add('old-content');
+    
     document.querySelectorAll('.message-chooser-message').forEach(message => {
       message.classList.remove('selected');
     });

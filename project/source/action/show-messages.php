@@ -16,7 +16,7 @@ if (count($msgs) === 0) {
 } else {
 ?>
 <div class="message-grid">
-  <div class="message-chooser">
+  <div class="message-chooser visible-on-mobile">
   <?php
   foreach ($msgs as $msg_data) {
     $msg = new UserMessage($msg_data);
@@ -77,6 +77,7 @@ if (count($msgs) === 0) {
 ?>
   </div>
   <div class="message-viewer">
+    <div class="back-navigation"><a title="Return to messages" href onclick="navigateToChooser(event)">⬅️</a></div>
     <div class="message-content"><div class="center">Select a message to expand the conversation.</div></div>
     <form id="message-form" method="post"></form>
   </div>

@@ -509,7 +509,7 @@ li::marker {
 
 .message-chooser-message.selected {
   background: #f5efff;
-  cursor: auto
+  cursor: auto;
 }
 
 .message-chooser-message:nth-of-type(1) {
@@ -557,6 +557,7 @@ li::marker {
 .message-entry {
   width: 90%;
   padding: 1em;
+  margin-top: -0.5em;
   margin-bottom: 1em;
   border-radius: 2em;
   border-style: none;
@@ -624,6 +625,12 @@ a.new-notifications {
   padding: 0 0.4em;
   border-radius: 3em;
   box-shadow: #fff 0 0 0.1em 0.1em;
+}
+
+.back-navigation {
+  display: none;
+  position: fixed;
+  padding: 0.5em;
 }
 
 @media screen and (max-width: 1200px) {
@@ -719,5 +726,37 @@ a.new-notifications {
 }
 .wishlist-header-label {
   display: none;
+}
+/* Messaging */
+.message-grid {
+  display: block;
+}
+.message-chooser-message {
+  border-right: 4px solid #f5efff;
+}
+.message-chooser, .message-viewer {
+  display: none;
+}
+.message-chooser.visible-on-mobile, .message-viewer.visible-on-mobile {
+  display: block;
+}
+.message-content.old-content {
+  display: none;
+}
+.message-content.old-content + #message-form {
+  display: none;
+}
+.message-chooser-message.selected {
+  background: #fbf8ff;
+  cursor: pointer;
+}
+.message-chooser-message.selected.unread {
+  background: linear-gradient(to left, #fbf8ff, #e4ffeb);
+}
+.message-chooser-message.selected:hover {
+  background: #fdfdfd;
+}
+.back-navigation {
+  display: block;
 }
 }

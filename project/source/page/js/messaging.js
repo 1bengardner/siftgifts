@@ -81,6 +81,7 @@ function getMessages(id, messageCache, uri) {
   }
   let loading = setTimeout(function() {
     document.querySelectorAll('.message-content')[0].classList.remove('old-content');
+    document.getElementById('message-form').innerHTML = '';
     document.querySelectorAll('.message-content')[0].innerHTML = `
 <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 <g transform="rotate(0 50 50)">

@@ -544,6 +544,7 @@ li::marker {
   padding: 1em;
   border-radius: 1em;
   margin: 0.5em;
+  overflow-wrap: anywhere;
 }
 
 .sent-message p {

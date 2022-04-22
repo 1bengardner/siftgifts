@@ -41,7 +41,7 @@ function setContent(replyable, ...messageData) {
 function sendMessage() {
   let message = document.querySelectorAll('.message-entry')[0].value;
   let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
-  let selectedMessage = document.querySelectorAll('.message-chooser-message.selected .preview')[0];
+  let selectedMessageBody = document.querySelectorAll('.message-chooser-message.selected .last-message-body')[0];
   let rq = new XMLHttpRequest();
   rq.open("POST", "/action/submit-message", true);
   const params = {
@@ -56,7 +56,7 @@ function sendMessage() {
       
       let node = document.createElement("em");
       node.textContent = message;
-      selectedMessage.replaceChildren(node);
+      selectedMessageBody.replaceChildren(node);
       document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, localeStrings['time']);
       // TODO: Move updated message chooser message to the top of the list
     }

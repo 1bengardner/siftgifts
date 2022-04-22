@@ -584,6 +584,9 @@ li::marker {
 .received-message .unread {
   animation: flash 2.5s ease-out;
 }
+.received-message .unread * {
+  color: inherit;
+}
 
 .sent-message p:not(.unread) .message-time-sent::after {
   margin: 0 0.5em;

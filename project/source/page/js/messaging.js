@@ -40,6 +40,8 @@ function setContent(replyable, ...messageData) {
 
 function sendMessage() {
   let message = document.querySelectorAll('.message-entry')[0].value;
+  document.querySelectorAll('.message-entry')[0].value = "";
+  document.querySelectorAll('.message-entry')[0].setAttribute("placeholder", "Sending…");
   let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
   let selectedMessageBody = document.querySelectorAll('.message-chooser-message.selected .last-message-body')[0];
   let rq = new XMLHttpRequest();
@@ -57,6 +59,7 @@ function sendMessage() {
       let node = document.createElement("em");
       node.textContent = message;
       selectedMessageBody.replaceChildren(node);
+      
       document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, localeStrings['time']);
       // TODO: Move updated message chooser message to the top of the list
     }

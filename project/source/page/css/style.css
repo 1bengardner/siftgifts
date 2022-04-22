@@ -239,6 +239,7 @@ hr.expand {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  column-gap: 20%
 }
 
 .message-grid {

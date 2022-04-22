@@ -483,6 +483,7 @@ li::marker {
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
   max-width: 10px;
+  max-height: 10px;
   background-color: rgba(160, 0, 255, 0.05);
 }
 

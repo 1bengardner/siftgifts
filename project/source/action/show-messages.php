@@ -35,9 +35,8 @@ if (count($msgs) === 0) {
       class="message-chooser-message <?php if ($msg->unread && ($msg->from != $_SESSION['id'] || $msg->conversation_partner_id == $_SESSION['id'])) echo "unread"; ?>"
       conversation="<?php echo $msg->conversation_partner_id; ?>"
       last-message="<?php echo $msg->id; ?>">
-      <div>
-        <p class="preview">
-          <span class="conversation-partner">
+      <p class="preview">
+        <span class="conversation-partner">
           <?php
           if (isset($msg->conversation_partner_id)) {
             echo ucwords(strtolower(User::get_from_id($msg->conversation_partner_id)->username));
@@ -47,30 +46,29 @@ if (count($msgs) === 0) {
             echo '<em>👻</em>';
           }
           ?>
-          </span>
-          <?php
-          $date = strtotime($msg->sent_time);
-          $date_format = 'g:i A';
-          if ($date < strtotime('first day of january this year')) {
-            $date_format = 'Y';
-          } else if ($date < strtotime('last Sunday')) {
-            $date_format = 'M j';
-          } else if ($date < strtotime('today')) {
-            $date_format = 'l';
-          }
-          ?>
-          <span class="preview right last-message-time smaller muted"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
-        </p>
-        <p class="preview subheading smaller">
-          <?php
-          if ($msg->from === $_SESSION['id']) {
-            echo '<em>'.htmlentities($msg->body).'</em>';
-          } else {
-            echo htmlentities($msg->body);
-          }
-          ?>
-        </p>
-      </div>
+        </span>
+        <?php
+        $date = strtotime($msg->sent_time);
+        $date_format = 'g:i A';
+        if ($date < strtotime('first day of january this year')) {
+          $date_format = 'Y';
+        } else if ($date < strtotime('last Sunday')) {
+          $date_format = 'M j';
+        } else if ($date < strtotime('today')) {
+          $date_format = 'l';
+        }
+        ?>
+        <span class="last-message-time right smaller muted"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
+      </p>
+      <p class="last-message-body preview subheading smaller">
+        <?php
+        if ($msg->from === $_SESSION['id']) {
+          echo '<em>'.htmlentities($msg->body).'</em>';
+        } else {
+          echo htmlentities($msg->body);
+        }
+        ?>
+      </p>
     </div>
 <?php
   }

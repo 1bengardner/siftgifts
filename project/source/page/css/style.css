@@ -388,6 +388,10 @@ input.wishlist-link, input#search {
   max-width: 65vw;
 }
 
+.wishlist-link {
+  cursor: text;
+}
+
 input[type=checkbox] {
   width: 1em;
   height: 1em;

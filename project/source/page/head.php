@@ -7,5 +7,5 @@
     <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800">
     <title><?php echo TITLE; ?></title>
-    <meta name="description" content="Create and share your online wishlist. Friends and family can reserve gifts easily: no signup needed.">
+    <meta name="description" content="Create and share your online wishlist.">
   </head>

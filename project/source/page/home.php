@@ -26,7 +26,7 @@
       </nav>
       <div>
         <?php $wishlist = 'https://sift.gifts/wishlist/'.strtolower($user->username); ?>
-        <p>Share your wishlist:<span class="unbreakable"><input class="wishlist-link" disabled id="foo" type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')">📋</button></span></p>
+        <p><span class="unbreakable"><input title="Your wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')" url="<?php echo $wishlist; ?>">📎</button></span></p>
       </div>
       <div class="home-greeting">
         <h1>
@@ -48,4 +48,5 @@
       </div>
     </div>
   </body>
+  <script src="/page/js/share-wishlist.js" type="text/javascript"></script>
 </html>

@@ -6,6 +6,10 @@ body, button {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 h1 {
   font-weight: 800;
   margin: 0 auto;
@@ -380,7 +384,6 @@ div.reserved {
 
 .clipboard-button {
   border: 2px dashed #433940;
-  cursor: pointer;
 }
 
 input.wishlist-link, input#search {
@@ -562,14 +565,32 @@ li::marker {
 }
 
 .message-entry {
-  width: 90%;
-  padding: 1em;
-  margin-top: -0.5em;
-  margin-bottom: 1em;
-  border-radius: 2em;
+  width: calc(90% - 5rem);
+  padding: 1rem;
+  margin: -0.5rem 0 1rem 1rem;
+  border-radius: 2rem 0 0 2rem;
   border-style: none;
   box-sizing: border-box;
+}
+.message-entry:disabled {
+  width: calc(90% - 1rem);
+  margin: -0.5rem 0 1rem 0;
+  border-radius: 2rem;
   outline: solid #fbf8ff;
+}
+
+.send-button {
+  font-weight: bold;
+  color: #fff;
+  background-color: rgb(137, 206, 255);
+  padding: 1rem 1.5rem;
+  margin-right: 1rem;
+  border-radius: 0 2em 2em 0;
+  border-style: none;
+  box-sizing: border-box;
+}
+.send-button:hover {
+  background-color: #abdcff;  
 }
 
 .message-time-sent {

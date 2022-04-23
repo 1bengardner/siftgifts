@@ -25,11 +25,13 @@ function setContent(replyable, ...messageData) {
   document.querySelectorAll('.message-content')[0].innerHTML = content;
   document.querySelectorAll('.message-chooser-message.selected')[0].classList.remove('unread');
   
-  let messageEntry = `<input disabled class="message-entry" placeholder="You cannot reply to guests."></input>`;
+  let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
-    messageEntry = `<input class="message-entry" placeholder="Type a message…" minlength="1" required></input>`;
+    let messageEntry = `<input class="message-entry" type="text" placeholder="Type a message…" minlength="1" required></input>`;
+    let sendButton = `<button type="submit" class="send-button" title="Send">✓</button>`
+    messageFormHTML = messageEntry + sendButton;
   }
-  document.getElementById('message-form').innerHTML = messageEntry;
+  document.getElementById('message-form').innerHTML = messageFormHTML;
   document.getElementById('message-form').onsubmit = function(e) {
     sendMessage();
     e.preventDefault();

@@ -24,16 +24,14 @@ if (count($msgs) === 0) {
   ?>
     <div
       <?php
-      if (isset($msg->conversation_partner_id)) {
-        echo 'title="'.htmlentities($msg->body).'"';
-      } else if (isset($msg->guest_name)) {
-        echo 'title="Guest message"'.ucwords(strtolower($msg->guest_name));
-      } else {
+      if (isset($msg->guest_name)) {
+        echo 'title="Guest message"';
+      } else if (!isset($msg->conversation_partner_id)) {
         echo 'title="Anonymous message"';
       }
       ?>
-      class="message-chooser-message <?php if ($msg->unread && ($msg->from != $_SESSION['id'] || $msg->conversation_partner_id == $_SESSION['id'])) echo "unread"; ?>"
-      conversation="<?php echo $msg->conversation_partner_id; ?>"
+      class="message-chooser-message<?php if ($msg->unread && ($msg->from != $_SESSION['id'] || $msg->conversation_partner_id == $_SESSION['id'])) echo " unread"; ?>"
+      <?php if ($msg->conversation_partner_id) echo 'conversation="'.$msg->conversation_partner_id.'"'; ?>
       last-message="<?php echo $msg->id; ?>">
       <p class="preview">
         <span class="conversation-partner">
@@ -63,7 +61,7 @@ if (count($msgs) === 0) {
       <p class="last-message-body preview subheading smaller">
         <?php
         if ($msg->from === $_SESSION['id']) {
-          echo '<em>'.htmlentities($msg->body).'</em>';
+          echo '<span class="sent'.($msg->unread ? '' : ' seen').'">'.htmlentities($msg->body).'</span>';
         } else {
           echo htmlentities($msg->body);
         }

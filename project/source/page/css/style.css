@@ -587,13 +587,26 @@ li::marker {
   animation: flash 2.5s ease-out;
 }
 
-.sent-message p:not(.unread) .message-time-sent::after {
+.sent-message p .message-time-sent::after {
   margin: 0 0.5em;
   letter-spacing: -0.5em;
-  content: " ✔️✔️";
+  content: " ✔️";
+  font-style: italic;
 }
 
-/* TODO: Fix this section up; it's nasty */
+.sent-message p:not(.unread) .message-time-sent::after {
+  content: " ✔️✔️";
+  color: #539;
+}
+
+.last-message-body .sent.seen::before {
+  margin-right: 0.5em;
+  content: "🇷";
+  color: #539;
+  font-style: normal;
+  font-weight: bold;
+}
+
 .wishlist-header, .messaging-header {
   display: inline-block;
   vertical-align: middle;
@@ -644,6 +657,10 @@ a.new-notifications {
 
 .smaller {
   font-size: smaller;
+}
+
+.last-message-body > .sent {
+  font-style: italic;
 }
 
 @media screen and (max-width: 1200px) {

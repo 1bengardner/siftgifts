@@ -590,6 +590,9 @@ li::marker {
   box-sizing: border-box;
 }
 .send-button:hover {
+  background-color: rgb(137, 206, 255);
+}
+.send-button:active {
   background-color: #abdcff;  
 }
 

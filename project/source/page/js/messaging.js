@@ -28,7 +28,7 @@ function setContent(replyable, ...messageData) {
   let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
     let messageEntry = `<input class="message-entry" type="text" placeholder="Type a message…" minlength="1" required></input>`;
-    let sendButton = `<button type="submit" class="send-button" title="Send">✓</button>`
+    let sendButton = `<button type="submit" class="send-button" title="Send">➤</button>`
     messageFormHTML = messageEntry + sendButton;
   }
   document.getElementById('message-form').innerHTML = messageFormHTML;

@@ -34,12 +34,12 @@ if (count($msgs) === 0) {
       <?php if ($msg->conversation_partner_id) echo 'conversation="'.$msg->conversation_partner_id.'"'; ?>
       last-message="<?php echo $msg->id; ?>">
       <p class="preview">
-        <span class="conversation-partner">
+        <span class="conversation-partner<?php if (!isset($msg->conversation_partner_id)) echo ' muted'; ?>">
           <?php
           if (isset($msg->conversation_partner_id)) {
             echo ucwords(strtolower(User::get_from_id($msg->conversation_partner_id)->username));
           } else if (isset($msg->guest_name)) {
-            echo '<em>❓</em> '.ucwords(strtolower($msg->guest_name));
+            echo '<em>👻</em> '.ucwords(strtolower($msg->guest_name));
           } else {
             echo '<em>👻</em>';
           }

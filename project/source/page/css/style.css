@@ -93,7 +93,7 @@ nav li {
 }
 
 a:active, button:active {
-  color: #433940;
+  color: #7c6f7c;
 }
 
 button {
@@ -593,7 +593,8 @@ li::marker {
   background-color: rgb(137, 206, 255);
 }
 .send-button:active {
-  background-color: #abdcff;  
+  background-color: #abdcff;
+  color: #433940;
 }
 
 .message-time-sent {

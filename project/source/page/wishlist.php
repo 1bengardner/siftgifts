@@ -11,8 +11,9 @@
     <?php include 'header.php'; ?>
     <div class="center">
       <h2><a href="request">➕ Add a gift</a></h2>
-      <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" />
-      <label for="show-reserve">Click to enable reserve override</label><span class="warning-box"><strong>WARNING:</strong> You will see what's been reserved!</span>
+      <span class="warning-box">
+        <input id="show-reserve" type="checkbox" onclick="enableToggles();" autocomplete="off" /><label for="show-reserve">View/modify reserved gifts</label>
+      </span>
     </div>
     <div class="center wishlist-background">
       <h1 class="center">Your Wishlist</h1>

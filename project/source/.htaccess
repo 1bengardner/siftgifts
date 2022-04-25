@@ -10,6 +10,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^wishlist$ /page/wishlist
 # Re-route all top level requests to the /page subdirectory
 RewriteRule (^[A-Za-z0-9_-]+$) /page/$1
+# Re-route wishlist aliases
+RewriteRule ^(sg)/(.*) /wishlist/$2
 # Append .php for requests for files that exist but are missing .php
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule (.*) $1.php

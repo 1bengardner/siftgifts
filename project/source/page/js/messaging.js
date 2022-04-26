@@ -37,6 +37,7 @@ function setContent(replyable, ...messageData) {
     e.preventDefault();
   };
   let viewer = document.querySelectorAll('.message-viewer')[0];
+  document.querySelector('.message-entry').focus();
   viewer.scrollTop = viewer.scrollHeight;
 }
 

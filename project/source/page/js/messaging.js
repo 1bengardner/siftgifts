@@ -21,9 +21,9 @@ function setContent(replyable, ...messageData) {
     let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
   content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
   });
-  document.querySelectorAll('.message-content')[0].classList.remove('old-content');
-  document.querySelectorAll('.message-content')[0].innerHTML = content;
-  document.querySelectorAll('.message-chooser-message.selected')[0].classList.remove('unread');
+  document.querySelector('.message-content').classList.remove('old-content');
+  document.querySelector('.message-content').innerHTML = content;
+  document.querySelector('.message-chooser-message.selected').classList.remove('unread');
   
   let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
@@ -36,15 +36,15 @@ function setContent(replyable, ...messageData) {
     sendMessage();
     e.preventDefault();
   };
-  let viewer = document.querySelectorAll('.message-viewer')[0];
   document.querySelector('.message-entry').focus();
+  let viewer = document.querySelector('.message-viewer');
   viewer.scrollTop = viewer.scrollHeight;
 }
 
 function sendMessage() {
-  let message = document.querySelectorAll('.message-entry')[0].value;
-  document.querySelectorAll('.message-entry')[0].value = "";
-  document.querySelectorAll('.message-entry')[0].setAttribute("placeholder", "Sending…");
+  let message = document.querySelector('.message-entry').value;
+  document.querySelector('.message-entry').value = "";
+  document.querySelector('.message-entry').setAttribute("placeholder", "Sending…");
   let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
   let selectedMessageBody = document.querySelectorAll('.message-chooser-message.selected .last-message-body')[0];
   let rq = new XMLHttpRequest();
@@ -147,17 +147,17 @@ function getMessages(id, messageCache, uri) {
 }
 
 function navigateToChooser(e) {
-    document.querySelectorAll('.message-viewer')[0].classList.remove('visible-on-mobile');
-    document.querySelectorAll('.message-chooser')[0].classList.add('visible-on-mobile');
+    document.querySelector('.message-viewer').classList.remove('visible-on-mobile');
+    document.querySelector('.message-chooser').classList.add('visible-on-mobile');
     e.preventDefault();
 }
 
 document.querySelectorAll('.message-chooser-message').forEach(message => {
   message.onclick = function() {
-    document.querySelectorAll('.message-chooser')[0].classList.remove('visible-on-mobile');
-    document.querySelectorAll('.message-viewer')[0].classList.add('visible-on-mobile');
+    document.querySelector('.message-chooser').classList.remove('visible-on-mobile');
+    document.querySelector('.message-viewer').classList.add('visible-on-mobile');
     
-    document.querySelectorAll('.message-content')[0].classList.add('old-content');
+    document.querySelector('.message-content').classList.add('old-content');
     
     document.querySelectorAll('.message-chooser-message').forEach(message => {
       message.classList.remove('selected');

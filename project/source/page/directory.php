@@ -10,7 +10,7 @@
       <h1 class="center">Select a Wishlist</h1>
       <form id="wishlist-select">
         <span class="unbreakable">
-          <input id="search" list="users" name="u" placeholder="Search for someone&hellip;" value="<?php echo $_GET['u'] ?>" />
+          <input id="search" list="users" name="u" placeholder="Search for someone&hellip;" value="<?php if (isset($_GET['u'])) echo $_GET['u'] ?>" />
           <button class="search-button" type="submit" title="Find wishlist">🔍</button>
         </span>
         <datalist id="users">

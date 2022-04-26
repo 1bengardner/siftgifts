@@ -4,6 +4,7 @@ require_once '../action/start-session.php';
 $message_box_css_classes = [
     NotificationLevel::Success => "success-box",
     NotificationLevel::Error => "error-box",
+    NotificationLevel::Info => "info-box",
 ];
 if (isset($_SESSION["notifications"])) {
 ?>

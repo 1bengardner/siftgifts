@@ -61,6 +61,7 @@ abstract class NotificationLevel
 {
   const Success = 1;
   const Error = 2;
+  const Info = 4;
 }
 abstract class NotificationText
 {
@@ -88,6 +89,7 @@ abstract class NotificationText
   const RegistrationSuccess = "You are now signed up with Sift.gifts.";
   const ChangeProfileSuccess = "You have successfully updated your profile.";
   const MessageSent = "Message sent.";
+  const WishlistNotFound = "There is no wishlist under that name.";
 }
 class Notification
 {

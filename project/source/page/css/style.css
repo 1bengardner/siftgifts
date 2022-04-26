@@ -39,7 +39,7 @@ li h2 {
   color: #985dbf;
 }
 
-a:not(.link) {
+a:not(.link), .search-button {
   font-weight: 500;
   color: #433940;
   background-color: #fff;
@@ -306,8 +306,8 @@ hr.expand {
 }
 
 .info-box {
-  background-color: rgba(0, 128, 255, 0.25);
-  border: 2px solid rgba(0, 64, 128, 0.5);
+  background-color: rgba(64, 192, 255, 0.25);
+  border: 2px solid rgba(32, 96, 128, 0.5);
 }
 
 .info-box p:before {
@@ -582,7 +582,7 @@ li::marker {
 .send-button {
   font-weight: bold;
   color: #fff;
-  background-color: rgb(137, 206, 255);
+  background-color: rgb(255, 206, 255);
   padding: 1rem 1.5rem;
   margin-right: 1rem;
   border-radius: 0 2em 2em 0;

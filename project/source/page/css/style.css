@@ -145,7 +145,7 @@ input:invalid, textarea:invalid {
 }
 
 input:required::placeholder, textarea:required::placeholder {
-  font-style: italic;
+  font-weight: bold;
 }
 
 input:not(.submit-button):focus, textarea:focus {
@@ -292,6 +292,7 @@ hr.expand {
 }
 
 .success-box {
+  color: rgb(0, 64, 0);
   background-color: rgba(0, 255, 0, 0.25);
   border: 2px solid rgba(0, 128, 0, 0.5);
 }
@@ -301,6 +302,7 @@ hr.expand {
 }
 
 .error-box {
+  color: rgb(64, 0, 0);
   background-color: rgba(255, 0, 0, 0.25);
   border: 2px solid rgba(128, 0, 0, 0.5);
 }
@@ -310,6 +312,7 @@ hr.expand {
 }
 
 .info-box {
+  color: rgb(32, 96, 128);
   background-color: rgba(64, 192, 255, 0.25);
   border: 2px solid rgba(32, 96, 128, 0.5);
 }
@@ -319,7 +322,7 @@ hr.expand {
 }
 
 .warning-box {
-  color: rgb(130, 80, 0);
+  color: rgb(128, 80, 0);
   background-color: rgba(255, 255, 0, 0.25);
   border: 2px solid rgba(128, 80, 0, 0.5);
 }
@@ -374,7 +377,7 @@ div.reserved {
 }
 
 .home-greeting {
-  padding: 3em 0;
+  padding: 2em 0;
 }
 
 .home-greeting svg {
@@ -703,9 +706,6 @@ a.new-notifications {
 .splash-image {
   display: none;
 }
-.home-greeting {
-  display: none;
-}
 .news-image, .about-image {
   display: none;
 }
@@ -721,6 +721,9 @@ a.new-notifications {
   max-width: 15em;
   overflow-x: hidden;
   text-overflow: ellipsis;
+}
+.wishlist-header-buttons {
+  padding: 0.25em 0.5em;
 }
 }
 
@@ -788,6 +791,9 @@ a.new-notifications {
   display: none;
 }
 .wishlist-header-label {
+  display: none;
+}
+.home-greeting {
   display: none;
 }
 /* Messaging */

@@ -12,15 +12,21 @@
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Edit profile</h2>
       <p class="subheading">Change your display name, password, or both.</p>
-      <hr class="large" />
       <?php include 'message-box.php'; ?>
       <div>
         <h3>Display name</h3>
-        <input type="text" name="name" placeholder="Display name" value="<?php echo $user->username; ?>" maxlength="30" />
+        <div class="subheading">
+          <input type="text" name="name" placeholder="Display name" value="<?php echo $user->username; ?>" maxlength="30" />
+        </div>
+        <div>
+          <span class="info-box">
+            <input id="show-in-wishlist" type="checkbox" onclick="enableToggles();" autocomplete="off" /><label for="show-in-wishlist">Visible in wishlist search</label>
+          </span>
+        </div>
       </div>
       <div>
         <h3>Password</h3>
-        <div>
+        <div class="subheading">
           <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" />
         </div>
         <div>

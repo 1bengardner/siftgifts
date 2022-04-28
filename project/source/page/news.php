@@ -7,12 +7,20 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v6.0</h2> <h3 class="changelog-heading muted"></h3>
+        <ul>
+          <li>You can now search wishlists</li>
+          <ul>
+            <li>You can <a class="link" href="directory">find a wishlist</a> by searching for someone</li>
+            <li>Signed-in users can opt in in settings (👤)</li>
+          </ul>
+        </ul>
         <h2 class="changelog-heading version-number">v5.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now send messages</li>
           <ul>
             <li><em>Anybody</em> can send a message to a user from the 📨 button on their wishlist</li>
-            <li>Messages can be read and replied to from the 📪/📫 button after logging in</li>
+            <li>Messages can be read and replied to from the 📪 button after logging in</li>
           </ul>
         </ul>
         <h2 class="changelog-heading version-number">v4.1</h2> <h3 class="changelog-heading muted"></h3>

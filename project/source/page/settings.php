@@ -20,7 +20,7 @@
         </div>
         <div>
           <span class="info-box">
-            <input id="show-in-wishlist" type="checkbox" onclick="enableToggles();" autocomplete="off" /><label for="show-in-wishlist">Visible in wishlist search</label>
+            <input id="show-in-wishlist" name="visible-in-directory" type="checkbox" <?php if ($user->visible) echo "checked"; ?> autocomplete="off" /><label for="show-in-wishlist" title='Select this to appear in "Find a wishlist"'>Appear in wishlist search</label>
           </span>
         </div>
       </div>

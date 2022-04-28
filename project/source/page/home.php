@@ -21,13 +21,12 @@
             //echo '<li><h2><a href="messaging">📪 Messages</a></h2></li>';
           }
           ?>
-          <li><h2><a href="wishlist">📜 Wishlist</a></h2></li>
+          <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
         </ul>
       </nav>
-      <div>
-        <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>
-        <p><span class="unbreakable"><input title="Your wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')" url="<?php echo $wishlist; ?>">📎</button></span></p>
-      </div>
+      <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>
+      <p><span class="unbreakable"><input title="Your wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')" url="<?php echo $wishlist; ?>">📎</button></span></p>
+      <p><a href="directory">Find a wishlist</a></p>
       <div class="home-greeting">
         <h1>
           <?php

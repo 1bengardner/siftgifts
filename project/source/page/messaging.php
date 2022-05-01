@@ -12,7 +12,7 @@
     <?php include 'notification-box.php'; ?>
     <div class="center">
       <h2 class="messaging-header">Messages for <?php echo ucwords(strtolower($user->username)); ?></h2>
-      <a href="/send-message">➕ Compose</a>
+      <a href="/send-message">📝 Compose</a>
     </div>
     <div>
       <?php include '../action/show-messages.php'; ?>

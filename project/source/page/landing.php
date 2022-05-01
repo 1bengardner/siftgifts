@@ -4,7 +4,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include '../action/redirect-to-home.php'; ?>
-    <?php include 'header-with-login.php'; ?>
+    <?php include 'header-on-landing.php'; ?>
     <?php include 'message-box.php'; ?>
     <div class="center">
       <div class="splash-image">

@@ -41,12 +41,19 @@ function setContent(replyable, ...messageData) {
   viewer.scrollTop = viewer.scrollHeight;
 }
 
+function sendAlertEmail() {
+  let rq = new XMLHttpRequest();
+  rq.open("POST", "/action/send-message-alert-email", true);
+  rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  rq.send();
+}
+
 function sendMessage() {
   let message = document.querySelector('.message-entry').value;
   document.querySelector('.message-entry').value = "";
   document.querySelector('.message-entry').setAttribute("placeholder", "Sending…");
-  let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
-  let selectedMessageBody = document.querySelectorAll('.message-chooser-message.selected .last-message-body')[0];
+  let conversationPartner = document.querySelector('.message-chooser-message.selected').getAttribute('conversation');
+  let selectedMessageBody = document.querySelector('.message-chooser-message.selected .last-message-body');
   let rq = new XMLHttpRequest();
   rq.open("POST", "/action/submit-messaging-message", true);
   const params = {
@@ -63,7 +70,9 @@ function sendMessage() {
       node.textContent = message;
       selectedMessageBody.replaceChildren(node);
       
-      document.querySelectorAll('.message-chooser-message.selected .last-message-time')[0].textContent = new Date().toLocaleString(undefined, localeStrings['time']);
+      document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, localeStrings['time']);
+      
+      sendAlertEmail();
       // TODO: Move updated message chooser message to the top of the list
     }
   }
@@ -71,8 +80,8 @@ function sendMessage() {
 }
 
 function getMessages(id, messageCache, uri) {
-  let name = document.querySelectorAll('.message-chooser-message.selected .conversation-partner')[0].textContent;
-  document.querySelectorAll('.message-viewer > .conversation-partner')[0].textContent = name;
+  let name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
+  document.querySelector('.message-viewer > .conversation-partner').textContent = name;
   if (id in messageCache) {
     setContent(messageCache == messagesByFrom, ...messageCache[id]);
     return;
@@ -88,9 +97,9 @@ function getMessages(id, messageCache, uri) {
     }
   }
   let loading = setTimeout(function() {
-    document.querySelectorAll('.message-content')[0].classList.remove('old-content');
+    document.querySelector('.message-content').classList.remove('old-content');
     document.getElementById('message-form').innerHTML = '';
-    document.querySelectorAll('.message-content')[0].innerHTML = `
+    document.querySelector('.message-content').innerHTML = `
 <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
 <g transform="rotate(0 50 50)">
   <rect x="47" y="28" rx="3" ry="6" width="6" height="12" fill="#985dbf">

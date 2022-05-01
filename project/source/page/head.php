@@ -6,6 +6,7 @@
   href="https://fonts.googleapis.com/css2?family=Festive&text=Sift.gifts">
     <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700">
     <title><?php echo TITLE; ?></title>
     <meta name="description" content="Create and share your online wishlist.">
   </head>

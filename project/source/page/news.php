@@ -19,7 +19,7 @@
         <ul>
           <li>You can now send messages</li>
           <ul>
-            <li><em>Anybody</em> can send a message to a user from the 📨 button on their wishlist</li>
+            <li><em>Anybody</em> can send a message to a user from the 📮 button on their wishlist</li>
             <li>Messages can be read and replied to from the 📪 button after logging in</li>
           </ul>
         </ul>

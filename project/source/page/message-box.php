@@ -6,9 +6,9 @@ $message_box_css_classes = [
     NotificationLevel::Error => "error-box",
     NotificationLevel::Info => "info-box",
 ];
-if (isset($_SESSION["notifications"])) {
 ?>
-<div class="center">
+<div class="notification-box">
+<?php if (isset($_SESSION["notifications"])) { ?>
   <div class="<?php echo $message_box_css_classes[$_SESSION["notifications"][0]->level]; ?>">
     <?php
     // For now, I am assuming all notifications are in the same level
@@ -22,7 +22,7 @@ if (isset($_SESSION["notifications"])) {
     unset($_SESSION["notifications"]);
     ?>
   </div>
-</div>
 <?php
 }
 ?>
+</div>

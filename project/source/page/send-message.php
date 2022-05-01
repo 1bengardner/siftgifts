@@ -7,11 +7,7 @@
     <?php $recipient = isset($_GET['to']) ? htmlentities($_GET['to']) : null; ?>
     <form id="message-form" enctype="multipart/form-data" onsubmit="send();">
       <h2>Send a message<?php if (isset($recipient)) echo " to ".$recipient; ?></h2>
-      <div hidden id="notifications">
-        <div class="success-box">
-          <p>Message sent!</p>
-        </div>
-      </div>
+      <?php include 'message-box.php'; ?>
       <div>
         <span>To:<input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required /></span>
       </div>

@@ -5,14 +5,14 @@ function send() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      if (rq.responseText) {
+      if (!rq.responseText) {
         window.location.href = "/messaging";
         return;
       }
-      // TODO: Use notifications instead of this
       document.getElementById("message").value = null;
-      document.getElementById("notifications").hidden = false;
       document.querySelector(".submit-button").disabled = false;
+      
+      document.querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
     }
   }
   const keys = [

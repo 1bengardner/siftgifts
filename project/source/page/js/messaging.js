@@ -48,7 +48,7 @@ function sendMessage() {
   let conversationPartner = document.querySelectorAll('.message-chooser-message.selected')[0].getAttribute('conversation');
   let selectedMessageBody = document.querySelectorAll('.message-chooser-message.selected .last-message-body')[0];
   let rq = new XMLHttpRequest();
-  rq.open("POST", "/action/submit-message", true);
+  rq.open("POST", "/action/submit-messaging-message", true);
   const params = {
     "to": conversationPartner,
     "message": message

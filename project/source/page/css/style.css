@@ -613,14 +613,14 @@ li::marker {
   border-radius: 1em;
 }
 
-@keyframes flash {
+@keyframes green-flash {
   0% {
     color: #3efa3e;
     background-color: #eefff3;
   }
 }
 .received-message .unread {
-  animation: flash 2.5s ease-out;
+  animation: green-flash 2.5s ease-out;
 }
 
 .sent-message p .message-time-sent::after {
@@ -697,6 +697,19 @@ a.new-notifications {
 
 .last-message-body > .sent {
   font-style: italic;
+}
+
+.notification-box {
+  text-align: center;
+}
+
+@keyframes notification-flash {
+  0% {
+    opacity: 0.1;
+  }
+}
+.notification-box {
+  animation: notification-flash 0.5s ease-out;
 }
 
 @media screen and (max-width: 1200px) {

@@ -90,6 +90,7 @@ abstract class NotificationText
   const ChangeProfileSuccess = "You have successfully updated your profile.";
   const MessageSent = "Message sent.";
   const WishlistNotFound = "There is no wishlist under that name.";
+  const ToDoesNotExist = "There is nobody with this name.";
 }
 class Notification
 {
@@ -171,6 +172,14 @@ class Validation
     }
     if (strlen($name) > 30) {
       return NotificationText::NameIsTooLong;
+    }
+    return false;
+  }
+  
+  public static function to_error($to)
+  {
+    if (!Validation::name_exists($to)) {
+      return NotificationText::ToDoesNotExist;
     }
     return false;
   }

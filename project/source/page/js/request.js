@@ -6,8 +6,9 @@ function request() {
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       document.getElementById("request-form").reset();
-      document.getElementById("message").hidden = false;
       document.querySelector(".submit-button").disabled = false;
+      
+      document.querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
     }
   }
   const keys = [

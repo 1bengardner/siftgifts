@@ -91,6 +91,7 @@ abstract class NotificationText
   const MessageSent = "Message sent.";
   const WishlistNotFound = "There is no wishlist under that name.";
   const ToDoesNotExist = "There is nobody with this name.";
+  const AddSuccess = "Added!";
 }
 class Notification
 {

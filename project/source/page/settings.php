@@ -34,10 +34,10 @@
         </div>
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Update profile" />
+        <input class="submit-button" type="submit" value="✍️ Update profile" />
       </div>
       <div class="links-section">
-        <a class="link" href="home">Return to home</a>
+        <a class="link" href="home">⬅️ Return to home</a>
       </div>
     </form>
   </body>

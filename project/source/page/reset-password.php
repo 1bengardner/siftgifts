@@ -32,7 +32,7 @@ if (!isset($_GET['email']) || !isset($_GET['code'])) {
         <input type="hidden" name="code" value="<?php echo $_GET['code'] ?>" />
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Reset password" />
+        <input class="submit-button" type="submit" value="⚙️ Reset password" />
       </div>
       <?php
       }

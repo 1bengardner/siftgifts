@@ -21,7 +21,7 @@
         <input type="password" name="confirm-password" placeholder="Confirm password" maxlength="255" required />
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Sign up" />
+        <input class="submit-button" type="submit" value="✨ Sign up" />
       </div>
       <div class="links-section">
         <a class="link" href="login">Log in</a>

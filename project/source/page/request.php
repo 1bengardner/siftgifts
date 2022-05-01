@@ -18,10 +18,10 @@
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Add gift"/>
+        <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
       <div class="links-section">
-        <a class="link" href="wishlist">Return to wishlist</a>
+        <a class="link" href="wishlist">⬅️ Return to wishlist</a>
       </div>
     </form>
   </body>

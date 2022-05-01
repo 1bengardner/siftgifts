@@ -20,7 +20,7 @@ if (!isset($_GET['email']) || !isset($_GET['code'])) {
       <div>
         <p>This verification link is invalid or expired.</p>
       </div>
-      <p><a href="/">Return</a></p>
+      <p><a href="/">Return to Sift.gifts</a></p>
       <?php
     } else {
       $_POST = $_GET;

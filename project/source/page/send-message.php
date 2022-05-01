@@ -24,13 +24,13 @@
         <textarea id="message" class="message" placeholder="Message" maxlength="5000" required></textarea>
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Send message"/>
+        <input class="submit-button" type="submit" value="📨 Send message"/>
       </div>
       <div class="links-section">
         <?php if (isset($recipient)) { ?>
-        <a class="link" href="/sg<?php echo '/'.strtolower($recipient); ?>">Return to <?php echo $recipient."'s"; ?> wishlist</a>
+        <a class="link" href="/sg<?php echo '/'.strtolower($recipient); ?>">⬅️ Return to <?php echo $recipient."'s"; ?> wishlist</a>
         <?php } else { ?>
-        <a class="link" href="/messaging">Return to your messages</a>
+        <a class="link" href="/messaging">⬅️ Return to your messages</a>
         <?php } ?>
       </div>
     </form>

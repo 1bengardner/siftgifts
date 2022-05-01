@@ -43,7 +43,7 @@
       </div>
       <div style="margin: 1em;">
         <div>All done?</div>
-        <div><a href="/logout">Log out</a></div>
+        <div><a href="/logout">🚪 Log out</a></div>
       </div>
     </div>
   </body>

@@ -15,10 +15,10 @@
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
       </div>
       <div>
-        <input class="submit-button" type="submit" value="Request password reset" />
+        <input class="submit-button" type="submit" value="🔃 Request password reset" />
       </div>
       <div class="links-section">
-        <a class="link" href="/login">Go back to login</a>
+        <a class="link" href="/login">⬅️ Go back to login</a>
       </div>
     </form>
   </body>

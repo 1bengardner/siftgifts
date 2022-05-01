@@ -7,7 +7,7 @@
     <form action="/action/submit-login.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Log in</h2>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <div>
         <input type="email" name="email" placeholder="E-mail" maxlength="320" required />
       </div>

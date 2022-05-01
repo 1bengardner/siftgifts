@@ -12,7 +12,7 @@
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Edit profile</h2>
       <p class="subheading">Change your display name, password, or both.</p>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <div>
         <h3>Display name</h3>
         <div class="subheading">

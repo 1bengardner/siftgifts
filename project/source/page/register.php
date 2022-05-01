@@ -7,7 +7,7 @@
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Sign up for Sift.gifts!</h2>
       <h3 class="subheading">(It's free!)</h3>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <div>
         <input type="text" name="name" placeholder="Display name" maxlength="30" required />
       </div>

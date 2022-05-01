@@ -7,5 +7,5 @@ require_once 'authenticate.php';
 $stmt = "CALL add_gift(?, ?, ?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments'], $_SESSION['id']]);
 $_SESSION["notifications"] = [new Notification(NotificationText::AddSuccess, NotificationLevel::Success)];
-include '../page/message-box.php';
+include '../page/notification-box.php';
 ?>

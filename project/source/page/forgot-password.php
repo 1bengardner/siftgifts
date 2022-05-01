@@ -7,7 +7,7 @@
     <form action="/action/submit-forgot-password.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Forgot your password?</h2>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <div>
         <p>That's okay&hellip;as long as you remember your e&#8209;mail!</p>
       </div>

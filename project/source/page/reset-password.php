@@ -12,7 +12,7 @@ if (!isset($_GET['email']) || !isset($_GET['code'])) {
     <form action="/action/submit-reset-password.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Reset password for <?php echo $_GET['email']; ?></h2>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <?php
       require_once '../util/utilities.php';
 

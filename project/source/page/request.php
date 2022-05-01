@@ -7,7 +7,7 @@
     <?php require_once '../action/authenticate.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
       <h2>Add to your wishlist</h2>
-      <?php include 'message-box.php'; ?>
+      <?php include 'notification-box.php'; ?>
       <div>
         <input id="name" type="name" placeholder="Gift name" maxlength="255" required />
       </div>

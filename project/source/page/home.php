@@ -9,7 +9,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <?php include 'message-box.php'; ?>
+    <?php include 'notification-box.php'; ?>
     <div class="center">
       <nav>
         <ul>

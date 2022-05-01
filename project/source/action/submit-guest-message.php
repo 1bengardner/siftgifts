@@ -18,7 +18,7 @@ foreach ($validations as $validation) {
 
 if (count($validation_errors) > 0) {
   $_SESSION["notifications"] = $validation_errors;
-  include '../page/message-box.php';
+  include '../page/notification-box.php';
   exit;
 }
 
@@ -29,7 +29,7 @@ if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
   $stmt = "INSERT INTO message(`to`, `from`, body, guest_name) VALUES (?, ?, ?, ?)";
   Database::run_statement($db, $stmt, [$to_id, null, $_POST['message'], $_POST['from'] ?: null]);
   $_SESSION["notifications"] = [new Notification(NotificationText::MessageSent, NotificationLevel::Success)];
-  include '../page/message-box.php';
+  include '../page/notification-box.php';
 } else {
   $stmt = "INSERT INTO message(`to`, `from`, body) VALUES (?, ?, ?)";
   Database::run_statement($db, $stmt, [$to_id, $_SESSION['id'], $_POST['message']]);

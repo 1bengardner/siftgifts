@@ -636,7 +636,6 @@ li::marker {
 }
 
 .last-message-body .sent.seen::before {
-  margin-right: 0.5em;
   content: "🇷";
   color: #539;
   font-style: normal;

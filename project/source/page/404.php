@@ -8,6 +8,6 @@
     <h2 class="subheading">Page not found!</h2>
     <h3>Sorry, there's nothing to see at this link.</h3>
     <p class="subheading">Please check to see if you or the person who sent you this link spelled it correctly.</p>
-    <p><a href="/">Return</a></p>
+    <p><a href="/">Return to Sift.gifts</a></p>
   </body>
 </html>

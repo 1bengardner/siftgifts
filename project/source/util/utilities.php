@@ -169,7 +169,7 @@ class Validation
       return NotificationText::NameExists;
     }
     if (!ctype_alnum(str_replace(array("-", "_"), "", $name))) {
-      return Message::NameIsBad;
+      return NotificationText::NameIsBad;
     }
     if (strlen($name) > 30) {
       return NotificationText::NameIsTooLong;

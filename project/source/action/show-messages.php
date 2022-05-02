@@ -39,9 +39,9 @@ if (count($msgs) === 0) {
           if (isset($msg->conversation_partner_id)) {
             echo ucwords(strtolower(User::get_from_id($msg->conversation_partner_id)->username));
           } else if (isset($msg->guest_name)) {
-            echo '<em>👻</em> '.ucwords(strtolower($msg->guest_name));
+            echo '👻 '.ucwords(strtolower($msg->guest_name));
           } else {
-            echo '<em>👻</em>';
+            echo '👻';
           }
           ?>
         </span>

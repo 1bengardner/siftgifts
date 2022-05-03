@@ -1,51 +1,36 @@
 var messagesById = {};
 var messagesByFrom = {};
+var timeEmailsSentByFrom = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
 
-function setContent(replyable, ...messageData) {
-  // From https://stackoverflow.com/a/8943487
-  function linkify(text) {
-    var urlRegex = /(\b(https):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    return text.replace(urlRegex, function(url) {
-      return '<a target="_blank" class="link" href="' + url + '">' + url + '</a>';
-    });
-  }
-  
-  let content = "";
-  let currentDate = new Date();
-  messageData.forEach(function(msg) {
-    let sentDate = new Date(msg['sent_time']);
-    let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
-  content += `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
+// From https://stackoverflow.com/a/8943487
+function linkify(text) {
+  var urlRegex = /(\b(https):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+  return text.replace(urlRegex, function(url) {
+    return '<a target="_blank" class="link" href="' + url + '">' + url + '</a>';
   });
-  document.querySelector('.message-content').classList.remove('old-content');
-  document.querySelector('.message-content').innerHTML = content;
-  document.querySelector('.message-chooser-message.selected').classList.remove('unread');
+}
   
-  let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
-  if (replyable) {
-    let messageEntry = `<input class="message-entry" type="text" placeholder="Type a message…" minlength="1" required></input>`;
-    let sendButton = `<button type="submit" class="send-button" title="Send">➤</button>`
-    messageFormHTML = messageEntry + sendButton;
-  }
-  document.getElementById('message-form').innerHTML = messageFormHTML;
-  document.getElementById('message-form').onsubmit = function(e) {
-    sendMessage();
-    e.preventDefault();
-  };
-  document.querySelector('.message-entry').focus();
-  let viewer = document.querySelector('.message-viewer');
-  viewer.scrollTop = viewer.scrollHeight;
+function toMessageContentString(msg) {
+  let currentDate = new Date();
+  let sentDate = new Date(msg['sent_time']);
+  let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
+  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
 }
 
-function sendAlertEmail() {
+function sendAlertEmail(id) {
+  let minuteDelay = 1;
+  if (id in timeEmailsSentByFrom && (new Date() - timeEmailsSentByFrom[id]) / 60000 < 1 * minuteDelay) {
+    return;
+  }
   let rq = new XMLHttpRequest();
   rq.open("POST", "/action/send-message-alert-email", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.send();
+  timeEmailsSentByFrom[id] = new Date();
 }
 
 function sendMessage() {
@@ -66,17 +51,108 @@ function sendMessage() {
       delete messagesByFrom[parseInt(conversationPartner)];
       getMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
       
-      let node = document.createElement("em");
-      node.textContent = message;
-      selectedMessageBody.replaceChildren(node);
-      
-      document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, localeStrings['time']);
-      
-      sendAlertEmail();
-      // TODO: Move updated message chooser message to the top of the list
+      sendAlertEmail(conversationPartner);
     }
   }
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
+  
+  let node = document.createElement("em");
+  node.textContent = message;
+  selectedMessageBody.replaceChildren(node);
+  
+  document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, localeStrings['time']);
+  
+  document.querySelector('.message-content').innerHTML += toMessageContentString(
+    {
+      'unsent': true,
+      'unread': true,
+      'is_sender': true,
+      'sent_time': new Date(),
+      'message': message
+    }
+  );
+  
+  let viewer = document.querySelector('.message-viewer');
+  viewer.scrollTop = viewer.scrollHeight;
+}
+
+function setContent(replyable, ...messageData) {
+  getUpdates();
+  let content = "";
+  messageData.forEach(function(msg) {
+    content += toMessageContentString(msg);
+  });
+  document.querySelector('.message-content').classList.remove('old-content');
+  document.querySelector('.message-content').innerHTML = content;
+  document.querySelector('.message-chooser-message.selected').classList.remove('unread');
+  
+  let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
+  if (replyable) {
+    let messageEntry = `<input class="message-entry" type="text" placeholder="Type a message…" minlength="1" required></input>`;
+    let sendButton = `<button type="submit" class="send-button" title="Send">➤</button>`
+    messageFormHTML = messageEntry + sendButton;
+  }
+  document.getElementById('message-form').innerHTML = messageFormHTML;
+  document.getElementById('message-form').onsubmit = function(e) {
+    sendMessage();
+    e.preventDefault();
+  };
+  document.querySelector('.message-entry').focus();
+}
+
+function getUpdates() {
+  function updateUnreadCount() {
+    let rq = new XMLHttpRequest();
+    rq.open("POST", "/action/get-unread-count", true);
+    rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    rq.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        document.querySelectorAll('.check-messages').forEach(function(p) {
+          if (rq.responseText == 0) {
+            p.querySelector('.notification-dot')?.remove();
+            return;
+          }
+          if (p.querySelector('.notification-dot')) {
+            p.querySelector('.notification-dot').textContent = rq.responseText;
+          } else {
+            let node = document.createElement("span");
+            node.classList.add("notification-dot");
+            node.textContent = rq.responseText;
+            p.appendChild(node);
+          }
+        });
+        
+        getUpdates.updatesRemaining -= 1;
+      }
+    }
+    rq.send();
+  }
+  
+  function updatePreviews() {
+    let rq = new XMLHttpRequest();
+    rq.open("POST", "/action/show-message-previews", true);
+    rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    rq.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        let selected = document.querySelector('.message-chooser-message.selected');
+        let selectedAttribute = selected.getAttribute('conversation') ? 'conversation' : 'last-message';
+        let selectedValue = selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
+        document.querySelector('.message-chooser').innerHTML = rq.responseText;
+        document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
+        wireMessageChooser();
+        
+        getUpdates.updatesRemaining -= 1;
+      }
+    }
+    rq.send();
+  }
+  
+  if (getUpdates.updatesRemaining) {
+    return;
+  }
+  getUpdates.updatesRemaining = 2;
+  updateUnreadCount();
+  updatePreviews();
 }
 
 function getMessages(id, messageCache, uri) {
@@ -161,24 +237,28 @@ function navigateToChooser(e) {
     e.preventDefault();
 }
 
-document.querySelectorAll('.message-chooser-message').forEach(message => {
-  message.onclick = function() {
-    document.querySelector('.message-chooser').classList.remove('visible-on-mobile');
-    document.querySelector('.message-viewer').classList.add('visible-on-mobile');
-    
-    document.querySelector('.message-content').classList.add('old-content');
-    
-    document.querySelectorAll('.message-chooser-message').forEach(message => {
-      message.classList.remove('selected');
-    });
-    message.classList.add('selected');
-    
-    let id = parseInt(message.getAttribute('conversation'));
-    if (isNaN(id)) {
-      id = parseInt(message.getAttribute('last-message'));
-      getMessages(id, messagesById, "/action/get-message?id=");
-    } else {
-      getMessages(id, messagesByFrom, "/action/get-messages?from=");
+function wireMessageChooser() {
+  document.querySelectorAll('.message-chooser-message').forEach(message => {
+    message.onclick = function() {
+      document.querySelector('.message-chooser').classList.remove('visible-on-mobile');
+      document.querySelector('.message-viewer').classList.add('visible-on-mobile');
+      
+      document.querySelector('.message-content').classList.add('old-content');
+      
+      document.querySelectorAll('.message-chooser-message').forEach(message => {
+        message.classList.remove('selected');
+      });
+      message.classList.add('selected');
+      
+      let id = parseInt(message.getAttribute('conversation'));
+      if (isNaN(id)) {
+        id = parseInt(message.getAttribute('last-message'));
+        getMessages(id, messagesById, "/action/get-message?id=");
+      } else {
+        getMessages(id, messagesByFrom, "/action/get-messages?from=");
+      }
     }
-  }
-});
+  });
+}
+
+wireMessageChooser();

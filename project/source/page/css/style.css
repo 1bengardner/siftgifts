@@ -624,10 +624,13 @@ li::marker {
 }
 
 .sent-message p .message-time-sent::after {
-  margin: 0 0.5em;
-  letter-spacing: -0.5em;
-  content: " ✔️";
+  margin: 0 0.7em;
+  letter-spacing: -0.7em;
   font-style: italic;
+}
+
+.sent-message p:not(.unsent) .message-time-sent::after {
+  content: " ✔️";
 }
 
 .sent-message p:not(.unread) .message-time-sent::after {

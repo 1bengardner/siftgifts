@@ -14,7 +14,7 @@
       <nav>
         <ul>
           <?php
-          $message_count = include '../action/check-new-messages.php';
+          $message_count = include '../action/return-unread-count.php';
           if ($message_count) {
             echo '<li><h2><a class="new-notifications" href="messaging">📫 '.$message_count.' new message'.($message_count > 1 ? 's' : '').'!</a></h2></li>';
           } else {

@@ -10,7 +10,7 @@
   <body>
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
-    <div class="center">
+    <div class="center hidden-on-mobile">
       <h2 class="messaging-header">Messages for <?php echo ucwords(strtolower($user->username)); ?></h2>
       <a href="/send-message">📝 Compose</a>
     </div>

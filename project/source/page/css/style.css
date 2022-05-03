@@ -253,7 +253,7 @@ hr.expand {
 .message-grid {
   display: grid;
   grid-template-columns: 30% 70%;
-  margin: 1em 10vw;
+  margin: 1em 5vw;
 }
 
 .gift-image {
@@ -484,15 +484,13 @@ li::marker {
   margin-bottom: 0.5em;
 }
 
-.message-viewer {
+.message-chooser, .message-viewer {
   height: calc(95vh - 20rem);
   overflow-y: auto;
-  background-color: #f5efff;
 }
 
-.message-chooser {
-  height: calc(95vh - 20rem);
-  overflow-y: auto;
+.message-viewer {
+  background-color: #f5efff;
 }
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
@@ -849,5 +847,11 @@ a.new-notifications {
 }
 .message-viewer > .conversation-partner {
   display: block;
+}
+.hidden-on-mobile {
+  display: none;
+}
+.message-chooser, .message-viewer {
+  height: calc(95vh - 10rem);
 }
 }

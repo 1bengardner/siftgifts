@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2022 at 08:55 PM
+-- Generation Time: May 04, 2022 at 02:02 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -30,6 +30,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), 
 BEGIN
 INSERT INTO gift (name, url, notes, user)
 VALUES (name, url, comments, user);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_message_email` (IN `user` INT)  NO SQL
+BEGIN
+REPLACE INTO message_email(user)
+VALUES (user);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
@@ -65,6 +71,9 @@ UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypte
 --
 -- Functions
 --
+CREATE DEFINER=`root`@`localhost` FUNCTION `is_ready_for_message_email` (`to` INT) RETURNS TINYINT(1) NO SQL
+return COALESCE((SELECT TIMESTAMPDIFF(MINUTE, sent_time, CURRENT_TIMESTAMP) > 15 FROM message_email WHERE message_email.user = `to`), 1)$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_valid_reset_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
 return (SELECT TIMESTAMPDIFF(MINUTE, issue_time, CURRENT_TIMESTAMP) < 15 FROM reset_code WHERE reset_code.email = email AND reset_code.code = code)$$
 
@@ -110,6 +119,18 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`id`),
   KEY `fk-message-from` (`from`),
   KEY `index-message-to-from-sent_time` (`to`,`from`,`sent_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_email`
+--
+
+CREATE TABLE IF NOT EXISTS `message_email` (
+  `user` int(11) NOT NULL,
+  `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -172,6 +193,12 @@ ALTER TABLE `gift`
 ALTER TABLE `message`
   ADD CONSTRAINT `fk-message-from` FOREIGN KEY (`from`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk-message-to` FOREIGN KEY (`to`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `message_email`
+--
+ALTER TABLE `message_email`
+  ADD CONSTRAINT `fk-message_email-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 

@@ -852,6 +852,6 @@ a.new-notifications {
   display: none;
 }
 .message-chooser, .message-viewer {
-  height: calc(95vh - 10rem);
+  height: 95vh;
 }
 }

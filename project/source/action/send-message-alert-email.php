@@ -19,8 +19,8 @@ $stmt = "CALL add_message_email(?)";
 Database::run_statement(Database::get_connection(), $stmt, [$to]);
 
 set_time_limit(300);
-// Accumulate 2 minutes' worth of messages to recipient before sending email
-sleep(120);
+// Accumulate new messages and give user a chance to read them before sending email
+sleep(60);
 
 $email = User::get_from_id($to)->email;
 
@@ -38,6 +38,9 @@ foreach ($unread_for_email as $message) {
   }
   $cur_conversation[] = $msg;
 }
+if (empty($conversations)) {
+  exit;
+}
 
 $subject = 'Sift.gifts - New messages!';
 
@@ -46,7 +49,8 @@ $name = ucwords(strtolower(User::get_from_email($email)->username));
 $message = '
 <html>
 <body style="font-family: sans-serif;">
-  <h1>Sift.gifts messages</h1>';
+  <h1>Sift.gifts</h1>
+  <p>You have new messages.</p>';
 foreach ($conversations as $conversation) {
   $message .= '
   <div>

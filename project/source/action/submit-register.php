@@ -34,8 +34,8 @@ $stmt = "INSERT INTO user(username, email, encrypted_password) VALUES (?, ?, ?)"
 $db = Database::get_connection();
 Database::run_statement($db, $stmt, [$name, $email, $password]);
 
-$from = '/wishlist-template.php';
-$to = '/wishlist/'.strtolower($name).'.php';
+$from = '../page/wishlist-template.php';
+$to = '../wishlist/'.strtolower($name).'.php';
 
 $new_file = '<?php $user = "'.$name.'"; $id = '.$db->insert_id.'; include "'.$from.'"; ?>';
 file_put_contents($to, $new_file);

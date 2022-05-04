@@ -1,6 +1,6 @@
 var messagesById = {};
 var messagesByFrom = {};
-var timeEmailsSentByFrom = {};
+var emailSentTimeByTo = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
@@ -23,14 +23,14 @@ function toMessageContentString(msg) {
 
 function sendAlertEmail(id) {
   let minuteDelay = 1;
-  if (id in timeEmailsSentByFrom && (new Date() - timeEmailsSentByFrom[id]) / 60000 < 1 * minuteDelay) {
+  if (id in emailSentTimeByTo && (new Date() - emailSentTimeByTo[id]) / 60000 < 1 * minuteDelay) {
     return;
   }
   let rq = new XMLHttpRequest();
   rq.open("POST", "/action/send-message-alert-email", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.send();
-  timeEmailsSentByFrom[id] = new Date();
+  emailSentTimeByTo[id] = new Date();
 }
 
 function sendMessage() {

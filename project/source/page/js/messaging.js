@@ -23,7 +23,7 @@ function toMessageContentString(msg) {
 
 function sendAlertEmail(id) {
   let minuteDelay = 1;
-  if (id in emailSentTimeByTo && (new Date() - emailSentTimeByTo[id]) / 60000 < 1 * minuteDelay) {
+  if (id in emailSentTimeByTo && (new Date() - emailSentTimeByTo[id]) / 60000 < 15 * minuteDelay) {
     return;
   }
   let rq = new XMLHttpRequest();

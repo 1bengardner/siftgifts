@@ -1,3 +1,10 @@
+function sendAlertEmail() {
+  let rq = new XMLHttpRequest();
+  rq.open("POST", "/action/send-message-alert-email", true);
+  rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  rq.send();
+}
+
 function send() {
   event.preventDefault();
   let rq = new XMLHttpRequest();
@@ -5,6 +12,8 @@ function send() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      sendAlertEmail();
+      
       if (!rq.responseText) {
         window.location.href = "/messaging";
         return;

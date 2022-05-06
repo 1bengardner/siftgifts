@@ -5,7 +5,7 @@ require_once '../util/utilities.php';
 require_once 'start-session.php';
 
 if (!isset($_SESSION['last_message_to'])) {
-  throw new Exception('No new messages.');
+  throw new Exception('No email alert recipient set.');
 }
 $to = $_SESSION['last_message_to'];
 unset($_SESSION['last_message_to']);
@@ -13,6 +13,7 @@ session_write_close();  // unblock subsequent requests
 
 $stmt = "SELECT is_ready_for_message_email(?)";
 if (!Database::run_statement(Database::get_connection(), $stmt, [$to])->fetch_row()[0]) {
+  trigger_error('Recipient received an email too recently.');
   exit;
 }
 $stmt = "CALL add_message_email(?)";

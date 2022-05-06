@@ -35,4 +35,5 @@ if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
   Database::run_statement($db, $stmt, [$to_id, $_SESSION['id'], $_POST['message']]);
   $_SESSION["notifications"] = [new Notification(NotificationText::MessageSent, NotificationLevel::Success)];
 }
+$_SESSION['last_message_to'] = $to_id;
 ?>

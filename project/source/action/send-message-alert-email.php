@@ -51,7 +51,7 @@ $message = '
 <html>
 <body style="font-family: sans-serif;">
   <h1>Sift.gifts</h1>
-  <p>You have new messages.</p>';
+  <p>You have new messages. Log in to https://sift.gifts to reply.</p>';
 foreach ($conversations as $conversation) {
   $message .= '
   <div>
@@ -68,7 +68,8 @@ foreach ($conversations as $conversation) {
 $message .= '
   <hr />
   <div>
-    <p>Log in to https://sift.gifts to reply.</p>
+    <p>Change your email preferences at https://sift.gifts/preferences</p>
+    <p>🎁</p>
   </div>
 </body>
 </html>

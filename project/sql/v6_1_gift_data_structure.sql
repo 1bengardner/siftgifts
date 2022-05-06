@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2022 at 02:02 AM
+-- Generation Time: May 06, 2022 at 08:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -72,7 +72,7 @@ UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypte
 -- Functions
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_ready_for_message_email` (`to` INT) RETURNS TINYINT(1) NO SQL
-return COALESCE((SELECT TIMESTAMPDIFF(MINUTE, sent_time, CURRENT_TIMESTAMP) > 15 FROM message_email WHERE message_email.user = `to`), 1)$$
+return COALESCE((SELECT TIMESTAMPDIFF(MINUTE, sent_time, CURRENT_TIMESTAMP) > 5 FROM message_email WHERE message_email.user = `to`), 1)$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_valid_reset_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
 return (SELECT TIMESTAMPDIFF(MINUTE, issue_time, CURRENT_TIMESTAMP) < 15 FROM reset_code WHERE reset_code.email = email AND reset_code.code = code)$$

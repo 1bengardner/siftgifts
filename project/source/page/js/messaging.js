@@ -1,6 +1,5 @@
 var messagesById = {};
 var messagesByFrom = {};
-var emailSentTimeByTo = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
@@ -21,16 +20,11 @@ function toMessageContentString(msg) {
   return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
 }
 
-function sendAlertEmail(id) {
-  let minuteDelay = 1;
-  if (id in emailSentTimeByTo && (new Date() - emailSentTimeByTo[id]) / 60000 < 15 * minuteDelay) {
-    return;
-  }
+function sendAlertEmail() {
   let rq = new XMLHttpRequest();
   rq.open("POST", "/action/send-message-alert-email", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.send();
-  emailSentTimeByTo[id] = new Date();
 }
 
 function sendMessage() {
@@ -51,7 +45,7 @@ function sendMessage() {
       delete messagesByFrom[parseInt(conversationPartner)];
       getMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
       
-      sendAlertEmail(conversationPartner);
+      sendAlertEmail();
     }
   }
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));

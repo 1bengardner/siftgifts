@@ -7,9 +7,9 @@ $gift = Gift::get_from_id($_POST["id"]);
 if ($gift->belongs_to_user($_SESSION["id"])) {
   $reserved = 1 - $gift->reserved;
   if ($reserved) {
-    $stmt = "UPDATE gift SET reserved=?, reserved_time=CURRENT_TIMESTAMP WHERE id=?";
+    $stmt = "UPDATE gift SET reserved=? WHERE id=?";
   } else {
-    $stmt = "UPDATE gift SET reserved=?, reserved_time=NULL WHERE id=?";    
+    $stmt = "UPDATE gift SET reserved=? WHERE id=?";    
   }
   Database::run_statement(Database::get_connection(), $stmt, [$reserved, $_POST["id"]]);
   header("HTTP/1.1 200 OK");

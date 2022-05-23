@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 08:54 AM
+-- Generation Time: May 22, 2022 at 11:37 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -65,8 +65,8 @@ SELECT * FROM message WHERE message.`to`=`to` AND message.`from`=`from` UNION (S
 UPDATE message SET unread=FALSE WHERE message.`to`=`to` AND message.`from`=`from`;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255), IN `visible` BOOLEAN)  NO SQL
-UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password), user.visible=visible WHERE user.id=id$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255), IN `visible` BOOLEAN, IN `subscribed` BOOLEAN)  NO SQL
+UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password), user.visible=COALESCE(visible, user.visible), user.subscribed=COALESCE(subscribed, user.subscribed) WHERE user.id=id$$
 
 --
 -- Functions
@@ -159,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `encrypted_password` varchar(255) NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0,
   `visible` tinyint(1) NOT NULL DEFAULT 0,
+  `subscribed` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique-user-email` (`email`) USING BTREE,
   UNIQUE KEY `unique-user-username` (`username`)

@@ -21,7 +21,7 @@ foreach ($gifts as $gift_data) {
         <input gift="<?php echo $var; ?>" id="reserve-<?php echo $var; ?>" type="checkbox" onclick="toggle(this);" <?php if ($gift->reserved) echo 'checked' ?> />
         <label for="reserve-<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
       </span>
-      <button gift="<?php echo $var; ?>" id="remove-<?php echo $var; ?>" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo htmlentities($gift->name); ?>');"></button>
+      <button gift="<?php echo $var; ?>" id="remove-<?php echo $var; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo htmlentities($gift->name); ?>');"></button>
       <label class="delete-button" for="remove-<?php echo $var; ?>">❌</label>
     </div>
     <div>

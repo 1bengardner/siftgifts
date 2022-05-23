@@ -7,6 +7,7 @@ class User
   public $email;
   public $username;
   public $visible;
+  public $subscribed;
 
   public function __construct($assoc)
   {
@@ -14,6 +15,7 @@ class User
     $this->email = $assoc['email'];
     $this->username = $assoc['username'];
     $this->visible = $assoc['visible'];
+    $this->subscribed = $assoc['subscribed'];
   }
   
   public static function get_from_id($id)

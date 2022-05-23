@@ -11,33 +11,45 @@
     <form action="/action/submit-change-settings.php" method="post">
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Edit profile</h2>
-      <p class="subheading">Change your display name, password, or both.</p>
+      <p class="subheading">Change your profile details.</p>
       <?php include 'notification-box.php'; ?>
-      <div>
-        <h3>Display name</h3>
-        <div class="subheading">
-          <input type="text" name="name" placeholder="Display name" value="<?php echo $user->username; ?>" maxlength="30" />
+      <div class="widget settings-widget">
+        <div>
+          <h3 class="first-in-series connected-text">Display name</h3>
+          <div>
+            <input type="text" name="name" placeholder="Display name" value="<?php echo $user->username; ?>" maxlength="30" />
+          </div>
         </div>
         <div>
-          <span class="info-box">
-            <input id="show-in-wishlist" name="visible-in-directory" type="checkbox" <?php if ($user->visible) echo "checked"; ?> autocomplete="off" /><label for="show-in-wishlist" title='Select this to appear in "Find a wishlist"'>Appear in wishlist search</label>
-          </span>
-        </div>
-      </div>
-      <div>
-        <h3>Password</h3>
-        <div class="subheading">
-          <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" />
+          <h3 class="connected-text">Password</h3>
+          <div>
+            <input type="password" name="password" placeholder="New password" maxlength="255" minlength="6" />
+          </div>
+          <div>
+            <input type="password" name="confirm-password" placeholder="New password, again" maxlength="255" />
+          </div>
         </div>
         <div>
-          <input type="password" name="confirm-password" placeholder="New password, again" maxlength="255" />
+          <h3 class="connected-text">Options</h3>
+          <div>
+            <span class="purple-box settings-box" style="margin: 0.5em;">
+              <div>
+                <input class="toggle-button" id="show-in-wishlist" name="visible-in-directory" type="checkbox" <?php if ($user->visible) echo "checked"; ?> autocomplete="off" /><label for="show-in-wishlist" title='Do you want to show up in "Find a wishlist"?'>🔍 Appear in wishlist search</label>
+              </div>
+              <div>
+                <input class="toggle-button" id="message-alerts" name="subscribe-to-message-alerts" type="checkbox" <?php if ($user->subscribed) echo "checked"; ?> autocomplete="off" /><label for="message-alerts" title='Do you want to receive an email when you get a new message?'>📧 Get message notifications</label>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div>
+          <input class="submit-button" type="submit" value="✍️ Save profile" />
         </div>
       </div>
       <div>
-        <input class="submit-button" type="submit" value="✍️ Update profile" />
-      </div>
-      <div class="links-section">
-        <a class="link" href="home">⬅️ Return to home</a>
+        <div class="links-section">
+          <a class="link" href="home">⬅️ Return to home</a>
+        </div>
       </div>
     </form>
   </body>

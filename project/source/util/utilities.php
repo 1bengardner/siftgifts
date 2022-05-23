@@ -87,11 +87,12 @@ abstract class NotificationText
   const InvalidVerificationCode = "This verification link is invalid.";
   const VerifyAccountSuccess = "Your account is now verified.";
   const RegistrationSuccess = "You are now signed up with Sift.gifts.";
-  const ChangeProfileSuccess = "You have successfully updated your profile.";
+  const ChangeProfileSuccess = "You have updated your profile.";
   const MessageSent = "Message sent.";
   const WishlistNotFound = "There is no wishlist under that name.";
   const ToDoesNotExist = "There is nobody with this name.";
   const AddSuccess = "Added!";
+  const UpdatePreferencesSuccess = "Your preferences have been updated.";
 }
 class Notification
 {

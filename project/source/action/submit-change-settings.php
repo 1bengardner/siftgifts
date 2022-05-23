@@ -21,7 +21,7 @@ if ($is_changing_name) {
     function() { return Validation::name_error($_POST['name']); },
   ]);
 }
-  
+
 if ($is_changing_password) {
   array_push($required_fields, ...['password', 'confirm-password']);
   array_push($validations, ...[
@@ -42,9 +42,9 @@ if (count($validation_errors) > 0) {
   exit;
 }
 
-$stmt = "CALL update_profile(?, ?, ?, ?)";
+$stmt = "CALL update_profile(?, ?, ?, ?, ?)";
 $db = Database::get_connection();
-Database::run_statement($db, $stmt, [$_SESSION['id'], $_POST['name'], $is_changing_password ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL, isset($_POST['visible-in-directory'])]);
+Database::run_statement($db, $stmt, [$_SESSION['id'], $_POST['name'], $is_changing_password ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL, isset($_POST['visible-in-directory']), isset($_POST['subscribe-to-message-alerts'])]);
 
 if ($is_changing_name) {
   rename('../wishlist/'.strtolower($old_name).'.php', '../wishlist/'.strtolower($_POST['name']).'.php');

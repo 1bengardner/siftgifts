@@ -4,7 +4,7 @@ require_once '../action/start-session.php';
 ?>
 <div class="user-buttons center">
   <ul class="user-header-buttons-small">
-    <li class="purple-box username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
+    <li class="username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
     <?php
     $message_count = include '../action/return-unread-count.php';
     if ($message_count) {
@@ -19,7 +19,7 @@ require_once '../action/start-session.php';
   </ul>
   <div>
     <ul class="user-header-buttons-large">
-      <li class="purple-box username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
+      <li class="username-box"><a class="link" href="/home"><?php echo ucwords(strtolower(User::get_from_id($_SESSION['id'])->username)) ?></a></li>
       <?php echo $message_li; ?>
     </ul>
     <ul class="wishlist-header-buttons">

@@ -5,17 +5,24 @@ require_once '../util/utilities.php';
 require_once 'start-session.php';
 
 if (!isset($_SESSION['last_message_to'])) {
-  throw new Exception('No email alert recipient set.');
+  throw new Exception('No email recipient set');
 }
 $to = $_SESSION['last_message_to'];
 unset($_SESSION['last_message_to']);
 session_write_close();  // unblock subsequent requests
 
-$stmt = "SELECT is_ready_for_message_email(?)";
-if (!Database::run_statement(Database::get_connection(), $stmt, [$to])->fetch_row()[0]) {
-  trigger_error('Recipient received an email too recently.');
+$recipient = User::get_from_id($to);
+
+if (!$recipient->subscribed) {
+  trigger_error('Recipient has declined receiving message emails');
   exit;
 }
+$stmt = "SELECT is_ready_for_message_email(?)";
+if (!Database::run_statement(Database::get_connection(), $stmt, [$to])->fetch_row()[0]) {
+  trigger_error('Recipient received an email too recently');
+  exit;
+}
+
 $stmt = "CALL add_message_email(?)";
 Database::run_statement(Database::get_connection(), $stmt, [$to]);
 
@@ -23,7 +30,7 @@ set_time_limit(300);
 // Accumulate new messages and give user a chance to read them before sending email
 sleep(60);
 
-$email = User::get_from_id($to)->email;
+$email = $recipient->email;
 
 $conversations = [];
 $stmt = "SELECT * FROM message WHERE `to`=? AND unread=TRUE AND TIMESTAMPDIFF(DAY, sent_time, CURRENT_TIMESTAMP) < 1 ORDER BY `from`, sent_time";
@@ -68,8 +75,7 @@ foreach ($conversations as $conversation) {
 $message .= '
   <hr />
   <div>
-    <p>Change your email preferences at https://sift.gifts/preferences</p>
-    <p>🎁</p>
+    <p>🎁 Change your email preferences at https://sift.gifts/preferences</p>
   </div>
 </body>
 </html>

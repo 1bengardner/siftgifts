@@ -7,11 +7,18 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v6.1</h2> <h3 class="changelog-heading muted"></h3>
+        <ul>
+          <li>You will now receive new-message emails</li>
+          <ul>
+            <li>Signed-in users can opt out in settings (👤) or through the <a class="link" href="/preferences">preferences</a> link in the email</li>
+          </ul>
+        </ul>
         <h2 class="changelog-heading version-number">v6.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You can now search wishlists</li>
           <ul>
-            <li>You can <a class="link" href="directory">find a wishlist</a> by searching for someone</li>
+            <li>You can <a class="link" href="/directory">find a wishlist</a> by searching for someone</li>
             <li>Signed-in users can opt in in settings (👤)</li>
           </ul>
         </ul>
@@ -45,7 +52,7 @@
           <li>You can now personally reset your password if you forget it</li>
           <ul>
             <li>Reset instructions will be sent to the email that you signed up with</li>
-            <li>You can initiate a reset from the <a class="link" href="login">login</a> menu by clicking <a class="link" href="forgot-password">"I forgot my password!"</a></li>
+            <li>You can initiate a reset from the <a class="link" href="/login">login</a> menu by clicking <a class="link" href="/forgot-password">"I forgot my password!"</a></li>
           </ul>
         </ul>
         <h2 class="changelog-heading version-number">v2.1</h2> <h3 class="changelog-heading muted"></h3>
@@ -57,7 +64,7 @@
         </ul>
         <h2 class="changelog-heading version-number">v2.0</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
-          <li>You can now <a class="link" href="register">sign up</a> on Sift.gifts!</li>
+          <li>You can now <a class="link" href="/register">sign up</a> on Sift.gifts!</li>
           <ul>
             <li>You can add, modify and remove gifts on your wishlist</li>
             <li>You will receive a personal wishlist link to share with others</li>

@@ -147,7 +147,7 @@ form {
   margin: 0.5em 0;
 }
 
-input, textarea {
+input:not([type=button]), textarea {
   font-weight: 500;
   padding: 0.5em;
   margin: 0.5em;
@@ -156,6 +156,30 @@ input, textarea {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0.2em;
   max-width: 95vw;
+}
+
+input[type=button] {
+  font-weight: 500;
+  padding: 0.25em 0.5em;
+  font-family: 'Poppins', 'Noto Emoji', sans-serif;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 2em;
+  color: rgb(80, 0, 128);
+  background-color: rgba(160, 0, 255, 0.25);
+}
+input[type=button]:hover {
+  color: #9347ff;
+}
+input[type=button]:active {
+  background-color: rgba(160, 0, 255, 0.3);
+}
+input[type=button]:disabled {
+  color: rgb(80, 0, 128);
+  background-color: rgba(160, 0, 255, 0.25);
+  cursor: not-allowed;
+  filter: grayscale(100%) opacity(50%);
 }
 
 input:invalid, textarea:invalid {
@@ -180,16 +204,13 @@ input:not(.submit-button):not([type=checkbox]):focus, textarea:focus {
   margin-top: 0.75em;
   margin-bottom: 0.75em;
 }
-
 .submit-button:hover {
   background-color: rgba(85, 51, 153, 0.9);
 }
-
 .submit-button:active {
   color: #ddd;
   background-color: #539;
 }
-
 .submit-button:disabled {
   color: #ddd;
   background-color: rgba(85, 51, 153, 0.5);
@@ -588,7 +609,7 @@ li::marker {
   margin-right: 10vw;
 }
 
-.message-entry {
+input.message-entry {
   width: calc(90% - 5rem);
   padding: 1rem;
   margin: -0.5rem 0 1rem 1rem;
@@ -596,7 +617,7 @@ li::marker {
   border-style: none;
   box-sizing: border-box;
 }
-.message-entry:disabled {
+input.message-entry:disabled {
   width: calc(90% - 1rem);
   margin: -0.5rem 0 1rem 0;
   border-radius: 2rem;

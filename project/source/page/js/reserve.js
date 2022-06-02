@@ -5,14 +5,14 @@ function reserve(id, name) {
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     rq.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        document.getElementById(id).labels[0].innerHTML = "Reserved!";
+        document.getElementById(id).value = "Reserved!";
       }
     }
     var params = "id=" + id;
     rq.send(params);
     document.getElementById(id).disabled = true;
   } else {
-    document.getElementById(id).checked = false;
+    //document.getElementById(id).checked = false;
   }
 }
 

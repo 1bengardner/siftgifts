@@ -16,8 +16,7 @@ foreach ($gifts as $gift_data) {
   <div>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
-      <input id="<?php echo $var; ?>" type="checkbox" onclick="reserve(this.id, '<?php echo htmlentities($gift->name); ?>');" <?php if ($gift->reserved) echo 'checked disabled' ?> />
-      <label for="<?php echo $var; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
+      <input id="<?php echo $var; ?>" type="button" onclick="reserve(this.id, '<?php echo htmlentities($gift->name); ?>');" <?php if ($gift->reserved) echo 'disabled' ?> value="Reserve<?php if ($gift->reserved) echo 'd' ?>" />
     </div>
     <div>
       <h2 class="gift-name">

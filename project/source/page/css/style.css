@@ -321,7 +321,7 @@ hr.expand {
 .success-box, .error-box, .info-box, .warning-box, .purple-box {
   display: inline-block;
   padding: 0.25em 0.5em;
-  border-radius: 4px;
+  border-radius: 0.2em;
   text-align: left;
 }
 
@@ -336,7 +336,7 @@ hr.expand {
 .success-box {
   color: rgb(0, 64, 0);
   background-color: rgba(0, 255, 0, 0.25);
-  border: 2px solid rgba(0, 128, 0, 0.5);
+  border: 1px solid rgba(0, 128, 0, 0.5);
 }
 
 .success-box p:before {
@@ -346,7 +346,7 @@ hr.expand {
 .error-box {
   color: rgb(64, 0, 0);
   background-color: rgba(255, 0, 0, 0.25);
-  border: 2px solid rgba(128, 0, 0, 0.5);
+  border: 1px solid rgba(128, 0, 0, 0.5);
 }
 
 .error-box p:before {
@@ -356,7 +356,7 @@ hr.expand {
 .info-box {
   color: rgb(32, 96, 128);
   background-color: rgba(64, 192, 255, 0.25);
-  border: 2px solid rgba(32, 96, 128, 0.5);
+  border: 1px solid rgba(32, 96, 128, 0.5);
 }
 
 .info-box p:before {
@@ -366,7 +366,7 @@ hr.expand {
 .warning-box {
   color: rgb(128, 80, 0);
   background-color: rgba(255, 255, 0, 0.25);
-  border: 2px solid rgba(128, 80, 0, 0.5);
+  border: 1px solid rgba(128, 80, 0, 0.5);
 }
 
 .warning-box p:before {
@@ -376,13 +376,17 @@ hr.expand {
 .purple-box, .username-box {
   color: rgb(80, 0, 128);
   background-color: rgba(160, 0, 255, 0.25);
-  border: 2px solid rgba(80, 0, 128, 0.5);
+  border: 1px solid rgba(80, 0, 128, 0.5);
 }
 
 .username-box {
   font-weight: bold;
   padding: 0.25em 0.5em;
   border-radius: 4px;
+}
+
+.notification-box > * {
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 }
 
 h3.link {

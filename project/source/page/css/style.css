@@ -165,7 +165,7 @@ input[type=button] {
   font-size: inherit;
   cursor: pointer;
   border: none;
-  border-radius: 2em;
+  border-radius: 0.3em;
   color: rgb(80, 0, 128);
   background-color: rgba(160, 0, 255, 0.25);
 }
@@ -194,7 +194,7 @@ input:not(.submit-button):not([type=checkbox]):focus, textarea:focus {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
 }
 
-.submit-button {
+input.submit-button {
   min-width: 15em;
   cursor: pointer;
   border: none;
@@ -204,14 +204,14 @@ input:not(.submit-button):not([type=checkbox]):focus, textarea:focus {
   margin-top: 0.75em;
   margin-bottom: 0.75em;
 }
-.submit-button:hover {
+input.submit-button:hover {
   background-color: rgba(85, 51, 153, 0.9);
 }
-.submit-button:active {
+input.submit-button:active {
   color: #ddd;
   background-color: #539;
 }
-.submit-button:disabled {
+input.submit-button:disabled {
   color: #ddd;
   background-color: rgba(85, 51, 153, 0.5);
   cursor: wait;

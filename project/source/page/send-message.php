@@ -9,11 +9,11 @@
       <h2>Send a message<?php if (isset($recipient)) echo " to ".$recipient; ?></h2>
       <?php include 'notification-box.php'; ?>
       <div>
-        <span>To:<input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required /></span>
+        <div class="form-field-label">To</div><input id="to" type="name" placeholder="Recipient" maxlength="255" <?php if (isset($recipient)) echo "value='".$recipient."'"; ?> required />
       </div>
       <div>
         <?php require_once '../data/user.php'; ?>
-        <span>From:<input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> /></span>
+        <div class="form-field-label">From</div><input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> />
       </div>
       <?php if (!isset($_SESSION["id"]) || !$_SESSION["id"]) { ?>
         <div>

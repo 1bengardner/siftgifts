@@ -822,6 +822,11 @@ input.toggle-button:disabled {
 	filter: grayscale(100%) opacity(50%);
 }
 
+.form-field-label {
+  margin-bottom: -0.5em;
+  font-size: smaller;
+}
+
 /* Media queries */
 @media screen and (min-height: 1000px) {
 .splash-image {

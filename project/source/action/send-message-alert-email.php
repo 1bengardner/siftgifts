@@ -58,7 +58,7 @@ $message = '
 <html>
 <body style="font-family: sans-serif;">
   <h1>Sift.gifts</h1>
-  <p>You have new messages. Log in to https://sift.gifts to reply.</p>';
+  <p>You have new messages. Visit https://sift.gifts/messaging to reply.</p>';
 foreach ($conversations as $conversation) {
   $message .= '
   <div>

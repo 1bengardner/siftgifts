@@ -67,7 +67,7 @@ foreach ($conversations as $conversation) {
   <div>';
   foreach ($conversation as $msg) {
     $message .= '
-    <p style="line-height: 50%;">'.date('g:i A', strtotime($msg->sent_time)).': '.nl2br(htmlentities($msg->body)).'</p>';
+    <p>'.date('g:i A', strtotime($msg->sent_time)).': '.nl2br(htmlentities($msg->body)).'</p>';
   }
   $message .= '
   </div>';

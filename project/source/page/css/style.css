@@ -531,9 +531,6 @@ li::marker {
 .message-chooser, .message-viewer {
   height: calc(95vh - 20rem);
   overflow-y: auto;
-}
-
-.message-viewer {
   background-color: #f5efff;
 }
 

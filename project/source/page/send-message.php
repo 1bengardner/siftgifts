@@ -15,10 +15,10 @@
         <?php require_once '../data/user.php'; ?>
         <div class="form-field-label">From</div><input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> />
       </div>
-      <?php if (!isset($_SESSION["id"]) || !$_SESSION["id"]) { ?>
-        <div>
-          <span class="subheading">(Leave your name blank to send anonymously)</span>
-        </div>
+      <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) { ?>
+      <span class="purple-box settings-box first-in-series">
+        <input class="toggle-button" id="send-as-guest" type="checkbox" value="on" autocomplete="off" /><label for="send-as-guest" title="Do you want to hide your username from the recipient?">👻 Send as guest</label>
+      </span>
       <?php } ?>
       <div>
         <textarea id="message" class="message" placeholder="Message" maxlength="5000" required></textarea>

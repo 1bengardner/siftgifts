@@ -34,7 +34,7 @@
           <div>
             <span class="purple-box settings-box" style="margin: 0.5em;">
               <div>
-                <input class="toggle-button" id="show-in-wishlist" name="visible-in-directory" type="checkbox" <?php if ($user->visible) echo "checked"; ?> autocomplete="off" /><label for="show-in-wishlist" title='Do you want to show up in "Find a wishlist"?'>🔍 Appear in wishlist search</label>
+                <input class="toggle-button" id="show-in-search" name="visible-in-directory" type="checkbox" <?php if ($user->visible) echo "checked"; ?> autocomplete="off" /><label for="show-in-search" title='Do you want to show up in "Find a wishlist"?'>🔍 Appear in wishlist search</label>
               </div>
               <div>
                 <input class="toggle-button" id="message-alerts" name="subscribe-to-message-alerts" type="checkbox" <?php if ($user->subscribed) echo "checked"; ?> autocomplete="off" /><label for="message-alerts" title='Do you want to receive an email when you get a new message?'>📧 Get message notifications</label>

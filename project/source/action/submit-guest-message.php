@@ -32,7 +32,7 @@ if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
   include '../page/notification-box.php';
 } else {
   $stmt = "INSERT INTO message(`to`, `from`, body) VALUES (?, ?, ?)";
-  Database::run_statement($db, $stmt, [$to_id, $_SESSION['id'], $_POST['message']]);
+  Database::run_statement($db, $stmt, [$to_id, isset($_POST['send-as-guest']) ? null : $_SESSION['id'], $_POST['message']]);
   $_SESSION["notifications"] = [new Notification(NotificationText::MessageSent, NotificationLevel::Success)];
 }
 $_SESSION['last_message_to'] = $to_id;

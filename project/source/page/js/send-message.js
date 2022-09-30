@@ -29,6 +29,9 @@ function send() {
     "from",
     "message"
   ];
-  const params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
+  let params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
+  if (document.getElementById("send-as-guest")?.checked) {
+    params += "&send-as-guest=1";
+  }
   rq.send(params);
 }

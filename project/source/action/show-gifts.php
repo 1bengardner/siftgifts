@@ -35,11 +35,11 @@ foreach ($gifts as $gift_data) {
       <?php }
       if ($gift->reserved && $gift->reserved_time != NULL) {
       ?>
-      <p class="lighter"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)); ?></em></p>
+      <p class="lighter smaller"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)); ?></em></p>
       <?php
       } else if ($gift->creation_time != NULL) {
       ?>
-      <p class="lighter"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
+      <p class="lighter smaller"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
       <?php
       }
       ?>

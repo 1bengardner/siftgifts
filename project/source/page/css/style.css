@@ -182,8 +182,8 @@ input[type=button]:disabled {
   filter: grayscale(100%) opacity(50%);
 }
 
-input:invalid, textarea:invalid {
-  border-style: solid;
+input:required, textarea:required {
+  border-style: solid;  
 }
 
 input:required::placeholder, textarea:required::placeholder {

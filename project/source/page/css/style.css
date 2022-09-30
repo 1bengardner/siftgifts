@@ -153,7 +153,7 @@ input:not([type=button]), textarea {
   margin: 0.5em;
   font-family: 'Poppins', 'Noto Emoji', sans-serif;
   font-size: inherit;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px dashed rgba(0, 0, 0, 0.5);
   border-radius: 0.2em;
   max-width: 95vw;
 }
@@ -183,7 +183,7 @@ input[type=button]:disabled {
 }
 
 input:invalid, textarea:invalid {
-  box-shadow: 0 0 1em rgba(255, 206, 255, 0.5);
+  border-style: solid;
 }
 
 input:required::placeholder, textarea:required::placeholder {
@@ -232,19 +232,6 @@ input[type=radio] {
 
 .message {
   height: 10em;
-}
-
-.subheading {
-  margin-top: -1em;
-  overflow-wrap: anywhere;
-}
-
-.first-in-series {
-  margin-top: 0em;
-}
-
-.connected-text {
-  margin-bottom: 0em;
 }
 
 .widget {
@@ -628,7 +615,7 @@ input.message-entry:disabled {
 .send-button {
   font-weight: bold;
   color: #fff;
-  background-color: rgb(255, 206, 255);
+  background-color: rgba(160, 0, 255, 0.3);
   padding: 1rem 1.5rem;
   margin-right: 1rem;
   border-radius: 0 2em 2em 0;
@@ -636,10 +623,10 @@ input.message-entry:disabled {
   box-sizing: border-box;
 }
 .send-button:hover {
-  background-color: rgb(255, 206, 255);
+  background-color: rgba(160, 0, 255, 0.3);
 }
 .send-button:active {
-  background-color: rgb(255, 216, 255);
+  background-color: rgba(160, 0, 255, 0.25);
   color: #433940;
 }
 
@@ -822,6 +809,19 @@ input.toggle-button:disabled {
 .form-field-label {
   margin-bottom: -0.5em;
   font-size: smaller;
+}
+
+.subheading {
+  margin-top: -1em;
+  overflow-wrap: anywhere;
+}
+
+.first-in-series {
+  margin-top: 0em;
+}
+
+.connected-text {
+  margin-bottom: 0em;
 }
 
 /* Media queries */

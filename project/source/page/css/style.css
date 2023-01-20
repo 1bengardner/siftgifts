@@ -186,10 +186,6 @@ input:required, textarea:required {
   border-style: solid;  
 }
 
-input:required::placeholder, textarea:required::placeholder {
-  font-weight: bold;
-}
-
 input:not(.submit-button):not([type=checkbox]):focus, textarea:focus {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
 }

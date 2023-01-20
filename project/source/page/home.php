@@ -11,7 +11,7 @@
     <?php include 'header.php'; ?>
     <div class="notification-box">
       <div class="warning-box">
-        My website hosting package expires in <strong><?php echo date_diff(date_create(), date_create('2023-01-17'))->format('%a'); ?></strong> days, after which the site will be down. 😔
+        My website hosting package expires in <strong><?php echo date_diff(date_create(), date_create('2023-02-16'))->format('%a'); ?></strong> days, after which the site will be down. 😔
       </div>
     </div>
     <?php include 'notification-box.php'; ?>

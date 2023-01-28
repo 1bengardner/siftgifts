@@ -1,17 +1,21 @@
+<?php
+require_once '../action/authenticate.php';
+require_once '../data/user.php';
+$user = User::get_from_id($_SESSION['id']);
+?>
 <!DOCTYPE html>
 <html>
-  <?php
-  require_once '../action/authenticate.php';
-  require_once '../data/user.php';
-  $user = User::get_from_id($_SESSION['id']);
-  ?>
   <?php define('TITLE', 'Sift.gifts - '.ucwords(strtolower($user->username))); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
     <div class="notification-box">
-      <div class="warning-box">
-        My website hosting package expires in <strong><?php echo date_diff(date_create(), date_create('2023-02-16'))->format('%a'); ?></strong> days, after which the site will be down. 😔
+      <div class="info-box">
+        <p>Sorry, some things aren't working right now.</p>
+        <ul>
+          <li>Messages</li>
+          <li>Emojis</li>
+        </ul>
       </div>
     </div>
     <?php include 'notification-box.php'; ?>

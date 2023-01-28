@@ -6,6 +6,7 @@ class Database
   {
     include 'db_config.php';
     $mysqli = new mysqli($url, $user, $password, $db);
+    $mysqli -> set_charset("utf8mb4");
     return $mysqli;
   }
 

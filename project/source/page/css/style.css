@@ -386,6 +386,7 @@ h3.link {
 
 .delete-button {
   color: #ff0000;
+  cursor: pointer;
 }
 
 div.reserved {

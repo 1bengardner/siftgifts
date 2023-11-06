@@ -20,7 +20,7 @@
       <div class="links-section">
         <a class="link" href="register">Sign up</a>
         <img src="/page/img/present.svg" />
-        <a class="link" href="forgot-password">I forgot my password!</a>
+        <a class="link" href="forgot-password-temp">I forgot my password!</a>
       </div>
     </form>
   </body>

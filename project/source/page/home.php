@@ -35,7 +35,7 @@ $user = User::get_from_id($_SESSION['id']);
       </nav>
       <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>
       <p><span class="unbreakable"><input title="Your wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $wishlist; ?>'><button class="clipboard-button" title="Copy" onclick="navigator.clipboard.writeText('<?php echo $wishlist; ?>')" url="<?php echo $wishlist; ?>">📎</button></span></p>
-      <p><a href="directory">🆕 Find a wishlist</a></p>
+      <p><a href="directory">Find a wishlist</a></p>
       <div class="home-greeting">
         <h1>
           <?php

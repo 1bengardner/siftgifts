@@ -1,7 +1,7 @@
 body, button {
   color: #433940;
   background-color: #fbfbfc;
-  font-family: 'Poppins', 'Noto Emoji', sans-serif;
+  font-family: 'Lexend', 'Noto Emoji', sans-serif;
   font-size: medium;
   margin: 0;
 }
@@ -39,7 +39,7 @@ h1 {
 }
 
 li h2 {
-  margin: 0.5em 0;
+  margin: 0.25em 0;
 }
 
 h1 .link:hover {
@@ -90,7 +90,7 @@ a:not(.link):active, button:active {
 .header {
   padding: 0.5em;
   margin-bottom: 1.5em;
-  background-color: #f5efff;
+  background-color: #eeedf7;
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
 }
 
@@ -119,17 +119,17 @@ button {
 }
 
 .logo-text {
-  font-family: 'Festive', cursive;
+  font-size: 2.5em;
+  font-family: 'Fuggles', cursive;
   text-shadow: rgba(169, 48, 57, 0.2) 0 0.1rem 0.2rem;
-  transition: .07s ease-out;
 }
 
-.logo-text:hover {
+.logo-text a:hover {
   text-shadow: rgba(255, 48, 196, 0.2) 0 0.1rem 0.2rem;
 }
 
 .header .logo-text {
-  font-size: 3em;
+  transition: .07s ease-out;
 }
 
 .focused {
@@ -151,7 +151,7 @@ input:not([type=button]), textarea {
   font-weight: 500;
   padding: 0.5em;
   margin: 0.5em;
-  font-family: 'Poppins', 'Noto Emoji', sans-serif;
+  font-family: 'Lexend', 'Noto Emoji', sans-serif;
   font-size: inherit;
   border: 1px dashed rgba(0, 0, 0, 0.5);
   border-radius: 0.2em;
@@ -161,7 +161,7 @@ input:not([type=button]), textarea {
 input[type=button] {
   font-weight: 500;
   padding: 0.25em 0.5em;
-  font-family: 'Poppins', 'Noto Emoji', sans-serif;
+  font-family: 'Lexend', 'Noto Emoji', sans-serif;
   font-size: inherit;
   cursor: pointer;
   border: none;
@@ -359,7 +359,7 @@ hr.expand {
 .purple-box, .username-box {
   color: rgb(80, 0, 128);
   background-color: rgba(160, 0, 255, 0.25);
-  border: 1px solid rgba(80, 0, 128, 0.5);
+  border: 1px solid rgba(246, 240, 255, 0.5);
 }
 
 .username-box {
@@ -515,7 +515,7 @@ li::marker {
 .message-chooser, .message-viewer {
   height: calc(95vh - 20rem);
   overflow-y: auto;
-  background-color: #f5efff;
+  background-color: #eeedf7;
 }
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
@@ -531,9 +531,9 @@ li::marker {
 
 .message-chooser-message {
   background: #fbf8ff;
-  border-top: 2px solid #f5efff;
-  border-bottom: 2px solid #f5efff;
-  border-left: 4px solid #f5efff;
+  border-top: 2px solid #eeedf7;
+  border-bottom: 2px solid #eeedf7;
+  border-left: 4px solid #eeedf7;
   padding: 0 1.5em;
   cursor: pointer;
 }
@@ -547,16 +547,16 @@ li::marker {
 }
 
 .message-chooser-message.selected {
-  background: #f5efff;
+  background: #eeedf7;
   cursor: auto;
 }
 
 .message-chooser-message:nth-of-type(1) {
-  border-top: 4px solid #f5efff;
+  border-top: 4px solid #eeedf7;
 }
 
 .message-chooser-message:nth-last-of-type(1) {
-  border-bottom: 4px solid #f5efff;
+  border-bottom: 4px solid #eeedf7;
 }
 
 .message-chooser-message .preview {
@@ -928,7 +928,7 @@ input.toggle-button:disabled {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 }
 .message-chooser-message {
-  border-right: 4px solid #f5efff;
+  border-right: 4px solid #eeedf7;
 }
 .message-chooser, .message-viewer {
   display: none;

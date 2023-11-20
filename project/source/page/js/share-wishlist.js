@@ -9,4 +9,12 @@ if (navigator.canShare) {
     });
     elem.innerHTML = "<strong>Share!</strong>";
   });
+} else {
+  document.querySelectorAll('.clipboard-button').forEach(function(elem) {
+    elem.onclick = () => {
+      document.querySelectorAll('.clipboard-copy-reaction').forEach(function(elem) {
+        elem.innerHTML = "Copied!";
+      });
+    }
+  });
 }

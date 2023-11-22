@@ -6,7 +6,7 @@
     <?php include 'header-with-login.php'; ?>
     <div class="news-grid">
       <div class="reading-pane">
-        <h1>What is <span class="logo-text">Sift.gifts?</span></h1>
+        <h1>What is <span class="logo-text">Sift<span class="spaced">.</span>gifts?</span></h1>
         <p>
           Sift.gifts is a wishlist sharing platform. Create your wishlist to share with friends and family.
         </p>

@@ -973,3 +973,7 @@ input.toggle-button:disabled {
   height: 95vh;
 }
 }
+
+.version-number {
+  display: none;
+}

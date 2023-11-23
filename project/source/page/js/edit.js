@@ -17,7 +17,7 @@ function edit() {
     "url",
     "comments"
   ];
-  var params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
+  var params = keys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
   const newName = document.getElementById("name").value;
   rq.send(params);
 }

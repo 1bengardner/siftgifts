@@ -16,6 +16,6 @@ function request() {
     "url",
     "comments"
   ];
-  var params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
+  var params = keys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
   rq.send(params);
 }

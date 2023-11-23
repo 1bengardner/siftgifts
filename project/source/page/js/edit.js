@@ -17,7 +17,6 @@ function edit() {
     "url",
     "comments"
   ];
-  console.log(document.getElementById("id").value);
   var params = keys.map(x => x + "=" + document.getElementById(x).value).join('&');
   const newName = document.getElementById("name").value;
   rq.send(params);

@@ -7,6 +7,19 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v6.2</h2> <h3 class="changelog-heading"></h3>
+        <ul>
+          <li>You can now edit your wishlist gifts</li>
+          <ul>
+            <li>Hover over one of your wishes and click the <span style="
+              color: #fff;
+              background-color: #539;
+              border-radius: 0.3em;
+              font-size: small;
+              padding: 1px 6px;"
+            >✏ Edit</span> button</li>
+          </ul>
+        </ul>
         <h2 class="changelog-heading version-number">v6.1</h2> <h3 class="changelog-heading muted"></h3>
         <ul>
           <li>You will now receive new-message emails</li>

@@ -1002,3 +1002,10 @@ input.edit-widget {
 .version-number {
   display: none;
 }
+
+/* 000webhost */
+@media screen and (max-width: 666px) {
+.footer {
+  padding-bottom: 3em;
+}
+}

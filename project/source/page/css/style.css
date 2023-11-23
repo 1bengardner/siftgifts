@@ -365,7 +365,7 @@ hr.expand {
 
 .purple-box, .username-box {
   color: rgb(80, 0, 128);
-  background-color: rgba(160, 0, 255, 0.25);
+  background-color: rgba(160, 0, 255, 0.1);
   border: 1px solid rgba(246, 240, 255, 0.5);
 }
 

@@ -9,7 +9,7 @@
       $user = User::get_from_id($_SESSION['id']);
     ?>
     <form action="/action/submit-change-preferences.php" method="post">
-      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
+      <?php include 'standalone-logo.php'; ?>
       <div class="widget settings-widget">
         <h2 class="first-in-series connected-text">Your preferences</h2>
         <?php include 'notification-box.php'; ?>
@@ -19,7 +19,7 @@
           </span>
         </div>
         <div>
-          <input class="submit-button" type="submit" value="✍️ Save preferences" />
+          <input class="submit-button" type="submit" value="✍ Save preferences" />
         </div>
       </div>
       <div>

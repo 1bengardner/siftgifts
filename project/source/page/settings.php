@@ -9,7 +9,7 @@
       $user = User::get_from_id($_SESSION['id']);
     ?>
     <form action="/action/submit-change-settings.php" method="post">
-      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
+      <?php include 'standalone-logo.php'; ?>
       <h2>Edit profile</h2>
       <p class="subheading">Change your profile details.</p>
       <?php include 'notification-box.php'; ?>

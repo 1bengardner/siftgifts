@@ -4,7 +4,7 @@
   <?php include 'head.php'; ?>
   <body>
     <form action="/action/submit-register.php" method="post">
-      <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
+      <?php include 'standalone-logo.php'; ?>
       <h2>Sign up for Sift.gifts!</h2>
       <h3 class="subheading">(It's free!)</h3>
       <?php include 'notification-box.php'; ?>

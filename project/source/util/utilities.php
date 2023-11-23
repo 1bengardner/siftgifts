@@ -94,6 +94,7 @@ abstract class NotificationText
   const ToDoesNotExist = "There is nobody with this name.";
   const AddSuccess = "Added!";
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
+  const EditSuccess = "Updated!";
 }
 class Notification
 {

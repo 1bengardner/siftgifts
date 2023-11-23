@@ -191,28 +191,30 @@ input:required, textarea:required {
   border-style: solid;  
 }
 
-input:not(.submit-button):not([type=checkbox]):focus, textarea:focus {
+input:not(.submit-button, .edit-widget):not([type=checkbox]):focus, textarea:focus {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
 }
 
 input.submit-button {
   min-width: 15em;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+input.submit-button, input.edit-widget {
   cursor: pointer;
   border: none;
   border-radius: 0.3em;
   color: #fff;
   background-color: #539;
-  margin-top: 0.75em;
-  margin-bottom: 0.75em;
 }
-input.submit-button:hover {
-  background-color: rgba(85, 51, 153, 0.9);
+input.submit-button:hover, input.edit-widget:hover {
+  background-color: #6647a3;
 }
-input.submit-button:active {
+input.submit-button:active, input.edit-widget:active {
   color: #ddd;
   background-color: #539;
 }
-input.submit-button:disabled {
+input.submit-button:disabled, input.edit-widget:disabled {
   color: #ddd;
   background-color: rgba(85, 51, 153, 0.5);
   cursor: wait;
@@ -824,6 +826,27 @@ input.toggle-button:disabled {
 
 .connected-text {
   margin-bottom: 0em;
+}
+
+button.edit {
+  font-size: 1rem;
+  background-color: #fed;
+}
+
+button.done {
+  font-size: 1rem;
+  background-color: #cfd;
+}
+
+input.edit-widget {
+  display: none;
+  position: absolute;
+  font-size: small;
+  padding: revert;
+  margin: revert;
+}
+.gift-widget:hover input.edit-widget {
+  display: inline;
 }
 
 /* Media queries */

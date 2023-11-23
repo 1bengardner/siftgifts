@@ -30,4 +30,5 @@
   <script src="/page/js/search.js" type="text/javascript"></script>
   <script src="/page/js/remove.js" type="text/javascript"></script>
   <script src="/page/js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/edit.js" type="text/javascript"></script>
 </html>

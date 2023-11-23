@@ -43,7 +43,7 @@
           </div>
         </div>
         <div>
-          <input class="submit-button" type="submit" value="✍️ Save profile" />
+          <input class="submit-button" type="submit" value="✍ Save profile" />
         </div>
       </div>
       <div>

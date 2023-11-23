@@ -520,7 +520,7 @@ li::marker {
 }
 
 .message-chooser, .message-viewer {
-  height: calc(95vh - 20rem);
+  height: calc(95vh - 5rem - 5rem);
   overflow-y: auto;
   background-color: #eeedf7;
 }
@@ -993,7 +993,7 @@ input.edit-widget {
   display: none;
 }
 .message-chooser, .message-viewer {
-  height: 95vh;
+  height: calc(95vh - 5rem);
 }
 }
 

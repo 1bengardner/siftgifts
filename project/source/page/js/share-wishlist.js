@@ -12,6 +12,7 @@ if (navigator.canShare) {
 } else {
   document.querySelectorAll('.clipboard-button').forEach(function(elem) {
     elem.onclick = () => {
+      navigator.clipboard.writeText(elem.getAttribute('url'));
       document.querySelectorAll('.clipboard-copy-reaction').forEach(function(elem) {
         elem.innerHTML = "Copied!";
       });

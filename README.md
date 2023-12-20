@@ -1,6 +1,10 @@
 # Siftgifts
 
-Siftgifts is a platform to share wishlists and anonymously reserve gifts without signing up.
+Siftgifts is a platform to share wishlists and anonymously reserve gifts without signing up. Just share your wishlist URL!
+
+<img src="https://github.com/1bengardner/siftgifts/assets/6226898/9abb6fd2-6529-472d-8cc9-02827e90f147" alt="Wishlist" width="270" />
+<img src="https://github.com/1bengardner/siftgifts/assets/6226898/5208f40b-0c21-4018-a4b0-3fb9c5f22c0c" alt="Profile" width="270" />
+<img src="https://github.com/1bengardner/siftgifts/assets/6226898/0b5361ef-4c9c-4576-ad87-f6f627b2a08c" alt="Logout" width="270" />
 
 ## Getting started
 

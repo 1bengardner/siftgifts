@@ -839,14 +839,16 @@ button.done {
 }
 
 input.edit-widget {
-  display: none;
   position: absolute;
   font-size: small;
   padding: revert;
   margin: revert;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 .gift-widget:hover input.edit-widget {
-  display: inline;
+  opacity: 1;
+  transition: opacity 0s;
 }
 
 /* Media queries */

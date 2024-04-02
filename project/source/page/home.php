@@ -11,12 +11,19 @@ $user = User::get_from_id($_SESSION['id']);
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
     <div class="center">
+      <h1>Goodbye for now!</h1>
+      <h3>
+        We will be going away at the end of the month.
+      </h3>
+      <h3>
+        Apparently, this free unlimited hosting was not unlimited.
+      </h3>
       <p>
-        Please note: Emails are not currently being sent out.
+        We hope to come back soon!
       </p>
       <nav>
         <ul>
-          <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
+          <li><h2><a href="wishlist">📜 Edit your wishlist one last time</a></h2></li>
         </ul>
       </nav>
       <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>

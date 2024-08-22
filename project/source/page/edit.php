@@ -20,7 +20,6 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form id="edit-form" enctype="multipart/form-data" onsubmit="edit();">
       <?php
       if (is_null($gift)) {
       ?>
@@ -28,19 +27,9 @@
       <?php
       } else {
       ?>
-      <input id="id" type="hidden" value="<?php echo $gift->id; ?>" />
       <h2>Editing: <em id="name-heading"><?php echo htmlentities($gift->name); ?></em></h2>
       <div>
-        <input id="name" type="name" placeholder="Gift name" maxlength="255" value="<?php echo htmlentities($gift->name); ?>" required />
-      </div>
-      <div>
-        <input id="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
-      </div>
-      <div>
-        <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"><?php echo $gift->notes; ?></textarea>
-      </div>
-      <div>
-        <input class="submit-button" type="submit" value="✍ Save changes"/>
+        <p>Temporarily disabled. Sorary!</p>
       </div>
       <?php
       }
@@ -49,7 +38,6 @@
       <div class="links-section">
         <a class="link" href="wishlist">⬅️ Return to wishlist</a>
       </div>
-    </form>
   </body>
   <script src="/page/js/edit.js" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>

@@ -23,7 +23,7 @@ $user = User::get_from_id($_SESSION['id']);
       </p>
       <nav>
         <ul>
-          <li><h2><a href="wishlist">📜 Edit your wishlist one last time</a></h2></li>
+          <li><h2><a href="wishlist">📜 View your wishlist one last time</a></h2></li>
         </ul>
       </nav>
       <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>

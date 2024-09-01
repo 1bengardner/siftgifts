@@ -20,14 +20,14 @@
             >✏ Edit</span> button</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v6.1</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v6.1</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You will now receive new-message emails</li>
           <ul>
             <li>Signed-in users can opt out in settings (👤) or through the <a class="link" href="/preferences">preferences</a> link in the email</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v6.0</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v6.0</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now search wishlists</li>
           <ul>
@@ -35,7 +35,7 @@
             <li>Signed-in users can opt in in settings (👤)</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v5.0</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v5.0</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now send messages</li>
           <ul>
@@ -43,7 +43,7 @@
             <li>Messages can be read and replied to from the 📪 button after logging in</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v4.1</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v4.1</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now change your display name</li>
           <ul>
@@ -52,7 +52,7 @@
             <li>These new <strong>edit profile</strong> settings replace <strong>change password</strong> (🔑)</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v4.0</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v4.0</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now verify your account</li>
           <ul>
@@ -60,7 +60,7 @@
             <li>You currently do not need to verify your account to create a wishlist, but this may change later</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v3.0</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v3.0</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now personally reset your password if you forget it</li>
           <ul>
@@ -68,14 +68,14 @@
             <li>You can initiate a reset from the <a class="link" href="/login">login</a> menu by clicking <a class="link" href="/forgot-password">"I forgot my password!"</a></li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v2.1</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v2.1</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now change your password</li>
           <ul>
             <li>You can do this from the 🔑 button in the top menu while logged in</li>
           </ul>
         </ul>
-        <h2 class="changelog-heading version-number">v2.0</h2> <h3 class="changelog-heading muted"></h3>
+        <h2 class="changelog-heading version-number">v2.0</h2> <h3 class="changelog-heading"></h3>
         <ul>
           <li>You can now <a class="link" href="/register">sign up</a> on Sift.gifts!</li>
           <ul>
@@ -92,5 +92,5 @@
       </div>
     </div>
   </body>
-  <script src="/page/js/github-integration.js" type="module"></script>
+  <!-- <script src="/page/js/github-integration.js" type="module"></script> -->
 </html>

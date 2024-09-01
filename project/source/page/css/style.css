@@ -998,7 +998,3 @@ input.edit-widget {
   height: calc(95vh - 5rem);
 }
 }
-
-.version-number {
-  display: none;
-}

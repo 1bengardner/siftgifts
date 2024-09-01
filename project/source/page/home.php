@@ -9,15 +9,6 @@ $user = User::get_from_id($_SESSION['id']);
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <div class="notification-box">
-      <div class="info-box">
-        <p>Sorry, some things aren't working right now.</p>
-        <ul>
-          <li>Messages</li>
-          <li>Emojis</li>
-        </ul>
-      </div>
-    </div>
     <?php include 'notification-box.php'; ?>
     <div class="center">
       <nav>

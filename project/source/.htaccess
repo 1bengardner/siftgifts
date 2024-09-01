@@ -8,12 +8,10 @@ RewriteEngine On
 # Only rewrite requests for files that do not exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Special rule for wishlist.php
-RewriteRule ^wishlist$ /page/wishlist
 # Re-route all top level requests to the /page subdirectory
 RewriteRule (^[A-Za-z0-9_-]+$) /page/$1
 # Re-route wishlist aliases
-RewriteRule ^(sg)/(.*) /wishlist/$2
+RewriteRule ^(sg)/(.*) /page/wishlist-redirect.php?sg=$2
 # Append .php for requests for files that exist but are missing .php
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule (.*) $1.php

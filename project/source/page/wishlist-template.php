@@ -6,15 +6,15 @@ if (!isset($id)) {
 ?>
 <!DOCTYPE html>
 <html>
+  <?php
+  require_once '../data/user.php';
+
+  $user = User::get_from_id($id)->username;
+  ?>
   <?php define('TITLE', ucwords(strtolower($user))."'s wishlist"); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php' ?>
-    <?php
-    require_once '../data/user.php';
-
-    $user = User::get_from_id($id)->username;
-    ?>
     <div class="center">
       <h1 class="wishlist-header"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
       <a title="Send a message to <?php echo ucwords(strtolower($user)) ?>" href="/send-message?to=<?php echo ucwords(strtolower($user)); ?>">📮</a>

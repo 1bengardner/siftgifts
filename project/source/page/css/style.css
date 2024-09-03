@@ -523,7 +523,7 @@ li::marker {
 .message-chooser, .message-viewer {
   height: calc(95vh - 5rem - 5rem);
   overflow-y: auto;
-  background-color: #f8f9fd;
+  background-color: #eeedf7;
 }
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
@@ -539,9 +539,9 @@ li::marker {
 
 .message-chooser-message {
   background: #fbf8ff;
-  border-top: 2px solid #f8f9fd;
-  border-bottom: 2px solid #f8f9fd;
-  border-left: 4px solid #f8f9fd;
+  border-top: 2px solid #eeedf7;
+  border-bottom: 2px solid #eeedf7;
+  border-left: 4px solid #eeedf7;
   padding: 0 1.5em;
   cursor: pointer;
 }
@@ -555,16 +555,16 @@ li::marker {
 }
 
 .message-chooser-message.selected {
-  background: #f8f9fd;
+  background: #eeedf7;
   cursor: auto;
 }
 
 .message-chooser-message:nth-of-type(1) {
-  border-top: 4px solid #f8f9fd;
+  border-top: 4px solid #eeedf7;
 }
 
 .message-chooser-message:nth-last-of-type(1) {
-  border-bottom: 4px solid #f8f9fd;
+  border-bottom: 4px solid #eeedf7;
 }
 
 .message-chooser-message .preview {
@@ -959,7 +959,7 @@ input.edit-widget {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 }
 .message-chooser-message {
-  border-right: 4px solid #f8f9fd;
+  border-right: 4px solid #eeedf7;
 }
 .message-chooser, .message-viewer {
   display: none;

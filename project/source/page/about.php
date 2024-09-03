@@ -8,7 +8,7 @@
       <div class="reading-pane">
         <h1>What is <span class="logo-text">Sift<span class="spaced">.</span>gifts?</span></h1>
         <p>
-          Sift.gifts is a wishlist sharing platform. Create your wishlist to share with friends and family.
+          Sift.gifts is a free wishlist sharing platform. Sign up and create your wishlist to share with friends and family&mdash;they don't even need an account!
         </p>
         <h1><em>What do you want for Christmas?</em></h1>
         <p><a href="/">Return</a></p>

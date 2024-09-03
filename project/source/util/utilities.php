@@ -35,14 +35,14 @@ class Database
 require 'email_config.php';
 define("PASSWORD_RESET", $password_reset);
 define("ACCOUNT_VERIFICATION", $account_verification);
-define("ALERTS", $alerts);
+define("ALERTS_SENDER", $alerts_sender);
 define("ALERTS_RECIPIENT", $alerts_recipient);
 
 abstract class EmailAlias
 {
   const PasswordReset = PASSWORD_RESET;
   const AccountVerification = ACCOUNT_VERIFICATION;
-  const Alerts = ALERTS;
+  const AlertsSender = ALERTS_SENDER;
   const AlertsRecipient = ALERTS_RECIPIENT;
 }
 class Email

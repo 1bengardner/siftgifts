@@ -81,5 +81,5 @@ $message .= '
 </html>
 ';
 
-Email::send_email($name, $email, EmailAlias::Alerts, $subject, $message);
+Email::send_email($name, $email, EmailAlias::AlertsSender, $subject, $message);
 ?>

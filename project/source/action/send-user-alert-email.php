@@ -19,5 +19,5 @@ $message = '
 </html>
 ';
 
-Email::send_email(null, EmailAlias::AlertsRecipient, EmailAlias::Alerts, $subject, $message);
+Email::send_email(null, EmailAlias::AlertsRecipient, EmailAlias::AlertsSender, $subject, $message);
 ?>

@@ -16,8 +16,9 @@ RewriteRule ^(sg)/(.*) /page/wishlist-redirect.php?sg=$2
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule (.*) $1.php
 
-ErrorDocument 403 /page/403.php
-ErrorDocument 404 /page/404.php
+ErrorDocument 403 /page/403
+ErrorDocument 404 /page/404
+ErrorDocument 500 /page/500
 
 <IfModule mod_headers.c>
     Header set Cache-Control "max-age=86400"

@@ -502,6 +502,7 @@ li::marker {
 }
 
 .wishlist-background {
+  background: linear-gradient(315deg, #f8f9fd, #eeedf7);
   background-color: #f2f2f2;
   border-radius: 1em;
   padding: 1em;
@@ -523,6 +524,7 @@ li::marker {
 .message-chooser, .message-viewer {
   height: calc(95vh - 5rem - 5rem);
   overflow-y: auto;
+  background: linear-gradient(to right, #f8f9fd, #eeedf7);
   background-color: #eeedf7;
 }
 

@@ -294,8 +294,8 @@ hr.expand {
 
 .message-grid {
   display: grid;
-  grid-template-columns: 30% 70%;
-  margin: 1em 5vw;
+  grid-template-columns: min(30%, 25em) auto;
+  margin: 1em;
 }
 
 .gift-name {
@@ -542,7 +542,7 @@ li::marker {
   border-top: 2px solid #eeedf7;
   border-bottom: 2px solid #eeedf7;
   border-left: 4px solid #eeedf7;
-  padding: 0 1.5em;
+  padding: 0 0.75em;
   cursor: pointer;
 }
 

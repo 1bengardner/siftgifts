@@ -20,7 +20,7 @@ if (count($msgs) === 0) {
   <div class="message-viewer">
     <div class="back-navigation"><a title="Return to messages" href onclick="navigateToChooser(event)">🔙</a></div>
     <div class="conversation-partner"></div>
-    <div class="message-content"><div class="center">Select a message to expand the conversation.</div></div>
+    <div class="message-content"><div class="center">Select a sender on the left to open the conversation.</div></div>
     <form id="message-form" class="unbreakable" method="post"></form>
   </div>
 </div>

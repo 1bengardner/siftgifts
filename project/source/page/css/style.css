@@ -1,10 +1,13 @@
 body, button {
   color: #433940;
   background-color: #fbfbfc;
-  background-image: url("../img/p5.png");
   font-family: 'Lexend', 'Noto Emoji', sans-serif;
   font-size: medium;
   margin: 0;
+}
+
+body {
+  background-image: url("../img/p5.png");
 }
 
 button {

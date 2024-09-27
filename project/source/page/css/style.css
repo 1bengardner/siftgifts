@@ -1,6 +1,7 @@
 body, button {
   color: #433940;
   background-color: #fbfbfc;
+  background-image: url("../img/p5.png");
   font-family: 'Lexend', 'Noto Emoji', sans-serif;
   font-size: medium;
   margin: 0;
@@ -502,7 +503,7 @@ li::marker {
 }
 
 .wishlist-background {
-  background: linear-gradient(315deg, #f8f9fd, #eeedf7);
+  background: url("../img/p5.png"), linear-gradient(315deg, #f8f9fd, #eeedf7);
   background-color: #f2f2f2;
   border-radius: 1em;
   padding: 1em;
@@ -686,7 +687,7 @@ input.message-entry:disabled {
 @keyframes pulse {
   100% {
     color: #3efa3e;
-    background-color: rgba(0, 255, 0, 0.02);
+    background-color: #f4fef5;
   }
 }
 a.new-notifications {

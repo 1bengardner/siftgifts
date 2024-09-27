@@ -369,8 +369,7 @@ hr.expand {
 
 .purple-box, .username-box {
   color: rgb(80, 0, 128);
-  background-color: rgba(160, 0, 255, 0.1);
-  border: 1px solid rgba(246, 240, 255, 0.5);
+  background-color: #e6dcfc;
 }
 
 .username-box {
@@ -512,7 +511,8 @@ input.wishlist-link, input#search {
 
 .wishlist-header-buttons {
   display: inline-block;
-  background-color: rgba(160, 0, 255, 0.05);
+  background: linear-gradient(to left, #e6dcfc, #efe8ff);
+  background-color: #e6dcfc;
   padding: 0.75em;
   margin: 0 0.5em;
   border-radius: 1em;
@@ -532,7 +532,7 @@ input.wishlist-link, input#search {
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
   max-width: 10px;
   max-height: 10px;
-  background-color: rgba(160, 0, 255, 0.05);
+  background-color: #e6dcfc;
 }
 
 .message-chooser::-webkit-scrollbar-thumb, .message-viewer::-webkit-scrollbar-thumb {
@@ -596,12 +596,14 @@ input.wishlist-link, input#search {
 }
 
 .sent-message p {
-  background-color: #fbfbfc;
+  background-color: #fff;
+  background: linear-gradient(315deg, #f6f2ff, #fff 80%);
   margin-left: 10vw;
 }
 
 .received-message p {
-  background-color: #fbf8ff;
+  background-color: #fff;
+  background: linear-gradient(315deg, #f6f2ff, #fff 80%);
   margin-right: 10vw;
 }
 
@@ -617,13 +619,13 @@ input.message-entry:disabled {
   width: calc(90% - 1rem);
   margin: -0.5rem 0 1rem 0;
   border-radius: 2rem;
-  outline: solid #fbf8ff;
+  outline: solid #eeedf7;
 }
 
 .send-button {
   font-weight: bold;
-  color: #fff;
-  background-color: rgba(160, 0, 255, 0.3);
+  color: #539;
+  background-color: #e6dcfc;
   padding: 1rem 1.5rem;
   margin-right: 1rem;
   border-radius: 0 2em 2em 0;
@@ -631,11 +633,10 @@ input.message-entry:disabled {
   box-sizing: border-box;
 }
 .send-button:hover {
-  background-color: rgba(160, 0, 255, 0.3);
+  background-color: rgba(160, 0, 255, 0.1);
 }
 .send-button:active {
-  background-color: rgba(160, 0, 255, 0.25);
-  color: #433940;
+  background-color: rgba(160, 0, 255, 0.1);
 }
 
 .message-time-sent {
@@ -723,7 +724,7 @@ a.new-notifications {
   padding: 0.5em;
   margin: 0.2em;
   margin-left: 3em;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: #e6dcfc;
   border-radius: 1em;
 }
 

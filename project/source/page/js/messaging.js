@@ -6,9 +6,20 @@ var latestIssuedRequestId = undefined;
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'in the past week': {weekday: 'long'},
-  'recent date': {month: 'short', day: 'numeric'},
+  'this year': {month: 'short', day: 'numeric'},
   'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
+
+function getRelativeRepresentation(date) {
+  const currentDate = new Date();
+  const sentToday = !(date.getDate() < currentDate.getDate() || date.getMonth() < currentDate.getMonth() || date.getYear() < currentDate.getYear());
+  const sentThisWeek = date > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
+  const sentThisYear = date.getYear() == currentDate.getYear();
+  if (sentToday) return "Today";
+  if (sentThisWeek) return date.toLocaleString(undefined, localeStrings['in the past week']);
+  if (sentThisYear) return date.toLocaleString(undefined, localeStrings['this year']);
+  return date.toLocaleString(undefined, localeStrings['past date']);
+}
 
 function toMessageContentString(msg) {
   const currentDate = new Date();
@@ -16,7 +27,7 @@ function toMessageContentString(msg) {
   const sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear());
   const sentThisWeek = sentDate > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
   const sentThisYear = sentDate.getYear() == currentDate.getYear();
-  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : sentThisWeek ? new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['in the past week'])+" at " : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings[sentThisYear ? 'recent date' : 'past date'])+"</span> "}${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}</span>${linkify(msg['message'])}</p></div>`;
+  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : sentThisWeek ? new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['in the past week'])+" at " : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings[sentThisYear ? 'this year' : 'past date'])+"</span> "}${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}</span>${linkify(msg['message'])}</p></div>`;
 }
 
 function sendAlertEmail() {
@@ -72,7 +83,13 @@ function sendMessage() {
 function setContent(replyable, ...messageData) {
   getUpdates();
   let content = "";
+  let lastDate = new Date(0);
   messageData.forEach(function(msg) {
+    const thisDate = new Date(msg['sent_time']);
+    if (thisDate.toLocaleDateString() != lastDate.toLocaleDateString()) {
+      content += `<div class=message-date-separator><p>${getRelativeRepresentation(thisDate)}</p></div>`;
+      lastDate = thisDate;
+    }
     content += toMessageContentString(msg);
   });
   document.querySelector('.message-content').classList.remove('old-content');

@@ -606,8 +606,21 @@ input.wishlist-link, input#search {
 
 .received-message p {
   background-color: #fff;
-  background: linear-gradient(315deg, #eeedf7, #fff 80%);
   margin-right: 10vw;
+}
+
+.message-date-separator {
+  text-align: center;
+}
+
+.message-date-separator p {
+  display: inline-block;
+  font-size: 0.6em;
+  padding: 0.5em;
+  border-radius: 1em;
+  margin: 0.5em;
+  background-color: #fff;
+  background: linear-gradient(315deg, #eeedf7, #f8f9fd 80%);
 }
 
 input.message-entry {

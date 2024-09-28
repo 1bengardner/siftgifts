@@ -26,7 +26,8 @@ function toMessageContentString(msg) {
   const sentDate = new Date(msg['sent_time']);
   const sentToday = getRelativeRepresentation(sentDate) == "Today";
   const sentThisWeek = sentDate > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
-  const timestampOutput = `${sentToday ? "" : sentThisWeek ? getRelativeRepresentation(sentDate) + " at " : "<span class='muted'>"+getRelativeRepresentation(sentDate)+"</span> "}${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}`;
+  const timeOutput = `${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}`;
+  const timestampOutput = `${sentToday ? "" : sentThisWeek ? getRelativeRepresentation(sentDate) + " at " : "<span class='muted'>"+getRelativeRepresentation(sentDate)+"</span> "}${timeOutput}`;
   return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestampOutput}</span>${linkify(msg['message'])}</p></div>`;
 }
 

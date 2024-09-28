@@ -1,3 +1,7 @@
+:focus-visible {
+  outline: #539 auto;
+}
+
 body, button {
   color: #433940;
   background-color: #fbfbfc;
@@ -853,9 +857,9 @@ input.edit-widget {
   padding: revert;
   margin: revert;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
-.gift-widget:hover input.edit-widget {
+.gift-widget:hover input.edit-widget, input.edit-widget:focus {
   opacity: 1;
   transition: opacity 0s;
 }

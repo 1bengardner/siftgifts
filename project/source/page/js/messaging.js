@@ -4,14 +4,18 @@ var messagesById = {};
 var messagesByFrom = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
-  'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
+  'in the past week': {weekday: 'long'},
+  'recent date': {month: 'short', day: 'numeric'},
+  'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
-  
+
 function toMessageContentString(msg) {
-  let currentDate = new Date();
-  let sentDate = new Date(msg['sent_time']);
-  let sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear())
-  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "Today at " : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
+  const currentDate = new Date();
+  const sentDate = new Date(msg['sent_time']);
+  const sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear());
+  const sentThisWeek = sentDate > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
+  const sentThisYear = sentDate.getYear() == currentDate.getYear();
+  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "Today at " : sentThisWeek ? new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['in the past week'])+" at " : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings[sentThisYear ? 'recent date' : 'past date'])+"</span> "}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}</span>${linkify(msg['message'])}</p></div>`;
 }
 
 function sendAlertEmail() {

@@ -172,12 +172,6 @@ function getMessages(id, messageCache, uri) {
   rq.send();
 }
 
-function navigateToChooser(e) {
-    document.querySelector('.message-viewer').classList.remove('visible-on-mobile');
-    document.querySelector('.message-chooser').classList.add('visible-on-mobile');
-    e.preventDefault();
-}
-
 function wireMessageChooser() {
   document.querySelectorAll('.message-chooser-message').forEach(message => {
     message.onclick = function() {

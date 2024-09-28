@@ -600,14 +600,13 @@ input.wishlist-link, input#search {
 }
 
 .sent-message p {
-  background-color: #fff;
-  background: linear-gradient(315deg, #f6f2ff, #fff 80%);
+  background-color: #e6dcfc;
   margin-left: 10vw;
 }
 
 .received-message p {
   background-color: #fff;
-  background: linear-gradient(315deg, #f6f2ff, #fff 80%);
+  background: linear-gradient(315deg, #eeedf7, #fff 80%);
   margin-right: 10vw;
 }
 
@@ -732,7 +731,7 @@ a.new-notifications {
   padding: 0.5em;
   margin: 0.2em;
   margin-left: 3em;
-  background-color: #e6dcfc;
+  background-color: #fff;
   border-radius: 1em;
 }
 

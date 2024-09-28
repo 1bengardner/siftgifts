@@ -2,6 +2,7 @@ import { linkify } from "./linkify.js";
 
 var messagesById = {};
 var messagesByFrom = {};
+var latestIssuedRequestId = undefined;
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'in the past week': {weekday: 'long'},
@@ -154,6 +155,7 @@ function getMessages(id, messageCache, uri) {
     setContent(messageCache == messagesByFrom, ...messageCache[id]);
     return;
   }
+  latestIssuedRequestId = id;
   let rq = new XMLHttpRequest();
   rq.open("GET", uri + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -161,17 +163,20 @@ function getMessages(id, messageCache, uri) {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(loading);
       messageCache[id] = JSON.parse(rq.responseText);
-      getMessages(id, messageCache, uri);
+      if (latestIssuedRequestId == id) {
+        getMessages(id, messageCache, uri);
+      }
     }
   }
   let loading = setTimeout(function() {
     document.querySelector('.message-content').classList.remove('old-content');
     document.getElementById('message-form').innerHTML = '';
     document.querySelector('.message-content').innerHTML = `
-<svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="256px" height="256px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-<circle cx="50" cy="50" fill="none" stroke="#985dbf" stroke-width="4" r="20" stroke-dasharray="100">
+<p class="center">Loading messages...</p>
+<svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="50" cy="50" fill="none" stroke="#a9b" stroke-width="8" r="40" stroke-dasharray="160">
   <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.8s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-</circle>`;
+</circle></svg>`;
   }, 500);
   rq.send();
 }

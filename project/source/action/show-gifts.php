@@ -31,7 +31,7 @@ foreach ($gifts as $gift_data) {
         <?php } ?>
       </h2>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
+        <p class="subheading gift-notes"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
       <?php }
       if ($gift->reserved && $gift->reserved_time != NULL) {
       ?>
@@ -56,3 +56,4 @@ if (count($gifts) === 0) {
 <?php
 }
 ?>
+<script src="/page/js/show-gifts.js" type="module"></script>

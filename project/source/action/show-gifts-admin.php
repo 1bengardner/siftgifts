@@ -45,7 +45,7 @@ foreach ($gifts as $gift_data) {
       <?php if (!empty($gift->notes)) { ?>
         <p class="subheading">
         <!-- <button href="#" class="edit" title="Edit: Comments" onclick="edit('notes-<?php echo $gift->id; ?>');">✏</button> -->
-        <span id="notes-<?php echo $gift->id; ?>">
+        <span id="notes-<?php echo $gift->id; ?>" class="gift-notes">
           <?php echo nl2br(htmlentities($gift->notes)); ?>
         </span>
         </p>
@@ -63,3 +63,4 @@ if (count($gifts) === 0) {
 <?php
 }
 ?>
+<script src="/page/js/show-gifts.js" type="module"></script>

@@ -1,17 +1,11 @@
+import { linkify } from "./linkify.js";
+
 var messagesById = {};
 var messagesByFrom = {};
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
-
-// From https://stackoverflow.com/a/8943487
-function linkify(text) {
-  var urlRegex = /(\b(https):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-  return text.replace(urlRegex, function(url) {
-    return '<a target="_blank" class="link" href="' + url + '">' + url + '</a>';
-  });
-}
   
 function toMessageContentString(msg) {
   let currentDate = new Date();

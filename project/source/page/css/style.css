@@ -506,7 +506,7 @@ input.wishlist-link, input#search {
 }
 
 .wishlist-background {
-  background: url("../img/p5.png"), linear-gradient(315deg, #f8f9fd, #eeedf7);
+  background: url("../img/p5.png"), linear-gradient(315deg, #eeedf7, #f8f9fd);
   background-color: #f2f2f2;
   border-radius: 1em;
   padding: 1em;
@@ -873,7 +873,7 @@ input.edit-widget {
 
 @media screen and (max-width: 1200px) {
   .gift-widget {
-    padding: 1vh 10vw;
+    padding: 0.5em 1.5em;
   }
   .news-image, .about-image {
     display: none;
@@ -902,8 +902,8 @@ input.edit-widget {
     width: 400px;
   }
   .focused.gift-widget {
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
   }
   .user-header-buttons-large {
     display: inline-block;

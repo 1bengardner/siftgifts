@@ -13,7 +13,7 @@
       </div>
       <div>
         <?php require_once '../data/user.php'; ?>
-        <div class="form-field-label">From</div><input id="from" type="name" placeholder="Your name" maxlength="255" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> />
+        <div class="form-field-label">From</div><input id="from" type="name" placeholder="Your name" maxlength="100" <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) echo "value='".ucwords(strtolower(User::get_from_id($_SESSION["id"])->username))."' disabled"; ?> />
       </div>
       <?php if (isset($_SESSION["id"]) && $_SESSION["id"]) { ?>
       <span class="purple-box settings-box first-in-series">

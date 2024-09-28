@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 11:57 PM
+-- Generation Time: Sep 28, 2024 at 01:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `from` int(11) DEFAULT NULL,
   `body` text NOT NULL,
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
-  `guest_name` varchar(255) DEFAULT NULL,
+  `guest_name` varchar(100) DEFAULT NULL,
   `unread` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `fk-message-from` (`from`),

@@ -24,10 +24,9 @@ function getRelativeRepresentation(date) {
 function toMessageContentString(msg) {
   const currentDate = new Date();
   const sentDate = new Date(msg['sent_time']);
-  const sentToday = !(sentDate.getDate() < currentDate.getDate() || sentDate.getMonth() < currentDate.getMonth() || sentDate.getYear() < currentDate.getYear());
+  const sentToday = getRelativeRepresentation(sentDate) == "Today";
   const sentThisWeek = sentDate > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
-  const sentThisYear = sentDate.getYear() == currentDate.getYear();
-  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : sentThisWeek ? new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['in the past week'])+" at " : "<span class='muted'>"+new Date(msg['sent_time']).toLocaleString(undefined, localeStrings[sentThisYear ? 'this year' : 'past date'])+"</span> "}${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}</span>${linkify(msg['message'])}</p></div>`;
+  return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${sentToday ? "" : sentThisWeek ? getRelativeRepresentation(sentDate) + " at " : "<span class='muted'>"+getRelativeRepresentation(sentDate)+"</span> "}${sentToday ? "<strong>" : ""}${new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time'])}${sentToday ? "</strong>" : ""}</span>${linkify(msg['message'])}</p></div>`;
 }
 
 function sendAlertEmail() {

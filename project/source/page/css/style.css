@@ -680,6 +680,10 @@ input.message-entry:disabled {
   font-weight: bold;
 }
 
+#message-form {
+  margin: 0;
+}
+
 .wishlist-header, .messaging-header {
   display: inline-block;
   vertical-align: middle;

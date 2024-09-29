@@ -2,7 +2,6 @@ import { linkify } from "./linkify.js";
 
 var messagesById = {};
 var messagesByFrom = {};
-var latestIssuedRequestId = undefined;
 var isLatestLoadedMessageFromToday = false;
 var pendingRefreshes = [];
 var localeStrings = {
@@ -11,6 +10,10 @@ var localeStrings = {
   'this year': {month: 'short', day: 'numeric'},
   'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
+
+function getSelectedUserId() {
+  return document.querySelector('.message-chooser-message.selected').getAttribute('conversation');
+}
 
 function getRelativeType(date) {
   const currentDate = new Date();
@@ -63,9 +66,9 @@ function sendMessage() {
   let message = document.querySelector('.message-entry').value;
   document.querySelector('.message-entry').value = "";
   document.querySelector('.message-entry').setAttribute("placeholder", "Sending…");
-  let conversationPartner = document.querySelector('.message-chooser-message.selected').getAttribute('conversation');
   let selectedMessageBody = document.querySelector('.message-chooser-message.selected .last-message-body');
   let rq = new XMLHttpRequest();
+  let conversationPartner = getSelectedUserId();
   rq.open("POST", "/action/submit-messaging-message", true);
   const params = {
     "to": conversationPartner,
@@ -74,7 +77,7 @@ function sendMessage() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      if (latestIssuedRequestId === parseInt(conversationPartner)) {
+      if (getSelectedUserId() === conversationPartner) {
         document.querySelector('.message-entry').setAttribute("placeholder", "Sent!");
       }
       pendingRefreshes.push({
@@ -222,9 +225,6 @@ function getMessages(id, messageCache, uri, quietRefresh=false) {
   
   let name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
   document.querySelector('.message-viewer > .conversation-partner').textContent = name;
-  if (!silent) {
-    latestIssuedRequestId = id;
-  }
   // Response received already or request initiated already
   if (!force && id in messageCache) {
     if (!silent && (messageCache[id] === "PENDING" || messageCache[id] === "LOADING")) {
@@ -250,14 +250,14 @@ function getMessages(id, messageCache, uri, quietRefresh=false) {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(delayedLoad);
       messageCache[id] = JSON.parse(rq.responseText);
-      if (latestIssuedRequestId === id) {
+      if (parseInt(getSelectedUserId()) === id) {
         getMessages(id, messageCache, uri);
       }
     }
   }
   const delayedLoad = silent ? undefined : setTimeout(function() {
     // Prevent animation when conversation no longer selected or animation already started
-    if (latestIssuedRequestId !== id || messageCache[id] === "LOADING") {
+    if (parseInt(getSelectedUserId()) !== id || messageCache[id] === "LOADING") {
       return;
     }
     showLoadingAnimation();

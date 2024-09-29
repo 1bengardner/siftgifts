@@ -190,6 +190,15 @@ function getUpdates() {
         let selectedValue = selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
         document.querySelector('.message-chooser').innerHTML = rq.responseText;
         document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
+        
+        // Update cached conversations that have new messages
+        for (const unreadConversation of document.querySelectorAll('.message-chooser-message.unread')) {
+          const id = parseInt(unreadConversation.getAttribute('conversation'));
+          if (id in messagesByFrom) {
+            refreshMessages(id, messagesByFrom, "/action/get-messages?from=");
+          }
+        }
+        
         wireMessageChooser();
       }
     }

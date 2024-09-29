@@ -11,8 +11,9 @@ var localeStrings = {
   'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
 };
 
-function getSelectedUserId() {
-  return document.querySelector('.message-chooser-message.selected').getAttribute('conversation');
+function getSelectedId() {
+  const selected = document.querySelector('.message-chooser-message.selected');
+  return selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
 }
 
 function getRelativeType(date) {
@@ -66,7 +67,7 @@ function sendMessage() {
   const message = document.querySelector('.message-entry').value;
   document.querySelector('.message-entry').value = "";
   document.querySelector('.message-entry').setAttribute("placeholder", "Sending…");
-  const sentTo = getSelectedUserId();
+  const sentTo = getSelectedId();
   const selectedMessageBody = document.querySelector('.message-chooser-message.selected .last-message-body');
   const rq = new XMLHttpRequest();
   rq.open("POST", "/action/submit-messaging-message", true);
@@ -77,7 +78,7 @@ function sendMessage() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      if (getSelectedUserId() === sentTo) {
+      if (getSelectedId() === sentTo) {
         document.querySelector('.message-entry').setAttribute("placeholder", "Sent!");
       }
       pendingRefreshes.push({
@@ -259,14 +260,14 @@ function getMessages(id, messageCache, uri, quietRefresh=false) {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(delayedLoad);
       messageCache[id] = JSON.parse(rq.responseText);
-      if (parseInt(getSelectedUserId()) === id) {
+      if (parseInt(getSelectedId()) === id) {
         getMessages(id, messageCache, uri);
       }
     }
   }
   const delayedLoad = silent ? undefined : setTimeout(function() {
     // Prevent animation when conversation no longer selected or animation already started
-    if (parseInt(getSelectedUserId()) !== id || messageCache[id] === "LOADING") {
+    if (parseInt(getSelectedId()) !== id || messageCache[id] === "LOADING") {
       return;
     }
     showLoadingAnimation();

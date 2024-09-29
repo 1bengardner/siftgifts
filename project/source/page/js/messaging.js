@@ -308,7 +308,7 @@ function wireMessageChooser() {
   });
 }
 
-function pollForMessagesWhileFocused() {
+function pollForMessagesWhileFocused(interval) {
   const updateOrStopPolling = function() {
     const resumePolling = function() {
       poll = addPoll();
@@ -324,10 +324,10 @@ function pollForMessagesWhileFocused() {
     }
   }
   const addPoll = function() {
-    return setInterval(updateOrStopPolling, 5000);
+    return setInterval(updateOrStopPolling, interval);
   }
   let poll = addPoll();
 }
 
 wireMessageChooser();
-pollForMessagesWhileFocused();
+pollForMessagesWhileFocused(2000);

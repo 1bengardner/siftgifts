@@ -44,13 +44,7 @@ function toMessageContentString(msg) {
       default: return `<span class='muted'>${getRelativeRepresentation(sentDate)}</span> `;
     }
   }();
-  const timeOutput = function() {
-    let time = new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time']);
-    if (getRelativeType(sentDate) == "TODAY") {
-      time = `<strong>${time}</strong>`;
-    }
-    return time;
-  }();
+  const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time']);
   function wrapMessageInContainer(timestamp, message) {
     return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestamp}</span>${message}</p></div>`
   }

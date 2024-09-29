@@ -74,6 +74,9 @@ function sendMessage() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      if (latestIssuedRequestId === parseInt(conversationPartner)) {
+        document.querySelector('.message-entry').setAttribute("placeholder", "Sent!");
+      }
       pendingRefreshes.push({
         'id': parseInt(conversationPartner),
         'rq': refreshMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=")

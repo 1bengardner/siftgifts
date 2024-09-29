@@ -535,14 +535,12 @@ input.wishlist-link, input#search {
 }
 
 .message-chooser::-webkit-scrollbar, .message-viewer::-webkit-scrollbar {
-  max-width: 10px;
-  max-height: 10px;
+  max-width: 8px;
   background-color: #e6dcfc;
 }
 
 .message-chooser::-webkit-scrollbar-thumb, .message-viewer::-webkit-scrollbar-thumb {
   background-color: #a9b;
-  border-radius: 5px;
 }
 
 .message-chooser-message {

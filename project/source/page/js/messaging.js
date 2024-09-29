@@ -63,34 +63,34 @@ function sendAlertEmail() {
 }
 
 function sendMessage() {
-  let message = document.querySelector('.message-entry').value;
+  const message = document.querySelector('.message-entry').value;
   document.querySelector('.message-entry').value = "";
   document.querySelector('.message-entry').setAttribute("placeholder", "Sending…");
-  let selectedMessageBody = document.querySelector('.message-chooser-message.selected .last-message-body');
-  let rq = new XMLHttpRequest();
-  let conversationPartner = getSelectedUserId();
+  const sentTo = getSelectedUserId();
+  const selectedMessageBody = document.querySelector('.message-chooser-message.selected .last-message-body');
+  const rq = new XMLHttpRequest();
   rq.open("POST", "/action/submit-messaging-message", true);
   const params = {
-    "to": conversationPartner,
+    "to": sentTo,
     "message": message
   };
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      if (getSelectedUserId() === conversationPartner) {
+      if (getSelectedUserId() === sentTo) {
         document.querySelector('.message-entry').setAttribute("placeholder", "Sent!");
       }
       pendingRefreshes.push({
-        'id': parseInt(conversationPartner),
-        'rq': refreshMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=")
+        'id': parseInt(sentTo),
+        'rq': refreshMessages(parseInt(sentTo), messagesByFrom, "/action/get-messages?from=")
       });
       sendAlertEmail();
     }
   }
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
   
-  pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(conversationPartner)).forEach((refreshRequest) => refreshRequest.rq.abort());
-  pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(conversationPartner));
+  pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(sentTo)).forEach((refreshRequest) => refreshRequest.rq.abort());
+  pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(sentTo));
   getUpdates.pendingUpdates?.forEach((update) => update.abort());
   
   let node = document.createElement("em");
@@ -111,7 +111,7 @@ function sendMessage() {
     'message': message
   };
   document.querySelector('.message-content').innerHTML += toMessageContentString(jsonMessage);
-  messagesByFrom[parseInt(conversationPartner)].push(jsonMessage);
+  messagesByFrom[parseInt(sentTo)].push(jsonMessage);
   
   let viewer = document.querySelector('.message-viewer');
   viewer.scrollTop = viewer.scrollHeight;
@@ -223,7 +223,7 @@ function getMessages(id, messageCache, uri, quietRefresh=false) {
   const silent = quietRefresh;
   const force = quietRefresh;
   
-  let name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
+  const name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
   document.querySelector('.message-viewer > .conversation-partner').textContent = name;
   // Response received already or request initiated already
   if (!force && id in messageCache) {

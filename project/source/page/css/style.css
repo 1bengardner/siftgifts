@@ -1,5 +1,6 @@
 :focus-visible {
   outline: #539 auto;
+  outline-offset: -1px;
 }
 
 body, button {
@@ -615,12 +616,12 @@ input.wishlist-link, input#search {
 
 .message-date-separator p {
   display: inline-block;
-  font-size: 0.6em;
+  font-size: x-small;
   padding: 0.5em;
-  border-radius: 1em;
-  margin: 0.5em;
+  border-radius: 1.2em 1.2em 0.2em 0.2em;
+  margin: 0.5em 0 0 0;
   background-color: #fff;
-  background: linear-gradient(315deg, #eeedf7, #f8f9fd 80%);
+  background: linear-gradient(to top, #eeedf7, #f8f9fd 80%);
 }
 
 input.message-entry {

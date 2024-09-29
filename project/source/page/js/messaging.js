@@ -3,6 +3,7 @@ import { linkify } from "./linkify.js";
 var messagesById = {};
 var messagesByFrom = {};
 var latestIssuedRequestId = undefined;
+var isLatestLoadedMessageFromToday = false;
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'in the past week': {weekday: 'long'},
@@ -28,6 +29,10 @@ function getRelativeRepresentation(date) {
     case ("THIS_YEAR"): return date.toLocaleString(undefined, localeStrings['this year']);
     default: return date.toLocaleString(undefined, localeStrings['past date']);
   }
+}
+
+function toDateBubble(date) {
+  return `<div class=message-date-separator><p>${getRelativeRepresentation(date)}</p></div>`;
 }
 
 function toMessageContentString(msg) {
@@ -88,6 +93,10 @@ function sendMessage() {
   
   document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, localeStrings['time']);
   
+  if (!isLatestLoadedMessageFromToday) {
+    isLatestLoadedMessageFromToday = true;
+    document.querySelector('.message-content').innerHTML += toDateBubble(new Date());
+  }
   document.querySelector('.message-content').innerHTML += toMessageContentString(
     {
       'unsent': true,
@@ -109,11 +118,12 @@ function setContent(replyable, ...messageData) {
   messageData.forEach(function(msg) {
     const thisDate = new Date(msg['sent_time']);
     if (thisDate.toLocaleDateString() != lastDate.toLocaleDateString()) {
-      content += `<div class=message-date-separator><p>${getRelativeRepresentation(thisDate)}</p></div>`;
+      content += toDateBubble(thisDate);
       lastDate = thisDate;
     }
     content += toMessageContentString(msg);
   });
+  isLatestLoadedMessageFromToday = lastDate.toLocaleDateString() == new Date().toLocaleDateString();
   document.querySelector('.message-content').classList.remove('old-content');
   document.querySelector('.message-content').innerHTML = content;
   document.querySelector('.message-chooser-message.selected').classList.remove('unread');

@@ -181,6 +181,9 @@ function getUpdates() {
   }
   
   function updatePreviews() {
+    function populatePreviews() {
+      document.querySelector('.message-chooser').innerHTML = rq.responseText;
+    }
     let rq = new XMLHttpRequest();
     rq.open("POST", "/action/show-message-previews", true);
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -191,8 +194,10 @@ function getUpdates() {
         if (selected) {
           let selectedAttribute = selected.getAttribute('conversation') ? 'conversation' : 'last-message';
           let selectedValue = selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
-          document.querySelector('.message-chooser').innerHTML = rq.responseText;
+          populatePreviews();
           document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
+        } else {
+          populatePreviews();
         }
         
         // Update cached conversations that have new messages

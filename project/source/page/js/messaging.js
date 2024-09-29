@@ -4,6 +4,7 @@ var messagesById = {};
 var messagesByFrom = {};
 var latestIssuedRequestId = undefined;
 var isLatestLoadedMessageFromToday = false;
+var pendingRefreshes = [];
 var localeStrings = {
   'time': {hour: 'numeric', minute: '2-digit'},
   'in the past week': {weekday: 'long'},
@@ -73,13 +74,18 @@ function sendMessage() {
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      delete messagesByFrom[parseInt(conversationPartner)];
-      updateMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
-      
+      pendingRefreshes.push({
+        'id': parseInt(conversationPartner),
+        'rq': refreshMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=")
+      });
       sendAlertEmail();
     }
   }
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
+  
+  pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(conversationPartner)).forEach((refreshRequest) => refreshRequest.rq.abort());
+  pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(conversationPartner));
+  getUpdates.pendingUpdates?.forEach((update) => update.abort());
   
   let node = document.createElement("em");
   node.textContent = message;
@@ -91,15 +97,15 @@ function sendMessage() {
     isLatestLoadedMessageFromToday = true;
     document.querySelector('.message-content').innerHTML += toDateBubble(new Date());
   }
-  document.querySelector('.message-content').innerHTML += toMessageContentString(
-    {
-      'unsent': true,
-      'unread': true,
-      'is_sender': true,
-      'sent_time': new Date(),
-      'message': message
-    }
-  );
+  const jsonMessage = {
+    'unsent': true,
+    'unread': true,
+    'is_sender': true,
+    'sent_time': new Date(),
+    'message': message
+  };
+  document.querySelector('.message-content').innerHTML += toMessageContentString(jsonMessage);
+  messagesByFrom[parseInt(conversationPartner)].push(jsonMessage);
   
   let viewer = document.querySelector('.message-viewer');
   viewer.scrollTop = viewer.scrollHeight;
@@ -122,6 +128,7 @@ function setContent(replyable, ...messageData) {
   document.querySelector('.message-content').innerHTML = content;
   document.querySelector('.message-chooser-message.selected').classList.remove('unread');
   
+  const existingInputValue = document.querySelector('.message-entry')?.value;
   let messageFormHTML = `<input disabled type="text" class="message-entry" placeholder="You cannot reply to guests."></input>`;
   if (replyable) {
     let messageEntry = `<input class="message-entry" type="text" placeholder="Type a message…" minlength="1" required></input>`;
@@ -129,6 +136,9 @@ function setContent(replyable, ...messageData) {
     messageFormHTML = messageEntry + sendButton;
   }
   document.getElementById('message-form').innerHTML = messageFormHTML;
+  if (existingInputValue && replyable) {
+    document.querySelector('.message-entry').value = existingInputValue;
+  }
   document.getElementById('message-form').onsubmit = function(e) {
     sendMessage();
     e.preventDefault();
@@ -157,11 +167,10 @@ function getUpdates() {
             p.appendChild(node);
           }
         });
-        
-        getUpdates.updatesRemaining -= 1;
       }
     }
     rq.send();
+    return rq;
   }
   
   function updatePreviews() {
@@ -176,26 +185,22 @@ function getUpdates() {
         document.querySelector('.message-chooser').innerHTML = rq.responseText;
         document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
         wireMessageChooser();
-        
-        getUpdates.updatesRemaining -= 1;
       }
     }
     rq.send();
+    return rq;
   }
   
-  if (getUpdates.updatesRemaining) {
-    return;
-  }
-  getUpdates.updatesRemaining = 2;
-  updateUnreadCount();
-  updatePreviews();
+  getUpdates.pendingUpdates?.forEach((update) => update.abort());
+  getUpdates.pendingUpdates = [updateUnreadCount(), updatePreviews()];
 }
 
-function updateMessages(id, messageCache, uri) {
-  getMessages(id, messageCache, uri, false);
+function refreshMessages(id, messageCache, uri) {
+  // Don't trigger loading animation and don't erase cache until response received
+  return getMessages(id, messageCache, uri, true);
 }
 
-function getMessages(id, messageCache, uri, shouldShowAnimation=true) {
+function getMessages(id, messageCache, uri, quietRefresh=false) {
   function showLoadingAnimation() {
     messageCache[id] = "LOADING";
     document.querySelector('.message-content').classList.remove('old-content');
@@ -209,24 +214,32 @@ function getMessages(id, messageCache, uri, shouldShowAnimation=true) {
     `;
   }
   
+  const silent = quietRefresh;
+  const force = quietRefresh;
+  
   let name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
   document.querySelector('.message-viewer > .conversation-partner').textContent = name;
-  latestIssuedRequestId = id;
-  if (id in messageCache) {
-    if (messageCache[id] === "PENDING" || messageCache[id] === "LOADING") {
+  if (!silent) {
+    latestIssuedRequestId = id;
+  }
+  // Response received already or request initiated already
+  if (!force && id in messageCache) {
+    if (!silent && (messageCache[id] === "PENDING" || messageCache[id] === "LOADING")) {
       showLoadingAnimation();
       return;
     }
     setContent(messageCache == messagesByFrom, ...messageCache[id]);
     return;
   }
-  messageCache[id] = "PENDING";
-  // Wait two seconds for a response before being able to retry
-  setTimeout(function() {
-    if (messageCache[id] === "PENDING") {
-      delete messageCache[id];
-    }
-  }, 2000);
+  if (!silent) {
+    messageCache[id] = "PENDING";
+    // Wait two seconds for a response before being able to retry
+    setTimeout(function() {
+      if (messageCache[id] === "PENDING") {
+        delete messageCache[id];
+      }
+    }, 2000);
+  }
   let rq = new XMLHttpRequest();
   rq.open("GET", uri + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -234,19 +247,20 @@ function getMessages(id, messageCache, uri, shouldShowAnimation=true) {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       clearTimeout(delayedLoad);
       messageCache[id] = JSON.parse(rq.responseText);
-      if (latestIssuedRequestId == id) {
+      if (latestIssuedRequestId === id) {
         getMessages(id, messageCache, uri);
       }
     }
   }
-  const delayedLoad = shouldShowAnimation ? setTimeout(function() {
-    if (latestIssuedRequestId != id || messageCache[id] === "LOADING") {
+  const delayedLoad = silent ? undefined : setTimeout(function() {
+    // Prevent animation when conversation no longer selected or animation already started
+    if (latestIssuedRequestId !== id || messageCache[id] === "LOADING") {
       return;
     }
     showLoadingAnimation();
-  }, 500)
-  : undefined;
+  }, 500);
   rq.send();
+  return rq;
 }
 
 function wireMessageChooser() {

@@ -74,7 +74,7 @@ function sendMessage() {
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       delete messagesByFrom[parseInt(conversationPartner)];
-      getMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
+      updateMessages(parseInt(conversationPartner), messagesByFrom, "/action/get-messages?from=");
       
       sendAlertEmail();
     }
@@ -191,36 +191,61 @@ function getUpdates() {
   updatePreviews();
 }
 
-function getMessages(id, messageCache, uri) {
+function updateMessages(id, messageCache, uri) {
+  getMessages(id, messageCache, uri, false);
+}
+
+function getMessages(id, messageCache, uri, shouldShowAnimation=true) {
+  function showLoadingAnimation() {
+    messageCache[id] = "LOADING";
+    document.querySelector('.message-content').classList.remove('old-content');
+    document.getElementById('message-form').innerHTML = '';
+    document.querySelector('.message-content').innerHTML = `
+      <p class="center">Loading messages&hellip;</p>
+      <svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      <circle cx="50" cy="50" fill="none" stroke="#a9b" stroke-width="8" r="40" stroke-dasharray="160">
+        <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.8s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+      </circle></svg>
+    `;
+  }
+  
   let name = document.querySelector('.message-chooser-message.selected .conversation-partner').textContent;
   document.querySelector('.message-viewer > .conversation-partner').textContent = name;
+  latestIssuedRequestId = id;
   if (id in messageCache) {
+    if (messageCache[id] === "PENDING" || messageCache[id] === "LOADING") {
+      showLoadingAnimation();
+      return;
+    }
     setContent(messageCache == messagesByFrom, ...messageCache[id]);
     return;
   }
-  latestIssuedRequestId = id;
+  messageCache[id] = "PENDING";
+  // Wait two seconds for a response before being able to retry
+  setTimeout(function() {
+    if (messageCache[id] === "PENDING") {
+      delete messageCache[id];
+    }
+  }, 2000);
   let rq = new XMLHttpRequest();
   rq.open("GET", uri + id, true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      clearTimeout(loading);
+      clearTimeout(delayedLoad);
       messageCache[id] = JSON.parse(rq.responseText);
       if (latestIssuedRequestId == id) {
         getMessages(id, messageCache, uri);
       }
     }
   }
-  let loading = setTimeout(function() {
-    document.querySelector('.message-content').classList.remove('old-content');
-    document.getElementById('message-form').innerHTML = '';
-    document.querySelector('.message-content').innerHTML = `
-<p class="center">Loading messages...</p>
-<svg class="loading-animation" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-<circle cx="50" cy="50" fill="none" stroke="#a9b" stroke-width="8" r="40" stroke-dasharray="160">
-  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.8s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-</circle></svg>`;
-  }, 500);
+  const delayedLoad = shouldShowAnimation ? setTimeout(function() {
+    if (latestIssuedRequestId != id || messageCache[id] === "LOADING") {
+      return;
+    }
+    showLoadingAnimation();
+  }, 500)
+  : undefined;
   rq.send();
 }
 

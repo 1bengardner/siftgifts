@@ -186,11 +186,14 @@ function getUpdates() {
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     rq.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        // Retain selected conversation
         let selected = document.querySelector('.message-chooser-message.selected');
-        let selectedAttribute = selected.getAttribute('conversation') ? 'conversation' : 'last-message';
-        let selectedValue = selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
-        document.querySelector('.message-chooser').innerHTML = rq.responseText;
-        document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
+        if (selected) {
+          let selectedAttribute = selected.getAttribute('conversation') ? 'conversation' : 'last-message';
+          let selectedValue = selected.getAttribute('conversation') ?? selected.getAttribute('last-message');
+          document.querySelector('.message-chooser').innerHTML = rq.responseText;
+          document.querySelector('.message-chooser-message['+selectedAttribute+'="'+selectedValue+'"]').classList.add('selected');
+        }
         
         // Update cached conversations that have new messages
         for (const unreadConversation of document.querySelectorAll('.message-chooser-message.unread')) {
@@ -301,3 +304,4 @@ function wireMessageChooser() {
 }
 
 wireMessageChooser();
+setInterval(getUpdates, 5000);

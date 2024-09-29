@@ -316,7 +316,6 @@ function pollForMessagesWhileFocused(interval) {
       window.removeEventListener("focus", resumePolling);
     }
     if (document.hasFocus()) {
-      console.log('getting updates');
       getUpdates();
     } else {
       clearInterval(poll);

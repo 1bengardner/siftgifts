@@ -308,5 +308,26 @@ function wireMessageChooser() {
   });
 }
 
+function pollForMessagesWhileFocused() {
+  const updateOrStopPolling = function() {
+    const resumePolling = function() {
+      poll = addPoll();
+      updateOrStopPolling();
+      window.removeEventListener("focus", resumePolling);
+    }
+    if (document.hasFocus()) {
+      console.log('getting updates');
+      getUpdates();
+    } else {
+      clearInterval(poll);
+      window.addEventListener("focus", resumePolling);
+    }
+  }
+  const addPoll = function() {
+    return setInterval(updateOrStopPolling, 5000);
+  }
+  let poll = addPoll();
+}
+
 wireMessageChooser();
-setInterval(getUpdates, 5000);
+pollForMessagesWhileFocused();

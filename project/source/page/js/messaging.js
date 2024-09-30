@@ -4,7 +4,7 @@ var LOCALE_STRING_OPTIONS_TIME = {hour: 'numeric', minute: '2-digit'};
 var messagesById = {};
 var messagesByFrom = {};
 var isLatestLoadedMessageFromToday = false;
-var pendingRefreshes = [];
+sendMessage.pendingRefreshes = [];
 
 function getSelectedId() {
   const selected = document.querySelector('.message-chooser-message.selected');
@@ -94,7 +94,7 @@ function sendMessage() {
       if (getSelectedId() === sentTo) {
         document.querySelector('.message-entry').setAttribute("placeholder", "Sent!");
       }
-      pendingRefreshes.push({
+      sendMessage.pendingRefreshes.push({
         'id': parseInt(sentTo),
         'rq': refreshMessages(parseInt(sentTo), messagesByFrom, "/action/get-messages?from=")
       });
@@ -103,8 +103,8 @@ function sendMessage() {
   }
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
   
-  pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(sentTo)).forEach((refreshRequest) => refreshRequest.rq.abort());
-  pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(sentTo));
+  sendMessage.pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(sentTo)).forEach((refreshRequest) => refreshRequest.rq.abort());
+  sendMessage.pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(sentTo));
   getUpdates.pendingUpdates?.forEach((update) => update.abort());
   
   let node = document.createElement("em");

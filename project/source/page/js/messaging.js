@@ -113,6 +113,8 @@ function sendMessage() {
   
   document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
   
+  document.querySelectorAll('.message-content .unread').forEach((unread) => unread.classList.remove("unread"));
+  
   if (!isLatestLoadedMessageFromToday) {
     isLatestLoadedMessageFromToday = true;
     document.querySelector('.message-content').innerHTML += toDateBubble(new Date());

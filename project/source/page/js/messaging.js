@@ -104,7 +104,7 @@ function sendMessage() {
   rq.send(Object.entries(params).map(pair => pair[0] + "=" + pair[1]).join("&"));
   
   sendMessage.pendingRefreshes.filter((refreshRequest) => refreshRequest.id === parseInt(sentTo)).forEach((refreshRequest) => refreshRequest.rq.abort());
-  sendMessage.pendingRefreshes = pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(sentTo));
+  sendMessage.pendingRefreshes = sendMessage.pendingRefreshes.filter((refreshRequest) => refreshRequest.id !== parseInt(sentTo));
   getUpdates.pendingUpdates?.forEach((update) => update.abort());
   
   let node = document.createElement("em");

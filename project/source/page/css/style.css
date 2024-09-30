@@ -617,7 +617,7 @@ input.wishlist-link, input#search {
   font-size: x-small;
   padding: 0.5em;
   border-radius: 1.2em 1.2em 0.2em 0.2em;
-  margin: 0.5em 0 0 0;
+  margin-bottom: 0.5em;
   background-color: #fff;
   background: linear-gradient(to top, #eeedf7, #f8f9fd 80%);
 }

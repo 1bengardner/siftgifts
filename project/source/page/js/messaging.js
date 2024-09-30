@@ -1,15 +1,10 @@
 import { linkify } from "./linkify.js";
 
+var LOCALE_STRING_OPTIONS_TIME = {hour: 'numeric', minute: '2-digit'};
 var messagesById = {};
 var messagesByFrom = {};
 var isLatestLoadedMessageFromToday = false;
 var pendingRefreshes = [];
-var localeStrings = {
-  'time': {hour: 'numeric', minute: '2-digit'},
-  'in the past week': {weekday: 'long'},
-  'this year': {month: 'short', day: 'numeric'},
-  'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
-};
 
 function getSelectedId() {
   const selected = document.querySelector('.message-chooser-message.selected');
@@ -19,17 +14,24 @@ function getSelectedId() {
 function getRelativeType(date) {
   const currentDate = new Date();
   const sentToday = !(date.getDate() < currentDate.getDate() || date.getMonth() < currentDate.getMonth() || date.getYear() < currentDate.getYear());
-  const sentThisWeek = date > new Date(currentDate).setDate(currentDate.getDate() - 6); // Could technically be - 7, but this way avoids same-day confusion
+  const sentYesterday = date > new Date(new Date(currentDate).setHours(0, 0, 0, 0)).setDate(currentDate.getDate() - 1);
+  const sentThisWeek = date > new Date(new Date(currentDate).setHours(0, 0, 0, 0)).setDate(currentDate.getDate() - currentDate.getDay());
   const sentThisYear = date.getYear() == currentDate.getYear();
   if (sentToday) return "TODAY";
+  if (sentYesterday) return "YESTERDAY";
   if (sentThisWeek) return "THIS_WEEK";
   if (sentThisYear) return "THIS_YEAR";
   return undefined;
 }
 
-function getRelativeRepresentation(date) {
+function getRelativeRepresentation(date, localeStrings = {
+    'in the past week': {weekday: 'long'},
+    'this year': {month: 'short', day: 'numeric'},
+    'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
+  }) {
   switch (getRelativeType(date)) {
     case ("TODAY"): return "Today";
+    case ("YESTERDAY"): return "Yesterday";
     case ("THIS_WEEK"): return date.toLocaleString(undefined, localeStrings['in the past week']);
     case ("THIS_YEAR"): return date.toLocaleString(undefined, localeStrings['this year']);
     default: return date.toLocaleString(undefined, localeStrings['past date']);
@@ -37,19 +39,30 @@ function getRelativeRepresentation(date) {
 }
 
 function toDateBubble(date) {
-  return `<div class=message-date-separator><p>${getRelativeRepresentation(date)}</p></div>`;
+  const localeStrings = {
+    'in the past week': {weekday: 'long'},
+    'this year': {month: 'long', day: 'numeric'},
+    'past date': {month: 'long', day: 'numeric', year: 'numeric'},
+  };
+  return `<div class=message-date-separator><p>${getRelativeRepresentation(date, localeStrings)}</p></div>`;
 }
 
 function toMessageContentString(msg) {
   const sentDate = new Date(msg['sent_time']);
   const dateOutput = function() {
+    const localeStrings = {
+      'in the past week': {weekday: 'long'},
+      'this year': {month: 'short', day: 'numeric'},
+      'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
+    };
     switch(getRelativeType(sentDate)) {
       case ("TODAY"): return "";
-      case ("THIS_WEEK"): return `${getRelativeRepresentation(sentDate)} at `;
-      default: return `<span class='muted'>${getRelativeRepresentation(sentDate)}</span> `;
+      case ("YESTERDAY"):
+      case ("THIS_WEEK"): return `${getRelativeRepresentation(sentDate, localeStrings)} at `;
+      default: return `<span class='muted'>${getRelativeRepresentation(sentDate, localeStrings)}</span> `;
     }
   }();
-  const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, localeStrings['time']);
+  const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
   function wrapMessageInContainer(timestamp, message) {
     return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestamp}</span>${message}</p></div>`
   }
@@ -98,7 +111,7 @@ function sendMessage() {
   node.textContent = message;
   selectedMessageBody.replaceChildren(node);
   
-  document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, localeStrings['time']);
+  document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
   
   if (!isLatestLoadedMessageFromToday) {
     isLatestLoadedMessageFromToday = true;

@@ -35,18 +35,22 @@ foreach ($msgs as $msg_data) {
         }
         ?>
       </span>
-      <?php
-      $date = strtotime($msg->sent_time);
-      $date_format = 'g:i A';
-      if ($date < strtotime('first day of january this year')) {
-        $date_format = 'Y';
-      } else if ($date < strtotime('last Sunday')) {
-        $date_format = 'M j';
-      } else if ($date < strtotime('today')) {
-        $date_format = 'l';
-      }
-      ?>
-      <span class="last-message-time right smaller muted"><?php echo date($date_format, strtotime($msg->sent_time)); ?></span>
+      <span class="last-message-time right smaller muted">
+        <?php
+          $date = strtotime($msg->sent_time);
+          $date_format = 'g:i A';
+          if ($date < strtotime('first day of january this year')) {
+            $date_format = 'Y';
+          } else if ($date < strtotime('last Sunday')) {
+            $date_format = 'M j';
+          } else if ($date < strtotime('yesterday')) {
+            $date_format = 'l';
+          } else if ($date < strtotime('today')) {
+            echo "Yesterday at ";
+          }
+          echo date($date_format, strtotime($msg->sent_time));
+        ?>
+      </span>
     </p>
     <p class="last-message-body preview subheading smaller">
       <?php

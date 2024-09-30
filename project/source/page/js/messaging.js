@@ -24,7 +24,7 @@ function getRelativeType(date) {
   return undefined;
 }
 
-function getRelativeRepresentation(date, localeStrings = {
+function getRelativeRepresentation(date, localeStringOptions = {
     'in the past week': {weekday: 'long'},
     'this year': {month: 'short', day: 'numeric'},
     'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
@@ -32,25 +32,25 @@ function getRelativeRepresentation(date, localeStrings = {
   switch (getRelativeType(date)) {
     case ("TODAY"): return "Today";
     case ("YESTERDAY"): return "Yesterday";
-    case ("THIS_WEEK"): return date.toLocaleString(undefined, localeStrings['in the past week']);
-    case ("THIS_YEAR"): return date.toLocaleString(undefined, localeStrings['this year']);
-    default: return date.toLocaleString(undefined, localeStrings['past date']);
+    case ("THIS_WEEK"): return date.toLocaleString(undefined, localeStringOptions['in the past week']);
+    case ("THIS_YEAR"): return date.toLocaleString(undefined, localeStringOptions['this year']);
+    default: return date.toLocaleString(undefined, localeStringOptions['past date']);
   }
 }
 
 function toDateBubble(date) {
-  const localeStrings = {
+  const localeStringOptions = {
     'in the past week': {weekday: 'long'},
     'this year': {month: 'long', day: 'numeric'},
     'past date': {month: 'long', day: 'numeric', year: 'numeric'},
   };
-  return `<div class=message-date-separator><p>${getRelativeRepresentation(date, localeStrings)}</p></div>`;
+  return `<div class=message-date-separator><p>${getRelativeRepresentation(date, localeStringOptions)}</p></div>`;
 }
 
 function toMessageContentString(msg) {
   const sentDate = new Date(msg['sent_time']);
   const dateOutput = function() {
-    const localeStrings = {
+    const localeStringOptions = {
       'in the past week': {weekday: 'long'},
       'this year': {month: 'short', day: 'numeric'},
       'past date': {month: 'numeric', day: 'numeric', year: '2-digit'},
@@ -58,8 +58,8 @@ function toMessageContentString(msg) {
     switch(getRelativeType(sentDate)) {
       case ("TODAY"): return "";
       case ("YESTERDAY"):
-      case ("THIS_WEEK"): return `${getRelativeRepresentation(sentDate, localeStrings)} at `;
-      default: return `<span class='muted'>${getRelativeRepresentation(sentDate, localeStrings)}</span> `;
+      case ("THIS_WEEK"): return `${getRelativeRepresentation(sentDate, localeStringOptions)} at `;
+      default: return `<span class='muted'>${getRelativeRepresentation(sentDate, localeStringOptions)}</span> `;
     }
   }();
   const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);

@@ -530,7 +530,6 @@ input.wishlist-link, input#search {
 .message-chooser, .message-viewer {
   height: calc(95vh - 5rem - 5rem);
   overflow-y: auto;
-  background: linear-gradient(to right, #f8f9fd, #eeedf7);
   background-color: #eeedf7;
 }
 
@@ -541,6 +540,14 @@ input.wishlist-link, input#search {
 
 .message-chooser::-webkit-scrollbar-thumb, .message-viewer::-webkit-scrollbar-thumb {
   background-color: #a9b;
+}
+
+.message-chooser {
+  background-color: #f8f9fd;
+}
+
+.message-viewer {
+  background-color: #eeedf7;
 }
 
 .message-chooser-message {
@@ -634,7 +641,7 @@ input.message-entry:disabled {
   width: calc(90% - 1rem);
   margin: -0.5rem 0 1rem 0;
   border-radius: 2rem;
-  outline: solid #eeedf7;
+  outline: solid #fff;
 }
 
 .send-button {

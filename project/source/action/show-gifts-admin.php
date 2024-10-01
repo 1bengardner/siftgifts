@@ -21,11 +21,11 @@ foreach ($gifts as $gift_data) {
   <div>
     <div class="right no-wrap">
       <span class="admin-reserve" display-when-toggled="inline-block">
-        <input gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="toggle(this);" <?php if ($gift->reserved) echo 'checked' ?> />
+        <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="toggle(this, '<?php echo addslashes(htmlentities($gift->name)); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
         <label for="reserve-<?php echo $gift->id; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
       </span>
       <button gift="<?php echo $gift->id; ?>" id="remove-<?php echo $gift->id; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo addslashes(htmlentities($gift->name)); ?>');"></button>
-      <label class="delete-button" for="remove-<?php echo $gift->id; ?>">❌</label>
+      <label class="delete-button" for="remove-<?php echo $gift->id; ?>" alt="Remove <?php echo addslashes(htmlentities($gift->name)); ?> from your wishlist" title="Remove">❌</label>
     </div>
     <div>
       <h2 class="gift-name">

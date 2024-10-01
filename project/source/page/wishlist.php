@@ -12,7 +12,7 @@
     <div class="center">
       <h2><a href="add">➕ Add a gift</a></h2>
       <span class="warning-box">
-        <input id="show-reserve" class="toggle-button" type="checkbox" onclick="enableToggles();" autocomplete="off" /><label for="show-reserve">View/modify reserved gifts</label>
+        <input id="show-reserve" class="toggle-button" type="checkbox" onclick="enableToggles(event);" autocomplete="off" /><label for="show-reserve">View/modify reserved gifts</label>
       </span>
     </div>
     <div class="center wishlist-background">

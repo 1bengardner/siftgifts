@@ -16,20 +16,31 @@ function reserve(id, name) {
   }
 }
 
-function toggle(btn) {
+function toggle(btn, name) {
+  if (!confirm(btn.checked ? `Reserve ${name}?` : `Mark ${name} as available?`)) {
+    btn.checked = !btn.checked;
+    return;
+  }
   var rq = new XMLHttpRequest();
   rq.open("POST", "../../action/reserve-gift-toggle", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      document.getElementById(btn.getAttribute("id")).labels[0].innerHTML = rq.responseText == 1 ? "Reserved" : "Reserve";
+      const doesServerSeeReserved = rq.responseText == 1;
+      document.getElementById(btn.getAttribute("id")).labels[0].innerHTML = doesServerSeeReserved ? "Reserved" : "Reserve";
+      // btn.checked = doesServerSeeReserved; -- Confusing UX: Not needed unless someone gets responses out of order
     }
   }
   var params = "id=" + btn.getAttribute("gift");
   rq.send(params);
 }
 
-function enableToggles() {
+function enableToggles(e) {
+  if (!enableToggles.hasHeededWarning && !confirm("You will be able to see if anyone got you your gifts!")) {
+    e.target.checked = false;
+    return;
+  }
+  enableToggles.hasHeededWarning = true;
   Array.from(document.getElementsByClassName('admin-reserve')).forEach(function(reserve) {
     if (reserve.lastDisplay != undefined) {
       var tmp = reserve.style.display;

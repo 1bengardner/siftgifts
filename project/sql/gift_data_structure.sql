@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2024 at 01:23 PM
+-- Generation Time: Oct 01, 2024 at 12:09 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -30,7 +30,7 @@ DROP PROCEDURE IF EXISTS `add_gift`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
 BEGIN
 INSERT INTO gift (name, url, notes, user)
-VALUES (name, url, comments, user);
+VALUES (TRIM(name), url, TRIM(comments), user);
 END$$
 
 DROP PROCEDURE IF EXISTS `add_message_email`$$

@@ -545,9 +545,9 @@ input.wishlist-link, input#search {
 
 .message-chooser-message {
   background: #fbf8ff;
-  border-color: #eeedf7;
-  border-style: solid;
-  border-width: 2px 4px;
+  border-top: 2px solid #eeedf7;
+  border-bottom: 2px solid #eeedf7;
+  border-left: 4px solid #eeedf7;
   padding: 0 0.75em;
   cursor: pointer;
 }
@@ -980,6 +980,9 @@ input.edit-widget {
   .message-grid {
     display: block;
     box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
+  }
+  .message-chooser-message {
+    border-right: 4px solid #eeedf7;
   }
   .message-chooser, .message-viewer {
     display: none;

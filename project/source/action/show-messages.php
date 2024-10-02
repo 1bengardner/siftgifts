@@ -18,16 +18,17 @@ if (count($msgs) === 0) {
     <?php include 'show-message-previews.php' ?>
   </div>
   <div class="message-viewer">
-    <div class="back-navigation"><a title="Return to messages" href onclick="
+    <span class="mobile-navigation"><a title="Return to messages" href onclick="
       document.querySelector('.message-viewer').classList.remove('visible-on-mobile');
       document.querySelector('.message-chooser').classList.add('visible-on-mobile');
       event.preventDefault();
-    ">🔙</a></div>
-    <div class="conversation-partner"></div>
+    ">🔙</a></span>
+    <span class="conversation-partner"></span>
     <div class="message-content"><div class="center">Select a sender on the left to open the conversation.</div></div>
     <form id="message-form" class="unbreakable" method="post"></form>
   </div>
 </div>
+<span class="mobile-navigation" style="position: sticky; bottom: 0; cursor: pointer;"><a title="Jump to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">🔝</a></span>
 <?php
 }
 ?>

@@ -734,7 +734,7 @@ a.new-notifications {
   box-shadow: #fff 0 0 0.1em 0.1em;
 }
 
-.back-navigation {
+.mobile-navigation {
   display: none;
   position: absolute;
   padding: 0.5em;
@@ -1016,11 +1016,11 @@ input.edit-widget {
   .message-chooser-message.selected:hover {
     background: #fbfbfc;
   }
-  .back-navigation {
-    display: block;
+  .mobile-navigation {
+    display: inline-block;
   }
   .message-viewer > .conversation-partner {
-    display: block;
+    display: inline-block;
   }
   .hidden-on-mobile {
     display: none;

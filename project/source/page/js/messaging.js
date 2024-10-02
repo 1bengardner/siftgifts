@@ -64,7 +64,7 @@ function toMessageContentString(msg) {
   }();
   const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
   function wrapMessageInContainer(timestamp, message) {
-    return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}><span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestamp}</span>${message}</p></div>`
+    return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}>${message}&nbsp;<span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestamp}</span></p></div>`
   }
   return wrapMessageInContainer(`${dateOutput}${timeOutput}`, linkify(msg['message']));
 }

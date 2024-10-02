@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2024 at 12:09 AM
+-- Generation Time: Oct 02, 2024 at 12:31 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -62,7 +62,30 @@ WHERE gift.id=id AND gift.user=user$$
 
 DROP PROCEDURE IF EXISTS `get_conversations`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_conversations` (IN `id` INT)  NO SQL
-SELECT * FROM message JOIN (SELECT conversation_partner_id, MAX(most_recent) most_recent FROM (SELECT `from` conversation_partner_id, MAX(sent_time) most_recent FROM message WHERE `to`=id GROUP BY `from` UNION SELECT `to`, MAX(sent_time) most_recent FROM message WHERE `from`=id GROUP BY `to`) res GROUP BY conversation_partner_id) res ON (`to` = conversation_partner_id OR `from`=conversation_partner_id) AND sent_time=most_recent GROUP BY conversation_partner_id UNION SELECT *, NULL conversation_partner_id, sent_time most_recent FROM message WHERE `from` is NULL AND `to`=id ORDER BY most_recent DESC$$
+SELECT *
+FROM message
+JOIN (
+  SELECT conversation_partner_id, MAX(most_recent) most_recent
+  FROM (
+    SELECT `from` conversation_partner_id, MAX(sent_time) most_recent
+    FROM message
+    WHERE `to`=id AND deleted=FALSE
+    GROUP BY `from` UNION
+    SELECT `to`, MAX(sent_time) most_recent
+    FROM message
+    WHERE `from`=id
+    GROUP BY `to`
+  ) most_recent_converation_message_by_partner
+  GROUP BY conversation_partner_id
+) conversation
+ON (
+  `to`=conversation_partner_id OR `from`=conversation_partner_id
+) AND sent_time=most_recent
+GROUP BY conversation_partner_id UNION
+SELECT *, NULL conversation_partner_id, sent_time most_recent
+FROM message
+WHERE `from` is NULL AND `to`=id AND deleted=FALSE
+ORDER BY most_recent DESC$$
 
 DROP PROCEDURE IF EXISTS `get_message`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_message` (IN `id` INT)  NO SQL
@@ -76,6 +99,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_messages` (IN `to` INT, IN `fro
 BEGIN
 SELECT * FROM message WHERE message.`to`=`to` AND message.`from`=`from` UNION (SELECT * FROM message WHERE message.`to`=`from` AND message.`from`=`to`) ORDER BY sent_time ASC;
 UPDATE message SET unread=FALSE WHERE message.`to`=`to` AND message.`from`=`from`;
+END$$
+
+DROP PROCEDURE IF EXISTS `read_messages`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `read_messages` (IN `reader` INT, IN `other` INT)  NO SQL
+BEGIN
+
+SELECT * FROM message
+WHERE message.`to`=`reader` AND message.`from`=`other` AND deleted=FALSE
+UNION (
+  SELECT *
+  FROM message
+  WHERE message.`to`=`other` AND message.`from`=`reader`
+) ORDER BY sent_time ASC;
+
+UPDATE message
+SET unread=FALSE
+WHERE message.`to`=`reader` AND message.`from`=`other`;
+
 END$$
 
 DROP PROCEDURE IF EXISTS `update_profile`$$
@@ -135,6 +176,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `guest_name` varchar(100) DEFAULT NULL,
   `unread` tinyint(1) NOT NULL DEFAULT 1,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `fk-message-from` (`from`),
   KEY `index-message-to-from-sent_time` (`to`,`from`,`sent_time`)

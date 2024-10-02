@@ -3,7 +3,7 @@ require_once '../util/utilities.php';
 require_once '../data/user-message.php';
 require_once 'authenticate.php';
 
-# TODO: Validate
+# TODO: Validate (that recipient corresponds with session?)
 
 $stmt = "CALL get_message(?)";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['id']])->fetch_all(MYSQLI_ASSOC);

@@ -338,7 +338,7 @@ hr.expand {
   border: 1px solid rgba(0, 128, 0, 0.5);
 }
 
-.success-box p:before {
+.success-box p::before {
   content: "✔ ";
 }
 
@@ -348,7 +348,7 @@ hr.expand {
   border: 1px solid rgba(128, 0, 0, 0.5);
 }
 
-.error-box p:before {
+.error-box p::before {
   content: "❌ ";
 }
 
@@ -358,7 +358,7 @@ hr.expand {
   border: 1px solid rgba(32, 96, 128, 0.5);
 }
 
-.info-box p:before {
+.info-box p::before {
   content: "ℹ️ ";
 }
 
@@ -368,7 +368,7 @@ hr.expand {
   border: 1px solid rgba(128, 80, 0, 0.5);
 }
 
-.warning-box p:before {
+.warning-box p::before {
   content: "⚠️ ";
 }
 
@@ -792,11 +792,11 @@ input.toggle-button {
 	outline: 0;
 }
 
-input.toggle-button:after, input.toggle-button:before {
+input.toggle-button::after, input.toggle-button::before {
 	transition: .15s ease-out;
 }
 
-input.toggle-button:after {
+input.toggle-button::after {
 	content: '';
 	display: inline-block;
 	width: 3em;
@@ -807,15 +807,15 @@ input.toggle-button:after {
 	box-shadow: inset 0 0 0.2em rgba(0, 0, 0, 0.5);
 	transition-property: background-color;
 }
-.purple-box input.toggle-button:checked:after {
+.purple-box input.toggle-button:checked::after {
 	background: #9347ff;
 }
-.warning-box input.toggle-button:checked:after {
+.warning-box input.toggle-button:checked::after {
 	background: #ffc300;
 }
 
 /* knob */
-input.toggle-button:before {
+input.toggle-button::before {
 	content: '';
 	position: absolute;
 	left: 0.5em;
@@ -827,13 +827,13 @@ input.toggle-button:before {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 	transition-property: left;
 }
-input.toggle-button:not(:disabled):hover:before {
+input.toggle-button:not(:disabled):hover::before {
   background-color: #fbfafb;
 }
-input.toggle-button:not(:disabled):active:before {
+input.toggle-button:not(:disabled):active::before {
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.375);
 }
-input.toggle-button:checked:before {
+input.toggle-button:checked::before {
 	left: 2.25em;
 }
 

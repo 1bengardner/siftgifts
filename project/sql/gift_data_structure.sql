@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2024 at 12:31 AM
+-- Generation Time: Oct 02, 2024 at 01:34 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -92,13 +92,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_message` (IN `id` INT)  NO SQL
 BEGIN
 SELECT * FROM message WHERE message.id = id;
 UPDATE message SET unread=FALSE WHERE message.id=id;
-END$$
-
-DROP PROCEDURE IF EXISTS `get_messages`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_messages` (IN `to` INT, IN `from` INT)  NO SQL
-BEGIN
-SELECT * FROM message WHERE message.`to`=`to` AND message.`from`=`from` UNION (SELECT * FROM message WHERE message.`to`=`from` AND message.`from`=`to`) ORDER BY sent_time ASC;
-UPDATE message SET unread=FALSE WHERE message.`to`=`to` AND message.`from`=`from`;
 END$$
 
 DROP PROCEDURE IF EXISTS `read_messages`$$

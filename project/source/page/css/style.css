@@ -120,6 +120,7 @@ nav li {
 }
 
 button {
+  border-radius: 0.5em;
   border: unset;
 }
 
@@ -580,13 +581,6 @@ input.wishlist-link, input#search {
   border-bottom: 4px solid #eeedf7;
 }
 
-.message-chooser-message .preview {
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .message-content {
   padding: 1em 4vw;
 }
@@ -743,6 +737,11 @@ a.new-notifications {
 
 .conversation-partner {
   font-weight: bold;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .message-viewer > .conversation-partner {

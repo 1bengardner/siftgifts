@@ -581,6 +581,12 @@ input.wishlist-link, input#search {
   border-bottom: 4px solid #eeedf7;
 }
 
+.last-message-body {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .message-content {
   padding: 1em 4vw;
 }
@@ -690,7 +696,7 @@ input.message-entry:disabled {
 }
 
 .last-message-body .sent.seen::before {
-  content: "🇷";
+  content: "R ";
   color: #539;
   font-style: normal;
   font-weight: bold;

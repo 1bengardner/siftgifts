@@ -1040,3 +1040,65 @@ input.edit-widget {
     height: calc(95vh - 5rem);
   }
 }
+
+.lottery-number {
+  font-size: 1.5em;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#faf, #539, #31a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lottery-bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fd9, #ffd);
+  margin: 0.3em;
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
+}
+
+@keyframes anticipation {
+  from {
+    width: 225px;
+  }
+  to {
+    width: 275px;
+  }
+}
+
+@keyframes shake {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    width: 300px;
+  }
+  100% {
+    width: 250px;
+    filter: hue-rotate(135deg) drop-shadow(0 0 2em #feb);
+  }
+}
+
+.anticipation {
+  animation: anticipation 1.5s ease-out infinite alternate;
+}
+.anticipation:hover {
+  width: 250px;
+  filter: hue-rotate(135deg) drop-shadow(0 0 2em #feb);
+  animation: shake 0.35s cubic-bezier(0,1.48,.78,1.65);
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(200%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+.zoom-out {
+  animation: zoom-out 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}

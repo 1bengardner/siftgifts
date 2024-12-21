@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2024 at 01:43 AM
+-- Generation Time: Dec 21, 2024 at 03:12 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -92,6 +92,11 @@ SELECT * FROM message WHERE message.id = id;
 UPDATE message SET unread=FALSE WHERE message.id=id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_pending_lotteries` ()  NO SQL
+BEGIN
+SELECT * FROM winning_ticket WHERE winning_ticket.draw_time > CURRENT_TIMESTAMP;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_winning_ticket` (IN `user` INT)  NO SQL
 BEGIN
 SELECT winning_ticket.* FROM winning_ticket JOIN lottery_ticket ON winning_ticket.id = lottery_ticket.draw WHERE lottery_ticket.id = user;
@@ -138,7 +143,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `next_draw_id` () RETURNS INT(11) NO 
 return (SELECT MAX(id) FROM winning_ticket)$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `time_to_draw` (`user` INT) RETURNS TIMESTAMP NO SQL
-RETURN (SELECT `winning_ticket`.`draw_time` FROM `winning_ticket` JOIN `lottery_ticket` ON `lottery_ticket`.draw = `winning_ticket`.`id` WHERE `lottery_ticket`.`id` = user)$$
+RETURN COALESCE((SELECT `winning_ticket`.`draw_time` FROM `winning_ticket` JOIN `lottery_ticket` ON `lottery_ticket`.draw = `winning_ticket`.`id` WHERE `lottery_ticket`.`id` = user), FROM_UNIXTIME(2147483647))$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `was_drawn` (`user` INT) RETURNS TINYINT(1) NO SQL
 return (SELECT CURRENT_TIMESTAMP > (SELECT draw_time FROM `winning_ticket` JOIN `lottery_ticket` ON `winning_ticket`.`id` = `lottery_ticket`.`draw` WHERE `lottery_ticket`.`id` = user))$$

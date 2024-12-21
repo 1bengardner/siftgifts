@@ -16,15 +16,15 @@ if (!in_array($user->id, [1, 2])) {
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
     <div class="center">
-      <h2 style="margin: 0;">Welcome to the<span style="color: #a80; text-shadow: 0.05em 0.05em 0.15em #fda;"><span class="logo-text"> Sift<span class="spaced">.</span>gifts </span>lottery!</span></h2>
       <?php
-      $drawn = include '../action/check-lottery.php';
+      $drawn = include '../action/was-lottery-drawn.php';
       if ($drawn) {
         echo '<h2><a class="new-notifications" href="results">🔮 Results are in!</a></h2>';
       } else if (isset($_SESSION['lottery greeted'])) {
-        echo '<h3 id="countdown">Draw in&hellip;<span id="countdown-time" style="font-family: monospace;"></span>.</h3>';
+        echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
       ?>
+      <h2 style="margin: 0;">Welcome to the<span style="color: #a80; text-shadow: 0.05em 0.05em 0.15em #fda;"><span class="logo-text"> Sift<span class="spaced">.</span>gifts </span>lottery!</span></h2>
       <h1 style="background-color: purple;">
         <?php
         if (!isset($_SESSION['lottery greeted'])) {

@@ -2,10 +2,10 @@
 require_once '../action/authenticate.php';
 require_once '../data/user.php';
 $user = User::get_from_id($_SESSION['id']);
-$drawn = include '../action/check-lottery.php';
+$drawn = include '../action/was-lottery-drawn.php';
 if (!in_array($user->id, [1, 2]) || !$drawn) {
   $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
-  header("Location: /home");
+  header("Location: /lottery");
   exit;
 }
 ?>

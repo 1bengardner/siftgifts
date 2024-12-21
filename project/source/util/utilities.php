@@ -95,6 +95,8 @@ abstract class NotificationText
   const AddSuccess = "Added!";
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
   const EditSuccess = "Updated!";
+  const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
+  const NoLotteries = "There are no pending lotteries.";
 }
 class Notification
 {

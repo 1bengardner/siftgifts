@@ -1061,11 +1061,38 @@ input.edit-widget {
 }
 
 @keyframes anticipation {
-  from {
-    width: 225px;
+  2% {
+    transform: rotate(-10deg);
   }
-  to {
-    width: 275px;
+  5% {
+    transform: scale(115%) rotate(7deg);
+  }
+  9% {
+    transform: rotate(-6deg);
+  }
+  14% {
+    transform: rotate(2deg);
+  }
+  17% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  53% {
+    transform: rotate(12deg);
+  }
+  56% {
+    transform: scale(110%) rotate(-7deg);
+  }
+  60% {
+    transform: rotate(4deg);
+  }
+  64% {
+    transform: rotate(-3deg) translate(0, -10%);
+  }
+  71% {
+    transform: rotate(0deg);
   }
 }
 
@@ -1074,16 +1101,17 @@ input.edit-widget {
     filter: hue-rotate(0deg);
   }
   50% {
-    width: 300px;
+    transform: scale(120%)
   }
   100% {
-    width: 250px;
+    transform: scale(100%)
     filter: hue-rotate(135deg) drop-shadow(0 0 2em #feb);
   }
 }
 
 .anticipation {
-  animation: anticipation 1.5s ease-out infinite alternate;
+  width: 225px;
+  animation: anticipation 1.65s ease-out infinite;
 }
 .anticipation:hover {
   width: 250px;

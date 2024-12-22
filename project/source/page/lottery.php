@@ -20,7 +20,7 @@ if (!in_array($user->id, [1, 2])) {
       $drawn = include '../action/was-lottery-drawn.php';
       if ($drawn) {
         echo '<h2><a class="new-notifications" href="results">🔮 Results are in!</a></h2>';
-      } else if (isset($_SESSION['lottery greeted'])) {
+      } else {
         echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
       ?>
@@ -55,7 +55,7 @@ if (!in_array($user->id, [1, 2])) {
         <?php
         if (!$drawn) {
         ?>
-        <div style="margin-top: 1em;">
+        <div id="reroll-container" style="margin-top: 1em;">
           <a id="reroll" onclick="reroll();" href="#swap" style="font-size: 1.1em">🎲 Get a different ticket</a>
         </div>
         <?php
@@ -144,6 +144,7 @@ if (!in_array($user->id, [1, 2])) {
           anchor.setAttribute("href", "results");
           anchor.innerText = "🔮 Results are in!";
           document.getElementById("countdown").replaceWith(heading);
+          document.getElementById("reroll-container").remove();
           return;
         }
         document.getElementById("countdown-time").innerText = `${[hours, minutes, seconds].map((x) => x.toString().padStart(2, '0')).join(":")}`;

@@ -54,6 +54,7 @@ if (!$drawn) {
         const winningNumbers = <?php echo json_encode(include '../action/get-winning-ticket.php'); ?>;
         const revealSfx = new Audio("/page/audio/reveal.ogg");
         revealSfx.volume = 0.8;
+        const winningNumberElements = [];
         const commands = winningNumbers.map((number) => function() {
           const lotteryBullet = document.createElement("span");
           lotteryBullet.classList.add("lottery-bullet");
@@ -61,6 +62,7 @@ if (!$drawn) {
           const lotteryNumber = document.createElement("span");
           lotteryNumber.classList.add("lottery-number");
           lotteryNumber.innerText = number;
+          winningNumberElements.push(lotteryNumber);
           lotteryBullet.appendChild(lotteryNumber);
           document.getElementById("winning-numbers").appendChild(lotteryBullet);
           revealSfx.play();
@@ -69,8 +71,25 @@ if (!$drawn) {
         commands.push(function() {
           const count = 7;
           const yourNumberElements = [...Array(count).keys()].map((num) => document.getElementById(`lottery-number-${num}`));
-          const yourNumbers = yourNumberElements.map((elem) => elem.innerText);
-          if (winningNumbers.some((winner) => yourNumbers.includes(winner.toString()))) {
+          let i = 0;
+          const colours = [
+            "lime",
+            "aqua",
+            "blue",
+            "darkviolet",
+            "fuchsia",
+            "coral",
+            "goldenrod",
+          ]
+          for (const a of winningNumberElements) {
+            for (const b of yourNumberElements) {
+              if (a.innerText == b.innerText) {
+                [a, b].forEach((elem) => elem.parentElement.style.outline = `solid ${colours[i]}`);
+                i++;
+              }
+            }
+          }
+          if (winningNumbers.some((winner) => yourNumberElements.map((elem) => elem.innerText).includes(winner.toString()))) {
             const gagnantSfx = new Audio("/page/audio/winner.ogg");
             gagnantSfx.play();
             openSfx.play();

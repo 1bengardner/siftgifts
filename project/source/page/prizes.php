@@ -10,7 +10,7 @@ if (!$res) {
   exit;
 }
 // Special case for NYE draw
-if (array_shift($res[0]) == 1) {
+if (array_shift($res[0]) == 6) {
 ?>
   <details class="widget" style="display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em;"><summary style="cursor: pointer;">Prizes 🎊</summary>
     <div>

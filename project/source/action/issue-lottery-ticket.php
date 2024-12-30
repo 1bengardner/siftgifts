@@ -14,7 +14,7 @@ Database::run_statement($db, $stmt, [$_SESSION['id']]);
 
 $stmt = "SELECT next_draw_id()";
 $next_draw = Database::run_statement_no_params($db, $stmt)->fetch_row()[0];
-if ($next_draw === NULL) {
+if ($next_draw === NULL || !in_array($_SESSION['id'], [1, 2])) {
   return ["?", "?", "?", "?", "?", "?", "?"];
 }
 $chosen_numbers = include 'return-lottery-numbers.php';

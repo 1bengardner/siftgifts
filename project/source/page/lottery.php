@@ -2,7 +2,6 @@
 require_once '../action/authenticate.php';
 require_once '../data/user.php';
 $user = User::get_from_id($_SESSION['id']);
-// Note: Iff you have access to this page, you can acquire a lottery ticket.
 if (!in_array($user->id, [1, 2])) {
   $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
   header("Location: /home");

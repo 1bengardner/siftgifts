@@ -148,6 +148,14 @@ if (!in_array($user->id, [1, 2])) {
           return;
         }
         document.getElementById("countdown-time").innerText = `${[hours, minutes, seconds].map((x) => x.toString().padStart(2, '0')).join(":")}`;
+        if (hours > 23) {
+          document.getElementById("countdown").childNodes[0].nodeValue = `Draw on ${new Date(new Date().getTime() + (hours*60*60 + minutes*60 + seconds) * 1000).toLocaleString(undefined, {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+          })}!`;
+          document.getElementById("countdown-time").innerText = "";
+        }
       }
       const countdownUpdate = setInterval(updateTime, 1000);
       updateTime();

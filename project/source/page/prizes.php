@@ -38,12 +38,12 @@ if (array_shift($res[0]) == 6) {
     <div style="display: inline-block;">
     <ul style="margin: 0; text-align: left;">
       <li><strong>1/7</strong>: Free play</li>
-      <li><strong>2/7</strong>: A Lotto Max ticket</li>
-      <li><strong>3/7</strong>: Dinner</li>
-      <li><strong>4/7</strong>: Anything from your wishlist</li>
+      <li><strong>2/7</strong>: $5</li>
+      <li><strong>3/7</strong>: $50</li>
+      <li><strong>4/7</strong>: A present</li>
       <li><strong>5/7</strong>: $500</li>
       <li><strong>6/7</strong>: $5,000</li>
-      <li><strong>7/7</strong>: A tiny dog</li>
+      <li><strong>7/7</strong>: A bathroom renovation</li>
     </ul>
     </div>
   </details>

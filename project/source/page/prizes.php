@@ -37,13 +37,19 @@ if (array_shift($res[0]) == 6) {
     </div>
     <div style="display: inline-block;">
     <ul style="margin: 0; text-align: left;">
-      <li><strong>1/7</strong>: Free play</li>
-      <li><strong>2/7</strong>: $5</li>
-      <li><strong>3/7</strong>: $50</li>
-      <li><strong>4/7</strong>: A present</li>
-      <li><strong>5/7</strong>: $500</li>
-      <li><strong>6/7</strong>: $5,000</li>
-      <li><strong>7/7</strong>: A bathroom renovation</li>
+      <style>
+        .prize-identifier {
+          display: inline-block;
+          width: 2em;
+        }
+      </style>
+      <li><strong class="prize-identifier">1/7</strong>🔁 Free play</li>
+      <li><strong class="prize-identifier">2/7</strong>🪛 Small duty</li>
+      <li><strong class="prize-identifier">3/7</strong>🥩 Shteak</li>
+      <li><strong class="prize-identifier">4/7</strong>🎁 Present</li>
+      <li><strong class="prize-identifier">5/7</strong>💵 $500</li>
+      <li><strong class="prize-identifier">6/7</strong>💰 $5,000</li>
+      <li><strong class="prize-identifier">7/7</strong>🛁 Bathroom renovation</li>
     </ul>
     </div>
   </details>

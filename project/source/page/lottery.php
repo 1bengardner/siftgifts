@@ -124,9 +124,8 @@ if (!in_array($user->id, [1, 2])) {
     if (document.getElementById("countdown")) {
       document.getElementById("countdown").childNodes[0].nodeValue = "Draw in ";
       const timeLeft = `<?php echo include '../action/get-draw-time.php'; ?>`;
-      let [hours, minutes, seconds] = timeLeft.split(":");
+      let [hours, minutes, seconds] = timeLeft.split(":").map((denom) => Number(denom));
       function updateTime() {
-        seconds -= 1;
         if (seconds < 0) {
           seconds = 59;
           minutes -= 1;
@@ -156,6 +155,7 @@ if (!in_array($user->id, [1, 2])) {
           })}!`;
           document.getElementById("countdown-time").innerText = "";
         }
+        seconds -= 1;
       }
       const countdownUpdate = setInterval(updateTime, 1000);
       updateTime();

@@ -62,6 +62,9 @@ if (!in_array($user->id, [1, 2])) {
         }
         ?>
       </div>
+      <div style="margin-bottom: 1.5em;">
+        <audio controls loop style="height: 2.2rem;" src="/page/audio/trousers.ogg"></audio>
+      </div>
       <?php include 'prizes.php' ?>
       <hr>
       <div>

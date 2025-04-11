@@ -24,7 +24,7 @@ if (!$res) {
       </style>
       <li><strong class="prize-identifier">1/7</strong>🔁 Free play</li>
       <li><strong class="prize-identifier">2/7</strong>🪛 Small duty</li>
-      <li><strong class="prize-identifier">3/7</strong>🥩 Shteak</li>
+      <li><strong class="prize-identifier">3/7</strong>👹 Shrek</li>
       <li><strong class="prize-identifier">4/7</strong>🎁 Present</li>
       <li><strong class="prize-identifier">5/7</strong>💵 $500</li>
       <li><strong class="prize-identifier">6/7</strong>💰 $5,000</li>

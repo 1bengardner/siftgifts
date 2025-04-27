@@ -95,6 +95,7 @@ abstract class NotificationText
   const AddSuccess = "Added!";
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
   const EditSuccess = "Updated!";
+  const HoneypotError = "Honeypot error.";
 }
 class Notification
 {

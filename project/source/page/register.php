@@ -20,6 +20,7 @@
       <div>
         <input type="password" name="confirm-password" placeholder="Confirm password" maxlength="255" required />
       </div>
+      <input type="hidden" name="honeypot" />
       <div>
         <input class="submit-button" type="submit" value="✨ Sign up" />
       </div>

@@ -11,7 +11,7 @@ $validations = [
   function() { return Validation::email_registration_error($_POST['email']); },
   function() { return Validation::passwords_differ($_POST['password'], $_POST['confirm-password']); },
   function() { return Validation::password_error($_POST['password']); },
-  function() { if (!empty($_POST['honeypot'])) return NotificationText::HoneypotError; return false; },
+  function() { if (!empty($_POST['confirm-password-again'])) return NotificationText::HoneypotError; return false; },
 ];
 
 foreach ($validations as $validation) {

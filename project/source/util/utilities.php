@@ -87,7 +87,7 @@ abstract class NotificationText
   const NoPermission = "You do not have permission to do that.";
   const InvalidVerificationCode = "This verification link is invalid.";
   const VerifyAccountSuccess = "Your account is now verified.";
-  const RegistrationSuccess = "You are now signed up with Sift.gifts.";
+  const RegistrationSuccess = "You are now signed up. Welcome!";
   const ChangeProfileSuccess = "You have updated your profile.";
   const MessageSent = "Message sent.";
   const WishlistNotFound = "There is no wishlist under that name.";
@@ -95,7 +95,7 @@ abstract class NotificationText
   const AddSuccess = "Added!";
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
   const EditSuccess = "Updated!";
-  const HoneypotError = "Honeypot error.";
+  const HoneypotError = "Your password is invalid.";
 }
 class Notification
 {

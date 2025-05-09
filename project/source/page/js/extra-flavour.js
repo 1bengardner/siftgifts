@@ -1,5 +1,5 @@
-function clickHandler(e) {
-  let inputs = document.querySelectorAll('input, textarea');
+function clickHandler(source) {
+  let inputs = source.form.querySelectorAll('input, textarea');
   let validSubmission = true;
   for (const input of inputs) {
     if (!input.checkValidity()) {
@@ -11,18 +11,19 @@ function clickHandler(e) {
   }
   if (validSubmission) {
     // poor browser support for requestSubmit
-    if (document.querySelector('form').requestSubmit !== undefined) {
-      document.querySelector('form').requestSubmit();
+    if (source.form.requestSubmit !== undefined) {
+      source.form.requestSubmit();
     } else {
-      if (document.querySelector('form').onsubmit !== null) {
-        document.querySelector('form').onsubmit();
+      if (source.form.onsubmit !== null) {
+        source.form.onsubmit();
       }
-      document.querySelector('form').submit();
+      source.form.submit();
     }
     source.setAttribute("disabled", "");
     // usually the submit event occurs after the click event is done, but submit is now disabled, so submit must be called manually before disabling
   }
 }
-const source = document.querySelector('.submit-button');
-if (source.length !== null)
-  source.addEventListener('click', clickHandler);
+const sources = document.querySelectorAll('.submit-button');
+for (const source of sources) {
+  source.addEventListener('click', () => clickHandler(source));
+}

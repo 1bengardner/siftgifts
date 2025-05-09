@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2024 at 03:12 PM
+-- Generation Time: May 08, 2025 at 10:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -95,6 +95,10 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_pending_lotteries` ()  NO SQL
 BEGIN
 SELECT * FROM winning_ticket WHERE winning_ticket.draw_time > CURRENT_TIMESTAMP;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_prizes` (IN `draw` INT)  BEGIN
+SELECT * FROM prize WHERE id=1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_winning_ticket` (IN `user` INT)  NO SQL
@@ -220,6 +224,24 @@ CREATE TABLE IF NOT EXISTS `message_email` (
   `user` int(11) NOT NULL,
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prize`
+--
+
+CREATE TABLE IF NOT EXISTS `prize` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `1` varchar(255) NOT NULL,
+  `2` varchar(255) NOT NULL,
+  `3` varchar(255) NOT NULL,
+  `4` varchar(255) NOT NULL,
+  `5` varchar(255) NOT NULL,
+  `6` varchar(255) NOT NULL,
+  `7` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

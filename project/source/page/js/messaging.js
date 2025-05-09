@@ -1,6 +1,7 @@
 import { linkify } from "./linkify.js";
 
-var LOCALE_STRING_OPTIONS_TIME = {hour: 'numeric', minute: '2-digit'};
+const LOCALE = "en-CA";
+const LOCALE_STRING_OPTIONS_TIME = {hour: 'numeric', minute: '2-digit'};
 var messagesById = {};
 var messagesByFrom = {};
 var isLatestLoadedMessageFromToday = false;
@@ -32,9 +33,9 @@ function getRelativeRepresentation(date, localeStringOptions = {
   switch (getRelativeType(date)) {
     case ("TODAY"): return "Today";
     case ("YESTERDAY"): return "Yesterday";
-    case ("THIS_WEEK"): return date.toLocaleString(undefined, localeStringOptions['in the past week']);
-    case ("THIS_YEAR"): return date.toLocaleString(undefined, localeStringOptions['this year']);
-    default: return date.toLocaleString(undefined, localeStringOptions['past date']);
+    case ("THIS_WEEK"): return date.toLocaleString(LOCALE, localeStringOptions['in the past week']);
+    case ("THIS_YEAR"): return date.toLocaleString(LOCALE, localeStringOptions['this year']);
+    default: return date.toLocaleString(LOCALE, localeStringOptions['past date']);
   }
 }
 
@@ -62,7 +63,7 @@ function toMessageContentString(msg) {
       default: return `<span class='muted'>${getRelativeRepresentation(sentDate, localeStringOptions)}</span> `;
     }
   }();
-  const timeOutput = new Date(msg['sent_time']).toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
+  const timeOutput = new Date(msg['sent_time']).toLocaleString(LOCALE, LOCALE_STRING_OPTIONS_TIME);
   function wrapMessageInContainer(timestamp, message) {
     return `<div class='${msg['is_sender'] ? 'sent-message' : 'received-message'}'><p${msg['unread'] ? " class='unread"+(msg['unsent'] ? " unsent" : "")+"'" : ""}>${message}&nbsp;<span ${!msg['unread'] && msg['is_sender'] ? "title='Seen'" : ""} class='right message-time-sent'>${timestamp}</span></p></div>`
   }
@@ -111,7 +112,7 @@ function sendMessage() {
   node.textContent = message;
   selectedMessageBody.replaceChildren(node);
   
-  document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(undefined, LOCALE_STRING_OPTIONS_TIME);
+  document.querySelector('.message-chooser-message.selected .last-message-time').textContent = new Date().toLocaleString(LOCALE, LOCALE_STRING_OPTIONS_TIME);
   
   document.querySelectorAll('.message-content .received-message .unread').forEach((unread) => unread.classList.remove("unread"));
   

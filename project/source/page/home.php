@@ -38,7 +38,7 @@ $user = User::get_from_id($_SESSION['id']);
       <p><a href="directory">🔍 Find a wishlist</a>
       <?php
         if ($has_ticket && $ticket_was_drawn) {
-          echo ' <img src="/page/img/present.svg" /> <a href="lottery">View lottery ticket</a>';
+          echo ' <img src="/page/img/present.svg" /> <a href="lottery">🎫 View lottery ticket</a>';
         }
       ?>
       </p>

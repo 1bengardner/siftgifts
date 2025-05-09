@@ -30,7 +30,7 @@ $user = User::get_from_id($_SESSION['id']);
         <button class="clipboard-button" title="Copy" url="<?php echo $wishlist; ?>">📎</button>
         <div class="clipboard-copy-reaction"></div>
       </span>
-      <p><a href="directory">Find a wishlist</a></p>
+      <p><a href="directory">🔍 Find a wishlist</a></p>
       <div class="home-greeting">
         <h1>
           <?php

@@ -13,8 +13,10 @@ if (!in_array($user->id, [1, 2])) {
 }
 
 $stmt = "CALL get_prizes(?)";
-$prizes = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_all(MYSQLI_ASSOC)[0];
-if (!$prizes) {
+$prizes = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_all(MYSQLI_ASSOC);
+if ($prizes) {
+  $prizes = $prizes[0];
+} else {
   echo "<p class='widget' style='display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em;'>Cannot view prizes. You are not enrolled in a lottery.</p>";
   exit;
 }

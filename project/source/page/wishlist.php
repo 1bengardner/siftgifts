@@ -9,6 +9,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
+    <?php include 'notification-box.php'; ?>
     <div class="center">
       <h2><a href="add">➕ Add a gift</a></h2>
       <span class="warning-box">
@@ -30,5 +31,4 @@
   <script src="/page/js/search.js" type="text/javascript"></script>
   <script src="/page/js/remove.js" type="text/javascript"></script>
   <script src="/page/js/reserve.js" type="text/javascript"></script>
-  <script src="/page/js/edit.js" type="text/javascript"></script>
 </html>

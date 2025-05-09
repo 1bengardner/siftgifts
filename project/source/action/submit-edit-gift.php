@@ -7,5 +7,6 @@ require_once 'authenticate.php';
 $stmt = "CALL edit_gift(?, ?, ?, ?, ?)";
 Database::run_statement(Database::get_connection(), $stmt, [$_POST['id'], $_POST['name'], $_POST['url'], $_POST['comments'], $_SESSION['id']]);
 $_SESSION["notifications"] = [new Notification(NotificationText::EditSuccess, NotificationLevel::Success)];
-include '../page/notification-box.php';
+header("Location: /wishlist");
+exit;
 ?>

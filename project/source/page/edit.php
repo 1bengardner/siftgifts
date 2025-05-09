@@ -20,7 +20,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form id="edit-form" enctype="multipart/form-data" onsubmit="edit();">
+    <form action="/action/submit-edit-gift.php" id="edit-form" method="post">
       <?php
       if (is_null($gift)) {
       ?>
@@ -28,16 +28,16 @@
       <?php
       } else {
       ?>
-      <input id="id" type="hidden" value="<?php echo $gift->id; ?>" />
+      <input name="id" type="hidden" value="<?php echo $gift->id; ?>" />
       <h2>Editing: <em id="name-heading"><?php echo htmlentities($gift->name); ?></em></h2>
       <div>
-        <input id="name" type="name" placeholder="Gift name" maxlength="255" value="<?php echo htmlentities($gift->name); ?>" required />
+        <input name="name" type="name" placeholder="Gift name" maxlength="255" value="<?php echo htmlentities($gift->name); ?>" required />
       </div>
       <div>
-        <input id="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
+        <input name="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
       </div>
       <div>
-        <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"><?php echo $gift->notes; ?></textarea>
+        <textarea name="comments" class="comments" placeholder="Additional comments?" maxlength="255"><?php echo $gift->notes; ?></textarea>
       </div>
       <div>
         <input class="submit-button" type="submit" value="✍ Save changes"/>

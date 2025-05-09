@@ -1,13 +1,11 @@
 <?php
-require_once '../action/authenticate.php';
-require_once '../data/user.php';
-$user = User::get_from_id($_SESSION['id']);
-if (!in_array($user->id, [2])) {
+require_once '../util/utilities.php';
+
+if (!include '../action/is-admin.php') {
   $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
   header("Location: /home");
   exit;
 }
-require_once '../util/utilities.php';
 $stmt = "CALL get_prizes(?)";
 $prizes = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_all(MYSQLI_ASSOC);
 $prizes = $prizes ? $prizes[0] : $prizes = array_fill(1, 7, "prize missing from db");

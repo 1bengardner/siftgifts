@@ -1,10 +1,7 @@
 <?php
 require_once '../util/utilities.php';
-require_once 'authenticate.php';
-require_once '../data/user.php';
 
-$user = User::get_from_id($_SESSION['id']);
-if (!in_array($user->id, [2])) {
+if (!include '../action/is-admin.php') {
   $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
   header("Location: /home");
   exit;

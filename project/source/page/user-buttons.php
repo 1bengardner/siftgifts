@@ -15,6 +15,11 @@ require_once '../action/start-session.php';
     echo $message_li;
     ?>
     <li><a href="/settings" title="Change settings">👤</a></li>
+    <?php
+      if (include '../action/is-admin.php') {
+        echo '<li><a href="/lottery-admin" title="Lottery admin">🎰</a></li>';
+      }
+    ?>
     <li><a href="/logout" title="Log out">🚪</a></li>
   </ul>
   <div>
@@ -29,6 +34,11 @@ require_once '../action/start-session.php';
     </ul>
     <ul class="user-header-buttons-large">
       <li><a href="/settings" title="Change settings">👤</a></li>
+      <?php
+        if (include '../action/is-admin.php') {
+          echo '<li><a href="/lottery-admin" title="Lottery admin">🎰</a></li>';
+        }
+      ?>
       <li><a href="/logout" title="Log out">🚪</a></li>
     </ul>
   </div>

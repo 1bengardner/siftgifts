@@ -44,11 +44,7 @@ if (count($validation_errors) > 0) {
 
 $stmt = "CALL update_profile(?, ?, ?, ?, ?)";
 $db = Database::get_connection();
-Database::run_statement($db, $stmt, [$_SESSION['id'], $_POST['name'], $is_changing_password ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL, isset($_POST['visible-in-directory']), isset($_POST['subscribe-to-message-alerts'])]);
-
-if ($is_changing_name) {
-  rename('../wishlist/'.strtolower($old_name).'.php', '../wishlist/'.strtolower($_POST['name']).'.php');
-}
+Database::run_statement($db, $stmt, [$_SESSION['id'], $_POST['name'], $is_changing_password ? password_hash($_POST['password'], PASSWORD_DEFAULT) : NULL, isset($_POST['visible-in-directory']) ? 1 : 0, isset($_POST['subscribe-to-message-alerts']) ? 1 : 0]);
 
 $_SESSION["notifications"] = [new Notification(NotificationText::ChangeProfileSuccess, NotificationLevel::Success)];
 

@@ -207,6 +207,7 @@ input:not(.submit-button, .edit-widget):not([type=checkbox]):focus, textarea:foc
 }
 
 input.submit-button {
+  white-space: normal;
   min-width: 15em;
   margin-top: 0.75em;
   margin-bottom: 0.75em;

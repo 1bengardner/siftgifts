@@ -889,6 +889,10 @@ input.edit-widget {
   transition: opacity 0s;
 }
 
+.version-number {
+  display: none;
+}
+
 /* Media queries */
 @media screen and (min-height: 1000px) {
   .splash-image {

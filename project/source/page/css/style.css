@@ -97,11 +97,11 @@ a:not(.link):active, button:active {
 }
 
 .header {
-  padding: 0.5em;
-  margin-bottom: 1.5em;
+  padding: 0.25em;
+  margin-bottom: 0.5em;
   background: linear-gradient(to right, #f8f9fd, #eeedf7);
   background-color: #f8f9fd;
-  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
 }
 
 nav ul {
@@ -304,7 +304,7 @@ hr.expand {
 .message-grid {
   display: grid;
   grid-template-columns: min(30%, 25em) auto;
-  margin: 1em;
+  margin: 0.5em 1em;
 }
 
 .gift-name {
@@ -519,13 +519,13 @@ input.wishlist-link, input#search {
   display: inline-block;
   background: linear-gradient(to left, #e6dcfc, #efe8ff);
   background-color: #e6dcfc;
-  padding: 0.75em;
+  padding: 0.5em;
   margin: 0 0.5em;
   border-radius: 1em;
 }
 
 .user-header-buttons-small {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
 }
 
 .message-chooser, .message-viewer {

@@ -1040,3 +1040,93 @@ input.edit-widget {
     height: calc(95vh - 5rem);
   }
 }
+
+.lottery-number {
+  font-size: 1.5em;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#faf, #539, #31a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lottery-bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fd9, #ffd);
+  margin: 0.3em;
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
+}
+
+@keyframes anticipation {
+  2% {
+    transform: rotate(-10deg);
+  }
+  5% {
+    transform: scale(115%) rotate(7deg);
+  }
+  9% {
+    transform: rotate(-6deg);
+  }
+  14% {
+    transform: rotate(2deg);
+  }
+  17% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  53% {
+    transform: rotate(12deg);
+  }
+  56% {
+    transform: scale(110%) rotate(-7deg);
+  }
+  60% {
+    transform: rotate(4deg);
+  }
+  64% {
+    transform: rotate(-3deg) translate(0, -10%);
+  }
+  71% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: scale(120%)
+  }
+  100% {
+    transform: scale(100%)
+    filter: hue-rotate(135deg) drop-shadow(0 0 2em #feb);
+  }
+}
+
+.anticipation {
+  width: 225px;
+  animation: anticipation 1.65s ease-out infinite;
+}
+.anticipation:hover {
+  width: 250px;
+  filter: hue-rotate(135deg) drop-shadow(0 0 2em #feb);
+  animation: shake 0.35s cubic-bezier(0,1.48,.78,1.65);
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(200%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+.zoom-out {
+  animation: zoom-out 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}

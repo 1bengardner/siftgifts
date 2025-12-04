@@ -20,6 +20,11 @@ $user = User::get_from_id($_SESSION['id']);
           } else {
             //echo '<li><h2><a href="messaging">📪 Messages</a></h2></li>';
           }
+          $has_ticket = include '../action/has-lottery-ticket.php';
+          $ticket_was_drawn = include '../action/was-lottery-drawn.php';
+          if ($has_ticket && !$ticket_was_drawn) {
+            echo ' <li><h2><a class="new-notifications" href="lottery">🍀 Go to lottery</a></h2></li>';
+          }
           ?>
           <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
         </ul>
@@ -30,7 +35,13 @@ $user = User::get_from_id($_SESSION['id']);
         <button class="clipboard-button" title="Copy" url="<?php echo $wishlist; ?>">📎</button>
         <div class="clipboard-copy-reaction"></div>
       </span>
-      <p><a href="directory">🔍 Find a wishlist</a></p>
+      <p><a href="directory">🔍 Find a wishlist</a>
+      <?php
+        if ($has_ticket && $ticket_was_drawn) {
+          echo ' <img src="/page/img/present.svg" /> <a href="lottery">🎫 View lottery ticket</a>';
+        }
+      ?>
+      </p>
       <div class="home-greeting">
         <h1>
           <?php

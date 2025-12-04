@@ -96,6 +96,8 @@ abstract class NotificationText
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
   const EditSuccess = "Updated!";
   const HoneypotError = "Your password is invalid.";
+  const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
+  const NoLotteries = "There are no pending lotteries.";
 }
 class Notification
 {

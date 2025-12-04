@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2024 at 01:34 AM
+-- Generation Time: May 08, 2025 at 10:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -26,41 +26,35 @@ DELIMITER $$
 --
 -- Procedures
 --
-DROP PROCEDURE IF EXISTS `add_gift`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
 BEGIN
 INSERT INTO gift (name, url, notes, user)
 VALUES (TRIM(name), url, TRIM(comments), user);
 END$$
 
-DROP PROCEDURE IF EXISTS `add_message_email`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_message_email` (IN `user` INT)  NO SQL
 BEGIN
 REPLACE INTO message_email(user)
 VALUES (user);
 END$$
 
-DROP PROCEDURE IF EXISTS `add_reset_code`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
 BEGIN
 REPLACE INTO reset_code(email, code)
 VALUES (email, code);
 END$$
 
-DROP PROCEDURE IF EXISTS `add_verification_code`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_verification_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
 BEGIN
 REPLACE INTO verification_code(email, code)
 VALUES (email, code);
 END$$
 
-DROP PROCEDURE IF EXISTS `edit_gift`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_gift` (IN `id` INT, IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
 UPDATE gift
 SET `name` = name, `url` = url, notes = comments
 WHERE gift.id=id AND gift.user=user$$
 
-DROP PROCEDURE IF EXISTS `get_conversations`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_conversations` (IN `id` INT)  NO SQL
 SELECT *
 FROM message
@@ -87,14 +81,36 @@ FROM message
 WHERE `from` is NULL AND `to`=id AND deleted=FALSE
 ORDER BY most_recent DESC$$
 
-DROP PROCEDURE IF EXISTS `get_message`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_lottery_ticket` (IN `id` INT)  NO SQL
+BEGIN
+SELECT * FROM lottery_ticket WHERE lottery_ticket.id=id;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_message` (IN `id` INT)  NO SQL
 BEGIN
 SELECT * FROM message WHERE message.id = id;
 UPDATE message SET unread=FALSE WHERE message.id=id;
 END$$
 
-DROP PROCEDURE IF EXISTS `read_messages`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_pending_lotteries` ()  NO SQL
+BEGIN
+SELECT * FROM winning_ticket WHERE winning_ticket.draw_time > CURRENT_TIMESTAMP;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_prizes` (IN `draw` INT)  BEGIN
+SELECT * FROM prize WHERE id=1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_winning_ticket` (IN `user` INT)  NO SQL
+BEGIN
+SELECT winning_ticket.* FROM winning_ticket JOIN lottery_ticket ON winning_ticket.id = lottery_ticket.draw WHERE lottery_ticket.id = user;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `issue_lottery_ticket` (IN `id` INT)  NO SQL
+BEGIN
+INSERT INTO `lottery_ticket` (`id`, `1`, `2`, `3`, `4`, `5`, `6`, `7`) VALUES (id, ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1), ROUND((RAND() * 49)+1));
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `read_messages` (IN `reader` INT, IN `other` INT)  NO SQL
 BEGIN
 
@@ -112,24 +128,29 @@ WHERE message.`to`=`reader` AND message.`from`=`other`;
 
 END$$
 
-DROP PROCEDURE IF EXISTS `update_profile`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255), IN `visible` BOOLEAN, IN `subscribed` BOOLEAN)  NO SQL
 UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password), user.visible=COALESCE(visible, user.visible), user.subscribed=COALESCE(subscribed, user.subscribed) WHERE user.id=id$$
 
 --
 -- Functions
 --
-DROP FUNCTION IF EXISTS `is_ready_for_message_email`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_ready_for_message_email` (`to` INT) RETURNS TINYINT(1) NO SQL
 return COALESCE((SELECT TIMESTAMPDIFF(MINUTE, sent_time, CURRENT_TIMESTAMP) > 5 FROM message_email WHERE message_email.user = `to`), 1)$$
 
-DROP FUNCTION IF EXISTS `is_valid_reset_code`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_valid_reset_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
 return (SELECT TIMESTAMPDIFF(MINUTE, issue_time, CURRENT_TIMESTAMP) < 15 FROM reset_code WHERE reset_code.email = email AND reset_code.code = code)$$
 
-DROP FUNCTION IF EXISTS `is_valid_verification_code`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `is_valid_verification_code` (`email` VARCHAR(320), `code` VARCHAR(255)) RETURNS TINYINT(1) NO SQL
 return (SELECT 1 FROM verification_code WHERE verification_code.email = email AND verification_code.code = code)$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `next_draw_id` () RETURNS INT(11) NO SQL
+return (SELECT MAX(id) FROM winning_ticket)$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `time_to_draw` (`user` INT) RETURNS TIMESTAMP NO SQL
+RETURN COALESCE((SELECT `winning_ticket`.`draw_time` FROM `winning_ticket` JOIN `lottery_ticket` ON `lottery_ticket`.draw = `winning_ticket`.`id` WHERE `lottery_ticket`.`id` = user), FROM_UNIXTIME(2147483647))$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `was_drawn` (`user` INT) RETURNS TINYINT(1) NO SQL
+return (SELECT CURRENT_TIMESTAMP > (SELECT draw_time FROM `winning_ticket` JOIN `lottery_ticket` ON `winning_ticket`.`id` = `lottery_ticket`.`draw` WHERE `lottery_ticket`.`id` = user))$$
 
 DELIMITER ;
 
@@ -139,7 +160,6 @@ DELIMITER ;
 -- Table structure for table `gift`
 --
 
-DROP TABLE IF EXISTS `gift`;
 CREATE TABLE IF NOT EXISTS `gift` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) NOT NULL DEFAULT 1,
@@ -157,10 +177,29 @@ CREATE TABLE IF NOT EXISTS `gift` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lottery_ticket`
+--
+
+CREATE TABLE IF NOT EXISTS `lottery_ticket` (
+  `id` int(11) NOT NULL,
+  `1` int(2) NOT NULL,
+  `2` int(2) NOT NULL,
+  `3` int(2) NOT NULL,
+  `4` int(2) NOT NULL,
+  `5` int(2) NOT NULL,
+  `6` int(2) NOT NULL,
+  `7` int(2) NOT NULL,
+  `draw` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-winning_ticket-id` (`draw`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `message`
 --
 
-DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `to` int(11) NOT NULL,
@@ -181,7 +220,6 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- Table structure for table `message_email`
 --
 
-DROP TABLE IF EXISTS `message_email`;
 CREATE TABLE IF NOT EXISTS `message_email` (
   `user` int(11) NOT NULL,
   `sent_time` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -191,10 +229,27 @@ CREATE TABLE IF NOT EXISTS `message_email` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `prize`
+--
+
+CREATE TABLE IF NOT EXISTS `prize` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `1` varchar(255) NOT NULL,
+  `2` varchar(255) NOT NULL,
+  `3` varchar(255) NOT NULL,
+  `4` varchar(255) NOT NULL,
+  `5` varchar(255) NOT NULL,
+  `6` varchar(255) NOT NULL,
+  `7` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reset_code`
 --
 
-DROP TABLE IF EXISTS `reset_code`;
 CREATE TABLE IF NOT EXISTS `reset_code` (
   `email` varchar(320) NOT NULL,
   `code` varchar(255) NOT NULL,
@@ -208,7 +263,6 @@ CREATE TABLE IF NOT EXISTS `reset_code` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
@@ -228,12 +282,30 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Table structure for table `verification_code`
 --
 
-DROP TABLE IF EXISTS `verification_code`;
 CREATE TABLE IF NOT EXISTS `verification_code` (
   `email` varchar(320) NOT NULL,
   `code` varchar(255) NOT NULL,
   `issue_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `winning_ticket`
+--
+
+CREATE TABLE IF NOT EXISTS `winning_ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `1` int(2) NOT NULL,
+  `2` int(2) NOT NULL,
+  `3` int(2) NOT NULL,
+  `4` int(2) NOT NULL,
+  `5` int(2) NOT NULL,
+  `6` int(2) NOT NULL,
+  `7` int(2) NOT NULL,
+  `draw_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -245,6 +317,13 @@ CREATE TABLE IF NOT EXISTS `verification_code` (
 --
 ALTER TABLE `gift`
   ADD CONSTRAINT `fk-gift-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `lottery_ticket`
+--
+ALTER TABLE `lottery_ticket`
+  ADD CONSTRAINT `fk-lottery_ticket-id` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk-winning_ticket-id` FOREIGN KEY (`draw`) REFERENCES `winning_ticket` (`id`);
 
 --
 -- Constraints for table `message`

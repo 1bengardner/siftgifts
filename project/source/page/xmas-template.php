@@ -14,7 +14,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
       <?php
       $drawn = include '../action/xmas-was-lottery-drawn.php';
       if ($drawn) {
-        echo '<h2><a class="new-notifications" href="results">🎄 Results are in!</a></h2>';
+        echo '<h2><a class="new-notifications" href="results">🎄 Check your numbers!</a></h2>';
       } else {
         echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
@@ -140,7 +140,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
           heading.appendChild(anchor);
           anchor.classList.add("new-notifications");
           anchor.setAttribute("href", "results");
-          anchor.innerText = "🎄 Results are in!";
+          anchor.innerText = "🎄 Check your numbers!";
           document.getElementById("countdown").replaceWith(heading);
           document.getElementById("reroll-container").remove();
           return;

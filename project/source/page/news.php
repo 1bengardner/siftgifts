@@ -7,6 +7,14 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v7.0</h2> <h3 class="changelog-heading">2025-12-03</h3>
+        <ul>
+          <li>There is now a "secret" lottery feature</li>
+        </ul>
+        <h2 class="changelog-heading version-number">v6.3</h2> <h3 class="changelog-heading">2024-09-29</h3>
+        <ul>
+          <li>Your messages now refresh automatically</li>
+        </ul>
         <h2 class="changelog-heading version-number">v6.2</h2> <h3 class="changelog-heading">2023-11-23</h3>
         <ul>
           <li>You can now edit your wishlist gifts</li>

@@ -12,7 +12,7 @@ if ($prizes) {
   return;
 }
 ?>
-  <details class="widget" style="display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em; color: #640404; background-color: #effcf3;"><summary style="cursor: pointer;">Prizes</summary>
+  <details <?php if (!isset($_SESSION['seen prizes'])) { $_SESSION['seen prizes'] = true; echo 'open'; } ?> class="widget" style="display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em; color: #5e0606; background-color: #f6f9f7;"><summary style="cursor: pointer;">Prizes</summary>
     <div>
       <p>Seven numbers will be drawn.</p><p class="subheading">If one or more of yours match, you win!</p>
     </div>

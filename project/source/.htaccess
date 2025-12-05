@@ -12,6 +12,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (^[A-Za-z0-9_-]+$) /page/$1
 # Re-route wishlist aliases
 RewriteRule ^(sg)/(.*) /page/wishlist-redirect.php?sg=$2
+# Re-route xmas results
+RewriteRule ^(xmas)/results /page/xmas-results.php
+# Re-route xmas aliases
+RewriteRule ^(xmas)/(.*) /page/xmas-redirect.php?xmas=$2
 # Append .php for requests for files that exist but are missing .php
 RewriteCond %{DOCUMENT_ROOT}/$1.php -f
 RewriteRule (.*) $1.php

@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2025 at 10:23 PM
+-- Generation Time: Dec 05, 2025 at 04:13 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -131,6 +130,16 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_profile` (IN `id` INT, IN `username` VARCHAR(30), IN `encrypted_password` VARCHAR(255), IN `visible` BOOLEAN, IN `subscribed` BOOLEAN)  NO SQL
 UPDATE `user` SET user.username=COALESCE(username, user.username), user.encrypted_password=COALESCE(encrypted_password, user.encrypted_password), user.visible=COALESCE(visible, user.visible), user.subscribed=COALESCE(subscribed, user.subscribed) WHERE user.id=id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `xmas_get_lottery_ticket` (IN `code` VARCHAR(6))  NO SQL
+BEGIN
+SELECT * FROM xmas_lottery_ticket WHERE xmas_lottery_ticket.code=code;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `xmas_get_winning_ticket` (IN `code` VARCHAR(6))  NO SQL
+BEGIN
+SELECT winning_ticket.* FROM winning_ticket JOIN xmas_lottery_ticket ON winning_ticket.id = xmas_lottery_ticket.draw WHERE xmas_lottery_ticket.code = code;
+END$$
+
 --
 -- Functions
 --
@@ -151,6 +160,12 @@ RETURN COALESCE((SELECT `winning_ticket`.`draw_time` FROM `winning_ticket` JOIN 
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `was_drawn` (`user` INT) RETURNS TINYINT(1) NO SQL
 return (SELECT CURRENT_TIMESTAMP > (SELECT draw_time FROM `winning_ticket` JOIN `lottery_ticket` ON `winning_ticket`.`id` = `lottery_ticket`.`draw` WHERE `lottery_ticket`.`id` = user))$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `xmas_time_to_draw` (`code` VARCHAR(6)) RETURNS TIMESTAMP NO SQL
+RETURN COALESCE((SELECT `winning_ticket`.`draw_time` FROM `winning_ticket` JOIN `xmas_lottery_ticket` ON `xmas_lottery_ticket`.draw = `winning_ticket`.`id` WHERE `xmas_lottery_ticket`.`code` = code), FROM_UNIXTIME(2147483647))$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `xmas_was_drawn` (`code` VARCHAR(6)) RETURNS TINYINT(1) NO SQL
+return (SELECT CURRENT_TIMESTAMP > (SELECT draw_time FROM `winning_ticket` JOIN `xmas_lottery_ticket` ON `winning_ticket`.`id` = `xmas_lottery_ticket`.`draw` WHERE `xmas_lottery_ticket`.`code` = code))$$
 
 DELIMITER ;
 
@@ -308,6 +323,57 @@ CREATE TABLE IF NOT EXISTS `winning_ticket` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `xmas_lottery_ticket`
+--
+
+CREATE TABLE IF NOT EXISTS `xmas_lottery_ticket` (
+  `code` varchar(6) NOT NULL,
+  `1` int(2) NOT NULL,
+  `2` int(2) NOT NULL,
+  `3` int(2) NOT NULL,
+  `4` int(2) NOT NULL,
+  `5` int(2) NOT NULL,
+  `6` int(2) NOT NULL,
+  `7` int(2) NOT NULL,
+  `draw` int(11) NOT NULL,
+  PRIMARY KEY (`code`),
+  KEY `fk-xmas_lottery_ticket-draw` (`draw`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `xmas_participant`
+--
+
+CREATE TABLE IF NOT EXISTS `xmas_participant` (
+  `name` varchar(30) NOT NULL,
+  `code` varchar(6) NOT NULL,
+  `added_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `xmas_prize`
+--
+
+CREATE TABLE IF NOT EXISTS `xmas_prize` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `1` varchar(255) NOT NULL,
+  `2` varchar(255) NOT NULL,
+  `3` varchar(255) NOT NULL,
+  `4` varchar(255) NOT NULL,
+  `5` varchar(255) NOT NULL,
+  `6` varchar(255) NOT NULL,
+  `7` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Constraints for dumped tables
 --
@@ -338,6 +404,12 @@ ALTER TABLE `message`
 ALTER TABLE `message_email`
   ADD CONSTRAINT `fk-message_email-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 SET FOREIGN_KEY_CHECKS=1;
+
+--
+-- Constraints for table `xmas_lottery_ticket`
+--
+ALTER TABLE `xmas_lottery_ticket`
+  ADD CONSTRAINT `fk-xmas_lottery_ticket-draw` FOREIGN KEY (`draw`) REFERENCES `winning_ticket` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

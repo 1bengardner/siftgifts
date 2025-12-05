@@ -1060,6 +1060,10 @@ input.edit-widget {
   border-radius: 100%;
 }
 
+.lottery-bullet.winning {
+  background: linear-gradient(135deg, #afc, #ffd);
+}
+
 @keyframes anticipation {
   2% {
     transform: rotate(-10deg);

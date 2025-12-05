@@ -17,8 +17,8 @@ $prizes = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION[
 if ($prizes) {
   $prizes = $prizes[0];
 } else {
-  echo "<p class='widget' style='display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em;'>Cannot view prizes. You are not enrolled in a lottery.</p>";
-  exit;
+  echo "<p class='widget' style='display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em;'>Cannot view prizes. You are not enrolled in a lottery.</p></div>";
+  return;
 }
 ?>
   <details class="widget" style="display: inline-block; padding: 1em; margin: 0 0 1em 0; border-radius: 2em;"><summary style="cursor: pointer;">Prizes 🏆</summary>

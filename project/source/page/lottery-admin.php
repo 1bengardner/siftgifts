@@ -8,7 +8,7 @@ if (!include '../action/is-admin.php') {
 }
 $stmt = "CALL get_prizes(?)";
 $prizes = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_all(MYSQLI_ASSOC);
-$prizes = $prizes ? $prizes[0] : $prizes = array_fill(1, 7, "prize missing from db");
+$prizes = $prizes ? $prizes[0] : [];
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,6 +28,13 @@ $prizes = $prizes ? $prizes[0] : $prizes = array_fill(1, 7, "prize missing from 
     <form action="/action/submit-change-prizes.php" method="post">
       <div class="widget settings-widget">
         <h2 class="first-in-series">Prize Administration</h2>
+        <?php
+          if (empty($prizes)) {
+        ?>
+        <strong>Prizes</strong> table is missing row ID 1.
+        <?php
+          } else {
+        ?>
         <div>
           <input name="1" placeholder="Prize 1" value="<?php echo htmlentities($prizes[1]); ?>" required />
         </div>
@@ -52,6 +59,9 @@ $prizes = $prizes ? $prizes[0] : $prizes = array_fill(1, 7, "prize missing from 
         <div>
           <input class="submit-button" type="submit" value="🏆 Update prizes" />
         </div>
+        <?php
+          }
+        ?>
       </div>
       <div>
         <div class="links-section">

@@ -73,6 +73,7 @@ abstract class NotificationText
   const PasswordTooShort = "Your password is too short (under 6 characters).";
   const NameIsTooLong = "Your display name is too long (over 30 characters).";
   const NotLoggedIn = "Please log in to access this page.";
+  const MissingCode = "Use your personal QR code or URL to visit this page.";
   const InvalidUser = "Incorrect e-mail or password.";
   const FieldsCannotBeEmpty = "Please fill out all the required fields.";
   const EmailExists = "This e-mail address is already registered with Sift.gifts.";

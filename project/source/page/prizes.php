@@ -1,4 +1,4 @@
-<div>
+<div style="margin: 1em;">
 <?php
 require_once '../util/utilities.php';
 require_once '../action/authenticate.php';

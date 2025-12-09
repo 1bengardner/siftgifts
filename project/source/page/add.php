@@ -16,10 +16,10 @@
       <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
+      <?php include 'notification-box.php'; ?>
       <div>
         <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
-      <?php include 'notification-box.php'; ?>
       <div class="links-section">
         <a class="link" href="wishlist">⬅️ Return to wishlist</a>
       </div>

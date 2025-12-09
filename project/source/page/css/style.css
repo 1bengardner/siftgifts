@@ -325,8 +325,24 @@ hr.expand {
   text-align: left;
 }
 
-.success-box, .error-box, .info-box, .warning-box {
+@keyframes drop-in {
+  from {
+    max-height: 0;
+    margin: 0;
+  }
+  to {
+    max-height: 5em;
+  }
+}
+.notification-box > .success-box,
+.notification-box > .error-box,
+.notification-box > .info-box,
+.notification-box > .warning-box {
+  overflow: hidden;
+  max-height: none;
   margin: 0 1em 1em 1em;
+  animation: 0.3s ease-in-out drop-in;
+  padding: 0;
 }
 
 .success-box p, .error-box p, .info-box p, .warning-box p {
@@ -382,10 +398,6 @@ hr.expand {
   font-weight: bold;
   padding: 0.25em 0.5em;
   border-radius: 4px;
-}
-
-.notification-box > * {
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
 }
 
 h3.link {
@@ -779,7 +791,7 @@ a.new-notifications {
   }
 }
 .notification-box {
-  animation: notification-flash 0.5s ease-out;
+  animation: notification-flash 0.3s ease-in;
 }
 
 .settings-box {

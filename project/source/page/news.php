@@ -3,7 +3,7 @@
   <?php define('TITLE', 'Sift.gifts updates'); ?>
   <?php include 'head.php'; ?>
   <body>
-    <?php include 'header-with-login.php'; ?>
+    <?php include 'header.php'; ?>
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>

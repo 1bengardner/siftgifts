@@ -30,7 +30,7 @@ require_once '../action/start-session.php';
     <ul class="wishlist-header-buttons">
       <li class="wishlist-header-label"><a class="link" href="/wishlist">Wishlist</a></li>
       <li><a href="/wishlist" title="Edit wishlist">📜</a></li>
-      <li><a href="/request" title="Add to wishlist">➕</a></li>
+      <li><a href="/add" title="Add to wishlist">➕</a></li>
     </ul>
     <ul class="user-header-buttons-large">
       <li><a href="/settings" title="Change settings">👤</a></li>

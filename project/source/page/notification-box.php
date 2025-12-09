@@ -14,6 +14,9 @@ $message_box_css_classes = [
     // For now, I am assuming all notifications are in the same level
     foreach ($_SESSION["notifications"] as $notification) {
     ?>
+    <button type="button" class="close-notification" onclick="document.querySelector('.notification-box').remove();">
+      ❎
+    </button>
     <p>
       <?php echo $notification->text; ?>
     </p>

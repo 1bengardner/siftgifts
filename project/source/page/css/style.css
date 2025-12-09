@@ -338,11 +338,20 @@ hr.expand {
 .notification-box > .error-box,
 .notification-box > .info-box,
 .notification-box > .warning-box {
+  position: relative;
   overflow: hidden;
   max-height: none;
   margin: 0 1em 1em 1em;
   animation: 0.3s ease-in-out drop-in;
   padding: 0;
+}
+
+button.close-notification {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: unset;
+  font-size: 0.5em;
 }
 
 .success-box p, .error-box p, .info-box p, .warning-box p {
@@ -781,16 +790,13 @@ a.new-notifications {
   font-style: italic;
 }
 
-.notification-box {
-  text-align: center;
-}
-
 @keyframes notification-flash {
   0% {
     opacity: 0.1;
   }
 }
 .notification-box {
+  text-align: center;
   animation: notification-flash 0.3s ease-in;
 }
 

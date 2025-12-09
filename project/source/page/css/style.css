@@ -516,8 +516,6 @@ input.wishlist-link, input#search {
 
 .footer {
   font-size: small;
-  background-color: #f4f4f4;
-  background: linear-gradient(#fbfbfc, #f4f4f4 1em);
 }
 
 .reading-pane > ul > li::marker {
@@ -975,7 +973,8 @@ input.edit-widget {
     bottom: 0;
     width: 100%;
     padding: 1em 0;
-    background-color: #f2f2f2;
+    background-color: #f4f4f4;
+    background: linear-gradient(#fbfbfc, #f4f4f4 1em);
   }
 }
 

@@ -7,10 +7,10 @@
   ?>
   <?php define('TITLE', 'Sift.gifts - '.ucwords(strtolower($user->username)).'\'s messages'); ?>
   <?php include 'head.php'; ?>
-  <body>
+  <body style="background-color: #f8f9fd;">
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
-    <div class="center hidden-on-mobile">
+    <div class="center hidden-on-mobile" style="background: linear-gradient(to bottom, #eeedf7, #f8f9fd00 80%); margin-top: -0.5em;">
       <h2 class="messaging-header">Messages for <?php echo ucwords(strtolower($user->username)); ?></h2>
       <a href="/send-message">📝 Compose</a>
     </div>

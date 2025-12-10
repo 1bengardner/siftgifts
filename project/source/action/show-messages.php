@@ -28,7 +28,7 @@ if (count($msgs) === 0) {
     <form id="message-form" class="unbreakable" method="post"></form>
   </div>
 </div>
-<span class="mobile-navigation" style="position: sticky; bottom: 0; cursor: pointer;"><a title="Jump to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">🔝</a></span>
+<!-- <span class="mobile-navigation" style="position: sticky; bottom: 0; cursor: pointer;"><a title="Jump to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">🔝</a></span> -->
 <?php
 }
 ?>

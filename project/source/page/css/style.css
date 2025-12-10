@@ -97,6 +97,8 @@ a:not(.link):active, button:active {
 }
 
 .header {
+  position: relative;
+  z-index: 1;
   padding: 0.25em;
   margin-bottom: 0.5em;
   background: linear-gradient(to right, #f8f9fd, #eeedf7);
@@ -548,7 +550,7 @@ input.wishlist-link, input#search {
 }
 
 .message-chooser, .message-viewer {
-  height: calc(95vh - 5rem - 5rem);
+  height: calc(100vh - 11.5rem);
   overflow-y: auto;
   background-color: #eeedf7;
 }
@@ -642,9 +644,9 @@ input.wishlist-link, input#search {
   display: inline-block;
   font-size: x-small;
   padding: 0.5em;
-  border-radius: 1.2em 1.2em 0.4em 0.4em;
   margin-bottom: 0.5em;
-  background-color: #fff;
+  border-radius: 1.2em 1.2em 0.4em 0.4em;
+  background-color: #f8f9fd;
   background: linear-gradient(to top, #eeedf7, #f8f9fd 80%);
 }
 
@@ -929,7 +931,7 @@ input.edit-widget {
   .username-box {
     vertical-align: middle;
     white-space: nowrap;
-    max-width: 15em;
+    max-width: 13em;
     overflow-x: hidden;
     text-overflow: ellipsis;
   }
@@ -1005,7 +1007,7 @@ input.edit-widget {
   .username-box {
     display: none;
   }
-  .wishlist-header-label {
+  .wishlist-header-buttons {
     display: none;
   }
   .home-greeting {
@@ -1015,6 +1017,7 @@ input.edit-widget {
   .message-grid {
     display: block;
     box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
+    margin: -0.5em 0 0 0;
   }
   .message-chooser-message {
     border-right: 4px solid #eeedf7;
@@ -1054,7 +1057,7 @@ input.edit-widget {
     display: none;
   }
   .message-chooser, .message-viewer {
-    height: calc(95vh - 5rem);
+    height: calc(100vh - 5.25rem);
   }
 }
 

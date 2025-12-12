@@ -99,6 +99,7 @@ abstract class NotificationText
   const HoneypotError = "Your password is invalid.";
   const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
   const NoLotteries = "There are no pending lotteries.";
+  const NaughtyList = "Somebody's getting a lump of coal for Christmas this year&hellip;";
 }
 class Notification
 {

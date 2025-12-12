@@ -15,8 +15,8 @@ if (is_null($user)) {
   exit;
 }
 if (isset($_SESSION["xmas"]) && $user->name != XmasParticipant::get_from_code($_SESSION["xmas"])->name) {
-  $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
-  http_response_code(503);
+  $_SESSION["notifications"] = [new Notification(NotificationText::NaughtyList, NotificationLevel::Error)];
+  http_response_code(403);
 } else {
   $_SESSION["xmas"] = $_GET["xmas"];
 }

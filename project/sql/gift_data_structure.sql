@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2025 at 04:13 AM
+-- Generation Time: Dec 11, 2025 at 07:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -185,8 +185,10 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `user` int(11) NOT NULL,
   `creation_time` timestamp NULL DEFAULT current_timestamp(),
   `reserved_time` timestamp NULL DEFAULT NULL,
+  `reserver` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk-gift-user` (`user`)
+  KEY `fk-gift-user` (`user`),
+  KEY `fk-gift-reserver` (`reserver`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -382,6 +384,7 @@ CREATE TABLE IF NOT EXISTS `xmas_prize` (
 -- Constraints for table `gift`
 --
 ALTER TABLE `gift`
+  ADD CONSTRAINT `fk-gift-reserver` FOREIGN KEY (`reserver`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk-gift-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 
 --
@@ -403,7 +406,6 @@ ALTER TABLE `message`
 --
 ALTER TABLE `message_email`
   ADD CONSTRAINT `fk-message_email-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
-SET FOREIGN_KEY_CHECKS=1;
 
 --
 -- Constraints for table `xmas_lottery_ticket`

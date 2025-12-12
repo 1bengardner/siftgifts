@@ -9,11 +9,14 @@ if (Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]
 
 $db = Database::get_connection();
 
+$stmt = "SELECT draw FROM lottery_ticket WHERE id=?";
+$next_draw = Database::run_statement($db, $stmt, [$_SESSION['id']])->fetch_row()[0];
 $stmt = "DELETE FROM lottery_ticket WHERE id=?";
 Database::run_statement($db, $stmt, [$_SESSION['id']]);
-
-$stmt = "SELECT next_draw_id()";
-$next_draw = Database::run_statement_no_params($db, $stmt)->fetch_row()[0];
+if ($next_draw === NULL) {
+  $stmt = "SELECT next_draw_id()";
+  $next_draw = Database::run_statement_no_params($db, $stmt)->fetch_row()[0];
+}
 if ($next_draw === NULL || !in_array($_SESSION['id'], [1, 2])) {
   return ["?", "?", "?", "?", "?", "?", "?"];
 }

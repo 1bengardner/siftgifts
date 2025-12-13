@@ -66,7 +66,6 @@ if (!in_array($user->id, [1, 2])) {
         <audio controls loop style="height: 2.2rem;" src="/page/audio/trousers.ogg"></audio>
       </div>
       <?php include 'prizes.php' ?>
-      <hr>
       <div>
         <a href="/home">🏠 Return home</a>
         <img src="/page/img/present.svg" />

@@ -20,7 +20,7 @@ if (!$drawn) {
       <div id="hidden" style="display: none;">
         <div id="winning-numbers" class="widget" style="padding: 1em; border-radius: 2em; background-color: #00ff490d;">
           <h1 style="background-color: purple;">Winning Numbers</h1>
-          <span id="drumroll" class="lottery-bullet winning">🥁</span>
+          <span id="drumroll" class="lottery-bullet"><span class="lottery-number">🥁</span></span>
         </div>
         <div id="your-ticket" class="widget" style="display: inline-block; padding: 1em; border-radius: 2em;">
           <span style="display: inline-block; background: linear-gradient(92deg, #edb, #fc6 94%, #ffc 96.5%, #feb 97%, #fda); border: solid 2px rgba(105, 100, 90, 0.3); vertical-align: bottom; border-radius: 1em; padding: 0.5em 0;">

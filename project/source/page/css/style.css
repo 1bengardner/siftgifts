@@ -744,10 +744,12 @@ a.new-notifications {
 }
 
 .notification-dot {
+  display: inline-block;
   font-weight: bold;
   position: relative;
-  top: -1em;
+  top: -0.75em;
   left: -1em;
+  margin-right: -1em;
   font-size: small;
   color: #fff;
   background-color: #fa3e3e;

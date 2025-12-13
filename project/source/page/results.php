@@ -20,7 +20,7 @@ if (!$drawn) {
       <div id="hidden" style="display: none;">
         <div id="winning-numbers" class="widget" style="padding: 1em; border-radius: 2em; background-color: #00ff490d;">
           <h1 style="background-color: purple;">Winning Numbers</h1>
-          <h1 id="drumroll">🥁</h1>
+          <span id="drumroll" class="lottery-bullet winning">🥁</span>
         </div>
         <div id="your-ticket" class="widget" style="display: inline-block; padding: 1em; border-radius: 2em;">
           <span style="display: inline-block; background: linear-gradient(92deg, #edb, #fc6 94%, #ffc 96.5%, #feb 97%, #fda); border: solid 2px rgba(105, 100, 90, 0.3); vertical-align: bottom; border-radius: 1em; padding: 0.5em 0;">
@@ -58,6 +58,7 @@ if (!$drawn) {
         const commands = winningNumbers.map((number) => function() {
           const lotteryBullet = document.createElement("span");
           lotteryBullet.classList.add("lottery-bullet");
+          lotteryBullet.classList.add("winning");
           lotteryBullet.classList.add("zoom-out");
           const lotteryNumber = document.createElement("span");
           lotteryNumber.classList.add("lottery-number");
@@ -96,11 +97,13 @@ if (!$drawn) {
             confetti();
           }
         });
-        for (const [i, command] of commands.entries()) {
-          setTimeout(command, duration * i + initialPause);
-        }
         setTimeout(function() {
           document.getElementById("drumroll").remove();
+          // Immediately pop first command so that standin is removed at the exact same time
+          commands.shift()();
+          for (const [i, command] of commands.entries()) {
+            setTimeout(command, duration * i + duration);
+          }
         }, initialPause);
         openSfx.play();
         const drumSfx = new Audio("/page/audio/timpani.ogg");

@@ -1140,6 +1140,8 @@ input.edit-widget {
 .anticipation {
   width: 225px;
   animation: anticipation 1.65s ease-out infinite;
+  position: relative;
+  z-index: 2;
 }
 .anticipation:hover {
   width: 250px;

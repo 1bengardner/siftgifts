@@ -27,7 +27,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
           <span style="display: inline-block; background: linear-gradient(92deg, #edb, #fc6 94%, #ffc 96.5%, #feb 97%, #fda); border: solid 2px rgba(105, 100, 90, 0.3); vertical-align: bottom; border-radius: 1em; padding: 0.5em 0;">
             <div style="position: relative;">
               <img style="position: absolute; top: -1.6em; left: 0.2em; width: 64px;" src="/page/img/lotto-gold.png">
-              <h2 style="align-self: center; mix-blend-mode: plus-lighter;"><?php echo ucwords(strtolower($user->name)); ?>'s Lottery Ticket</h2>
+              <h2 class="ticket-owner"><?php echo ucwords(strtolower($user->name)); ?>'s Lottery Ticket</h2>
             </div>
             <div style="margin: 1em 2em;">
               <?php

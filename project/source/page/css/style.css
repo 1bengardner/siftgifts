@@ -1160,3 +1160,9 @@ input.edit-widget {
 .zoom-out {
   animation: zoom-out 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
+
+.ticket-owner {
+  mix-blend-mode: plus-lighter;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

@@ -709,11 +709,11 @@ input.message-entry:disabled {
 }
 
 .sent-message p:not(.unsent) .message-time-sent::after {
-  content: " ✔️";
+  content: " ✔";
 }
 
 .sent-message p:not(.unread) .message-time-sent::after {
-  content: " ✔️✔️";
+  content: " ✔✔";
   color: #539;
 }
 

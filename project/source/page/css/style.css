@@ -779,8 +779,9 @@ a.new-notifications {
   padding: 0.5em;
   margin-left: 3.5rem;
   background-color: #fff;
-  background: linear-gradient(to top, #eeedf7, #f8f9fd 80%);
-  border-radius: 1.2em 1.2em 0.4em 0.4em;
+  background: linear-gradient(to top, #eeedf780, #f8f9fd80 80%);
+  border-radius: 1.2em;
+  backdrop-filter: blur(0.1em);
 }
 
 .smaller {

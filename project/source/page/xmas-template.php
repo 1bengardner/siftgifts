@@ -5,7 +5,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
 ?>
 <!DOCTYPE html>
 <html>
-  <?php define('TITLE', ucwords(strtolower($user->name))."'s Lottery Ticket"); ?>
+  <?php define('TITLE', ($user->name ? ucwords(strtolower($user->name)) . "'s " : "") . "Lottery Ticket"); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
@@ -19,7 +19,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
         echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
       ?>
-      <h2 style="margin: 0;"><?php echo ucwords(strtolower($user->name)); ?>, welcome to the<span style="color: #b03; text-shadow: 0.05em 0.05em 0.15em #270;"> Christmas </span>lottery!</span></h2>
+      <h2 style="margin: 0;"><?php echo ($user->name ? ucwords(strtolower($user->name)) . ", w" : "W"); ?>elcome to the<span style="color: #b03; text-shadow: 0.05em 0.05em 0.15em #270;"> Christmas </span>lottery!</span></h2>
       <h1 style="background-color: purple;">
         <?php
         if (!isset($_SESSION['lottery greeted'])) {
@@ -46,7 +46,7 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
         <span style="display: inline-block; background: linear-gradient(92deg, #edb, #fc6 94%, #ffc 96.5%, #feb 97%, #fda); border: solid 2px rgba(105, 100, 90, 0.3); vertical-align: bottom; border-radius: 1em; padding: 0.5em 0;">
           <div style="position: relative;">
             <img style="position: absolute; top: -1.6em; left: 0.2em; width: 64px;" src="/page/img/lotto-gold.png">
-            <h2 class="ticket-owner"><?php echo ucwords(strtolower($user->name)); ?>'s Lottery Ticket</h2>
+            <h2 class="ticket-owner"><?php if ($user->name) echo ucwords(strtolower($user->name)) . "'s "; ?>Lottery Ticket</h2>
           </div>
           <div style="margin: 1em 2em;">
             <?php

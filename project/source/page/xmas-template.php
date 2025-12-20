@@ -72,6 +72,8 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
   </body>
   <script>
     let rolling = false;
+    const sfx = new Audio("/page/audio/spin.ogg")
+    sfx.volume = 0.65;
 
     function dance(elements, finish) {
       let i = 0;
@@ -86,8 +88,6 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
         }
         i++;
       }, interval);
-      const sfx = new Audio("/page/audio/spin.ogg")
-      sfx.volume = 0.65;
       sfx.play();
     }
 

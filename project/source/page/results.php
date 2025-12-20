@@ -46,14 +46,17 @@ if (!$drawn) {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script>
+      const openSfx = new Audio("/page/audio/open.ogg");
+      const drumSfx = new Audio("/page/audio/timpani.ogg");
+      const revealSfx = new Audio("/page/audio/reveal.ogg");
+      revealSfx.volume = 0.8;
+      const gagnantSfx = new Audio("/page/audio/winner.ogg");
       function reveal() {
         document.getElementById("trigger").style.display = "none";
         document.getElementById("hidden").style.display = "block";
         const initialPause = 1200;
         const duration = 1500;
         const winningNumbers = <?php echo json_encode(include '../action/get-winning-ticket.php'); ?>;
-        const revealSfx = new Audio("/page/audio/reveal.ogg");
-        revealSfx.volume = 0.8;
         const winningNumberElements = [];
         const commands = winningNumbers.map((number) => function() {
           const lotteryBullet = document.createElement("span");
@@ -68,7 +71,6 @@ if (!$drawn) {
           document.getElementById("winning-numbers").appendChild(lotteryBullet);
           revealSfx.play();
         });
-        const openSfx = new Audio("/page/audio/open.ogg");
         commands.push(function() {
           const count = 7;
           const yourNumberElements = [...Array(count).keys()].map((num) => document.getElementById(`lottery-number-${num}`));
@@ -91,7 +93,6 @@ if (!$drawn) {
             }
           }
           if (winningNumbers.some((winner) => yourNumberElements.map((elem) => elem.innerText).includes(winner.toString()))) {
-            const gagnantSfx = new Audio("/page/audio/winner.ogg");
             gagnantSfx.play();
             openSfx.play();
             confetti();
@@ -106,7 +107,6 @@ if (!$drawn) {
           }
         }, initialPause);
         openSfx.play();
-        const drumSfx = new Audio("/page/audio/timpani.ogg");
         drumSfx.play();
         confetti();
       }

@@ -75,6 +75,8 @@ if (!in_array($user->id, [1, 2])) {
   </body>
   <script>
     let rolling = false;
+    const sfx = new Audio("/page/audio/spin.ogg")
+    sfx.volume = 0.65;
 
     function dance(elements, finish) {
       let i = 0;
@@ -89,8 +91,6 @@ if (!in_array($user->id, [1, 2])) {
         }
         i++;
       }, interval);
-      const sfx = new Audio("/page/audio/spin.ogg")
-      sfx.volume = 0.65;
       sfx.play();
     }
 

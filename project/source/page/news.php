@@ -92,7 +92,6 @@
             <li>Others can view your wishlist and reserve gifts without signing up</li>
           </ul>
         </ul>
-        <hr class="expand" />
         <p><a href="/">Return</a></p>
       </div>
       <div class="right news-image">

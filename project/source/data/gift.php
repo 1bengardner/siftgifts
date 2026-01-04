@@ -31,7 +31,6 @@ class Gift
   
   public function belongs_to_user($id)
   {
-    return true;
     return $this->user === $id;
   }
 }

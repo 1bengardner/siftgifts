@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <?php define('TITLE', 'Add a new gift'); ?>
+  <?php define('TITLE', 'Add a new private gift'); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
     <?php require_once '../action/authenticate.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
-      <h2>Add to your private wishlist!</h2>
-      <div>
+      <h2>You can't add to your private wishlist yet! I'm working on it!</h2>
+      <!-- <div>
         <input id="name" type="name" placeholder="Gift name" maxlength="255" required />
       </div>
       <div>
@@ -18,8 +18,8 @@
       </div>
       <?php include 'notification-box.php'; ?>
       <div>
-        <input disabled class="submit-button" type="submit" value="🎁 Add gift"/>
-      </div>
+        <input class="submit-button" type="submit" value="🎁 Add gift"/>
+      </div> -->
       <div class="links-section">
         <a class="link" href="private-wishlist">⬅️ Return to private wishlist</a>
       </div>

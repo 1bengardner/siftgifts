@@ -29,7 +29,7 @@ if (!isset($id)) {
           echo '<p><strong>HEY!</strong> No peeking! <a href="/wishlist">Manage your wishlist</a> instead.</p>';
         } else {
           $_GET['user']=$id;
-          include '../action/show-gifts.php';
+          include '../action/show-gifts-for-user.php';
         }
       ?>
     </div>

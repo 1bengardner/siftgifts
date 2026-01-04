@@ -27,6 +27,15 @@ $user = User::get_from_id($_SESSION['id']);
           }
           ?>
           <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
+          <?php
+            $uuid = null;
+            $stmt = "SELECT uuid FROM wishlist WHERE owner=?";
+            $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object();
+            if (!is_null($res)) {
+              $uuid = $res->uuid;
+              echo '<li><h2><a href="private-wishlist">🔒 Edit your private wishlist</a></h2></li>';
+            }
+          ?>
         </ul>
       </nav>
       <?php $wishlist = 'https://sift.gifts/sg/'.strtolower($user->username); ?>
@@ -35,6 +44,18 @@ $user = User::get_from_id($_SESSION['id']);
         <button class="clipboard-button" title="Copy" url="<?php echo $wishlist; ?>">📎</button>
         <div class="clipboard-copy-reaction"></div>
       </span>
+      <?php
+        // uuid is defined above
+        if (!is_null($uuid)) {
+          $private_wishlist = 'https://sift.gifts/uuid/'.$uuid;
+      ?>
+      <span class="unbreakable">
+        <input title="Your private wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $private_wishlist; ?>'>
+        <button class="clipboard-button" title="Copy" url="<?php echo $wishlist; ?>">🔐</button>
+      </span>
+      <?php
+        }
+      ?>
       <p><a href="directory">🔍 Find a wishlist</a>
       <?php
         if ($has_ticket && $ticket_was_drawn) {

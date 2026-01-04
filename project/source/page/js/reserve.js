@@ -28,7 +28,7 @@ function toggle(btn, name) {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       const doesServerSeeReserved = rq.responseText == 1;
       document.getElementById(btn.getAttribute("id")).labels[0].innerHTML = doesServerSeeReserved ? "Reserved" : "Reserve";
-      // btn.checked = doesServerSeeReserved; -- Confusing UX: Not needed unless someone gets responses out of order
+      btn.checked = doesServerSeeReserved;
     }
   }
   var params = "id=" + btn.getAttribute("gift");

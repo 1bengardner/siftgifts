@@ -51,7 +51,7 @@ $user = User::get_from_id($_SESSION['id']);
       ?>
       <span class="unbreakable">
         <input title="Your private wishlist link" class="wishlist-link" disabled type="url" value='<?php echo $private_wishlist; ?>'>
-        <button class="clipboard-button" title="Copy" url="<?php echo $wishlist; ?>">🔐</button>
+        <button class="clipboard-button" title="Copy" url="<?php echo $private_wishlist; ?>">🔐</button>
       </span>
       <?php
         }

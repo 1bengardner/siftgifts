@@ -28,7 +28,6 @@ $user = User::get_from_id($_SESSION['id']);
           ?>
           <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
           <?php
-            $uuid = null;
             $stmt = "SELECT uuid FROM wishlist WHERE owner=?";
             $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object();
             if (!is_null($res)) {
@@ -46,7 +45,7 @@ $user = User::get_from_id($_SESSION['id']);
       </span>
       <?php
         // uuid is defined above
-        if (!is_null($uuid)) {
+        if (isset($uuid)) {
           $private_wishlist = 'https://sift.gifts/uuid/'.$uuid;
       ?>
       <span class="unbreakable">

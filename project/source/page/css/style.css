@@ -18,6 +18,8 @@ body {
 button {
   background-color: #fff;
   cursor: pointer;
+  border-radius: 0.5em;
+  border: unset;
 }
 
 label {
@@ -119,11 +121,6 @@ nav li {
 
 nav li {
   margin: 0 0.25em;
-}
-
-button {
-  border-radius: 0.5em;
-  border: unset;
 }
 
 .right {

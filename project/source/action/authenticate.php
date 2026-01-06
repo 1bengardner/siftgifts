@@ -7,6 +7,4 @@ if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
   header("Location: /login");
   exit;
 }
-
-header("Cache-Control: no-store");
 ?>

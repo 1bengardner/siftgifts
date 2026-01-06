@@ -1,4 +1,5 @@
 <?php
+require_once '../util/utilities.php';
 require_once 'start-session.php';
 
 if (!isset($_SESSION["xmas"]) || !$_SESSION["xmas"]) {

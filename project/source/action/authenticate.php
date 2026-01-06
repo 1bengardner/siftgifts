@@ -1,4 +1,5 @@
 <?php
+require_once '../util/utilities.php';
 require_once 'start-session.php';
 
 if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
@@ -6,4 +7,6 @@ if (!isset($_SESSION["id"]) || !$_SESSION["id"]) {
   header("Location: /login");
   exit;
 }
+
+header("Cache-Control: no-store");
 ?>

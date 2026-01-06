@@ -1,4 +1,5 @@
 <?php
+require_once '../util/utilities.php';
 require_once '../action/start-session.php';
 require_once '../data/xmas-participant.php';
 

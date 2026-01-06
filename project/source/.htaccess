@@ -27,5 +27,5 @@ ErrorDocument 404 /page/404
 ErrorDocument 500 /page/500
 
 <IfModule mod_headers.c>
-    Header set Cache-Control "max-age=86400"
+    Header setIfEmpty Cache-Control "max-age=86400"
 </IfModule>

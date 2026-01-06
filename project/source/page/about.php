@@ -3,7 +3,7 @@
   <?php define('TITLE', 'About Sift.gifts'); ?>
   <?php include 'head.php'; ?>
   <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header-with-login.php'; ?>
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What is <span class="logo-text">Sift<span class="spaced">.</span>gifts?</span></h1>

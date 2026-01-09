@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2026 at 01:09 AM
+-- Generation Time: Jan 08, 2026 at 11:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -35,6 +35,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_message_email` (IN `user` INT) 
 BEGIN
 REPLACE INTO message_email(user)
 VALUES (user);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_private_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
+BEGIN
+INSERT INTO gift (name, url, notes, user, wishlist)
+	SELECT TRIM(name), url, TRIM(comments), user, uuid
+    FROM wishlist
+    WHERE owner=user;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL

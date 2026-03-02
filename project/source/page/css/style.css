@@ -1060,6 +1060,12 @@ input.edit-widget {
   .message-chooser, .message-viewer {
     height: calc(100vh - 5.25rem);
   }
+  h1 {
+    font-size: 1.75em;
+  }
+  h2 {
+    font-size: 1.33em;
+  }
 }
 
 .lottery-number {

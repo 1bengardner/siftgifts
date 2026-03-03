@@ -3,17 +3,23 @@ if (navigator.canShare) {
     elem.title = "Share";
     elem.onclick = () => navigator.share({
       title: 'Sift.gifts wishlist link',
-      url: elem.getAttribute('url');
+      url: elem.getAttribute('url'),
     });
     elem.innerHTML = "<strong>Share!</strong>";
   });
 } else {
   document.querySelectorAll('.clipboard-button').forEach(function(elem) {
+    let removeTextEvent = null;
     elem.onclick = () => {
+      clearTimeout(removeTextEvent);
       navigator.clipboard.writeText(elem.getAttribute('url'));
-      document.querySelectorAll('.clipboard-copy-reaction').forEach(function(elem) {
-        elem.innerHTML = "Copied!";
-      });
-    }
+      const reaction = elem.parentNode.querySelector('.clipboard-copy-reaction');
+      reaction.textContent = "Copied!";
+      reaction.style.animation = "0.3s ease-in-out drop-in";
+      removeTextEvent = setTimeout(() => {
+        reaction.textContent = null;
+        reaction.style.animation = "";
+      }, 2000);
+    };
   });
 }

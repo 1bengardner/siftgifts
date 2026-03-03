@@ -11,7 +11,7 @@ if (!isset($uuid)) {
   <body>
     <?php include 'header.php' ?>
     <div class="center">
-      <h1 class="wishlist-header">Wishlist <?php echo $uuid ?></h1>
+      <h1 class="wishlist-header">Wishlist <?php echo substr($uuid, 0, 4); ?></h1>
     </div>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>

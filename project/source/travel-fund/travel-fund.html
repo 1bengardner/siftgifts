@@ -105,11 +105,11 @@ input {
 
 <div id="total">Total: $0.00</div>
 
-<div>
-  <input id="source" placeholder="Source">
-  <input id="amount" type="number" step="0.01" placeholder="Amount">
-  <button id="submit">Add</button>
-</div>
+<form onsubmit="event.preventDefault();">
+  <input id="contribution-source" placeholder="Source">
+  <input id="contribution-amount" type="number" step="0.01" placeholder="Amount">
+  <button id="submit" type="submit">Add</button>
+</form>
 
 <script src="travel-fund.js"></script>
 

@@ -7,12 +7,12 @@ let totalAmount = 0;
 // Jar shape function
 function getJarBounds(y) {
   // Neck (still slightly narrow)
-  if (y < 110) {
+  if (y < 80) {
     return { left: 115, right: 185 };
   }
 
   // Aggressive widening
-  const t = (y - 110) / 250;
+  const t = (y - 80) / 250;
 
   const width = 70 + t * 180; // MUCH wider
 
@@ -22,25 +22,46 @@ function getJarBounds(y) {
   };
 }
 
+function hash(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+  }
+  return hash;
+}
+
 // Create paper
 function createPaper(c) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("width", 70);
+  const w = 12 + 6 * c.amount.toString().replace(".", "").length;
+  rect.setAttribute("width", w);
   rect.setAttribute("height", 22);
   rect.setAttribute("rx", 3);
 
-  const colors = ["#fff", "#fef9c3", "#e0f2fe"];
-  rect.setAttribute("fill", colors[Math.floor(Math.random()*colors.length)]);
-  rect.setAttribute("stroke", "#aaa");
+const colors = [
+  "#ffffff",     // white
+  "#fdf9c8",     // light yellow
+  "#c8fafb",     // light blue
+  "#fde8f6",     // soft pink
+  "#d0ffd8",     // muted green
+  "#ebd1ff",     // pastel lavender
+  "#ffe8b3",     // light peach
+  "#b4e0ff"      // soft sky blue
+];
+  rect.setAttribute("fill", colors[Math.floor(hash(c.source)%colors.length)]);
+  rect.setAttribute("stroke", "#abc");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  text.setAttribute("x", 35);
+  text.setAttribute("x", w / 2);
   text.setAttribute("y", 15);
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "10");
-  text.textContent = `${c.source} $${c.amount}`;
+  const amountText = `$${c.amount}`;
+  text.textContent = amountText;
+  text.onclick = function() { this.textContent = this.textContent === amountText ? c.source : amountText };
+  text.style.cursor = "pointer";
 
   g.appendChild(rect);
   g.appendChild(text);
@@ -60,65 +81,78 @@ function createPaper(c) {
   });
 }
 
+function shake() {
+  for (let p of papers.filter(p => p.settled && p.shaken)) {
+    p.settled = false;
+    const offset = Math.abs(p.rotation % 180);
+    const direction = (offset > 90 ? 1 : -1) * Math.sign(p.rotation);
+    p.vr = direction * (2 - 2 * Math.abs(offset - 90) / 90);
+    p.vx = (Math.random() - 0.5) * 1.2;
+  }
+}
+
 function animate() {
-    const jarBottom = 355;
+  const jarBottom = 355;
 
-    for (let p of papers) {
-        if (!p.settled) {
-            // Apply slow gravity
-            p.vy += 0.02;
-            p.y += p.vy;
-            p.x += p.vx;
-            p.rotation += p.vr;
+  for (let p of papers) {
+    if (!p.settled) {
+      if (!p.shaken) {
+        shake();
+        p.shaken = true;
+      }
+      // Apply slow gravity
+      p.vy += 0.02;
+      p.y += p.vy;
+      p.x += p.vx;
+      p.rotation += p.vr;
 
-            // Keep inside jar
-            const bounds = getJarBounds(p.y);
-            if (p.x < bounds.left) { p.x = bounds.left; p.vx *= -0.3; }
-            if (p.x + p.width > bounds.right) { p.x = bounds.right - p.width; p.vx *= -0.3; }
+      // Keep inside jar
+      const bounds = getJarBounds(p.y);
+      if (p.x < bounds.left) { p.x = bounds.left; }
+      if (p.x + p.width > bounds.right) { p.x = bounds.right - p.width; }
 
-            // Determine maximum landing Y (floor or settled paper)
-            let landingY = jarBottom - p.height;
+      // Determine maximum landing Y (floor or settled paper)
+      let landingY = jarBottom - p.height;
 
-            for (let other of papers) {
-                if (other === p || !other.settled) continue;
+      for (let other of papers) {
+        if (other === p || !other.settled) continue;
 
-                // Check for horizontal overlap
-                const overlapX = p.x + p.width > other.x && p.x < other.x + other.width;
+        const dx = Math.abs(p.x - other.x);
+        const dy = Math.abs(p.y - other.y);
 
-                if (overlapX) {
-                    // Candidate landing Y is on top of this paper
-                    landingY = Math.min(landingY, other.y - p.height);
-                }
-            }
+        const overlapX = dx < (p.width + other.width)/2;
+        const overlapY = dy < (p.height + other.height)/2;
 
-            // If we're at or below landing Y, snap
-            if (p.y >= landingY) {
-                p.y = landingY;
-                p.vy = 0;
-
-                // Optional: slide slightly toward jar center for mound effect
-                const jarCenter = 150; // jar horizontal center
-                p.vx += (jarCenter - (p.x + p.width/2)) * 0.005;
-
-                // Dampen motion
-                p.vx *= 0.95;
-                p.vr *= 0.9;
-
-                // Settle if velocities small
-                if (Math.abs(p.vx) < 0.01 && Math.abs(p.vy) < 0.005) {
-                    p.settled = true;
-                }
-            }
+        if (overlapX && overlapY) {
+          // Adjust landingY to top of the other paper
+          landingY = Math.min(landingY, other.y - (p.height + other.height)/4);
         }
+      }
 
-        // Apply transform
-        p.el.setAttribute(
-            "transform",
-            `translate(${p.x}, ${p.y}) rotate(${p.rotation}, ${p.width/2}, ${p.height/2})`
-        );
+      // If we're at or below landing Y, snap
+      if (p.y >= landingY) {
+        p.y = landingY;
+        p.vy = 0;
+
+        // Dampen motion
+        p.vx *= 0.95;
+        p.vr *= 0.9;
+
+        // Settle if velocities and rotation small
+        if (Math.abs(p.vx) < 0.01 && Math.abs(p.vy) < 0.005 && Math.abs(p.vr) < 0.005) {
+          p.settled = true;
+        }
+      }
     }
 
-    requestAnimationFrame(animate);
+    // Apply transform
+    p.el.setAttribute(
+      "transform",
+      `translate(${p.x - p.width/2}, ${p.y - p.height/2}) rotate(${p.rotation}, ${p.width/2}, ${p.height/2})`
+    );
+  }
+
+  requestAnimationFrame(animate);
 }
 
 animate();
@@ -137,8 +171,8 @@ fetch('get_contributions.php?fund_id=1')
 
 // Submit
 document.getElementById('submit').addEventListener('click', () => {
-  const source = document.getElementById('source').value.trim();
-  const amount = parseFloat(document.getElementById('amount').value);
+  const source = document.getElementById('contribution-source').value.trim();
+  const amount = parseFloat(parseFloat(document.getElementById('contribution-amount').value).toFixed(2));
 
   if (!source || isNaN(amount)) return alert('Invalid input');
 
@@ -155,5 +189,11 @@ document.getElementById('submit').addEventListener('click', () => {
         totalAmount += parseFloat(data.contribution.amount);
         totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
       }
+      throw Error("Error fetching data.");
+    })
+    .catch(_ => {
+      createPaper({source, amount: amount % 1 ? amount : amount.toFixed(2)});
+      totalAmount += parseFloat(amount);
+      totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
     });
 });

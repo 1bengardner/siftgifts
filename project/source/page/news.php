@@ -7,6 +7,10 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v9.0</h2> <h3 class="changelog-heading">2026-04-06</h3>
+        <ul>
+          <li>There is now a "secret" travel fund feature</li>
+        </ul>
         <h2 class="changelog-heading version-number">v8.0</h2> <h3 class="changelog-heading">2026-03-02</h3>
         <ul>
           <li>You can now create a private wishlist</li>

@@ -40,16 +40,16 @@ function createPaper(c) {
   rect.setAttribute("height", 22);
   rect.setAttribute("rx", 3);
 
-const colors = [
-  "#ffffff",     // white
-  "#fdf9c8",     // light yellow
-  "#c8fafb",     // light blue
-  "#fde8f6",     // soft pink
-  "#d0ffd8",     // muted green
-  "#ebd1ff",     // pastel lavender
-  "#ffe8b3",     // light peach
-  "#b4e0ff"      // soft sky blue
-];
+  const colors = [
+    "#ffffff",     // white
+    "#fdf9c8",     // light yellow
+    "#c8fafb",     // light blue
+    "#fde8f6",     // soft pink
+    "#d0ffd8",     // muted green
+    "#ebd1ff",     // pastel lavender
+    "#ffe8b3",     // light peach
+    "#b4e0ff"      // soft sky blue
+  ];
   rect.setAttribute("fill", colors[Math.floor(hash(c.source)%colors.length)]);
   rect.setAttribute("stroke", "#abc");
 
@@ -158,7 +158,7 @@ function animate() {
 animate();
 
 // Load existing
-fetch('get_contributions.php?fund_id=1')
+fetch('get-contributions.php?fund_id=1')
   .then(res => res.json())
   .then(data => {
     data.forEach((c, i) => {
@@ -169,31 +169,43 @@ fetch('get_contributions.php?fund_id=1')
     totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
   });
 
+function notify(message) {
+  document.getElementById("notification-container").innerHTML =
+    `<div class="notification-box">
+      <div class="error-box">
+        <button type="button" class="close-notification" onclick="document.querySelector('.notification-box').remove();">
+          ❎
+        </button>
+        <p>
+          ${message}
+        </p>
+      </div>
+    </div>`;
+}
+
 // Submit
-document.getElementById('submit').addEventListener('click', () => {
+document.getElementById('submit').addEventListener('click', function() {
+  if (!this.form.checkValidity()) return;
+
   const source = document.getElementById('contribution-source').value.trim();
   const amount = parseFloat(parseFloat(document.getElementById('contribution-amount').value).toFixed(2));
 
-  if (!source || isNaN(amount)) return alert('Invalid input');
+  if (!source || isNaN(amount)) return notify('Please enter a source and a dollar amount.');
 
   const formData = new FormData();
   formData.append('fund_id', 1);
   formData.append('source', source);
   formData.append('amount', amount);
 
-  fetch('add_contribution.php', { method: 'POST', body: formData })
+  fetch('add-contribution.php', { method: 'POST', body: formData })
     .then(res => res.json())
     .then(data => {
       if (data.success) {
         createPaper(data.contribution);
         totalAmount += parseFloat(data.contribution.amount);
         totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
+      } else {
+        throw Error("Error fetching data.");
       }
-      throw Error("Error fetching data.");
-    })
-    .catch(_ => {
-      createPaper({source, amount: amount % 1 ? amount : amount.toFixed(2)});
-      totalAmount += parseFloat(amount);
-      totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
     });
 });

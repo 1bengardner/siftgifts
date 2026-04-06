@@ -35,7 +35,8 @@ function createPaper(c) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  const w = 12 + 6 * c.amount.toString().replace(".", "").length;
+  const amountText = `$${c.amount.toString().split(".")[1] == "00" ? c.amount.toString().split(".")[0] : c.amount}`;
+  const w = 12 + 6 * amountText.length;
   rect.setAttribute("width", w);
   rect.setAttribute("height", 22);
   rect.setAttribute("rx", 3);
@@ -58,7 +59,6 @@ function createPaper(c) {
   text.setAttribute("y", 15);
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "10");
-  const amountText = `$${c.amount}`;
   text.textContent = amountText;
   text.onclick = function() { this.textContent = this.textContent === amountText ? c.source : amountText };
   text.style.cursor = "pointer";
@@ -158,7 +158,7 @@ function animate() {
 animate();
 
 // Load existing
-fetch('get-contributions.php?fund_id=1')
+fetch('get-contributions.php?fund=1')
   .then(res => res.json())
   .then(data => {
     data.forEach((c, i) => {
@@ -167,6 +167,10 @@ fetch('get-contributions.php?fund_id=1')
 
     totalAmount = data.reduce((sum, c) => sum + parseFloat(c.amount), 0);
     totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
+  })
+  .catch(error => {
+    notify("There was an error loading contributions.");
+    throw error;
   });
 
 function notify(message) {
@@ -193,7 +197,7 @@ document.getElementById('submit').addEventListener('click', function() {
   if (!source || isNaN(amount)) return notify('Please enter a source and a dollar amount.');
 
   const formData = new FormData();
-  formData.append('fund_id', 1);
+  formData.append('fund', 1);
   formData.append('source', source);
   formData.append('amount', amount);
 
@@ -205,7 +209,11 @@ document.getElementById('submit').addEventListener('click', function() {
         totalAmount += parseFloat(data.contribution.amount);
         totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
       } else {
-        throw Error("Error fetching data.");
+        throw Error("Error adding funds.");
       }
+    })
+    .catch(error => {
+      notify("There was an error adding your contribution.");
+      throw error;
     });
 });

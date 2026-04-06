@@ -1,27 +1,21 @@
 <?php
 header('Content-Type: application/json');
+require_once '../util/utilities.php';
+require_once '../action/authenticate.php';
 
-$pdo = new PDO("mysql:host=localhost;dbname=your_db;charset=utf8mb4", "user", "pass", [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
-
-$fund_id = $_POST['fund_id'] ?? null;
-$source = trim($_POST['source'] ?? '');
-$amount = $_POST['amount'] ?? null;
-
-if (!$fund_id || !$source || !is_numeric($amount)) {
+if (!$_POST['fund'] || !$_POST['source'] || !is_numeric($_POST['amount'])) {
     echo json_encode(['success' => false]);
     exit;
 }
 
-$stmt = $pdo->prepare("INSERT INTO contributions (fund_id, source, amount) VALUES (?, ?, ?)");
-$stmt->execute([$fund_id, $source, $amount]);
+$stmt = "INSERT INTO fund_contribution (fund_id, source, amount, user) VALUES (?, ?, ?, ?)";
+Database::run_statement(Database::get_connection(), $stmt, [$_POST['fund'], $_POST['source'], $_POST['amount'], $_SESSION['id']]);
 
 echo json_encode([
     'success' => true,
     'contribution' => [
-        'source' => $source,
-        'amount' => number_format($amount, 2)
+        'source' => $_POST['source'],
+        'amount' => number_format($_POST['amount'], 2)
     ]
 ]);
 ?>

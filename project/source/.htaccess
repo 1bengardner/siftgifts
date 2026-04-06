@@ -6,7 +6,7 @@ DirectorySlash Off
 
 RewriteEngine On
 # Re-route subsite travel-fund
-RewriteRule ^travel\-fund$ /travel-fund/
+RewriteRule ^travel\-fund$ /travel-fund/ [R]
 # Only rewrite requests for files that do not exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

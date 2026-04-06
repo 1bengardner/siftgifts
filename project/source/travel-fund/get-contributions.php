@@ -1,14 +1,10 @@
 <?php
 header('Content-Type: application/json');
+require_once '../util/utilities.php';
+require_once '../action/authenticate.php';
 
-$pdo = new PDO("mysql:host=localhost;dbname=your_db;charset=utf8mb4", "user", "pass", [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$stmt = "SELECT source, amount FROM fund_contribution WHERE fund_id = ?";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['fund']]);
 
-$fund_id = $_GET['fund_id'];
-
-$stmt = $pdo->prepare("SELECT source, amount FROM contributions WHERE fund_id = ?");
-$stmt->execute([$fund_id]);
-
-echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+echo json_encode($res->fetch_all(MYSQLI_ASSOC));
 ?>

@@ -88,6 +88,12 @@ if (!in_array($user->id, [1, 2])) {
            stroke="#d9e6fa"
            stroke-width="4"/>
 
+    </svg>
+
+    <!-- Papers -->
+    <svg id="paper-layer" width="300" height="420"
+       style="clip-path: url(#jar-clip);">
+
       <!-- Highlight -->
       <path d="
         M110 100
@@ -95,13 +101,7 @@ if (!in_array($user->id, [1, 2])) {
         L130 300
         Q125 320 115 300
         Z"
-      fill="rgba(255,255,255,0.25)"/>
-
-    </svg>
-
-    <!-- Papers -->
-    <svg id="paper-layer" width="300" height="420"
-       style="clip-path: url(#jar-clip);"></svg>
+      fill="rgba(255,255,255,0.25)"/></svg>
 
   </div>
 

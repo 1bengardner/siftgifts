@@ -65,7 +65,7 @@ function createPaper(c) {
 
   g.appendChild(rect);
   g.appendChild(text);
-  paperLayer.appendChild(g);
+  paperLayer.insertBefore(g, paperLayer.lastElementChild);
 
   papers.push({
     el: g,

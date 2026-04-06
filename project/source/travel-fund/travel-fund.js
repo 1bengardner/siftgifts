@@ -14,7 +14,7 @@ function getJarBounds(y) {
   // Aggressive widening
   const t = (y - 80) / 250;
 
-  const width = 70 + t * 180; // MUCH wider
+  const width = 70 + t * 150; // MUCH wider
 
   return {
     left: 150 - width / 2,
@@ -206,7 +206,7 @@ document.getElementById('submit').addEventListener('click', function() {
     .then(data => {
       if (data.success) {
         createPaper(data.contribution);
-        totalAmount += parseFloat(data.contribution.amount);
+        totalAmount += parseFloat(data.contribution.amount.replace(",", ""));
         totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
       } else {
         throw Error("Error adding funds.");

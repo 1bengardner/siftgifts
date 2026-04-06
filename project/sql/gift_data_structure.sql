@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2026 at 11:59 PM
+-- Generation Time: Apr 06, 2026 at 01:04 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -176,6 +176,36 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `xmas_was_drawn` (`code` VARCHAR(6)) 
 return (SELECT CURRENT_TIMESTAMP > (SELECT draw_time FROM `winning_ticket` JOIN `xmas_lottery_ticket` ON `winning_ticket`.`id` = `xmas_lottery_ticket`.`draw` WHERE `xmas_lottery_ticket`.`code` = code))$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fund`
+--
+
+CREATE TABLE IF NOT EXISTS `fund` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fund_contribution`
+--
+
+CREATE TABLE IF NOT EXISTS `fund_contribution` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fund_id` int(11) NOT NULL,
+  `source` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `user` int(11) NOT NULL,
+  `add_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `fund_id` (`fund_id`),
+  KEY `user` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -402,6 +432,13 @@ CREATE TABLE IF NOT EXISTS `xmas_prize` (
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `fund_contribution`
+--
+ALTER TABLE `fund_contribution`
+  ADD CONSTRAINT `fund_contribution_ibfk_1` FOREIGN KEY (`fund_id`) REFERENCES `fund` (`id`),
+  ADD CONSTRAINT `fund_contribution_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `gift`

@@ -12,7 +12,7 @@ function getJarBounds(y) {
   }
 
   // Aggressive widening
-  const t = (y - 80) / 250;
+  const t = (y - 80) / 250 + (y > 250 ? (-2 * (y - 250)) / 250 : 0);
 
   const width = 70 + t * 150; // MUCH wider
 
@@ -75,7 +75,7 @@ function createPaper(c) {
     vy: 0.1,
     rotation: Math.random() * 360,
     vr: (Math.random() - 0.5) * 4,
-    width: 70,
+    width: w,
     height: 22,
     settled: false
   });
@@ -109,7 +109,7 @@ function animate() {
       // Keep inside jar
       const bounds = getJarBounds(p.y);
       if (p.x < bounds.left) { p.x = bounds.left; }
-      if (p.x + p.width > bounds.right) { p.x = bounds.right - p.width; }
+      if (p.x > bounds.right) { p.x = bounds.right; }
 
       // Determine maximum landing Y (floor or settled paper)
       let landingY = jarBottom - p.height;

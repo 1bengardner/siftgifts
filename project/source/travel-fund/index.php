@@ -116,8 +116,6 @@ if (!in_array($user->id, [1, 2])) {
   <div id="notification-container"></div>
 
 </div>
-
 <script src="travel-fund.js"></script>
-
 </body>
 </html>

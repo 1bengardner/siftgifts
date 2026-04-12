@@ -60,7 +60,10 @@ function createPaper(c) {
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "10");
   text.textContent = amountText;
-  text.onclick = function() { this.textContent = this.textContent === amountText ? c.source : amountText };
+  text.addEventListener("click", function(e) {
+    e.stopPropagation();
+    this.textContent = this.textContent === amountText ? c.source : amountText;
+  });
   text.style.cursor = "pointer";
 
   g.appendChild(rect);
@@ -82,7 +85,19 @@ function createPaper(c) {
 }
 
 function shake() {
-  for (let p of papers.filter(p => p.settled && p.shaken)) {
+  // Shake animation
+  this.animate([
+    { transform: 'translateX(0px)' },
+    { transform: 'translateX(-10px)' },
+    { transform: 'translateX(10px)' },
+    { transform: 'translateX(-10px)' },
+    { transform: 'translateX(10px)' },
+    { transform: 'translateX(0px)' }
+  ], {
+    duration: 400,
+    easing: 'ease-in-out'
+  });
+  for (let p of papers.filter(p => p.settled)) {
     p.settled = false;
     const offset = Math.abs(p.rotation % 180);
     const direction = (offset > 90 ? 1 : -1) * Math.sign(p.rotation);
@@ -91,15 +106,11 @@ function shake() {
   }
 }
 
-function animate() {
+function animateFrame() {
   const jarBottom = 355;
 
   for (let p of papers) {
     if (!p.settled) {
-      if (!p.shaken) {
-        shake();
-        p.shaken = true;
-      }
       // Apply slow gravity
       p.vy += 0.02;
       p.y += p.vy;
@@ -152,10 +163,13 @@ function animate() {
     );
   }
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateFrame);
 }
 
-animate();
+const jar = document.getElementById("jar-wrapper");
+jar.style.cursor = "pointer";
+jar.addEventListener("click", shake);
+animateFrame();
 
 // Load existing
 fetch('get-contributions.php?fund=1')

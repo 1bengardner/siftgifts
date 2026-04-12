@@ -60,14 +60,14 @@ function createPaper(c) {
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "10");
   text.textContent = amountText;
-  text.addEventListener("click", function(e) {
+  g.addEventListener("click", function(e) {
     e.stopPropagation();
-    this.textContent = this.textContent === amountText ? c.source : amountText;
+    text.textContent = text.textContent === amountText ? c.source : amountText;
   });
-  text.style.cursor = "pointer";
 
   g.appendChild(rect);
   g.appendChild(text);
+  g.classList.add("paper");
   paperLayer.insertBefore(g, paperLayer.lastElementChild);
 
   papers.push({

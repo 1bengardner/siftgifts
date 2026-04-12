@@ -28,6 +28,14 @@ if (!in_array($user->id, [1, 2])) {
   top: 0;
   left: 0;
 }
+
+.paper {
+  cursor: pointer;
+}
+.paper:hover {
+  outline: 2px solid #7742e088;
+  border-radius: 3px;
+}
 </style>
 
 <body>
@@ -101,7 +109,7 @@ if (!in_array($user->id, [1, 2])) {
         L130 300
         Q125 320 115 300
         Z"
-      fill="rgba(255,255,255,0.25)"/></svg>
+      fill="rgba(255,255,255,0.25)" style="pointer-events: none;"/></svg>
 
   </div>
 

@@ -84,17 +84,17 @@ if (!in_array($user->id, [1, 2])) {
       stroke="#d9e6fa"
       stroke-width="4"/>
 
-      <!-- Neck -->
-      <rect x="115" y="50" width="70" height="35" rx="12"
-          fill="rgba(180,210,255,0.35)"
-          stroke="#d9e6fa"
-          stroke-width="4"/>
-
       <!-- Opening -->
       <ellipse cx="150" cy="50" rx="45" ry="12"
            fill="rgba(200,220,255,0.6)"
            stroke="#d9e6fa"
            stroke-width="4"/>
+
+      <!-- Neck -->
+      <rect id="neck" x="115" y="50" width="70" height="35" rx="12"
+          fill="rgba(180,210,255,0.35)"
+          stroke="#d9e6fa"
+          stroke-width="4"/>
 
     </svg>
 

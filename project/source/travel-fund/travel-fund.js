@@ -30,7 +30,23 @@ function hash(str) {
   return hash;
 }
 
-// Create paper
+function animateNeck() {
+  document.getElementById("neck").style.transformOrigin = "center";
+  document.getElementById("neck").animate([
+    { transform: 'scaleX(1.2)' },
+    { transform: 'scaleX(1)' },
+  ], {
+    duration: 150,
+    easing: 'ease-out'
+  })
+  new Audio("clink.ogg").play();
+}
+
+function addContribution(c) {
+  animateNeck();
+  createPaper(c);
+}
+
 function createPaper(c) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
@@ -73,7 +89,7 @@ function createPaper(c) {
   papers.push({
     el: g,
     x: 120 + Math.random() * 60,
-    y: 20,
+    y: 70,
     vx: (Math.random() - 0.5) * 1.2,
     vy: 0.1,
     rotation: Math.random() * 360,
@@ -94,9 +110,13 @@ function shake() {
     { transform: 'translateX(10px)' },
     { transform: 'translateX(0px)' }
   ], {
-    duration: 400,
-    easing: 'ease-in-out'
+    duration: 300,
+    easing: 'ease-out'
   });
+  new Audio("slide.ogg").play();
+  if (papers.filter(p => p.settled).length > 1) {
+    new Audio("papers.ogg").play();
+  }
   for (let p of papers.filter(p => p.settled)) {
     p.settled = false;
     const offset = Math.abs(p.rotation % 180);
@@ -176,7 +196,7 @@ fetch('get-contributions.php?fund=1')
   .then(res => res.json())
   .then(data => {
     data.forEach((c, i) => {
-      setTimeout(() => createPaper(c), i * 80);
+      setTimeout(() => addContribution(c), i * 80);
     });
 
     totalAmount = data.reduce((sum, c) => sum + parseFloat(c.amount), 0);
@@ -219,7 +239,7 @@ document.getElementById('submit').addEventListener('click', function() {
     .then(res => res.json())
     .then(data => {
       if (data.success) {
-        createPaper(data.contribution);
+        addContribution(data.contribution);
         totalAmount += parseFloat(data.contribution.amount.replace(",", ""));
         totalLabel.textContent = `Total: $${totalAmount.toFixed(2)}`;
       } else {

@@ -78,7 +78,9 @@ function createPaper(c) {
   text.textContent = amountText;
   g.addEventListener("click", function(e) {
     e.stopPropagation();
-    text.textContent = text.textContent === amountText ? c.source : amountText;
+    document.getElementById("dialog-source").textContent = c.source;
+    document.getElementById("dialog-amount").textContent = `$${c.amount}`;
+    document.getElementById("dialog").style.display = "";
   });
 
   g.appendChild(rect);

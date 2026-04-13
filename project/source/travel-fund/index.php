@@ -36,11 +36,29 @@ if (!in_array($user->id, [1, 2])) {
   outline: 2px solid #7742e088;
   border-radius: 3px;
 }
+
+#dialog {
+  position: sticky;
+  height: 0;
+  z-index: 1;
+}
+#dialog > div {
+  position: relative;
+}
 </style>
 
 <body>
 <?php include '../page/header.php'; ?>
 <div class="center">
+  <div id="dialog" style="display: none;">
+    <div class="widget" style="margin-top: 0;">
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr;">
+        <h1 id="dialog-source" style="grid-column: 2;">Contribution</h1>
+        <span style="justify-self: end; cursor: pointer;" onclick="document.getElementById('dialog').style.display = 'none';">❌</span>
+      </div>
+      <h2 id="dialog-amount">$0.00</h2>
+    </div>
+  </div>
 
   <h1>Travel Fund</h1>
 

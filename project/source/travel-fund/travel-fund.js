@@ -39,7 +39,7 @@ function animateNeck() {
     duration: 150,
     easing: 'ease-out'
   })
-  new Audio("clink.ogg").play();
+  new Audio("assets/clink.ogg").play();
 }
 
 function addContribution(c) {
@@ -81,6 +81,7 @@ function createPaper(c) {
     document.getElementById("dialog-source").textContent = c.source;
     document.getElementById("dialog-amount").textContent = `$${c.amount}`;
     document.getElementById("dialog").style.display = "";
+    new Audio("assets/popup.ogg").play();
   });
 
   g.appendChild(rect);
@@ -115,9 +116,9 @@ function shake() {
     duration: 300,
     easing: 'ease-out'
   });
-  new Audio("slide.ogg").play();
+  new Audio("assets/slide.ogg").play();
   if (papers.filter(p => p.settled).length > 1) {
-    new Audio("papers.ogg").play();
+    new Audio("assets/papers.ogg").play();
   }
   for (let p of papers.filter(p => p.settled)) {
     p.settled = false;

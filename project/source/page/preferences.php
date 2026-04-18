@@ -24,7 +24,7 @@
       </div>
       <div>
         <div class="links-section">
-          <a class="link" href="home">⬅️ Return to home</a>
+          <a class="link" href="home">⬅️ Return home</a>
         </div>
       </div>
     </form>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2026 at 01:04 AM
+-- Generation Time: Apr 25, 2026 at 11:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -354,13 +354,13 @@ CREATE TABLE IF NOT EXISTS `verification_code` (
 
 CREATE TABLE IF NOT EXISTS `winning_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `1` int(2) NOT NULL,
-  `2` int(2) NOT NULL,
-  `3` int(2) NOT NULL,
-  `4` int(2) NOT NULL,
-  `5` int(2) NOT NULL,
-  `6` int(2) NOT NULL,
-  `7` int(2) NOT NULL,
+  `1` int(2) NOT NULL DEFAULT 0,
+  `2` int(2) NOT NULL DEFAULT 0,
+  `3` int(2) NOT NULL DEFAULT 0,
+  `4` int(2) NOT NULL DEFAULT 0,
+  `5` int(2) NOT NULL DEFAULT 0,
+  `6` int(2) NOT NULL DEFAULT 0,
+  `7` int(2) NOT NULL DEFAULT 0,
   `draw_time` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

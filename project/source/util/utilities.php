@@ -101,6 +101,7 @@ abstract class NotificationText
   const NoLotteries = "There are no pending lotteries.";
   const NaughtyList = "Somebody's getting a lump of coal for Christmas this year&hellip;";
   const NoPrivateWishlist = "You do not own a private wishlist to add gifts to.";
+  const UpdatePrizesSuccess = "Prizes have been updated.";
 }
 class Notification
 {

@@ -11,13 +11,17 @@ $user = XmasParticipant::get_from_code($_SESSION["xmas"]);
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
     <div class="center">
+      <div class="info-box">The lottery is over. See you again!</div>
       <?php
       $drawn = include '../action/xmas-was-lottery-drawn.php';
+      /*
+      Uncomment to reopen lottery
       if ($drawn) {
         echo '<h2><a class="new-notifications" href="results">🎄 Check your numbers!</a></h2>';
       } else {
         echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
+      */
       ?>
       <h2 style="margin: 0;"><?php echo ($user->name ? ucwords(strtolower($user->name)) . ", w" : "W"); ?>elcome to the<span style="color: #b03; text-shadow: 0.05em 0.05em 0.15em #270;"> Christmas </span>lottery!</span></h2>
       <h1 style="background-color: purple;">

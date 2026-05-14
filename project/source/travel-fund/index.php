@@ -18,7 +18,7 @@ if (!in_array($user->id, [1, 2])) {
 <style>
 #jar-wrapper {
   width: 300px;
-  height: 420px;
+  height: 380px;
   margin: auto;
   position: relative;
 }
@@ -66,7 +66,7 @@ if (!in_array($user->id, [1, 2])) {
   <div id="jar-wrapper">
 
     <!-- Jar SVG -->
-    <svg width="300" height="420" viewBox="0 0 300 420">
+    <svg width="300" height="380" viewBox="0 0 300 380">
 
       <!-- Clip path -->
       <defs>
@@ -118,7 +118,7 @@ if (!in_array($user->id, [1, 2])) {
     </svg>
 
     <!-- Papers -->
-    <svg id="paper-layer" width="300" height="420"
+    <svg id="paper-layer" width="300" height="380"
        style="clip-path: url(#jar-clip);">
 
       <!-- Highlight -->
@@ -132,7 +132,7 @@ if (!in_array($user->id, [1, 2])) {
 
   </div>
 
-  <div id="total">Total: $0.00</div>
+  <h2 id="total">Total: $0.00</h2>
 
   <form onsubmit="event.preventDefault();">
     <input id="contribution-source" type="text" placeholder="Source" required>

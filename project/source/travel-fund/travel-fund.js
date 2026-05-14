@@ -78,7 +78,13 @@ function createPaper(c) {
   text.textContent = amountText;
   g.addEventListener("click", function(e) {
     e.stopPropagation();
+    document.getElementById("dialog-widget").style.backgroundColor = rect.getAttribute("fill");
     document.getElementById("dialog-source").textContent = c.source;
+    document.getElementById("dialog-date").textContent = "on " + new Date(c.timestamp).toLocaleString("en-CA", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric"
+    });
     document.getElementById("dialog-amount").textContent = `$${c.amount}`;
     document.getElementById("dialog").style.display = "";
     new Audio("assets/popup.ogg").play();

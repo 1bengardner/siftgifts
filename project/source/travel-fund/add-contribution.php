@@ -15,7 +15,8 @@ echo json_encode([
     'success' => true,
     'contribution' => [
         'source' => $_POST['source'],
-        'amount' => number_format($_POST['amount'], 2)
+        'amount' => number_format($_POST['amount'], 2),
+        'timestamp' => time() * 1000
     ]
 ]);
 ?>

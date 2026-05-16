@@ -82,7 +82,7 @@ function createPaper(c) {
     document.getElementById("dialog-source").textContent = c.source;
     document.getElementById("dialog-date").textContent = "on " + new Date(c.timestamp).toLocaleString("en-CA", {
       month: "short",
-      day: "2-digit",
+      day: "numeric",
       year: "numeric"
     });
     document.getElementById("dialog-amount").textContent = `$${c.amount}`;

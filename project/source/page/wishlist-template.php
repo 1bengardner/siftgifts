@@ -9,15 +9,15 @@ if (!isset($id)) {
   <?php
   require_once '../data/user.php';
 
-  $user = User::get_from_id($id)->username;
+  $username = User::get_from_id($id)->username;
   ?>
-  <?php define('TITLE', ucwords(strtolower($user))."'s wishlist"); ?>
+  <?php define('TITLE', ucwords(strtolower($username))."'s wishlist"); ?>
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php' ?>
     <div class="center">
-      <h1 class="wishlist-header"><?php echo ucwords(strtolower($user)) ?>'s Wishlist</h1>
-      <a title="Send a message to <?php echo ucwords(strtolower($user)) ?>" href="/send-message?to=<?php echo ucwords(strtolower($user)); ?>">📮</a>
+      <h1 class="wishlist-header"><?php echo ucwords(strtolower($username)) ?>'s Wishlist</h1>
+      <a title="Send a message to <?php echo ucwords(strtolower($username)) ?>" href="/send-message?to=<?php echo ucwords(strtolower($username)); ?>">📮</a>
     </div>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>

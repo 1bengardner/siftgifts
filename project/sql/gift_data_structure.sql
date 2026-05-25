@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2026 at 11:09 PM
+-- Generation Time: May 25, 2026 at 04:22 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -202,6 +202,7 @@ CREATE TABLE IF NOT EXISTS `fund_contribution` (
   `amount` decimal(10,2) NOT NULL,
   `user` int(11) NOT NULL,
   `add_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `hidden` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `fund_id` (`fund_id`),
   KEY `user` (`user`)

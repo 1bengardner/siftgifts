@@ -7,7 +7,7 @@
       <h1 class="logo-text">Sift<span class="accent"><span class="spaced">.</span>gifts</span></h1>
       <h2>Forgot your password?</h2>
       <div>
-        <p>Sorry to hear&hellip;let Ben know and he will sort that out for you.</p>
+        <p>Please email <object class="email" width="112" height="20" data="/page/img/email.svg" type="image/svg+xml" style="vertical-align: middle;"></object>.</p>
       </div>
       <div class="links-section">
         <a class="link" href="/login">⬅️ Go back to login</a>

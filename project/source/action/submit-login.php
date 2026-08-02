@@ -31,5 +31,11 @@ $id = $user_id->fetch_assoc()['id'];
 
 $_SESSION["id"] = $id;
 
-header('Location: /home');
+if (isset($_SESSION["location"])) {
+  $location = $_SESSION["location"];
+  unset($_SESSION["location"]);
+  header("Location: {$location}");
+} else {
+  header('Location: /home');
+}
 ?>

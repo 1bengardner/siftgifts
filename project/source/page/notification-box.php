@@ -12,11 +12,15 @@ $message_box_css_classes = [
   <div class="<?php echo $message_box_css_classes[$_SESSION["notifications"][0]->level]; ?>">
     <?php
     // For now, I am assuming all notifications are in the same level
-    foreach ($_SESSION["notifications"] as $notification) {
+    if (count($_SESSION["notifications"]) > 0) {
     ?>
-    <button type="button" class="close-notification" onclick="document.querySelector('.notification-box').remove();">
+    <button type="button" class="close-notification" onclick="this.parentNode.remove();">
       ❎
     </button>
+    <?php
+    }
+    foreach ($_SESSION["notifications"] as $notification) {
+    ?>
     <p>
       <?php echo $notification->text; ?>
     </p>

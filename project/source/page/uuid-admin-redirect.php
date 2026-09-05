@@ -12,8 +12,7 @@ if (is_null($wishlist)) {
   exit;
 } else if ($wishlist["owner"] !== $_SESSION["id"]) {
   $_SESSION["notifications"] = [new Notification(NotificationText::NoPermission, NotificationLevel::Error)];
-  http_response_code(403);
-  include "../page/private-wishlists.php";
+  header("Location: /private-wishlists");
   exit;
 }
 include "../page/wishlist-private.php";

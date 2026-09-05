@@ -100,7 +100,7 @@ abstract class NotificationText
   const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
   const NoLotteries = "There are no pending lotteries.";
   const NaughtyList = "Somebody's getting a lump of coal for Christmas this year&hellip;";
-  const NoPrivateWishlist = "You do not own a private wishlist to add gifts to.";
+  const BadPrivateWishlist = "You do not have access to this private wishlist.";
   const UpdatePrizesSuccess = "Prizes have been updated.";
 }
 class Notification

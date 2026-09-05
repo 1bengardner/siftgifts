@@ -18,13 +18,13 @@ if (!isset($uuid)) {
     </form>
     <div class="center">
       <?php
-        // require_once '../action/start-session.php';
-        // if (isset($_SESSION["id"]) && $_SESSION['id'] === $id) {
-          // echo '<p><strong>HEY!</strong> No peeking! <a href="/wishlist">Manage your wishlist</a> instead.</p>';
-        // } else {
+        require_once '../action/start-session.php';
+        if (isset($_SESSION["id"]) && $_SESSION['id'] === $owner) {
+          echo '<p><strong>HEY!</strong> No peeking! <a href="/private-wishlist/'.$uuid.'">Manage your wishlist</a> instead.</p>';
+        } else {
           $_GET['uuid']=$uuid;
           include '../action/show-gifts-for-uuid.php';
-        // }
+        }
       ?>
     </div>
   </body>

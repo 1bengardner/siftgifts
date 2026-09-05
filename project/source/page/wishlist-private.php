@@ -11,7 +11,15 @@
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
     <div class="center">
-      <h2><a href="add-private">➕ Add a private gift</a></h2>
+      <nav><a href="../private-wishlists">🔒 Private wishlists</a></nav>
+      <span class="unbreakable">
+        <input title="Your private wishlist link" class="wishlist-link" disabled type="url" value='<?php echo 'https://sift.gifts/uuid/'.$uuid; ?>'>
+        <button class="clipboard-button" title="Copy" url="<?php echo $private_wishlist; ?>">📎</button>
+        <div class="clipboard-copy-reaction"></div>
+      </span>
+      <h2>
+        <a href="/add-private?uuid=<?php echo $uuid; ?>">➕ Add a private gift</a>
+      </h2>
       <span class="warning-box">
         <input id="show-reserve" class="toggle-button" type="checkbox" onclick="enableToggles(event);" autocomplete="off" /><label for="show-reserve">View/modify reserved gifts</label>
       </span>
@@ -23,7 +31,7 @@
       </form>
       <div class="center">
         <?php
-          include '../action/show-private-gifts-admin.php';
+          include '../action/show-gifts-admin-private.php';
         ?>
       </div>
     </div>

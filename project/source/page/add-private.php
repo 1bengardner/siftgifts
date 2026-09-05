@@ -1,3 +1,4 @@
+<?php // TODO: Validate uuid belongs to id ?>
 <!DOCTYPE html>
 <html>
   <?php define('TITLE', 'Add a new private gift'); ?>
@@ -6,7 +7,7 @@
     <?php include 'header.php'; ?>
     <?php require_once '../action/authenticate.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
-      <h2>Add to your private wishlist</h2>
+      <h2>Add to your private wishlist (<?php echo $_GET['uuid']; ?>)</h2>
       <div>
         <input id="name" type="name" placeholder="Gift name" maxlength="255" required />
       </div>
@@ -16,12 +17,13 @@
       <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
+      <input id="uuid" type="hidden" value="<?php echo $_GET['uuid']; ?>">
       <?php include 'notification-box.php'; ?>
       <div>
         <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
       <div class="links-section">
-        <a class="link" href="private-wishlist">⬅️ Return to private wishlist</a>
+        <a class="link" href="private-wishlist/<?php echo $_GET['uuid']; ?>">⬅️ Return to private wishlist</a>
       </div>
     </form>
   </body>

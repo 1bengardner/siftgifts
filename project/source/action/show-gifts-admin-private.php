@@ -4,8 +4,8 @@ require_once '../data/gift.php';
 require_once 'authenticate.php';
 
 // Get user private gifts from db
-$stmt = "SELECT * FROM gift WHERE user=? AND active=1 AND wishlist IS NOT NULL ORDER BY id DESC";
-$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']]);
+$stmt = "SELECT * FROM gift WHERE user=? AND active=1 AND wishlist=? ORDER BY id DESC";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id'], $_GET['uuid']]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 
 foreach ($gifts as $gift_data) {

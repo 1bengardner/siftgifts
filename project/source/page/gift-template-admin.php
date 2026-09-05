@@ -5,7 +5,7 @@ if (!isset($gift)) {
 }
 ?>
 <div class="widget gift-widget focused">
-  <form action="/edit" method="post" style="margin: 0;">
+  <form action="/edit?return-to=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" method="post" style="margin: 0;">
     <input type="hidden" name="gift" value="<?php echo $gift->id; ?>" />
     <input class="edit-widget" type="submit" value="✏ Edit" />
   </form>

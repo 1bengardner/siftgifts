@@ -20,7 +20,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form action="/action/submit-edit-gift.php" id="edit-form" method="post">
+    <form action="/action/submit-edit-gift.php?return-to=<?php echo $_GET['return-to']; ?>" id="edit-form" method="post">
       <?php
       if (is_null($gift)) {
       ?>

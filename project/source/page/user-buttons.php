@@ -1,6 +1,7 @@
 <?php
 require_once '../data/user.php';
 require_once '../action/start-session.php';
+require_once '../util/utilities.php';
 ?>
 <div class="user-buttons center">
   <ul class="user-header-buttons-small unbreakable">
@@ -30,7 +31,19 @@ require_once '../action/start-session.php';
       <?php echo $message_li; ?>
     </ul>
     <ul class="wishlist-header-buttons">
+      <?php
+      $stmt = "SELECT 1 FROM wishlist WHERE owner=?";
+      $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object();
+      if (is_null($res)) {
+      ?>
       <li class="wishlist-header-label"><a class="link" href="/wishlist">Wishlist</a></li>
+      <?php
+      } else {
+      ?>
+      <li><a href="/private-wishlists" title="View private wishlists">🔒</a></li>
+      <?php
+      }
+      ?>
       <li><a href="/wishlist" title="Edit wishlist">📜</a></li>
       <li><a href="/add" title="Add to wishlist">➕</a></li>
     </ul>

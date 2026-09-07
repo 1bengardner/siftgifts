@@ -19,22 +19,22 @@ if (!isset($wishlist)) {
     <div class="center">
       <nav><a href="../private-wishlists">🔒 Private wishlists</a></nav>
       <span class="unbreakable">
-        <input title="<?php echo $wishlist->name; ?> wishlist link" class="wishlist-link" disabled type="url" value='<?php
-          $wishlist_url = 'https://sift.gifts/registry/'.$wishlist->short_name;
+        <input title="<?php echo htmlentities($wishlist->name); ?> wishlist link" class="wishlist-link" disabled type="url" value='<?php
+          $wishlist_url = 'https://sift.gifts/registry/'.rawurlencode($wishlist->short_name);
           echo $wishlist_url;
         ?>'>
         <button class="clipboard-button" title="Copy" url="<?php echo $wishlist_url; ?>">📎</button>
         <div class="clipboard-copy-reaction"></div>
       </span>
       <h2>
-        <a href="/add-private?wishlist=<?php echo $wishlist->short_name; ?>">➕ Add a private gift</a>
+        <a href="/add-private?wishlist=<?php echo rawurlencode($wishlist->short_name); ?>">➕ Add a private gift</a>
       </h2>
       <span class="warning-box">
         <input id="show-reserve" class="toggle-button" type="checkbox" onclick="enableToggles(event);" autocomplete="off" /><label for="show-reserve">View/modify reserved gifts</label>
       </span>
     </div>
     <div class="center wishlist-background">
-      <h1 class="center"><?php echo $wishlist->name; ?></h1>
+      <h1 class="center"><?php echo htmlentities($wishlist->name); ?></h1>
       <form>
         <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
       </form>

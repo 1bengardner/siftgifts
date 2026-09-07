@@ -5,6 +5,7 @@
   require_once '../data/gift.php';
   require_once '../action/authenticate.php';
 
+  $back_url = isset($_GET['return-to']) ? $_GET['return-to'] : "wishlist";
   $gift = null;
   if (isset($_POST['gift'])) {
     // Get gift from db
@@ -20,7 +21,7 @@
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form action="/action/submit-edit-gift.php?return-to=<?php echo $_GET['return-to']; ?>" id="edit-form" method="post">
+    <form action="/action/submit-edit-gift.php?return-to=<?php echo rawurlencode($back_url); ?>" id="edit-form" method="post">
       <?php
       if (is_null($gift)) {
       ?>
@@ -47,7 +48,7 @@
       ?>
       <?php include 'notification-box.php'; ?>
       <div class="links-section">
-        <a class="link" href="wishlist">⬅️ Return to wishlist</a>
+        <a class="link" href=<?php echo $back_url; ?>>⬅️ Return to wishlist</a>
       </div>
     </form>
   </body>

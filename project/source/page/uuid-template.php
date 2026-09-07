@@ -11,7 +11,7 @@ if (!isset($wishlist)) {
   <body>
     <?php include 'header.php' ?>
     <div class="center">
-      <h1 class="wishlist-header"><?php echo $wishlist->name; ?></h1>
+      <h1 class="wishlist-header"><?php echo htmlentities($wishlist->name); ?></h1>
     </div>
     <form>
       <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
@@ -20,7 +20,7 @@ if (!isset($wishlist)) {
       <?php
         require_once '../action/start-session.php';
         if (isset($_SESSION["id"]) && $_SESSION['id'] === $wishlist->owner) {
-          echo '<p><strong>HEY!</strong> No peeking! <a href="/private-wishlist/'.$wishlist->short_name.'">Manage your wishlist</a> instead.</p>';
+          echo '<p><strong>HEY!</strong> No peeking! <a href="/private-wishlist/'.rawurlencode($wishlist->short_name).'">Manage your wishlist</a> instead.</p>';
         } else {
           $_GET['id'] = $wishlist->id;
           include '../action/show-gifts-for-uuid.php';

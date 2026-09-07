@@ -28,7 +28,7 @@ if ($wishlist->owner !== $_SESSION["id"]) {
   <body>
     <?php include 'header.php'; ?>
     <form id="request-form" enctype="multipart/form-data" onsubmit="request()">
-      <h2>Add to <?php echo $wishlist->name; ?> wishlist</h2>
+      <h2>Add to <?php echo htmlentities($wishlist->name); ?> wishlist</h2>
       <div>
         <input id="name" type="name" placeholder="Gift name" maxlength="255" required />
       </div>
@@ -38,13 +38,13 @@ if ($wishlist->owner !== $_SESSION["id"]) {
       <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
-      <input id="wishlist" type="hidden" value="<?php echo $wishlist->short_name; ?>">
+      <input id="wishlist" type="hidden" value="<?php echo htmlentities($wishlist->short_name); ?>">
       <?php include 'notification-box.php'; ?>
       <div>
         <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
       <div class="links-section">
-        <a class="link" href="private-wishlist/<?php echo $wishlist->short_name; ?>">⬅️ Return to <?php echo $wishlist->name; ?> wishlist</a>
+        <a class="link" href="private-wishlist/<?php echo rawurlencode($wishlist->short_name); ?>">⬅️ Return to <?php echo htmlentities($wishlist->name); ?> wishlist</a>
       </div>
     </form>
   </body>

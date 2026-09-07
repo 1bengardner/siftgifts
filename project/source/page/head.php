@@ -9,6 +9,6 @@
     <link rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700">
-    <title><?php echo TITLE; ?></title>
+    <title><?php echo htmlentities(TITLE); ?></title>
     <meta name="description" content="Create and share your online wishlist.">
   </head>

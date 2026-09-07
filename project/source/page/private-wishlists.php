@@ -19,9 +19,11 @@
       ?>
       <nav><ul>
       <?php
-        foreach ($wishlists as $wishlist) {
+        require_once '../data/wishlist.php';
+        foreach ($wishlists as $wishlist_data) {
+          $wishlist = new Wishlist($wishlist_data);
       ?>
-        <li style="display: block;"><h2><a href="private-wishlist/<?php echo $wishlist['uuid']; ?>"><?php echo $wishlist['uuid']; ?></a></h2></li>
+        <li style="display: block;"><h2><a href="private-wishlist/<?php echo $wishlist->short_name; ?>"><?php echo mb_strimwidth($wishlist->name, 0, 20, "…"); ?></a></h2></li>
       <?php
         }
       ?>

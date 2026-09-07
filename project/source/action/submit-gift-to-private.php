@@ -2,10 +2,17 @@
 require_once '../util/utilities.php';
 require_once 'authenticate.php';
 
-$stmt = "SELECT 1 FROM wishlist WHERE owner=? AND uuid=?";
-$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id'], $_POST['uuid']])->fetch_object();
+$stmt = "SELECT * FROM wishlist WHERE short_name = ?";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$_POST["wishlist"]])->fetch_assoc();
 if (is_null($res)) {
-  $_SESSION["notifications"] = [new Notification(NotificationText::BadPrivateWishlist, NotificationLevel::Error)];
+  $_SESSION["notifications"] = [new Notification(NotificationText::WishlistDoesNotExist, NotificationLevel::Error)];
+  include '../page/notification-box.php';
+  exit;
+}
+require_once '../data/wishlist.php';
+$wishlist = new Wishlist($res);
+if ($wishlist->owner !== $_SESSION["id"]) {
+  $_SESSION["notifications"] = [new Notification(NotificationText::NoWishlistAccess, NotificationLevel::Error)];
   include '../page/notification-box.php';
   exit;
 }
@@ -13,7 +20,7 @@ if (is_null($res)) {
 // TODO: Validate fields
 
 $stmt = "CALL add_private_gift(?, ?, ?, ?, ?)";
-Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments'], $_SESSION['id'], $_POST['uuid']]);
+Database::run_statement(Database::get_connection(), $stmt, [$_POST['name'], $_POST['url'], $_POST['comments'], $_SESSION['id'], $wishlist->id]);
 $_SESSION["notifications"] = [new Notification(NotificationText::AddSuccess, NotificationLevel::Success)];
 include '../page/notification-box.php';
 ?>

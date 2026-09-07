@@ -3,9 +3,11 @@ require_once '../util/utilities.php';
 require_once '../data/gift.php';
 require_once 'authenticate.php';
 
+// TODO Defend against unset $wishlist
+
 // Get user private gifts from db
-$stmt = "SELECT * FROM gift WHERE user=? AND active=1 AND wishlist=? ORDER BY id DESC";
-$res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id'], $_GET['uuid']]);
+$stmt = "SELECT * FROM gift WHERE active=1 AND wishlist=? ORDER BY id DESC";
+$res = Database::run_statement(Database::get_connection(), $stmt, [$wishlist->id]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 
 foreach ($gifts as $gift_data) {

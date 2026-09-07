@@ -28,7 +28,7 @@ $user = User::get_from_id($_SESSION['id']);
           ?>
           <li><h2><a href="wishlist">📜 Edit your wishlist</a></h2></li>
           <?php
-            $stmt = "SELECT uuid FROM wishlist WHERE owner=?";
+            $stmt = "SELECT 1 FROM wishlist WHERE owner=?";
             $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object();
             if (!is_null($res)) {
               echo '<li><h2><a href="private-wishlists">🔒 Edit your private wishlists</a></h2></li>';

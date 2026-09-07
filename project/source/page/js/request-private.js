@@ -15,7 +15,7 @@ function request() {
     "name",
     "url",
     "comments",
-    "uuid"
+    "wishlist"
   ];
   var params = keys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
   rq.send(params);

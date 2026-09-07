@@ -85,7 +85,7 @@ abstract class NotificationText
   const LogOutSuccess = "Logged out. Thanks for coming by!";
   const InvalidResetCode = "This password reset link is invalid.";
   const ExpiredResetCode = "This password reset link has expired (they last 15 minutes).";
-  const NoPermission = "You do not have permission to do that.";
+  const NoPermission = "You do not have permission.";
   const InvalidVerificationCode = "This verification link is invalid.";
   const VerifyAccountSuccess = "Your account is now verified.";
   const RegistrationSuccess = "You are now signed up. Welcome!";
@@ -100,8 +100,9 @@ abstract class NotificationText
   const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
   const NoLotteries = "There are no pending lotteries.";
   const NaughtyList = "Somebody's getting a lump of coal for Christmas this year&hellip;";
-  const BadPrivateWishlist = "You do not have access to this private wishlist.";
   const UpdatePrizesSuccess = "Prizes have been updated.";
+  const NoWishlistAccess = "You do not have access to this private wishlist.";
+  const WishlistDoesNotExist = "That private wishlist does not exist.";
 }
 class Notification
 {

@@ -14,10 +14,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (^[A-Za-z0-9_-]+$) /page/$1
 # Re-route wishlist aliases
 RewriteRule ^(sg)/(.*) /page/wishlist-redirect.php?sg=$2
-# Re-route auxiliary wishlist UUIDs
-RewriteRule ^(uuid)/(.*) /page/uuid-redirect.php?uuid=$2
-# Re-route auxiliary wishlist UUID edit
-RewriteRule ^(private-wishlist)/(.*) /page/uuid-admin-redirect.php?uuid=$2
+# Re-route auxiliary wishlist aliases
+RewriteRule ^(registry)/(.*) /page/wishlist-redirect.php?alias=$2
+# Re-route auxiliary wishlist edit
+RewriteRule ^(private-wishlist)/(.*) /page/uuid-admin-redirect.php?alias=$2
 # Re-route xmas results
 RewriteRule ^(xmas)/results /page/xmas-results.php
 # Re-route xmas aliases

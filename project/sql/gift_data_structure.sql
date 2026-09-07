@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2026 at 02:57 PM
+-- Generation Time: Sep 07, 2026 at 02:30 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `creation_time` timestamp NULL DEFAULT current_timestamp(),
   `reserved_time` timestamp NULL DEFAULT NULL,
   `reserver` int(11) DEFAULT NULL,
-  `wishlist` varchar(36) DEFAULT NULL,
+  `wishlist` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk-gift-user` (`user`),
   KEY `fk-gift-reserver` (`reserver`),
@@ -371,9 +371,12 @@ CREATE TABLE IF NOT EXISTS `winning_ticket` (
 --
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
-  `uuid` varchar(36) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(36) NOT NULL,
+  `short_name` varchar(30) NOT NULL,
   `owner` int(11) NOT NULL,
-  PRIMARY KEY (`uuid`),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique-wishlist-short_name` (`short_name`),
   KEY `fk-wishlist-user` (`owner`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -445,7 +448,7 @@ ALTER TABLE `fund_contribution`
 ALTER TABLE `gift`
   ADD CONSTRAINT `fk-gift-reserver` FOREIGN KEY (`reserver`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk-gift-user` FOREIGN KEY (`user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `fk-gift-wishlist` FOREIGN KEY (`wishlist`) REFERENCES `wishlist` (`uuid`);
+  ADD CONSTRAINT `fk-gift-wishlist` FOREIGN KEY (`wishlist`) REFERENCES `wishlist` (`id`);
 
 --
 -- Constraints for table `lottery_ticket`

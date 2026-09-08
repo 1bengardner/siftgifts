@@ -10,7 +10,7 @@
         <p>
           Sift.gifts is a free wishlist sharing platform. Sign up and create your wishlist to share with friends and family&mdash;they don't even need an account!
         </p>
-        <h1><em>What do you want for Christmas?</em></h1>
+        <h1><em>What will you wish for?</em></h1>
         <p><a href="/">Return</a></p>
       </div>
       <div class="right about-image">

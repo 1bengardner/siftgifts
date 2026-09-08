@@ -47,6 +47,6 @@ if (!isset($wishlist)) {
   </body>
   <script src="/page/js/search.js" type="text/javascript"></script>
   <script src="/page/js/remove.js" type="text/javascript"></script>
-  <script src="/page/js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/reserve.js?v=2" type="text/javascript"></script>
   <script src="/page/js/share-wishlist.js" type="text/javascript"></script>
 </html>

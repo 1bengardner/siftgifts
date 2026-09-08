@@ -35,7 +35,7 @@ if (!isset($id)) {
     </div>
   </body>
   <script src="/page/js/search.js" type="text/javascript"></script>
-  <script src="/page/js/reserve.js" type="text/javascript"></script>
+  <script src="/page/js/reserve.js?v=2" type="text/javascript"></script>
   <script type="text/javascript">
     /*
       Show which gifts the device user reserved and enable unreserve

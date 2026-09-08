@@ -30,6 +30,17 @@ class Database
     $prepared_stmt->close();
     return $res;
   }
+
+  public static function run_update_statement_and_get_affected_rows($connection, $stmt, $args)
+  {
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $prepared_stmt = $connection->prepare($stmt);
+    $prepared_stmt->bind_param(str_repeat("s", count($args)), ...$args);
+    $prepared_stmt->execute();
+    $res = $prepared_stmt->affected_rows;
+    $prepared_stmt->close();
+    return $res;
+  }
 }
 
 require 'email_config.php';
@@ -103,6 +114,9 @@ abstract class NotificationText
   const UpdatePrizesSuccess = "Prizes have been updated.";
   const NoWishlistAccess = "You do not have access to this private wishlist.";
   const WishlistDoesNotExist = "That private wishlist does not exist.";
+  const InvalidGift = "This gift is invalid.";
+  const AlreadyReserved = "Somebody else already reserved this gift. Please refresh the page.";
+  const ReserveSuccess = "Reserved!";
 }
 class Notification
 {

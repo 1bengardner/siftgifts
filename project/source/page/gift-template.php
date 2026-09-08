@@ -5,6 +5,7 @@ if (!isset($gift)) {
 }
 ?>
 <div class="widget gift-widget focused<?php if ($gift->mode === 'external registry') { echo ' external-registry'; } else if ($gift->reserved) { echo ' reserved'; } ?>">
+  <div class="notification-box"></div>
   <div>
     <?php if ($gift->mode !== 'external registry') { ?>
     <div class="right no-wrap">

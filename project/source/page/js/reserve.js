@@ -1,18 +1,46 @@
 function reserve(id, name) {
+  document.getElementById(id).disabled = true;
+  const rq = new XMLHttpRequest();
+  rq.open("POST", "../../action/trial-reserve", true);
+  rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  rq.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE) {
+      if (this.status === 200) {
+        confirmReserve(id, name);
+      } else if (this.responseText) {
+        document.getElementById(id).closest(".gift-widget").querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
+        return;
+      } else {
+        alert("There was an error reserving this gift. Try again.");
+        document.getElementById(id).disabled = false;
+      }
+    }
+  }
+  const params = "id=" + id;
+  rq.send(params);
+}
+
+function confirmReserve(id, name) {
   if (confirm("Are you sure you want to reserve " + name + "?")) {
     var rq = new XMLHttpRequest();
     rq.open("POST", "../../action/reserve-gift", true);
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     rq.onreadystatechange = function() {
-      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        document.getElementById(id).value = "Reserved!";
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+          document.getElementById(id).value = "Reserved!";
+        } else if (!this.responseText) {
+          alert("There was an error reserving this gift. Try again.");
+          document.getElementById(id).disabled = false;
+          return;
+        }
+        document.getElementById(id).closest(".gift-widget").querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
       }
     }
     var params = "id=" + id;
     rq.send(params);
-    document.getElementById(id).disabled = true;
   } else {
-    //document.getElementById(id).checked = false;
+    document.getElementById(id).disabled = false;
   }
 }
 

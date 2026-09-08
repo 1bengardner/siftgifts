@@ -35,8 +35,13 @@ if (!isset($gift)) {
         <?php } ?>
         </span>
       </h2>
+      <?php
+      if (!empty($gift->url)) {
+        echo '<span class="lighter smaller">'.htmlentities(parse_url($gift->url, PHP_URL_HOST)).'</span>';
+      }
+      ?>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading">
+        <p>
         <!-- <button href="#" class="edit" title="Edit: Comments" onclick="edit('notes-<?php echo $gift->id; ?>');">✏</button> -->
         <span id="notes-<?php echo $gift->id; ?>" class="gift-notes">
           <?php echo nl2br(htmlentities($gift->notes)); ?>

@@ -312,6 +312,9 @@ hr.expand {
   line-height: 1.3em;
   text-decoration: none;
 }
+.gift-name:has(+ *) {
+  margin-bottom: 0;
+}
 
 .gift-name a {
   text-decoration: none;  

@@ -24,8 +24,13 @@ if (!isset($gift)) {
         </a>
         <?php } ?>
       </h2>
+      <?php
+      if (!empty($gift->url)) {
+        echo '<span class="gift-domain lighter smaller">'.htmlentities(parse_url($gift->url, PHP_URL_HOST)).'</span>';
+      }
+      ?>
       <?php if (!empty($gift->notes)) { ?>
-        <p class="subheading gift-notes"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
+        <p class="gift-notes"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
       <?php }
       if ($gift->reserved && $gift->reserved_time != NULL) {
       ?>

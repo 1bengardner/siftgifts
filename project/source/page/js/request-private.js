@@ -14,8 +14,9 @@ function request() {
   const keys = [
     "name",
     "url",
+    "price",
     "comments",
-    "wishlist"
+    "wishlist",
   ];
   var params = keys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
   rq.send(params);

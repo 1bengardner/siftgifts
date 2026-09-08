@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2026 at 01:39 AM
+-- Generation Time: Sep 08, 2026 at 04:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -25,10 +25,10 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT)  NO SQL
 BEGIN
-INSERT INTO gift (name, url, notes, user)
-VALUES (TRIM(name), url, TRIM(comments), user);
+INSERT INTO gift (name, url, price, notes, user)
+VALUES (TRIM(name), url, price, TRIM(comments), user);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_message_email` (IN `user` INT)  NO SQL
@@ -37,10 +37,10 @@ REPLACE INTO message_email(user)
 VALUES (user);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_private_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT, IN `uuid` VARCHAR(36))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_private_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT, IN `wishlist` INT)  NO SQL
 BEGIN
-INSERT INTO gift (name, url, notes, user, wishlist)
-VALUES (TRIM(name), url, TRIM(comments), user, uuid);
+INSERT INTO gift (name, url, price, notes, user, wishlist)
+VALUES (TRIM(name), url, price, TRIM(comments), user, wishlist);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
@@ -55,9 +55,9 @@ REPLACE INTO verification_code(email, code)
 VALUES (email, code);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_gift` (IN `id` INT, IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `comments` TEXT, IN `user` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_gift` (IN `id` INT, IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT)  NO SQL
 UPDATE gift
-SET `name` = name, `url` = url, notes = comments
+SET `name` = name, `url` = url, notes = comments, `price` = price
 WHERE gift.id=id AND gift.user=user$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_conversations` (IN `id` INT)  NO SQL
@@ -218,6 +218,7 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `name` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `notes` text DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
   `reserved` tinyint(1) NOT NULL DEFAULT 0,
   `user` int(11) NOT NULL,
   `creation_time` timestamp NULL DEFAULT current_timestamp(),

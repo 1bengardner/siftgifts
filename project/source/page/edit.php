@@ -38,6 +38,9 @@
         <input name="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
       </div>
       <div>
+        <input name="price" type="number" step="0.01" placeholder="Price" maxlength="10">
+      </div>
+      <div>
         <textarea name="comments" class="comments" placeholder="Additional comments?" maxlength="255"><?php echo $gift->notes; ?></textarea>
       </div>
       <div>

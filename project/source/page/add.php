@@ -14,6 +14,9 @@
         <input id="url" type="url" placeholder="URL link" maxlength="255" />
       </div>
       <div>
+        <input id="price" type="number" step="0.01" placeholder="Price" maxlength="10">
+      </div>
+      <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
       <?php include 'notification-box.php'; ?>
@@ -25,6 +28,6 @@
       </div>
     </form>
   </body>
-  <script src="/page/js/request.js" type="text/javascript"></script>
+  <script src="/page/js/request.js?v=2" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

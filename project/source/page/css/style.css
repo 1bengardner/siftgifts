@@ -481,8 +481,8 @@ input.wishlist-link, input#search {
   cursor: text;
 }
 
-.invalid-input {
-  border-color: red;
+input.invalid-input:not([type=button]) {
+  border-color: #e6dcfc;
 }
 
 .spaced {

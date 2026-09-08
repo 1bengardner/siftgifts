@@ -25,7 +25,7 @@
         <input class="submit-button" type="submit" value="✨ Sign up" />
       </div>
       <div class="links-section">
-        <a class="link" href="login">Log in</a>
+        Already signed up? <a class="link" href="login">Log in</a>
       </div>
     </form>
   </body>

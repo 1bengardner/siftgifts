@@ -11,7 +11,7 @@ if ($affected_rows === 1) {
   $_SESSION["notifications"] = [new Notification(NotificationText::ReserveSuccess, NotificationLevel::Success)];
 } else {
   http_response_code(400);
-  // TODO Maybe improve error text to indicate specific state (already reserved, gift no longer there—select to find out)
+  // TODO Maybe improve error text to indicate specific state (already reserved, gift no longer there—SELECT to find out)
   $_SESSION["notifications"] = [new Notification(NotificationText::AlreadyReserved, NotificationLevel::Error)];
 }
 include '../page/notification-box.php';

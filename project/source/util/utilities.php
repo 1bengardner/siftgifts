@@ -115,8 +115,10 @@ abstract class NotificationText
   const NoWishlistAccess = "You do not have access to this private wishlist.";
   const WishlistDoesNotExist = "That private wishlist does not exist.";
   const InvalidGift = "This gift is invalid.";
-  const AlreadyReserved = "Somebody else already reserved this gift. Please refresh the page.";
+  const AlreadyReserved = "Somebody already reserved this gift. Please refresh the page.";
   const ReserveSuccess = "Reserved!";
+  const UnreserveError = "There was an error trying to unreserve. Please refresh the page.";
+  const UnreserveSuccess = "Unreserved. Refresh the page to see.";
 }
 class Notification
 {

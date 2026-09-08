@@ -1,3 +1,72 @@
+const memory = function() {
+  const StorageKeys = Object.freeze({
+    RESERVED: "reserved gifts",
+  });
+
+  function put(id) {
+    try {
+      const res = get();
+      res.push(id);
+      localStorage.setItem(StorageKeys.RESERVED, JSON.stringify(res));
+    } catch (error) {
+      console.error(error);
+      console.warn("Did not save reservation to localStorage.");
+    }
+  }
+
+  function get() {
+    try {
+      return JSON.parse(localStorage.getItem(StorageKeys.RESERVED)) ?? [];
+    } catch (error) {
+      console.error(error);
+      console.warn("Could not get reservation from localStorage.");
+    }
+  }
+
+  function erase(id) {
+    try {
+      const res = get();
+      const index = res.indexOf(id);
+      if (index !== -1) {
+        res.splice(index, 1);
+        localStorage.setItem(StorageKeys.RESERVED, JSON.stringify(res));
+      }
+    } catch (error) {
+      console.error(error);
+      console.warn("Could not remove reservation from localStorage.");
+    }
+  }
+
+  return {
+    put,
+    get,
+    erase,
+  }
+}();
+
+function unreserve(id) {
+  if (confirm("You reserved this gift. Do you want to unreserve it?")) {
+    var rq = new XMLHttpRequest();
+    rq.open("POST", "../../action/unreserve-gift", true);
+    rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    rq.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+          document.getElementById(id).value = "Reserve";
+          memory.erase(id);
+          document.getElementById(id).onclick = () => reserve(id);
+        } else if (!this.responseText) {
+          alert("There was an error unreserving this gift. Try again.");
+          return;
+        }
+        document.getElementById(id).closest(".gift-widget").querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
+      }
+    }
+    var params = "id=" + id;
+    rq.send(params);
+  }
+}
+
 function reserve(id, name) {
   document.getElementById(id).disabled = true;
   const rq = new XMLHttpRequest();
@@ -21,7 +90,7 @@ function reserve(id, name) {
 }
 
 function confirmReserve(id, name) {
-  if (confirm("Are you sure you want to reserve " + name + "?")) {
+  if (confirm("Are you sure you want to reserve " + (name ?? "this gift") + "?")) {
     var rq = new XMLHttpRequest();
     rq.open("POST", "../../action/reserve-gift", true);
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -29,6 +98,7 @@ function confirmReserve(id, name) {
       if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
           document.getElementById(id).value = "Reserved!";
+          memory.put(id);
         } else if (!this.responseText) {
           alert("There was an error reserving this gift. Try again.");
           document.getElementById(id).disabled = false;

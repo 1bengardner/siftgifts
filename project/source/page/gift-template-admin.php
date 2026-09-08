@@ -4,12 +4,13 @@ if (!isset($gift)) {
   exit;
 }
 ?>
-<div class="widget gift-widget focused">
+<div class="widget gift-widget focused<?php if ($gift->mode === 'external registry') { echo ' external-registry'; } ?>">
   <form action="/edit?return-to=<?php echo rawurlencode($_SERVER['REQUEST_URI']); ?>" method="post" style="margin: 0;">
     <input type="hidden" name="gift" value="<?php echo $gift->id; ?>" />
     <input class="edit-widget" type="submit" value="✏ Edit" />
   </form>
   <div>
+    <?php if ($gift->mode !== 'external registry') { ?>
     <div class="right no-wrap">
       <span class="admin-reserve" display-when-toggled="inline-block">
         <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="toggle(this, '<?php echo addslashes($gift->name); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
@@ -18,6 +19,7 @@ if (!isset($gift)) {
       <button gift="<?php echo $gift->id; ?>" id="remove-<?php echo $gift->id; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo addslashes($gift->name); ?>');"></button>
       <label class="delete-button" for="remove-<?php echo $gift->id; ?>" alt="Remove <?php echo addslashes($gift->name); ?> from your wishlist" title="Remove">❌</label>
     </div>
+    <?php } ?>
     <div>
       <h2 class="gift-name">
         <!-- <button href="#" class="edit" title="Edit: Name" onclick="edit('name-<?php echo $gift->id; ?>');">✏</button> -->

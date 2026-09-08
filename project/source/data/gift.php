@@ -9,6 +9,8 @@ class Gift
   public $creation_time;
   public $reserved_time;
   private $user;
+  public $mode;
+  
 
   public function __construct($assoc)
   {
@@ -20,6 +22,7 @@ class Gift
     $this->creation_time = $assoc['creation_time'];
     $this->reserved_time = $assoc['reserved_time'];
     $this->user = $assoc['user'];
+    $this->mode = $assoc['mode'];
   }
   
   public static function get_from_id($id)

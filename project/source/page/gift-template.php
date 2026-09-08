@@ -4,12 +4,14 @@ if (!isset($gift)) {
   exit;
 }
 ?>
-<div class="widget gift-widget focused<?php if ($gift->reserved) echo ' reserved' ?>">
+<div class="widget gift-widget focused<?php if ($gift->mode === 'external registry') { echo ' external-registry'; } else if ($gift->reserved) { echo ' reserved'; } ?>">
   <div>
+    <?php if ($gift->mode !== 'external registry') { ?>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
       <input id="<?php echo $var; ?>" type="button" onclick="reserve(this.id, '<?php echo htmlentities($gift->name); ?>');" <?php if ($gift->reserved) echo 'disabled' ?> value="Reserve<?php if ($gift->reserved) echo 'd' ?>" />
     </div>
+    <?php } ?>
     <div>
       <h2 class="gift-name">
         <?php

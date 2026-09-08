@@ -1169,3 +1169,7 @@ input.edit-widget {
   margin-left: 0.5em;
   margin-right: 0.5em;
 }
+
+.external-registry {
+  background: linear-gradient(to right, #f8f9fd, #eeedf7);
+}

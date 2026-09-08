@@ -6,7 +6,7 @@ require_once 'authenticate.php';
 // TODO Defend against unset $wishlist
 
 // Get user private gifts from db
-$stmt = "SELECT * FROM gift WHERE active=1 AND wishlist=? ORDER BY id DESC";
+$stmt = "SELECT * FROM gift WHERE active=1 AND wishlist=? ORDER BY (mode = 'external registry') DESC, id DESC";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$wishlist->id]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 

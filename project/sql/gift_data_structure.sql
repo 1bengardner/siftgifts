@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2026 at 02:30 PM
+-- Generation Time: Sep 08, 2026 at 01:39 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -224,6 +224,7 @@ CREATE TABLE IF NOT EXISTS `gift` (
   `reserved_time` timestamp NULL DEFAULT NULL,
   `reserver` int(11) DEFAULT NULL,
   `wishlist` int(11) DEFAULT NULL,
+  `mode` enum('normal','external registry') NOT NULL DEFAULT 'normal',
   PRIMARY KEY (`id`),
   KEY `fk-gift-user` (`user`),
   KEY `fk-gift-reserver` (`reserver`),

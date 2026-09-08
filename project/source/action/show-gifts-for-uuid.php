@@ -3,7 +3,7 @@ require_once '../util/utilities.php';
 require_once '../data/gift.php';
 
 // Get private gifts from db
-$stmt = "SELECT * FROM gift WHERE wishlist=? AND active=1 ORDER BY reserved ASC, id DESC";
+$stmt = "SELECT * FROM gift WHERE wishlist=? AND active=1 ORDER BY (mode = 'external registry') DESC, reserved ASC, id DESC";
 $res = Database::run_statement(Database::get_connection(), $stmt, [$_GET['id']]);
 $gifts = $res->fetch_all(MYSQLI_ASSOC);
 

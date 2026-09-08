@@ -7,6 +7,14 @@
     <div class="news-grid">
       <div class="reading-pane">
         <h1>What's new?</h1>
+        <h2 class="changelog-heading version-number">v9.3</h2> <h3 class="changelog-heading">2026-09-08</h3>
+        <ul>
+          <li>You can now link to other registries from your wishlist</li>
+          <li>You can now indicate gift prices</li>
+          <li>You can now see which gifts you have reserved and undo<ul>
+            <li>An error message will appear if somebody reserves a gift before you</li>
+          </ul></li>
+        </ul>
         <h2 class="changelog-heading version-number">v9.2</h2> <h3 class="changelog-heading">2026-09-07</h3>
         <ul>
           <li>You can now have multiple custom wishlists</li>

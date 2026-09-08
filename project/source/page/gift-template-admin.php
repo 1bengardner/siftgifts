@@ -47,7 +47,13 @@ if (!isset($gift)) {
           <?php echo nl2br(htmlentities($gift->notes)); ?>
         </span>
         </p>
-      <?php } ?>
+      <?php }
+      if ($gift->creation_time != NULL) {
+      ?>
+      <p class="lighter smaller"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
+      <?php
+      }
+      ?>
     </div>
   </div>
 </div>

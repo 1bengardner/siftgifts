@@ -33,8 +33,8 @@ require_once '../util/utilities.php';
     <ul class="wishlist-header-buttons">
       <?php
       $stmt = "SELECT 1 FROM wishlist WHERE owner=?";
-      $res = Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object();
-      if (is_null($res)) {
+      $has_no_private_wishlist = is_null(Database::run_statement(Database::get_connection(), $stmt, [$_SESSION['id']])->fetch_object());
+      if ($has_no_private_wishlist) {
       ?>
       <li class="wishlist-header-label"><a class="link" href="/wishlist">Wishlist</a></li>
       <?php
@@ -45,7 +45,13 @@ require_once '../util/utilities.php';
       }
       ?>
       <li><a href="/wishlist" title="Edit wishlist">📜</a></li>
+      <?php
+      if ($has_no_private_wishlist) {
+      ?>
       <li><a href="/add" title="Add to wishlist">➕</a></li>
+      <?php
+      }
+      ?>
     </ul>
     <ul class="user-header-buttons-large"><?php
         if (in_array($user->id, [1, 2])) {

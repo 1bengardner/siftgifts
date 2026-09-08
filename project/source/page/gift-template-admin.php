@@ -47,13 +47,21 @@ if (!isset($gift)) {
           <?php echo nl2br(htmlentities($gift->notes)); ?>
         </span>
         </p>
-      <?php }
+      <?php } ?>
+      <p class="gift-footer">
+      <?php
+      if ($gift->price !== NULL) {
+      ?>
+      <span class="lighter gift-price"><?php echo '~$'.$gift->price; ?></span>
+      <?php
+      }
       if ($gift->creation_time != NULL) {
       ?>
-      <p class="lighter smaller"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
+      <span class="lighter smaller gift-date"><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></span>
       <?php
       }
       ?>
+      </p>
     </div>
   </div>
 </div>

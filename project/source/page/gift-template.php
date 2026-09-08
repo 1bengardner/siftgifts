@@ -32,17 +32,25 @@ if (!isset($gift)) {
       ?>
       <?php if (!empty($gift->notes)) { ?>
         <p class="gift-notes"><?php echo nl2br(htmlentities($gift->notes)); ?></p>
-      <?php }
+      <?php } ?>
+      <p class="gift-footer">
+      <?php
+      if ($gift->price !== NULL) {
+      ?>
+      <span class="lighter gift-price"><?php echo '~$'.$gift->price; ?></span>
+      <?php
+      }
       if ($gift->reserved && $gift->reserved_time != NULL) {
       ?>
-      <p class="lighter smaller"><em><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)); ?></em></p>
+      <span class="lighter smaller gift-date"><?php echo 'Reserved on '.date('M j \'y', strtotime($gift->reserved_time)); ?></span>
       <?php
       } else if ($gift->creation_time != NULL) {
       ?>
-      <p class="lighter smaller"><em><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></em></p>
+      <span class="lighter smaller gift-date"><?php echo 'Added on '.date('M j \'y', strtotime($gift->creation_time)); ?></span>
       <?php
       }
       ?>
+      </p>
     </div>
   </div>
 </div>

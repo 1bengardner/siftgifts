@@ -10,6 +10,7 @@ class Gift
   public $reserved_time;
   private $user;
   public $mode;
+  public $price;
   
 
   public function __construct($assoc)
@@ -23,6 +24,7 @@ class Gift
     $this->reserved_time = $assoc['reserved_time'];
     $this->user = $assoc['user'];
     $this->mode = $assoc['mode'];
+    $this->price = $assoc['price'];
   }
   
   public static function get_from_id($id)

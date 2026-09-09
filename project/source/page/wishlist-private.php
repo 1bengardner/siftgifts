@@ -34,7 +34,7 @@ if (!isset($wishlist)) {
       </span>
     </div>
     <div class="center wishlist-background">
-      <h1 class="center"><?php echo htmlentities($wishlist->name); ?></h1>
+      <h1 class="center" id="wishlist-title"><?php echo htmlentities($wishlist->name); ?></h1>
       <form>
         <span class="unbreakable"><input id="search" type="search" name="q" placeholder="Search for a gift&hellip;" />🔍</span>
       </form>
@@ -49,4 +49,5 @@ if (!isset($wishlist)) {
   <script src="/page/js/remove.js" type="text/javascript"></script>
   <script src="/page/js/reserve.js" type="text/javascript"></script>
   <script src="/page/js/share-wishlist.js" type="text/javascript"></script>
+  <script src="/page/js/edit-wishlist-title.js?id=<?php echo $wishlist->id; ?>" type="text/javascript"></script>
 </html>

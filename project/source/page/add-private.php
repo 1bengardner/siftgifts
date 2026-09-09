@@ -51,6 +51,6 @@ if ($wishlist->owner !== $_SESSION["id"]) {
       </div>
     </form>
   </body>
-  <script src="/page/js/request-private?v=2" type="text/javascript"></script>
+  <script src="/page/js/request-private" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

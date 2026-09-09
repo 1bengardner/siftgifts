@@ -34,6 +34,7 @@ if ($wishlist->owner !== $_SESSION["id"]) {
       </div>
       <div>
         <input id="url" type="url" placeholder="URL link" maxlength="255" />
+        <span id="url-link"></span>
       </div>
       <div>
         <input id="price" type="number" step="0.01" placeholder="Price" maxlength="10">
@@ -51,6 +52,7 @@ if ($wishlist->owner !== $_SESSION["id"]) {
       </div>
     </form>
   </body>
+  <script src="/page/js/gift-config.js" type="text/javascript"></script>
   <script src="/page/js/request-private" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

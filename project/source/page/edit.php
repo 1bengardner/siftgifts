@@ -35,7 +35,8 @@
         <input name="name" type="name" placeholder="Gift name" maxlength="255" value="<?php echo htmlentities($gift->name); ?>" required />
       </div>
       <div>
-        <input name="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
+        <input id="url" name="url" type="url" placeholder="URL link" maxlength="255" value="<?php echo htmlentities($gift->url); ?>" />
+        <span id="url-link"></span>
       </div>
       <div>
         <input name="price" type="number" step="0.01" placeholder="Price" maxlength="10" value="<?php echo htmlentities($gift->price); ?>">
@@ -55,5 +56,6 @@
       </div>
     </form>
   </body>
+  <script src="/page/js/gift-config.js" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

@@ -1186,3 +1186,13 @@ input.edit-widget {
   font-style: italic;
   margin-left: auto;
 }
+
+#url-link {
+  position: absolute;
+  transition: opacity 0.2s;
+}
+@media screen and (max-width: 300px) {
+  #url-link {
+    display: none;
+  }
+}

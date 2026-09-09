@@ -5,6 +5,7 @@ if (!isset($gift)) {
 }
 ?>
 <div class="widget gift-widget focused<?php if ($gift->mode === 'external registry') { echo ' external-registry'; } ?>">
+  <div class="notification-box"></div>
   <form action="/edit?return-to=<?php echo rawurlencode($_SERVER['REQUEST_URI']); ?>" method="post" style="margin: 0;">
     <input type="hidden" name="gift" value="<?php echo $gift->id; ?>" />
     <input class="edit-widget" type="submit" value="✏ Edit" />
@@ -13,7 +14,7 @@ if (!isset($gift)) {
     <?php if ($gift->mode !== 'external registry') { ?>
     <div class="right no-wrap">
       <span class="admin-reserve" display-when-toggled="inline-block">
-        <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="toggle(this, '<?php echo addslashes($gift->name); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
+        <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="adminReserve(this, '<?php echo addslashes($gift->name); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
         <label for="reserve-<?php echo $gift->id; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
       </span>
       <button gift="<?php echo $gift->id; ?>" id="remove-<?php echo $gift->id; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo addslashes($gift->name); ?>');"></button>

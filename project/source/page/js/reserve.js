@@ -114,22 +114,25 @@ function confirmReserve(id, name) {
   }
 }
 
-function toggle(btn, name) {
+function adminReserve(btn, name) {
   if (!confirm(btn.checked ? `Reserve ${name}?` : `Mark ${name} as available?`)) {
     btn.checked = !btn.checked;
     return;
   }
   var rq = new XMLHttpRequest();
-  rq.open("POST", "../../action/reserve-gift-toggle", true);
+  rq.open("POST", "../../action/reserve-gift-admin", true);
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      const doesServerSeeReserved = rq.responseText == 1;
-      document.getElementById(btn.getAttribute("id")).labels[0].innerHTML = doesServerSeeReserved ? "Reserved" : "Reserve";
-      btn.checked = doesServerSeeReserved;
+    if (this.readyState === XMLHttpRequest.DONE) {
+      if (this.status !== 200 && this.responseText) {
+        btn.closest(".gift-widget").querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
+        btn.checked = !btn.checked;
+        return;
+      }
+      document.getElementById(btn.getAttribute("id")).labels[0].innerHTML = btn.checked ? "Reserved" : "Reserve";
     }
   }
-  var params = "id=" + btn.getAttribute("gift");
+  var params = "id=" + btn.getAttribute("gift") + "&reserve=" + Number(btn.checked);
   rq.send(params);
 }
 

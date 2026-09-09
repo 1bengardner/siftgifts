@@ -119,6 +119,7 @@ abstract class NotificationText
   const ReserveSuccess = "Reserved!";
   const UnreserveError = "There was an error trying to unreserve. Please refresh the page.";
   const UnreserveSuccess = "Unreserved. Refresh the page to see.";
+  const GiftReservationModified = "Oops! Somebody updated this gift's reservation status. Please refresh the page.";
 }
 class Notification
 {

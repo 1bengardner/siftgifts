@@ -1,11 +1,10 @@
-const testTarget = document.getElementById("url");
 function getTarget() {
   return document.getElementById("url-link");
 }
 
 function onUpdate() {
   const target = getTarget();
-  if (!testTarget.value) {
+  if (!this.value) {
     target.replaceWith(Object.assign(document.createElement("span"), {
       id: "url-link",
     }));
@@ -28,15 +27,17 @@ function onUpdate() {
 }
 
 function handleUrlLinkInput() {
-  testTarget.addEventListener("input", function() {
+  this.addEventListener("input", function() {
     const target = getTarget();
     target.style.display = "none";
   });
-  testTarget.addEventListener("blur", function() {
+  this.addEventListener("blur", function() {
     const target = getTarget();
     target.style.display = "";
   });
-  testTarget.addEventListener("change", onUpdate);
+  this.addEventListener("change", onUpdate);
+  document.getElementById("request-form").addEventListener("reset", onUpdate.bind({ value: null, }));
 }
+const testTarget = document.getElementById("url");
 onUpdate.call(testTarget);
-handleUrlLinkInput();
+handleUrlLinkInput.call(testTarget);

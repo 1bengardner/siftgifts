@@ -107,7 +107,7 @@ abstract class NotificationText
   const AddSuccess = "Added!";
   const UpdatePreferencesSuccess = "Your preferences have been updated.";
   const EditSuccess = "Updated!";
-  const HoneypotError = "Your password is invalid.";
+  const HoneypotError = "Your signup request was detected as automated. Please sign up manually.";
   const RegenerateLotterySuccess = "The winning numbers for pending lotteries have been changed.";
   const NoLotteries = "There are no pending lotteries.";
   const NaughtyList = "Somebody's getting a lump of coal for Christmas this year&hellip;";

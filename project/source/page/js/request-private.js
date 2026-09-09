@@ -11,13 +11,14 @@ function request() {
       document.querySelector(".notification-box").replaceWith(document.createRange().createContextualFragment(this.responseText));
     }
   }
-  const keys = [
+  const valueKeys = [
     "name",
     "url",
     "price",
     "comments",
     "wishlist",
   ];
-  var params = keys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
+  var params = valueKeys.map(x => x + "=" + encodeURIComponent(document.getElementById(x).value)).join('&');
+  params += "&unreservable=" + (document.getElementById("unreservable").checked ? "1" : "0");
   rq.send(params);
 }

@@ -42,17 +42,24 @@ if ($wishlist->owner !== $_SESSION["id"]) {
       <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
+      <div>
+        <input id="unreservable" type="checkbox" /><label for="unreservable">Unreservable?</label>
+      </div>
+      <div class="unreservable-info">
+        <p>Check this box if you want this wish to stay on your wishlist until you remove it.</p>
+        <p>It can be useful for links to other wishlists.</p>
+      </div>
       <input id="wishlist" type="hidden" value="<?php echo htmlentities($wishlist->short_name); ?>">
-      <?php include 'notification-box.php'; ?>
       <div>
         <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
+      <?php include 'notification-box.php'; ?>
       <div class="links-section">
         <a class="link" href="private-wishlist/<?php echo rawurlencode($wishlist->short_name); ?>">⬅️ Return to <?php echo htmlentities($wishlist->name); ?> wishlist</a>
       </div>
     </form>
   </body>
   <script src="/page/js/gift-config.js" type="text/javascript"></script>
-  <script src="/page/js/request-private" type="text/javascript"></script>
+  <script src="/page/js/request-private.js" type="text/javascript"></script>
   <script src="/page/js/extra-flavour.js" type="text/javascript"></script>
 </html>

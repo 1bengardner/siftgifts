@@ -45,6 +45,14 @@
         <textarea name="comments" class="comments" placeholder="Additional comments?" maxlength="255"><?php echo $gift->notes; ?></textarea>
       </div>
       <div>
+        <input id="unreservable" name="unreservable" type="checkbox"
+        <?php
+          require_once '../util/db_enums.php';
+          if ($gift->mode === DbEnum\GiftMode::ExternalRegistry) echo 'checked';
+        ?>
+        ><label for="unreservable">Unreservable?</label>
+      </div>
+      <div>
         <input class="submit-button" type="submit" value="✍ Save changes"/>
       </div>
       <?php

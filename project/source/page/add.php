@@ -20,10 +20,17 @@
       <div>
         <textarea id="comments" class="comments" placeholder="Additional comments?" maxlength="255"></textarea>
       </div>
-      <?php include 'notification-box.php'; ?>
+      <div>
+        <input id="unreservable" type="checkbox" /><label for="unreservable">Unreservable?</label>
+      </div>
+      <div class="unreservable-info">
+        <p>Check this box if you want this wish to stay on your wishlist until you remove it.</p>
+        <p>It can be useful for links to other wishlists.</p>
+      </div>
       <div>
         <input class="submit-button" type="submit" value="🎁 Add gift"/>
       </div>
+      <?php include 'notification-box.php'; ?>
       <div class="links-section">
         <a class="link" href="wishlist">⬅️ Return to wishlist</a>
       </div>

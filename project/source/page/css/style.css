@@ -435,7 +435,7 @@ div.reserved {
 }
 
 .lighter {
-  color: #837970
+  color: #837970;
 }
 
 .no-wrap {
@@ -1195,4 +1195,14 @@ input.edit-widget {
   #url-link {
     display: none;
   }
+}
+
+.unreservable-info {
+  margin-bottom: 0.5em;
+  font-size: smaller;
+  color: #837970;
+}
+.unreservable-info p {
+  margin: 0 auto;
+  max-width: 40em;
 }

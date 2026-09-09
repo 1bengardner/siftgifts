@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2026 at 04:06 PM
+-- Generation Time: Sep 09, 2026 at 05:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.18
 
@@ -25,10 +25,10 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `mode` ENUM('normal','external registry'), IN `user` INT)  NO SQL
 BEGIN
-INSERT INTO gift (name, url, price, notes, user)
-VALUES (TRIM(name), url, price, TRIM(comments), user);
+INSERT INTO gift (name, url, price, notes, mode, user)
+VALUES (TRIM(name), url, price, TRIM(comments), mode, user);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_message_email` (IN `user` INT)  NO SQL
@@ -37,10 +37,10 @@ REPLACE INTO message_email(user)
 VALUES (user);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `add_private_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT, IN `wishlist` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_private_gift` (IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `mode` ENUM('normal','external registry'), IN `user` INT, IN `wishlist` INT)  NO SQL
 BEGIN
-INSERT INTO gift (name, url, price, notes, user, wishlist)
-VALUES (TRIM(name), url, price, TRIM(comments), user, wishlist);
+INSERT INTO gift (name, url, price, notes, mode, user, wishlist)
+VALUES (TRIM(name), url, price, TRIM(comments), mode, user, wishlist);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_reset_code` (IN `email` VARCHAR(320), IN `code` VARCHAR(255))  NO SQL
@@ -55,9 +55,9 @@ REPLACE INTO verification_code(email, code)
 VALUES (email, code);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_gift` (IN `id` INT, IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `user` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_gift` (IN `id` INT, IN `name` VARCHAR(255), IN `url` VARCHAR(255), IN `price` DECIMAL(10,2), IN `comments` TEXT, IN `mode` ENUM('normal','external registry'), IN `user` INT)  NO SQL
 UPDATE gift
-SET `name` = name, `url` = url, notes = comments, `price` = price
+SET `name` = name, `url` = url, notes = comments, `price` = price, `mode` = mode
 WHERE gift.id=id AND gift.user=user$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_conversations` (IN `id` INT)  NO SQL

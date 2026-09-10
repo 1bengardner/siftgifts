@@ -10,7 +10,7 @@ if (!isset($gift)) {
     <?php if ($gift->mode !== 'external registry') { ?>
     <div class="right no-wrap">
       <?php $var = $gift->id; ?>
-      <input id="<?php echo $var; ?>" type="button" onclick="reserve(this.id, '<?php echo addslashes($gift->name); ?>');" <?php if ($gift->reserved) echo 'disabled' ?> value="Reserve<?php if ($gift->reserved) echo 'd' ?>" />
+      <input id="<?php echo $var; ?>" type="button" onclick="reserve(this.id, '<?php echo addslashes(htmlentities($gift->name)); ?>');" <?php if ($gift->reserved) echo 'disabled' ?> value="Reserve<?php if ($gift->reserved) echo 'd' ?>" />
     </div>
     <?php } ?>
     <div>

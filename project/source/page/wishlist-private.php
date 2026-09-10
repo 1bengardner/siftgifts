@@ -49,5 +49,5 @@ if (!isset($wishlist)) {
   <script src="/page/js/remove.js" type="text/javascript"></script>
   <script src="/page/js/reserve.js" type="text/javascript"></script>
   <script src="/page/js/share-wishlist.js" type="text/javascript"></script>
-  <script src="/page/js/edit-wishlist-title.js?id=<?php echo $wishlist->id; ?>" type="text/javascript"></script>
+  <script src="/page/js/edit-wishlist-title.js?id=<?php echo rawurlencode($wishlist->short_name); ?>" type="text/javascript"></script>
 </html>

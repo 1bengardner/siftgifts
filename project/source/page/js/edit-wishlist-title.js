@@ -11,7 +11,7 @@ function addTitleChangeHandler(target) {
     rq.abort();
     rq.open("POST", "../../action/submit-wishlist-name-change", true);
     rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    rq.send(`id=${id}&name=${encodeURIComponent(title)}`);
+    rq.send(`id=${encodeURIComponent(id)}&name=${encodeURIComponent(title)}`);
   }
   target.contentEditable = true;
   let beforeEdit = "";
@@ -20,9 +20,14 @@ function addTitleChangeHandler(target) {
     beforeEdit = this.textContent;
   });
   target.addEventListener("blur", function() {
-    if (beforeEdit === this.textContent) return;
-    updateTitle(this.textContent);
     dontUpdate = false;
+    this.textContent = this.textContent.trim();
+    if (beforeEdit === this.textContent) return;
+    if (this.textContent === "") {
+      this.textContent = beforeEdit;
+      return;
+    }
+    updateTitle(this.textContent);
   });
 }
 

@@ -1176,6 +1176,9 @@ input.edit-widget {
 .external-registry {
   background: linear-gradient(to right, #f8f9fd, #eeedf7);
 }
+.widget.external-registry {
+  box-shadow: 0 0 0.2em rgba(85, 51, 153, 0.4);
+}
 
 .gift-footer {
   display: flex;

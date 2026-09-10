@@ -218,8 +218,14 @@ input.submit-button, input.edit-widget {
   color: #fff;
   background-color: #539;
 }
-input.submit-button:hover, input.edit-widget:hover {
+input.edit-widget {
+  background-color: #6759d9;
+}
+input.submit-button:hover {
   background-color: #6647a3;
+}
+input.edit-widget:hover {
+  background-color: #7366e3;
 }
 input.submit-button:active, input.edit-widget:active {
   color: #ddd;
@@ -903,12 +909,15 @@ input.edit-widget {
   font-size: small;
   padding: revert;
   margin: revert;
-  opacity: 0;
-  transition: opacity 0.2s;
 }
-.gift-widget:hover input.edit-widget, input.edit-widget:focus {
-  opacity: 1;
-  transition: opacity 0s;
+@media (hover: hover) {
+  input.edit-widget {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .gift-widget:hover input.edit-widget, input.edit-widget:focus {
+    opacity: 1;
+  }
 }
 
 .version-number {

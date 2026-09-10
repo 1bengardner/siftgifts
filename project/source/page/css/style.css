@@ -144,7 +144,7 @@ nav li {
 }
 
 .header .logo-text {
-  transition: .07s ease-out;
+  margin-top: -0.33em;
 }
 
 .focused {
@@ -551,7 +551,7 @@ input.invalid-input:not([type=button]) {
 }
 
 .message-chooser, .message-viewer {
-  height: calc(100vh - 11.5rem);
+  height: calc(100dvh - 11rem);
   overflow-y: auto;
   background-color: #eeedf7;
 }
@@ -1001,7 +1001,7 @@ input.edit-widget {
   .header .logo-text {
     display: inline-block;
     font-size: 2em;
-    margin: 0 2rem;
+    margin-inline: 2rem;
   }
   .user-buttons {
     display: inline-block;
@@ -1061,7 +1061,7 @@ input.edit-widget {
     display: none;
   }
   .message-chooser, .message-viewer {
-    height: calc(100vh - 5.25rem);
+    height: calc(100dvh - 5rem);
   }
   h1 {
     font-size: 1.75em;

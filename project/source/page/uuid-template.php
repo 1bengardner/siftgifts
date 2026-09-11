@@ -30,4 +30,19 @@ if (!isset($wishlist)) {
   </body>
   <script src="/page/js/search.js" type="text/javascript"></script>
   <script src="/page/js/reserve.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    /*
+      Show which gifts the device user reserved and enable unreserve
+    */
+    const reservedGifts = memory.get();
+    for (const id of reservedGifts) {
+      // Gift not on page or was unreserved by someone else
+      if (!document.getElementById(id)?.closest(".reserved")) {
+        continue;
+      }
+      document.getElementById(id).value = "Unreserve?";
+      document.getElementById(id).disabled = false;
+      document.getElementById(id).onclick = () => unreserve(id);
+    }
+  </script>
 </html>

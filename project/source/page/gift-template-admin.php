@@ -14,11 +14,11 @@ if (!isset($gift)) {
     <div class="right no-wrap">
       <?php if ($gift->mode !== 'external registry') { ?>
       <span class="admin-reserve" display-when-toggled="inline-block">
-        <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="adminReserve(this, '<?php echo addslashes(htmlentities($gift->name)); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
+        <input style="margin-right: 0;" gift="<?php echo $gift->id; ?>" id="reserve-<?php echo $gift->id; ?>" type="checkbox" onclick="adminReserve(this, '<?php echo htmlentities(addslashes($gift->name)); ?>');" <?php if ($gift->reserved) echo 'checked' ?> />
         <label for="reserve-<?php echo $gift->id; ?>">Reserve<?php if ($gift->reserved) echo 'd' ?></label>
       </span>
       <?php } ?>
-      <button gift="<?php echo $gift->id; ?>" id="remove-<?php echo $gift->id; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo addslashes(htmlentities($gift->name)); ?>');"></button>
+      <button gift="<?php echo $gift->id; ?>" id="remove-<?php echo $gift->id; ?>" class="delete-placeholder" type="button" value="❌" onclick="remove(this.getAttribute('gift'), '<?php echo htmlentities(addslashes($gift->name)); ?>');"></button>
       <label class="delete-button" for="remove-<?php echo $gift->id; ?>" alt="Remove <?php echo htmlentities($gift->name); ?> from your wishlist" title="Remove">❌</label>
     </div>
     <div>

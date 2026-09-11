@@ -14,6 +14,8 @@ $stmt = "UPDATE gift SET reserved=? WHERE id=? AND reserved=?";
 $affected_rows = Database::run_update_statement_and_get_affected_rows(Database::get_connection(), $stmt, [$_POST["reserve"], $_POST["id"], $_POST["reserve"] == 1 ? 0 : 1]);
 
 if ($affected_rows === 1) {
+  require_once '../action/record-gift-action.php';
+  recordGiftReservation($_POST["id"], (bool)$_POST["reserve"], $_SESSION["id"]);
   http_response_code(200);
 } else {
   http_response_code(409);

@@ -11,15 +11,15 @@ $xmas_participant = XmasParticipant::get_from_code($_SESSION["xmas"]);
     <?php include 'header.php'; ?>
     <?php include 'notification-box.php'; ?>
     <div class="center">
-      <div class="info-box">The lottery is over. See you again!</div>
+      <div class="info-box" style="margin-bottom: 0.5em;">The lottery is over. See you again!</div>
       <?php
       $drawn = include '../action/xmas-was-lottery-drawn.php';
       /*
       Uncomment to reopen lottery
       if ($drawn) {
-        echo '<h2><a class="new-notifications" href="results">🎄 Check your numbers!</a></h2>';
+        echo '<h2 style="margin-bottom: 0;"><a class="new-notifications" href="results">🎄 Check your numbers!</a></h2>';
       } else {
-        echo '<div class="info-box" id="countdown">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
+        echo '<div class="info-box" id="countdown" style="margin-bottom: 0.5em;">Draw in&hellip;<span id="countdown-time" style="font-size: 1.1rem; font-family: monospace;"></span></div>';
       }
       */
       ?>

@@ -743,6 +743,7 @@ input.message-entry:disabled {
   100% {
     color: #3efa3e;
     background-color: #f4fef5;
+    box-shadow: 0 0 0.2em rgba(92, 195, 50, 0.5);
   }
 }
 a.new-notifications {

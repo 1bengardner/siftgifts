@@ -10,6 +10,9 @@ function clickHandler(source) {
     }
   }
   if (validSubmission) {
+    if (source.formAction !== window.location.href) {
+      source.form.action = source.formAction;
+    }
     // poor browser support for requestSubmit
     if (source.form.requestSubmit !== undefined) {
       source.form.requestSubmit();

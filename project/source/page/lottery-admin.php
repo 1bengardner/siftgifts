@@ -16,12 +16,19 @@ $prizes = $prizes ? $prizes[0] : [];
   <?php include 'head.php'; ?>
   <body>
     <?php include 'header.php'; ?>
-    <form action="/action/submit-regenerate-lottery-numbers.php" method="post">
+    <form method="post">
     <?php include 'notification-box.php'; ?>
       <div class="widget settings-widget">
         <h2 class="first-in-series connected-text">Lottery Administration</h2>
         <div>
-          <input class="submit-button" type="submit" value="🌀 Generate new numbers for pending lotteries" />
+          <input type="datetime-local" name="draw-time">
+          <input formaction="/action/refresh-user-1-lottery.php" class="submit-button" type="submit" value="🎫 Give <?php
+            require_once '../data/user.php';
+            echo User::get_from_id(1)->username;
+          ?> a ticket" />
+        </div>
+        <div>
+          <input formaction="/action/submit-regenerate-lottery-numbers.php" class="submit-button" type="submit" value="🌀 Generate new numbers for pending lotteries" />
         </div>
       </div>
     </form>

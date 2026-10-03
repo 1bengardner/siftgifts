@@ -257,6 +257,7 @@ input[type=radio] {
 .widget {
   background-color: #fdfcff;
   margin: 2em;
+  margin-inline: clamp(0em, 20vw - 8em, 2em);
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.25);
   vertical-align: top;
 }

@@ -5,6 +5,11 @@ Options -Indexes
 DirectorySlash Off
 
 RewriteEngine On
+
+# php2shell mitigation?
+RewriteCond %{HTTP:Content-Type} multipart/form-data [NC]
+RewriteRule .* - [R=503,L]
+
 # Re-route subsite travel-fund
 RewriteRule ^travel\-fund$ /travel-fund/ [R]
 # Only rewrite requests for files that do not exist

@@ -87,7 +87,7 @@ function sendMessage() {
   rq.open("POST", "/action/submit-messaging-message", true);
   const params = {
     "to": sentTo,
-    "message": message
+    "message": encodeURIComponent(message),
   };
   rq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   rq.onreadystatechange = function() {

@@ -27,7 +27,9 @@ if (!in_array($user->id, [1, 2])) {
       <h2 style="margin: 0;">Welcome to the<span style="color: #a80; text-shadow: 0.05em 0.05em 0.15em #fda; line-height: 1.3; word-spacing: -0.3em;"><span class="logo-text"> Sift<span class="spaced">.</span>gifts </span>lottery!</span></h2>
       <h1 style="background-color: purple;">
         <?php
-        if (!isset($_SESSION['lottery greeted'])) {
+        if ((new DateTime("now", new DateTimeZone("America/New_York")))->format("l") === "Friday") {
+          echo "Happy Friday, ".ucwords(strtolower($user->username))."!";
+        } else if (!isset($_SESSION['lottery greeted'])) {
           $_SESSION['lottery greeted'] = true;
           echo "It's your lucky day, ".ucwords(strtolower($user->username))."!";
         } else {

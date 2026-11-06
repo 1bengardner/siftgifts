@@ -675,8 +675,8 @@ input.message-entry:disabled {
 
 .send-button {
   font-weight: bold;
-  color: #539;
-  background-color: #e6dcfc;
+  color: #e6dcfc;
+  background-color: #aa99bb;
   padding: 1rem 1.5rem;
   margin-right: 1rem;
   border-radius: 0 2em 2em 0;
@@ -684,10 +684,8 @@ input.message-entry:disabled {
   box-sizing: border-box;
 }
 .send-button:hover {
-  background-color: rgba(160, 0, 255, 0.1);
-}
-.send-button:active {
-  background-color: rgba(160, 0, 255, 0.1);
+  color: #539;
+  background-color: #aa99bb;
 }
 
 .message-time-sent {
@@ -733,6 +731,10 @@ input.message-entry:disabled {
 
 #message-form {
   margin: 0;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .wishlist-header, .messaging-header {

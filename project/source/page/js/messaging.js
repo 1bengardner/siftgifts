@@ -166,6 +166,7 @@ function setContent(replyable, ...messageData) {
     sendMessage();
     e.preventDefault();
   };
+  document.querySelector('.message-viewer').scrollTop = document.querySelector('.message-viewer').scrollHeight;
   document.querySelector('.message-entry').focus();
 }
 
